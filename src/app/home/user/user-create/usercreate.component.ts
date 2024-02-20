@@ -28,6 +28,7 @@ export class UsercreateComponent {
     correoPersonal: new FormControl('', [Validators.required, Validators.email]),
     estado: new FormControl(false, [Validators.required]),
     personaUuid: new FormControl(''),
+    foto: new FormControl(''),
     roles: this.rolesFormGroup
   });
 
@@ -69,7 +70,7 @@ export class UsercreateComponent {
       this.formGroup.value.personaUuid = this.personuuid;
       this.formGroup.value.roles = this.promos.value;
       const id = this.formGroup.value.personaUuid;
-      
+
       this.userservice.create(this.formGroup.value as user).subscribe({
 
         next: (userData: any) => {
@@ -119,6 +120,18 @@ export class UsercreateComponent {
       this.roles = data;
     });
   }
+  
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      let base64String:string = reader.result as string;
+      base64String = base64String.split(',')[1];
+      this.formGroup.value.foto = base64String;
+    };
+    reader.readAsDataURL(file);
+  }
+
 }
 
 /* fg!: FormGroup

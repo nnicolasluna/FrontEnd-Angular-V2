@@ -10,9 +10,6 @@ export class LoginService {
   private url = 'http://localhost:8080/login';
   constructor(private http: HttpClient) { }
   login(credentials: LoginRequest): Observable<any> {
-    console.log(credentials)
-    /* return this.http.post<any>('http://localhost:8080/login',credentials); */
     return this.http.post<any>(this.url, credentials);
-
   }
 }

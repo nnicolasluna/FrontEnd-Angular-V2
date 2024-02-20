@@ -64,7 +64,7 @@ export class LoginComponent {
       if (currentPassword !== undefined && currentPassword !== null) {
         this.formGroup.value.password = this.hashPassword(currentPassword,this.salt);
         const  valid = bcrypt.compareSync('passoword', this.formGroup.value.password);
-        console.log(valid)
+       
       } else {
         console.error("El valor actual de password es undefined o null");
       }
@@ -73,13 +73,17 @@ export class LoginComponent {
       this.loginService.login(this.formGroup.value as LoginRequest).subscribe({
         next: (userData) => {
           if (userData == true) {
-            /* this.router.navigateByUrl('/home'); */
+
+            this.router.navigateByUrl('/home');
             this.formGroup.reset();
           }
           else {
             alert("Datos Incorrectos, Verifique sus datos");
           }
         },
+        error: (error) => {
+          console.log('error en la respuesta')
+        }
       });
     }
     else {

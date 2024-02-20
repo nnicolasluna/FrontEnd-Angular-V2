@@ -83,6 +83,13 @@
                             <div class="validation">
                                 <div class="content__inputs">
 
+                                    <label for="" class="content__formlabel">Foto:</label>
+                                    <input class="content__imput_typeFile" type="file"  (change)="onFileSelected($event)">
+                                </div>
+                            </div>
+                            <div class="validation">
+                                <div class="content__inputs">
+
                                     <label for="" class="content__formlabel">Roles:</label>
                                     <button class="button button--form"  type="button" (click)="addLesson()">Añadir Role</button>
                                 </div>
@@ -128,7 +135,7 @@
                 <mat-card-footer class="card__footer">
 
                     <a class="button button--simple" routerLink="/home/personlist">Cancelar</a>
-                    <button class="button button--create" (click)="create()">Guardar</button>
+                    <button class="button button--create" (click)="edit()">Guardar</button>
 
 
                 </mat-card-footer>

@@ -27,11 +27,11 @@ body {
     margin-left: 4px;
     margin-right: 4px;
     max-width: 15%;
-    
+
 }
 
 .button--create:hover {
-    background-color:#e68642;
+    background-color: #e68642;
 }
 
 .button--create {
@@ -72,7 +72,8 @@ body {
     background-color: #1F9EC9;
     color: #fff;
     border: none;
-
+    width: 100%;
+    max-width: 100%;
 }
 
 .button--navbar:hover {
@@ -107,6 +108,7 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
+
 //Formulario de tres filas de inputs
 .card--tri {
     margin-right: 20%;
@@ -157,13 +159,12 @@ body {
     padding: 10px;
 }
 
+// contenedor de input para que sea responsivo
 .content__inputs {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     flex-shrink: 1;
-
-
 }
 
 .content__formlabel {
@@ -172,6 +173,7 @@ body {
     padding-bottom: 7px;
 }
 
+//estilo de cada uno de los input
 .content__imput {
     border-radius: 4px;
     border-width: 1px;
@@ -183,6 +185,20 @@ body {
     height: 100px;
 }
 
+//estilos para input typefile
+
+.content__imput_typeFile::file-selector-button {
+    border: solid 1px black;
+    text-decoration: none;
+    color: black;
+    min-width: 20%;
+    background-color: rgb(243, 243, 243);
+    width: 80%;
+    border-radius: 5px;
+    padding: 7px 7px;
+    font-size: 16px;
+  }
+
 
 //Contenedor de 1 fila de inputs
 .content--one {
@@ -192,6 +208,7 @@ body {
     margin-right: 4%;
     margin-left: 4%;
 }
+
 //Contenedor de 2 filas de inputs
 .content--two {
     display: flex;
@@ -203,6 +220,7 @@ body {
     margin-left: 4%;
     justify-content: space-between;
 }
+
 //Contenedor de 3 filas de inputs
 .content--tri {
     display: flex;
@@ -213,9 +231,11 @@ body {
     margin-right: 4%;
     margin-left: 4%;
 }
+
 a {
     text-decoration: none;
 }
+
 //filtro buscar de los template buscar
 .filter {
     display: flex;

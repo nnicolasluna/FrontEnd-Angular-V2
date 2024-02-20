@@ -26,4 +26,8 @@ export class UserService {
   destroy(uuid: string) {
     return this.http.delete(this.url+'/'+uuid);
   }
+  update(uuid: String, data: user) {
+    console.log(data)
+    return this.http.put<any>(this.url + '/' + uuid, data);
+  }
 }

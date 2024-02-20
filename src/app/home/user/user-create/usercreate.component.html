@@ -83,8 +83,16 @@
                             <div class="validation">
                                 <div class="content__inputs">
 
+                                    <label for="" class="content__formlabel">Foto:</label>
+                                    <input class="content__imput_typeFile" type="file"  (change)="onFileSelected($event)">
+                                </div>
+                            </div>
+                            <div class="validation">
+                                <div class="content__inputs">
+
                                     <label for="" class="content__formlabel">Roles:</label>
-                                    <button class="button button--form"  type="button" (click)="addLesson()">Añadir Role</button>
+                                    <button class="button button--form" type="button" (click)="addLesson()">Añadir
+                                        Rol</button>
                                 </div>
                             </div>
                             <div class="validation">
@@ -109,7 +117,8 @@
                                                     <th mat-header-cell *matHeaderCellDef></th>
                                                     <td mat-cell *matCellDef="let element; index as i"
                                                         [formGroup]="element">
-                                                        <button class="button button--delete" type="button"  (click)="deleteLesson(i)">
+                                                        <button class="button button--delete" type="button"
+                                                            (click)="deleteLesson(i)">
                                                             Quitar
                                                         </button>
                                                     </td>

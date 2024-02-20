@@ -28,6 +28,7 @@ export class UserEditComponent {
     correoPersonal: new FormControl('@gmail.com', [Validators.required, Validators.email]),
     estado: new FormControl(false, [Validators.required]),
     personaUuid: new FormControl(''),
+    foto: new FormControl(''),
     roles: this.rolesFormGroup
   });
 
@@ -46,13 +47,13 @@ export class UserEditComponent {
 
   constructor(private router: Router, private userservice: UserService, private route: ActivatedRoute, private _fb: FormBuilder, private cd: ChangeDetectorRef, private rolservice: RoleService) { }
 
-  create() {
+  edit() {
     if (this.formGroup.valid) {
       this.personuuid = this.route.snapshot.paramMap.get('id');
       this.formGroup.value.personaUuid = this.personuuid;
       this.formGroup.value.roles = this.promos.value;
       const id = this.formGroup.value.personaUuid;
-      this.userservice.create(this.formGroup.value as user).subscribe({
+      this.userservice.update(this.personuuid,this.formGroup.value as user).subscribe({
 
         next: (userData: any) => {
           if (userData) {
@@ -76,7 +77,7 @@ export class UserEditComponent {
     this.getUser();
     this.fg = this._fb.group({
       uuidrole: this.uuid,
-      promos: this._fb.array(['nicolas'])
+      promos: this._fb.array([])
     });
 
   };
@@ -122,5 +123,15 @@ export class UserEditComponent {
       this.x = data
       return this.x.roles;
     })
+  }
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      let base64String:string = reader.result as string;
+      base64String = base64String.split(',')[1];
+      this.formGroup.value.foto = base64String;
+    };
+    reader.readAsDataURL(file);
   }
 }

@@ -10,9 +10,9 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TokenInterceptorService implements HttpInterceptor {
+export class TokenInterceptorService /* implements HttpInterceptor */ {
 
-  constructor() { }
+/*   constructor() { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
@@ -26,5 +26,6 @@ export class TokenInterceptorService implements HttpInterceptor {
     }
 
     return next.handle(request);
-  }
+  } */
 }
+
