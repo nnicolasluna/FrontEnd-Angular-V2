@@ -1,0 +1,138 @@
+<div class="body">
+    <div class="body__header">
+        <h1>Registro de Usuarios</h1>
+    </div>
+    <div class="body__content">
+        <form id="loginform" [formGroup]="formGroup">
+            <mat-card class="card card--one">
+                <mat-card-header class="card__header--form">
+                    <h4>Datos de Usuario</h4>
+                </mat-card-header>
+                <mat-card-content class="card__content">
+                    <div class="content content--one ">
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nombre de Usuario:</label>
+                                <input type="text" formControlName="usuario" placeholder="Ejem. cmamani"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="usuarioControl.invalid && (usuarioControl.dirty || usuarioControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="usuarioControl.errors?.['required']">El usuario es Requerido</span>
+                                <span *ngIf="usuarioControl.errors?.['minlength']">El usuario debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="usuarioControl.errors?.['maxlength']">El usuario no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Contraseña:</label>
+                                <input type="password" formControlName="password" placeholder="*********"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="contControl.invalid && (contControl.dirty || contControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="contControl.errors?.['required']">La contraseña es Requerido</span>
+                                <span *ngIf="contControl.errors?.['minlength']">La contraseña debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="contControl.errors?.['maxlength']">La contraseña no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Correo institucional:</label>
+                                <input type="text" formControlName="correoCorporativo" placeholder="cmamani@gambarte"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="correoCControl.invalid && (correoCControl.dirty || correoCControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="correoCControl.errors?.['required']">El correo es Requerido</span>
+                                <span *ngIf="correoCControl.errors?.['email']">El correo debe contar minimamente con un
+                                    @</span>
+
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Correo Personal:</label>
+                                <input type="text" formControlName="correoPersonal" placeholder="mamani@example"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="correoPControl.invalid && (correoPControl.dirty || correoPControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="correoPControl.errors?.['required']">El correo es Requerido</span>
+                                <span *ngIf="correoPControl.errors?.['email']">El correo debe contar minimamente con un
+                                    @</span>
+
+                            </div>
+                            <div class="validation">
+                                <div class="content__inputs">
+
+                                    <label for="" class="content__formlabel">Estado:</label>
+                                    <select formControlName="estado" class="content__imput">
+                                        <option value="true">Activado</option>
+                                        <option value="false">Desactivado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="validation">
+                                <div class="content__inputs">
+
+                                    <label for="" class="content__formlabel">Roles:</label>
+                                    <button class="button button--form"  type="button" (click)="addLesson()">Añadir Role</button>
+                                </div>
+                            </div>
+                            <div class="validation">
+                                <form class="roles__formulario" [formGroup]="fg">
+                                    <div class="roles__table-container">
+                                        <table mat-table class="roles__table" [dataSource]="dataSourcePacks">
+                                            <ng-container formArrayName="promos">
+                                                <ng-container class="rolesA" matColumnDef="rol" sticky>
+                                                    <th mat-header-cell *matHeaderCellDef></th>
+                                                    <td mat-cell *matCellDef="let element;" [formGroup]="element">
+                                                        <select class="imput__rol" formControlName="uuid">
+                                                            <option value="" disabled selected>Selecciona un rol
+                                                            </option>
+                                                            <option aria-placeholder="Selecciones Tipo de Documento"
+                                                                *ngFor="let dato of roles" [value]="dato.uuid">{{
+                                                                dato.nombre }}
+                                                            </option>
+                                                        </select>
+                                                    </td>
+                                                </ng-container>
+                                                <ng-container class="rolesB" matColumnDef="eliminar">
+                                                    <th mat-header-cell *matHeaderCellDef></th>
+                                                    <td mat-cell *matCellDef="let element; index as i"
+                                                        [formGroup]="element">
+                                                        <button class="button button--delete" type="button"  (click)="deleteLesson(i)">
+                                                            Quitar
+                                                        </button>
+                                                    </td>
+                                                </ng-container>
+                                                <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
+                                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                            </ng-container>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+
+                <mat-card-footer class="card__footer">
+
+                    <a class="button button--simple" routerLink="/home/personlist">Cancelar</a>
+                    <button class="button button--create" (click)="create()" data-cy="usuariocreate">Guardar</button>
+
+
+                </mat-card-footer>
+            </mat-card>
+        </form>
+    </div>
+</div>

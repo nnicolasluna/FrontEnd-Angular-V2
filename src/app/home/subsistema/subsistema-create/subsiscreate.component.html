@@ -1,0 +1,91 @@
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">Registrar Subsistema</h1>
+    </div>
+    <div class="body__content">
+        <mat-card class="card card--one">
+            <mat-card-header class="card__header--form">
+                <h4>Datos del Subsistema</h4>
+            </mat-card-header>
+            <mat-card-content class="card__content">
+                <form id="loginform" [formGroup]="formGroup">
+                    <div class="content content--one ">
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nombre:</label>
+                                <input formControlName="nombre" type="text" placeholder="Ejem. Contaduria"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                                <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Descripcion</label>
+                                <input formControlName="descripcion" type="text"
+                                    placeholder="Ejem. Modulo para Contadores" class="content__imput">
+                            </div>
+                            <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerido</span>
+                                <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener mas
+                                    de
+                                    3
+                                    caracteres</span>
+                                <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener mas
+                                    de
+                                    200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Link:</label>
+                                <input formControlName="link" type="text" class="content__imput">
+                            </div>
+                            <div *ngIf="linkControl.invalid && (linkControl.dirty || linkControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="linkControl.errors?.['required']">El link es Requerido</span>
+                                <span *ngIf="linkControl.errors?.['minlength']">El link debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="linkControl.errors?.['maxlength']">El link no debe tener mas de
+                                    200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Estado</label>
+                                <select formControlName="estado" class="content__imput">
+                                    <option value="true">Activado</option>
+                                    <option value="false">Desactivado</option>
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </form>
+            </mat-card-content>
+            <mat-card-footer class="card__footer">
+
+
+                <a routerLink="/home/subsistemalist" class="button button--simple">
+                    <span>Cancelar</span>
+                </a>
+                <button type="submit" class="button button--create" (click)="create()" data-cy="SubsistemaCreate">Guardar</button>
+
+
+
+            </mat-card-footer>
+        </mat-card>
+
+    </div>
+</div>

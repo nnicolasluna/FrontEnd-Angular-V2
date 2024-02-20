@@ -1,0 +1,110 @@
+<div class="dash">
+  <div class="left">
+    <mat-drawer-container class="example-container">
+      <mat-drawer-content>
+        <div class="logo">
+          <img src="assets/gamb.png" class="img" routerLink="home">
+        </div>
+        <div class="title">
+          <div class="gambarte"><a class="gambarte__title" routerLink="/home"><span>GAMBARTE</span></a></div>
+        </div>
+
+        <div class="items">
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header data-cy="Administracion">
+                <a class="nav__link">
+                  <span><mat-icon>settings</mat-icon></span>
+                  <span>Administracion</span>
+                </a>
+              </mat-expansion-panel-header>
+              
+              <mat-action-row routerLink="personlist" data-cy="personaslist">
+                <a class="nav__link">
+                  <span><mat-icon>person</mat-icon></span>
+                  <span>Personas</span>
+                </a>
+              </mat-action-row>
+              <mat-action-row routerLink="userlist" data-cy="usuarioslist">
+                <a class="nav__link">
+                  <span><mat-icon>3p</mat-icon></span>
+                  <span>Usuarios</span>
+                </a>
+              </mat-action-row>
+              <mat-action-row routerLink="rolelist" data-cy="roleslist">
+                <a class="nav__link">
+                  <span><mat-icon>group</mat-icon></span>
+                  <span>Roles</span>
+                </a>
+              </mat-action-row>
+              <mat-action-row routerLink="menulist" data-cy="menuslist">
+                <a class="nav__link">
+                  <span><mat-icon>menu</mat-icon></span>
+                  <span>Menus</span>
+                </a>
+              </mat-action-row>
+              <mat-action-row routerLink="comandolist" data-cy="comandoslist">
+                <a class="nav__link">
+                  <span><mat-icon>terminal</mat-icon></span>
+                  <span>Comandos</span>
+                </a>
+              </mat-action-row>
+              <mat-action-row routerLink="subsistemalist" data-cy="subsistemaslist">
+                <a class="nav__link">
+                  <span><mat-icon>badge</mat-icon></span>
+                  <span>Subsistema</span>
+                </a>
+              </mat-action-row>
+              <mat-action-row routerLink="tipodocumentolist" data-cy="tipodocumentoslist">
+                <a class="nav__link">
+                  <span><mat-icon>badge</mat-icon></span>
+                  <span>Tipo de Doc</span>
+                </a>
+              </mat-action-row>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div>
+  <div class="right">
+    <div class="top">
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <div class="icontop">
+            <mat-icon>menu</mat-icon>
+          </div>
+          <div class="left-toolbar">
+            <div class="user">
+              <div class="name">
+                Joel Nicolas Luna Valdivia
+              </div>
+              <div class="cargo">
+                <b>Cargo: Analista de Sistemas</b>
+              </div>
+            </div>
+
+
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>expand_more</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item routerLink="/login">Cerrar Sesion</button>
+
+            </mat-menu>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+    <div class="bot">
+      <mat-drawer-container class="example-container">
+        <mat-drawer-content class="principal">
+          <div class="bodyprincipal">
+
+
+            <router-outlet></router-outlet>
+
+          </div>
+        </mat-drawer-content>
+      </mat-drawer-container>
+    </div>
+  </div>
+</div>

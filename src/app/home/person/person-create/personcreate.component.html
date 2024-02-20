@@ -1,0 +1,183 @@
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">Registrar Persona</h1>
+    </div>
+    <div class="body__content">
+        <mat-card class="card card--tri">
+            <mat-card-header class="card__header--form">
+                <h4>Datos de la Persona</h4>
+            </mat-card-header>
+            <mat-card-content class="card__content">
+                <form id="loginform" [formGroup]="formGroup">
+                    <div class="content content--tri">
+                        <div class="validation validation--tri" >
+                           
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nombres:</label>
+                                <input formControlName="nombres" type="text" placeholder="Ejem. Juan Carlos"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                                <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Apellido Paterno:</label>
+                                <input formControlName="primer_apellido" type="text" placeholder="Ejem. Mamani"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="papellidoControl.invalid && (papellidoControl.dirty || papellidoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="papellidoControl.errors?.['required']">El Apellido es Requerido</span>
+                                <span *ngIf="papellidoControl.errors?.['minlength']">El Apellido debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="papellidoControl.errors?.['maxlength']">El Apellido no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Apellido Materno:</label>
+                                <input formControlName="segundo_apellido" type="text" placeholder="Ejem. Apaza"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="sapellidoControl.invalid && (sapellidoControl.dirty || sapellidoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="sapellidoControl.errors?.['required']">El Apellido es Requerido</span>
+                                <span *ngIf="sapellidoControl.errors?.['minlength']">El Apellido debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="sapellidoControl.errors?.['maxlength']">El Apellido no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content content--tri">
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Estado Civil:</label>
+                                <input formControlName="estado_civil" type="text" placeholder="Ejem. Soltero"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="ecivilControl.invalid && (ecivilControl.dirty || ecivilControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="ecivilControl.errors?.['required']">El Estado Civil es Requerido</span>
+                                <span *ngIf="ecivilControl.errors?.['minlength']">El Estado Civil debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="ecivilControl.errors?.['maxlength']">El Estado Civil no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Fecha de Nacimiento:</label>
+                                <input formControlName="fecha_nacimiento" type="date" placeholder="Ejem. 24/02/1996"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="fnacimientoControl.invalid && (fnacimientoControl.dirty || fnacimientoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="fnacimientoControl.errors?.['required']">La Fecha de Nacimiento es
+                                    Requerido</span>
+                                <span *ngIf="fnacimientoControl.errors?.['minlength']">La Fecha de Nacimiento debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="fnacimientoControl.errors?.['maxlength']">La Fecha de Nacimiento no debe
+                                    tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Lugar de Nacimiento:</label>
+                                <input formControlName="lugar_nacimiento" type="text" placeholder="Ejem. La Paz"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="lnacimientoControl.invalid && (lnacimientoControl.dirty || lnacimientoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="lnacimientoControl.errors?.['required']">El Lugar de Nacimiento es
+                                    Requerido</span>
+                                <span *ngIf="lnacimientoControl.errors?.['minlength']">El Lugar de Nacimiento debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="lnacimientoControl.errors?.['maxlength']">El Lugar de Nacimiento no debe
+                                    tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content content--tri">
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Genero:</label>
+                                <input formControlName="genero" type="text" placeholder="Ejem. Masculino"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="generoControl.invalid && (generoControl.dirty || generoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="generoControl.errors?.['required']">El Genero es Requerido</span>
+                                <span *ngIf="generoControl.errors?.['minlength']">El Genero debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="generoControl.errors?.['maxlength']">El Genero no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Ocupacion:</label>
+                                <input formControlName="ocupacion" type="text" placeholder="Ejem. Doctor"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="ocupacionControl.errors?.['required']">La Ocupacion es
+                                    Requerido</span>
+                                <span *ngIf="ocupacionControl.errors?.['minlength']">La Ocupacion debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="ocupacionControl.errors?.['maxlength']">La Ocupacion no debe
+                                    tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Celular:</label>
+                                <input formControlName="celular" type="text" placeholder="Ejem. 73563787"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="celularControl.invalid && (celularControl.dirty || celularControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="celularControl.errors?.['required']">El Celular es
+                                    Requerido</span>
+                                <span *ngIf="celularControl.errors?.['minlength']">El Celular debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="celularControl.errors?.['maxlength']">El Celular no debe
+                                    tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+            <mat-card-footer class="card__footer">
+                <a class="button button--simple" routerLink="/home/personlist"><span>Cancelar</span></a>
+                <button class="button button--create" (click)="create()" data-cy="crearpersona">Guardar</button>
+            </mat-card-footer>
+        </mat-card>
+
+    </div>
+</div>
