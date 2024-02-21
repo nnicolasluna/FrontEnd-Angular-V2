@@ -1,5 +1,5 @@
 <div class="dash">
-  <div class="left">
+  <div class="left" *ngIf="sidebarVisible">
     <mat-drawer-container class="example-container">
       <mat-drawer-content>
         <div class="logo">
@@ -72,7 +72,10 @@
       <mat-toolbar>
         <mat-toolbar-row>
           <div class="icontop">
-            <mat-icon>menu</mat-icon>
+            <button (click)="toggleSidebar()" class="button--sin-estilos">
+              <mat-icon>menu</mat-icon>
+            </button>
+            
           </div>
           <div class="left-toolbar">
             <div class="user">
@@ -85,7 +88,7 @@
             </div>
 
 
-            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>expand_more</mat-icon></button>
+            <button mat-button [matMenuTriggerFor]="menu" class="button--sin-estilos"><mat-icon>expand_more</mat-icon></button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item routerLink="/login">Cerrar Sesion</button>
 

@@ -4,8 +4,8 @@
     </div>
     <div class="body__content">
         <form id="loginform" [formGroup]="formGroup">
-            <mat-card  class="card card--one">
-                <mat-card-header  class="card__header--form">
+            <mat-card class="card card--one">
+                <mat-card-header class="card__header--form">
                     <h4>Datos del Tipo de Documento</h4>
                 </mat-card-header>
                 <mat-card-content class="card__content">
@@ -30,15 +30,18 @@
                         <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Descripcion:</label>
-                                <textarea formControlName="descripcion" class="content__imput content__imput--big"
-                                    placeholder="Ejem. Documento de identidad perteneciente a un pais" cols="3" rows="3"></textarea>
+                                <input type="text" formControlName="descripcion" class="content__imput"
+                                    placeholder="Ejem. Documento de identidad perteneciente a un pais" cols="3"
+                                    rows="3">
                             </div>
                             <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
                                 class="text-danger">
                                 <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerida</span>
-                                <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener mas de 3
+                                <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener mas
+                                    de 3
                                     caracteres</span>
-                                <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener mas de
+                                <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener mas
+                                    de
                                     50
                                     caracteres</span>
                             </div>
@@ -54,13 +57,13 @@
                             <div *ngIf="estadoControl.invalid && (estadoControl.dirty || estadoControl.touched)"
                                 class="text-danger">
                                 <span *ngIf="estadoControl.errors?.['required']">El Estado es Requerido</span>
-                               
+
                             </div>
                         </div>
                         <form [formGroup]="paisFormGroup">
                             <div class="validation">
                                 <div class="content__inputs">
-    
+
                                     <label for="" class="content__formlabel">Pais:</label>
                                     <select formControlName="uuid" class="content__imput">
                                         <option value="" disabled selected>Selecciona un Pais</option>
@@ -69,9 +72,9 @@
                                             pais.nombre }}
                                         </option>
                                     </select>
-    
+
                                 </div>
-    
+
                             </div>
                         </form>
                     </div>
@@ -80,10 +83,10 @@
 
                 </mat-card-content>
                 <mat-card-footer class="card__footer">
-                    <div class="button button--simple">
 
-                        <a routerLink="/home/tipodocumentolist">Cancelar</a>
-                    </div>
+
+                    <button class="button button--simple" routerLink="/home/tipodocumentolist">Cancelar</button>
+
                     <button class="button button--create" (click)="create()" data-cy="TipoDocCreate">Guardar</button>
 
 

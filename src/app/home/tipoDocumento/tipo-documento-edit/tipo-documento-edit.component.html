@@ -30,9 +30,10 @@
                         <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Descripcion:</label>
-                                <textarea formControlName="descripcion" class="content__imput content__imput--big"
+                                <input type="text" formControlName="descripcion"
+                                    class="content__imput content__imput--big"
                                     placeholder="Ejem. Documento de identidad perteneciente a un pais" cols="3"
-                                    rows="3"></textarea>
+                                    rows="3">
                             </div>
                             <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
                                 class="text-danger">
@@ -68,9 +69,9 @@
                 <mat-card-footer class="card__footer">
 
 
-                    <a routerLink="/home/tipodocumentolist" class="button button--simple">
-                        <span>Cancelar</span>
-                    </a>
+                    <button routerLink="/home/tipodocumentolist" class="button button--simple">
+                        Cancelar
+                    </button>
 
                     <button class="button button--create" (click)="create()" data-cy="TipoDocEdit">Guardar</button>
 

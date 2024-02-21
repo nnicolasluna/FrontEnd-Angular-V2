@@ -9,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   panelOpenState = false;
+  sidebarVisible = true; 
+  toggleSidebar() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+  sidenav(){
+    this.sidebarVisible=false
+  }
+  
 }

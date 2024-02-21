@@ -10,12 +10,13 @@
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
                     <div class="content content--tri">
-                        <div class="validation validation--tri" >
-                           
+                        <div class="validation validation--tri">
+
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Nombres:</label>
                                 <input formControlName="nombres" type="text" placeholder="Ejem. Juan Carlos"
-                                    class="content__imput">
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                             </div>
                             <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                                 class="text-danger">
@@ -30,7 +31,8 @@
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Apellido Paterno:</label>
                                 <input formControlName="primer_apellido" type="text" placeholder="Ejem. Mamani"
-                                    class="content__imput">
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': papellidoControl.invalid && (papellidoControl.dirty || papellidoControl.touched), 'valid': papellidoControl.valid}">
                             </div>
                             <div *ngIf="papellidoControl.invalid && (papellidoControl.dirty || papellidoControl.touched)"
                                 class="text-danger">
@@ -46,7 +48,8 @@
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Apellido Materno:</label>
                                 <input formControlName="segundo_apellido" type="text" placeholder="Ejem. Apaza"
-                                    class="content__imput">
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': sapellidoControl.invalid && (sapellidoControl.dirty || sapellidoControl.touched), 'valid': sapellidoControl.valid}">
                             </div>
                             <div *ngIf="sapellidoControl.invalid && (sapellidoControl.dirty || sapellidoControl.touched)"
                                 class="text-danger">
@@ -64,7 +67,8 @@
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Estado Civil:</label>
                                 <input formControlName="estado_civil" type="text" placeholder="Ejem. Soltero"
-                                    class="content__imput">
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': ecivilControl.invalid && (ecivilControl.dirty || ecivilControl.touched), 'valid': ecivilControl.valid}">
                             </div>
                             <div *ngIf="ecivilControl.invalid && (ecivilControl.dirty || ecivilControl.touched)"
                                 class="text-danger">
@@ -80,7 +84,8 @@
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Fecha de Nacimiento:</label>
                                 <input formControlName="fecha_nacimiento" type="date" placeholder="Ejem. 24/02/1996"
-                                    class="content__imput">
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': fnacimientoControl.invalid && (fnacimientoControl.dirty || fnacimientoControl.touched), 'valid': fnacimientoControl.valid}">
                             </div>
                             <div *ngIf="fnacimientoControl.invalid && (fnacimientoControl.dirty || fnacimientoControl.touched)"
                                 class="text-danger">
@@ -99,7 +104,8 @@
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Lugar de Nacimiento:</label>
                                 <input formControlName="lugar_nacimiento" type="text" placeholder="Ejem. La Paz"
-                                    class="content__imput">
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': lnacimientoControl.invalid && (lnacimientoControl.dirty || lnacimientoControl.touched), 'valid': lnacimientoControl.valid}">
                             </div>
                             <div *ngIf="lnacimientoControl.invalid && (lnacimientoControl.dirty || lnacimientoControl.touched)"
                                 class="text-danger">
@@ -120,7 +126,8 @@
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Genero:</label>
                                 <input formControlName="genero" type="text" placeholder="Ejem. Masculino"
-                                    class="content__imput">
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': generoControl.invalid && (generoControl.dirty || generoControl.touched), 'valid': generoControl.valid}">
                             </div>
                             <div *ngIf="generoControl.invalid && (generoControl.dirty || generoControl.touched)"
                                 class="text-danger">
@@ -136,7 +143,8 @@
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Ocupacion:</label>
                                 <input formControlName="ocupacion" type="text" placeholder="Ejem. Doctor"
-                                    class="content__imput">
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched), 'valid': ocupacionControl.valid}">
                             </div>
                             <div *ngIf="ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched)"
                                 class="text-danger">
@@ -155,7 +163,8 @@
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Celular:</label>
                                 <input formControlName="celular" type="text" placeholder="Ejem. 73563787"
-                                    class="content__imput">
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': celularControl.invalid && (celularControl.dirty || celularControl.touched), 'valid': celularControl.valid}">
                             </div>
                             <div *ngIf="celularControl.invalid && (celularControl.dirty || celularControl.touched)"
                                 class="text-danger">

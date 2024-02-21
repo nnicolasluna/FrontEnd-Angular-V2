@@ -19,9 +19,11 @@
     justify-content: center;
     flex-direction: column;
 }
+
 .login__img {
     margin-top: -80px;
 }
+
 .login__titulo {
     font-weight: bold;
     font-size: 120%;
@@ -51,37 +53,41 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 29px;
+    height: 100%;
     width: 10%;
     box-shadow: 0 0 4px #383c44;
     background-color: #cfd1d2;
     border-radius: 0px 5px 5px 0px;
     font-size: 20px;
 }
+
 .imputs {
     display: flex;
-    height: 31px;
-    display: flex;
-    
+    height: 90%;
+
 }
+
 .content {
     display: flex;
     flex-direction: column;
     align-content: flex-start;
     padding-bottom: 8px;
+    
+    height: 40px;
 }
-.login input {
+
+.login__input {
     font-weight: bold;
     font-family: 'Overpass', sans-serif;
     font-size: 90%;
     color: #5a636c;
-    box-shadow: 0 0 4px #383c44;
+    box-shadow: 0 0 2px #383c44;
     display: block;
     width: 100%;
-    height: 30px;
-    margin-bottom: 20px;
+    height: 100%;
+    /* margin-bottom: 20px; */
     padding: 5px 5px 5px 10px;
-    border: 1px #5a636c;
+    border: #383c44;
     box-sizing: border-box;
     border-radius: 5px 0px 0px 5px;
 
@@ -116,6 +122,23 @@
     color: red;
     display: flex;
     align-content: flex-start;
-    font-size: small;
+    font-size: 12px;
+    height: 50%;
+
 }
 
+.invalid {
+    border: 2px solid red;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 2px red;
+}
+
+.valid {
+    border: 2px solid yellowgreen;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 2px yellowgreen;
+}
+
+input:focus {
+    outline: unset;
+}

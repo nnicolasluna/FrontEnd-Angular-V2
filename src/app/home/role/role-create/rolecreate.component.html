@@ -29,8 +29,8 @@
                         <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Descripcion:</label>
-                                <textarea formControlName="descripcion" class="content__imput content__imput--big"
-                                    placeholder="Ejem. Este Rol es Asignado a Cajero" cols="3" rows="3"></textarea>
+                                <input type="text" formControlName="descripcion" class="content__imput"
+                                    placeholder="Ejem. Este Rol es Asignado a Cajero" appNoLeadingTrailingWhitespace>
                             </div>
                             <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
                                 class="text-danger">

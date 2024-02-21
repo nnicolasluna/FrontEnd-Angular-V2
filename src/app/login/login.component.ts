@@ -17,7 +17,7 @@ import * as bcrypt from 'bcryptjs';
 
 
 export class LoginComponent {
- 
+
   sitekey: string;
   private trigger: Subject<void> = new Subject<void>();
   preview: string = '';
@@ -50,21 +50,21 @@ export class LoginComponent {
     this.sitekey = '6LdX8EwpAAAAAHmEyXWLsVNyf9iXdArqhjoBtT89';
   }
 
-  
+
   private salt: string = '$2a$10$5pTYs/37QMz6j3ShLlSYEO';
-  hashPassword(password: string, salt:string): string {
+  hashPassword(password: string, salt: string): string {
     const newpassword = bcrypt.hashSync(password, salt);
     return newpassword;
   }
-  
+
   login() {
     if (this.formGroup.valid) {
       /* this.router.navigateByUrl('/home'); */
       const currentPassword = this.formGroup.value.password;
       if (currentPassword !== undefined && currentPassword !== null) {
-        this.formGroup.value.password = this.hashPassword(currentPassword,this.salt);
-        const  valid = bcrypt.compareSync('passoword', this.formGroup.value.password);
-       
+        this.formGroup.value.password = this.hashPassword(currentPassword, this.salt);
+        const valid = bcrypt.compareSync('passoword', this.formGroup.value.password);
+
       } else {
         console.error("El valor actual de password es undefined o null");
       }
@@ -72,8 +72,7 @@ export class LoginComponent {
       this.formGroup.value.foto = this.preview;
       this.loginService.login(this.formGroup.value as LoginRequest).subscribe({
         next: (userData) => {
-          if (userData == true) {
-
+          if (userData) {
             this.router.navigateByUrl('/home');
             this.formGroup.reset();
           }
@@ -89,5 +88,13 @@ export class LoginComponent {
     else {
       this.formGroup.markAllAsTouched();
     }
+  }
+  isFocused: boolean = false;
+
+  onInputFocus() {
+    this.isFocused = true;
+  }
+  onInputBlur() {
+    this.isFocused = false;
   }
 }

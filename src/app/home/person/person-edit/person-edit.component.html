@@ -10,7 +10,7 @@
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
                     <div class="content content--tri">
-                        <div class="validation validation--tri" >
+                        <div class="validation validation--tri">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Nombres:</label>
                                 <input formControlName="nombres" type="text" placeholder="Ejem. Juan Carlos"
@@ -173,10 +173,10 @@
                 </form>
             </mat-card-content>
             <mat-card-footer class="card__footer">
-                
-                <a routerLink="/home/personlist" class="button button--simple">
-                    <span>Cancelar</span>
-                  </a>
+
+                <button routerLink="/home/personlist" class="button button--simple">
+                    Cancelar
+                </button>
                 <button class="button button--create" (click)="update()" data-cy="personaedit">Guardar</button>
             </mat-card-footer>
         </mat-card>
