@@ -16,7 +16,7 @@ export class EstadoCivilEditComponent {
   datos!: any;
   uuid!: any;
 
-  private url = 'estado_civiles'
+  private url = 'estados_civiles'
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),

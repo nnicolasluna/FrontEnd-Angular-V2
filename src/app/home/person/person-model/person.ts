@@ -8,12 +8,10 @@ export interface person {
     segundo_apellido: string,
     fecha_nacimiento: string,
     lugar_nacimiento: string,
-    genero: string,
-    ocupacion: string,
-    estado_civil: string,
-/*     genero: generoDTO,
+
+    genero: generoDTO,
     ocupacion: ocupacionDTO,
-    estado_civil: estadocivilDTO, */
+    estado_civil: estadocivilDTO,
     celular: string,
 }
 
@@ -24,9 +22,9 @@ export interface personDTO {
     segundo_apellido: string,
     fecha_nacimiento: string,
     lugar_nacimiento: string,
-/*     genero: generoDTO,
+    genero: generoDTO,
     ocupacion: ocupacionDTO,
-    estado_civil: estadocivilDTO, */
+    estado_civil: estadocivilDTO,
     celular: string,
   }
   

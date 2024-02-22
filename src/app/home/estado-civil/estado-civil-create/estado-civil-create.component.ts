@@ -13,7 +13,7 @@ import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error
 })
 export class EstadoCivilCreateComponent {
   private matDialogRef!: any;
-  private url = 'estado_civiles'
+  private url = 'estados_civiles'
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -35,7 +35,7 @@ export class EstadoCivilCreateComponent {
       this.apiService.create(this.url, this.formGroup.value as estadocivil).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/estado_civil-list');
+            this.router.navigateByUrl('/home/estado-civil-list');
             this.formGroup.reset();
           },
           error: err => {

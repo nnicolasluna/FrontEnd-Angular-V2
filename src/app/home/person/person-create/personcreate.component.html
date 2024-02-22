@@ -63,21 +63,29 @@
                         </div>
                     </div>
                     <div class="content content--tri">
+
                         <div class="validation validation--tri">
                             <form [formGroup]="estadoFormGroup">
                                 <div class="content__inputs">
                                     <label for="" class="content__formlabel">Estado Civil:</label>
-                                    <input formControlName="estado_civil" type="text" placeholder="Ejem. Soltero"
-                                        class="content__imput">
-                                  <!--   <select formControlName="uuid" class="content__imput">
+
+                                    <select formControlName="uuid" class="content__imput"
+                                        [ngClass]="{'invalid': estadoControl.invalid && (estadoControl.dirty || estadoControl.touched), 'valid': estadoControl.valid}">
                                         <option value="" disabled selected>Selecciona Estado Civil</option>
-                                        <option aria-placeholder="Seleccione Estado Civil" *ngFor="let dato of esta"
+                                        <option aria-placeholder="Seleccione Estado Civil" *ngFor="let dato of estado"
                                             [value]="dato.uuid">{{ dato.nombre }}
                                         </option>
-                                    </select> -->
+                                    </select>
                                 </div>
+
                             </form>
+                            <div *ngIf="estadoControl.invalid && (estadoControl.dirty || estadoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="estadoControl.errors?.['required']">El estado civil es Requerido</span>
+
+                            </div>
                         </div>
+
                         <div class="validation validation--tri">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Fecha de Nacimiento:</label>
@@ -121,18 +129,45 @@
                     </div>
                     <div class="content content--tri">
                         <div class="validation validation--tri">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Genero:</label>
-                                <input formControlName="genero" type="text" placeholder="Ejem. Masculino"
-                                    class="content__imput">
-                            </div>
+                            <form [formGroup]="generoFormGroup">
+                                <div class="content__inputs">
+                                    <label for="" class="content__formlabel">Genero:</label>
+                                    <select formControlName="uuid" class="content__imput"
+                                        [ngClass]="{'invalid': generoControl.invalid && (generoControl.dirty || generoControl.touched), 'valid': generoControl.valid}">
+                                        <option value="" disabled selected>Selecciona Genero</option>
+                                        <option *ngFor="let dato of generos" [value]="dato.uuid">{{ dato.nombre }}
+                                        </option>
+                                    </select>
+
+                                </div>
+                                <div *ngIf="generoControl.invalid && (generoControl.dirty || generoControl.touched)"
+                                    class="text-danger">
+                                    <span *ngIf="generoControl.errors?.['required']">El Genero es Requerido</span>
+                                </div>
+                            </form>
 
                         </div>
+
                         <div class="validation validation--tri">
                             <div class="content__inputs">
-                                <label for="" class="content__formlabel">Ocupacion:</label>
-                                <input formControlName="ocupacion" type="text" placeholder="Ejem. Doctor"
-                                    class="content__imput">
+                                <form [formGroup]="ocupacionFormGroup">
+                                    <div class="content__inputs">
+                                        <label for="" class="content__formlabel">Ocupacion:</label>
+                                        <select formControlName="uuid" class="content__imput"
+                                            [ngClass]="{'invalid': ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched), 'valid': ocupacionControl.valid}">
+                                            <option value="" disabled selected>Selecciona Ocupacion</option>
+                                            <option *ngFor="let dato of ocupacion" [value]="dato.uuid">{{ dato.nombre }}
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                    <div *ngIf="ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="ocupacionControl.errors?.['required']">La ocupacion es
+                                            Requerido</span>
+                                    </div>
+                                </form>
+
                             </div>
 
                         </div>

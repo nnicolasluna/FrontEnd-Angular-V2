@@ -316,6 +316,9 @@ th {
 input:focus {
     outline: unset;
 }
+select:focus {
+    outline: unset;
+}
 .invalid {
     border: 2px solid red;
     border-radius: 5px 5px 5px 5px;

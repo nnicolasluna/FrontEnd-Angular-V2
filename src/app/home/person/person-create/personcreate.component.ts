@@ -17,22 +17,24 @@ export class PersoncreateComponent {
   private matDialogRef!: any;
   private url = 'personas'
   private url1 = 'ocupaciones'
-  private url2 = 'estado-civiles'
+  private url2 = 'estados_civiles'
   private url3 = 'generos'
   generos: any[] = [];
+  estado: any[] = [];
+  ocupacion: any[] = [];
   ocupacionFormGroup = new FormGroup(
     {
-      uuid: new FormControl(''),
+      uuid: new FormControl('', Validators.required),
     }
   );
   generoFormGroup = new FormGroup(
     {
-      uuid: new FormControl(''),
+      uuid: new FormControl('', Validators.required),
     }
   );
   estadoFormGroup = new FormGroup(
     {
-      uuid: new FormControl(''),
+      uuid: new FormControl('', Validators.required),
     }
   );
   formGroup = new FormGroup({
@@ -56,7 +58,15 @@ export class PersoncreateComponent {
   get sapellidoControl() {
     return this.formGroup.controls.segundo_apellido;
   }
-
+  get ocupacionControl() {
+    return this.ocupacionFormGroup.controls.uuid;
+  }
+  get estadoControl() {
+    return this.estadoFormGroup.controls.uuid;
+  }
+  get generoControl() {
+    return this.generoFormGroup.controls.uuid;
+  }
   get fnacimientoControl() {
     return this.formGroup.controls.fecha_nacimiento;
   }
@@ -102,39 +112,39 @@ export class PersoncreateComponent {
     this.getGeneros();
     this.getEstados();
     this.getOcupaciones();
-    
+
   }
-  getGeneros(){
+  getGeneros() {
     this.apiService.getAll(this.url3).subscribe(
       {
-        next: data =>{
-          this.generos=data
+        next: data => {
+          this.generos = data
         },
-        error: err =>{
+        error: err => {
           console.log('No se pueden obtener datos de genero')
         }
       }
     )
   }
-  getOcupaciones(){
+  getOcupaciones() {
     this.apiService.getAll(this.url1).subscribe(
       {
-        next: data =>{
-          this.generos=data
+        next: data => {
+          this.ocupacion = data
         },
-        error: err =>{
+        error: err => {
           console.log('No se pueden obtener datos de ocupaciones')
         }
       }
     )
   }
-  getEstados(){
+  getEstados() {
     this.apiService.getAll(this.url2).subscribe(
       {
-        next: data =>{
-          this.generos=data
+        next: data => {
+          this.estado = data
         },
-        error: err =>{
+        error: err => {
           console.log('No se pueden obtener datos de estado civil')
         }
       }

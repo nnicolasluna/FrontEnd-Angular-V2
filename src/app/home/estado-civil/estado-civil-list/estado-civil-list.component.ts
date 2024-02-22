@@ -18,10 +18,9 @@ export class EstadoCivilListComponent {
   EstadoCivil: any;
   dataSource: any;
   datos: any;
-  private url = 'estado_civiles'
+  private url = 'estados_civiles'
   private matDialogRef!: any;
   constructor(
-    private estadoCivilservice: EstadoCivilService,
     private apiService: ApiService<estadocivil>,
     private modalService: ModalService,
   ) { }
