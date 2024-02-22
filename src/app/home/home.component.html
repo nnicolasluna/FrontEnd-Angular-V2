@@ -10,77 +10,22 @@
         </div>
 
         <div class="items">
-          <mat-accordion>
-            <mat-expansion-panel hideToggle>
-              <mat-expansion-panel-header data-cy="Administracion">
-                <a class="nav__link">
-                  <span><mat-icon>settings</mat-icon></span>
-                  <span>Administracion</span>
-                </a>
-              </mat-expansion-panel-header>
-              
-              <mat-action-row routerLink="personlist" data-cy="personaslist">
-                <a class="nav__link">
-                  <span><mat-icon>person</mat-icon></span>
-                  <span>Personas</span>
-                </a>
-              </mat-action-row>
-              <mat-action-row routerLink="userlist" data-cy="usuarioslist">
-                <a class="nav__link">
-                  <span><mat-icon>3p</mat-icon></span>
-                  <span>Usuarios</span>
-                </a>
-              </mat-action-row>
-              <mat-action-row routerLink="rolelist" data-cy="roleslist">
-                <a class="nav__link">
-                  <span><mat-icon>group</mat-icon></span>
-                  <span>Roles</span>
-                </a>
-              </mat-action-row>
-              <mat-action-row routerLink="menulist" data-cy="menuslist">
-                <a class="nav__link">
-                  <span><mat-icon>menu</mat-icon></span>
-                  <span>Menus</span>
-                </a>
-              </mat-action-row>
-              <mat-action-row routerLink="comandolist" data-cy="comandoslist">
-                <a class="nav__link">
-                  <span><mat-icon>terminal</mat-icon></span>
-                  <span>Comandos</span>
-                </a>
-              </mat-action-row>
-              <mat-action-row routerLink="subsistemalist" data-cy="subsistemaslist">
-                <a class="nav__link">
-                  <span><mat-icon>badge</mat-icon></span>
-                  <span>Subsistema</span>
-                </a>
-              </mat-action-row>
-              <mat-action-row routerLink="tipodocumentolist" data-cy="tipodocumentoslist">
-                <a class="nav__link">
-                  <span><mat-icon>badge</mat-icon></span>
-                  <span>Tipo de Doc</span>
-                </a>
-              </mat-action-row>
-              <mat-action-row routerLink="genero-list" data-cy="generolist">
-                <a class="nav__link">
-                  <span><mat-icon>male</mat-icon></span>
-                  <span>Genero</span>
-                </a>
-              </mat-action-row>
-              <mat-action-row routerLink="ocupacion-list" data-cy="generolist">
-                <a class="nav__link">
-                  <span><mat-icon>work</mat-icon></span>
-                  <span>Ocupación</span>
-                </a>
-              </mat-action-row>
-              <mat-action-row routerLink="estado-civil-list" data-cy="generolist">
-                <a class="nav__link">
-                  <span><mat-icon>wc</mat-icon></span>
-                  <span>Estado Civil</span>
-                </a>
-              </mat-action-row>
-            </mat-expansion-panel>
-          </mat-accordion>
+          <button (click)="Admi()" class="button_nav">
+            <span><mat-icon>settings</mat-icon></span>Administracion
+          </button>
+          <div *ngIf="admin">
+            <button *ngFor="let button of buttons" routerLink="{{ button.link }}" class="button_nav">
+              <span><mat-icon>{{ button.icon }}</mat-icon></span>
+              <span>{{ button.name }}</span>
+            </button>
+          </div>
+          <button class="button_nav">
+            <span>
+              <mat-icon>archive</mat-icon>
+            </span>
+            Parametricas
+          </button>
+
         </div>
       </mat-drawer-content>
     </mat-drawer-container>
@@ -93,7 +38,7 @@
             <button (click)="toggleSidebar()" class="button--sin-estilos">
               <mat-icon>menu</mat-icon>
             </button>
-            
+
           </div>
           <div class="left-toolbar">
             <div class="user">
@@ -106,7 +51,8 @@
             </div>
 
 
-            <button mat-button [matMenuTriggerFor]="menu" class="button--sin-estilos"><mat-icon>expand_more</mat-icon></button>
+            <button mat-button [matMenuTriggerFor]="menu"
+              class="button--sin-estilos"><mat-icon>expand_more</mat-icon></button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item routerLink="/login">Cerrar Sesion</button>
 

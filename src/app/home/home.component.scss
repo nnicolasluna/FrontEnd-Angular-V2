@@ -221,3 +221,23 @@ mat-action-row:hover {
     vertical-align: middle;
 
 }
+.button_nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+   /*  margin-left: 10px; */
+    width: 100%;
+    background-color: #343A40;
+    
+    border: none;
+    height: 40px;
+    color: white;
+    
+}
+.button_nav:hover{
+    background-color: #EC6100;
+    overflow: hidden;
+}
+.button_nav span {
+    margin-left: 15px; /* Ajusta el margen a la izquierda del texto */
+  }
