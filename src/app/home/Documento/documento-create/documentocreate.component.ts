@@ -13,12 +13,16 @@ export class DocumentocreateComponent {
   uuid!: any;
   tipodocuments: any;
   datos: any[] = [];
-  personaFormGroup = new FormGroup({
-    uuid: new FormControl(''),
-  });
-  tipodocFormGroup = new FormGroup({
-    uuid: new FormControl(''),
-  });
+  personaFormGroup = new FormGroup(
+    {
+      uuid: new FormControl(''),
+    }
+  );
+  tipodocFormGroup = new FormGroup(
+    {
+      uuid: new FormControl(''),
+    }
+  );
   formGroup = new FormGroup({
     numero: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     lugar_emision: new FormControl('', /* [Validators.required, Validators.maxLength(30), Validators.minLength(3)] */),
@@ -74,11 +78,15 @@ export class DocumentocreateComponent {
   }
 
   gettipoDoc() {
-    this.tipoDocumentoService.getDocuments().subscribe((data) => {
-      console.log(data);
-      this.datos = data;
-      /*       this.dataSource = new MatTableDataSource<personDTO>(this.people);
-            this.dataSource.paginator = this.paginatior; */
-    });
+    this.tipoDocumentoService.getDocuments().subscribe(
+      {
+        next: (data) => {
+          this.datos = data;
+        },
+        error: err =>{
+          console.log('no se pueden obteneder los datos de tipo de documento')
+        }
+      }
+    );
   }
 }

@@ -12,8 +12,8 @@
               <input class="input__search" matInput (keyup)="Filterchange($event)" placeholder="Buscar..." />
               <mat-icon>search</mat-icon>
             </div>
-            <button class="button button--create" routerLink="/home/genero-create" data-cy="crearcomando">
-              Añadir Estado Civil
+            <button class="button button--create" routerLink="/home/estado-civil-create" data-cy="crearcomando">
+              Añadir
             </button>
           </div>
   
@@ -45,7 +45,7 @@
                     data-cy="editarcomando">
                     <span>Editar</span>
                   </a>
-                  <button class="button button--delete" (click)="deleteEstadoCivil(element.uuid)">Delete</button>
+                  <button class="button button--delete" (click)="delete(element.uuid)">Delete</button>
                 </div>
               </td>
             </ng-container>

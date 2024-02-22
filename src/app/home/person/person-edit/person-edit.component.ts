@@ -37,7 +37,7 @@ export class PersonEditComponent {
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
           this.matDialogRef.afterClosed().subscribe(() => {
-            /* this.router.navigateByUrl('/login') */
+          
           });
         }
       });

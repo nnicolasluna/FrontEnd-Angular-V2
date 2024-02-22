@@ -1,6 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { GeneroService } from '../genero-service/genero.service';
-import { MatDialog } from '@angular/material/dialog';
 import { ModalService } from '../../modal/service/modal.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { genero, generoDTO } from '../genero-model/genero';
@@ -23,10 +21,9 @@ export class GeneroListComponent {
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<genero>,
-
   ) { }
   ngOnInit() {
-    this.getGeneros();
+    this.getAll();
   }
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   displayedColumns: string[] = ['nombre', 'abreviatura', 'estado', 'action'];
@@ -34,7 +31,7 @@ export class GeneroListComponent {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value;
   }
-  getGeneros() {
+  getAll() {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
@@ -58,7 +55,7 @@ export class GeneroListComponent {
           this.apiService.delete(this.url, id).subscribe(
             {
               next: () => {
-                this.getGeneros();
+                this.getAll();
               },
               error: err => {
                 console.log('No puede eliminarse este registro')

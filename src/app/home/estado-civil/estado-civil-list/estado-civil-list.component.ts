@@ -4,9 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalService } from '../../modal/service/modal.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { estadocivilDTO } from '../estado-civil-model/estado-civil';
+import { estadocivil, estadocivilDTO } from '../estado-civil-model/estado-civil';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/advertencia-borrar.component';
+import { ApiService } from '../../service/api.service';
 
 @Component({
   selector: 'app-estado-civil-list',
@@ -16,14 +17,16 @@ import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/adver
 export class EstadoCivilListComponent {
   EstadoCivil: any;
   dataSource: any;
+  datos: any;
+  private url = 'estado_civiles'
   private matDialogRef!: any;
   constructor(
     private estadoCivilservice: EstadoCivilService,
-    private matDialog: MatDialog,
+    private apiService: ApiService<estadocivil>,
     private modalService: ModalService,
   ) { }
   ngOnInit() {
-    this.getEstadoCivil();
+    this.getAll();
   }
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   displayedColumns: string[] = ['nombre', 'abreviatura', 'estado', 'action'];
@@ -31,11 +34,12 @@ export class EstadoCivilListComponent {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value;
   }
-  getEstadoCivil() {
-    this.estadoCivilservice.getAll().subscribe({
-      next: data => { 
-        this.EstadoCivil = data;
-        this.dataSource = new MatTableDataSource<estadocivilDTO>(this.EstadoCivil);
+  getAll() {
+    this.apiService.getAll(this.url).subscribe(
+    {
+      next: data => {
+        this.datos = data;
+        this.dataSource = new MatTableDataSource<estadocivilDTO>(this.datos);
         this.dataSource.paginator = this.paginatior;
       },
       error: err => {
@@ -43,28 +47,30 @@ export class EstadoCivilListComponent {
         this.matDialogRef.afterClosed().subscribe(() => {
         });
       }
-
     }
-    );
+  );
   }
 
 
-  deleteEstadoCivil(uuid: string) {
+  delete(id: string) {
     this.matDialogRef = this.modalService.openDialog(AdvertenciaBorrarComponent);
-    this.matDialogRef.afterClosed().subscribe(() => {
-      if (this.matDialogRef.componentInstance.confirmado) {
-        this.estadoCivilservice.destroy(uuid).subscribe(
-          {
-            next: data => {
-              this.getEstadoCivil();
-            },
-            error: err => {
-              console.log('No puede eliminarse este registro')
+    this.matDialogRef.afterClosed().subscribe(
+      () => {
+        if (this.matDialogRef.componentInstance.confirmado) {
+          this.apiService.delete(this.url, id).subscribe(
+            {
+              next: () => {
+                this.getAll();
+              },
+              error: err => {
+                console.log('No puede eliminarse este registro')
+              }
             }
-          }
-        );
+          );
+        }
       }
-    });
+    );
+
   }
 
 }

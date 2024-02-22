@@ -1,1 +1,57 @@
-<p>ocupacion-create works!</p>
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">Registrar Ocupacion</h1>
+    </div>
+    <div class="body__content">
+        <mat-card class="card card--one">
+            <mat-card-header class="card__header--form">
+                <h4>Datos del Ocupacion</h4>
+            </mat-card-header>
+            <mat-card-content class="card__content">
+                <form id="loginform" [formGroup]="formGroup">
+                    <div class="content content--one">
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nombre:</label>
+                                <input formControlName="nombre" type="text" placeholder="Ejem. Doctor"
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                            </div>
+                            <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                                <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Abreviatura</label>
+                                <input formControlName="descripcion" type="text" placeholder="Ejem. Doc" class="content__imput"
+                                    [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
+                            </div>
+                            <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="descripcionControl.errors?.['required']">La Abreviatura es Requerida</span>
+                                <span *ngIf="descripcionControl.errors?.['maxlength']">La Abreviatura no debe tener mas
+                                    de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+            <mat-card-footer class="card__footer">
+                <button routerLink="/home/ocupacion-list" class="button button--simple">
+                    Cancelar
+                </button>
+                <button type="submit" class="button button--create" (click)="create()"
+                    data-cy="crearocupacion">Guardar</button>
+            </mat-card-footer>
+        </mat-card>
+
+    </div>
+</div>

@@ -11,8 +11,8 @@ import { LoginService } from '../login-service/login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class TokenInterceptorService /* implements HttpInterceptor */ {
-/* 
+export class TokenInterceptorService implements HttpInterceptor {
+
   constructor(private loginService: LoginService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let token: String = this.loginService.userToken;
@@ -30,7 +30,7 @@ export class TokenInterceptorService /* implements HttpInterceptor */ {
     }
     return next.handle(request);
   }
- */
+
 }
 
 
