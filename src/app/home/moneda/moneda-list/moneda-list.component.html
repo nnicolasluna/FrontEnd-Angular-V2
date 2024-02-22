@@ -1,0 +1,10 @@
+<app-componente-listar 
+    [titulo]="'Lista de Monedas'" 
+    [displayedColumns]="['nombre', 'abreviatura', 'estado', 'action']"  
+    [pageSizeOptions]="[5, 7]"
+    [adicionar]="'/home/moneda-create'"
+    [editar]="'/home/moneda-create'"
+    [dataSource]="dataSource"
+    >
+
+</app-componente-listar>

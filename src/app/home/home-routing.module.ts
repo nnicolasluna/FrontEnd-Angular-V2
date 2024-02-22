@@ -35,52 +35,66 @@ import { EstadoCivilEditComponent } from './estado-civil/estado-civil-edit/estad
 import { OcupacionCreateComponent } from './ocupacion/ocupacion-create/ocupacion-create.component';
 import { OcupacionListComponent } from './ocupacion/ocupacion-list/ocupacion-list.component';
 import { OcupacionEditComponent } from './ocupacion/ocupacion-edit/ocupacion-edit.component';
+import { PaisCreateComponent } from './pais/pais-create/pais-create.component';
+import { PaisListComponent } from './pais/pais-list/pais-list.component';
+import { PaisEditComponent } from './pais/pais-edit/pais-edit.component';
+import { MonedaListComponent } from './moneda/moneda-list/moneda-list.component';
+import { MonedaCreateComponent } from './moneda/moneda-create/moneda-create.component';
+import { MonedaEditComponent } from './moneda/moneda-edit/moneda-edit.component';
 
 const routes: Routes = [
-  {path: 'userlist', component: UserlistComponent},
-  {path: 'usercreate/:id', component: UsercreateComponent},
-  {path: 'usershow/:id', component: UsershowComponent},
-  {path: 'useredit/:id', component: UserEditComponent},
-  
-  {path: 'personlist', component: PersonlistComponent},
-  {path: 'personcreate', component:  PersoncreateComponent},
-  {path: 'personprofile/:id', component:  PersonprofileComponent},
-  {path: 'personedit/:id', component:  PersonEditComponent},
+  { path: 'userlist', component: UserlistComponent },
+  { path: 'usercreate/:id', component: UsercreateComponent },
+  { path: 'usershow/:id', component: UsershowComponent },
+  { path: 'useredit/:id', component: UserEditComponent },
 
-  {path: 'rolelist', component:  RolelistComponent},
-  {path: 'rolecreate', component:  RolecreateComponent},
-  {path: 'roledit/:id', component:  RoleEditComponent},
-  
-  {path: 'menucreate', component:  MenucreateComponent},
-  {path: 'menulist', component:  MenulistComponent},
-  {path: 'menuedit/:id', component:  MenuEditComponent},
+  { path: 'personlist', component: PersonlistComponent },
+  { path: 'personcreate', component: PersoncreateComponent },
+  { path: 'personprofile/:id', component: PersonprofileComponent },
+  { path: 'personedit/:id', component: PersonEditComponent },
 
-  {path: 'subsistemacreate', component:  SubsiscreateComponent},
-  {path: 'subsistemalist', component:  SubsislistComponent},
-  {path: 'subsistemaedit/:id', component:  SubsistemaEditComponent},
+  { path: 'rolelist', component: RolelistComponent },
+  { path: 'rolecreate', component: RolecreateComponent },
+  { path: 'roledit/:id', component: RoleEditComponent },
 
-  {path: 'comandocreate', component:  ComandocreateComponent},
-  {path: 'comandolist', component:  ComandolistComponent},
-  {path: 'comandoedit/:id', component:  ComandoEditComponent},
+  { path: 'menucreate', component: MenucreateComponent },
+  { path: 'menulist', component: MenulistComponent },
+  { path: 'menuedit/:id', component: MenuEditComponent },
 
-  {path: 'tipodocumentocreate', component:  TipoDocumentoCreateComponent},
-  {path: 'tipodocumentolist', component:  TipoDocumentoListComponent},
-  {path: 'tipodocumentoedit/:id', component:  TipoDocumentoEditComponent},
+  { path: 'subsistemacreate', component: SubsiscreateComponent },
+  { path: 'subsistemalist', component: SubsislistComponent },
+  { path: 'subsistemaedit/:id', component: SubsistemaEditComponent },
 
-  {path: 'documentocreate/:id', component:  DocumentocreateComponent},
-  {path: 'documentoedit/:id', component:  DocumentoEditComponent},
+  { path: 'comandocreate', component: ComandocreateComponent },
+  { path: 'comandolist', component: ComandolistComponent },
+  { path: 'comandoedit/:id', component: ComandoEditComponent },
 
-  {path: 'genero-create', component:  GeneroCreateComponent},
-  {path: 'genero-list', component:  GeneroListComponent},
-  {path: 'genero-edit/:id', component:  GeneroEditComponent},
+  { path: 'tipodocumentocreate', component: TipoDocumentoCreateComponent },
+  { path: 'tipodocumentolist', component: TipoDocumentoListComponent },
+  { path: 'tipodocumentoedit/:id', component: TipoDocumentoEditComponent },
 
-  {path: 'estado-civil-create', component:  EstadoCivilCreateComponent},
-  {path: 'estado-civil-list', component:  EstadoCivilListComponent},
-  {path: 'estado-civil-edit/:id', component:  EstadoCivilEditComponent},
+  { path: 'documentocreate/:id', component: DocumentocreateComponent },
+  { path: 'documentoedit/:id', component: DocumentoEditComponent },
 
-  {path: 'ocupacion-create', component:  OcupacionCreateComponent},
-  {path: 'ocupacion-list', component:  OcupacionListComponent},
-  {path: 'ocupacion-edit/:id', component:  OcupacionEditComponent},
+  { path: 'genero-create', component: GeneroCreateComponent },
+  { path: 'genero-list', component: GeneroListComponent },
+  { path: 'genero-edit/:id', component: GeneroEditComponent },
+
+  { path: 'estado-civil-create', component: EstadoCivilCreateComponent },
+  { path: 'estado-civil-list', component: EstadoCivilListComponent },
+  { path: 'estado-civil-edit/:id', component: EstadoCivilEditComponent },
+
+  { path: 'ocupacion-create', component: OcupacionCreateComponent },
+  { path: 'ocupacion-list', component: OcupacionListComponent },
+  { path: 'ocupacion-edit/:id', component: OcupacionEditComponent },
+
+  { path: 'pais-create', component: PaisCreateComponent },
+  { path: 'pais-list', component: PaisListComponent },
+  { path: 'pais-edit/:id', component: PaisEditComponent },
+
+  { path: 'moneda-create', component: MonedaCreateComponent },
+  { path: 'moneda-list', component: MonedaListComponent },
+  { path: 'moneda-edit/:id', component: MonedaEditComponent },
 ];
 
 @NgModule({

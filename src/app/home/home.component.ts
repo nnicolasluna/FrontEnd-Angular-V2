@@ -8,9 +8,10 @@ import { Component } from '@angular/core';
 
 })
 export class HomeComponent {
-  
+  admin = false;
+  parm = false;
   sidebarVisible = true;
-  buttons = [
+  administracion = [
     { name: 'Personas', icon: 'person', link:'personlist' },
     { name: 'Usuarios', icon: '3p', link:'userlist' },
     { name: 'Roles', icon: 'group', link:'rolelist' },
@@ -21,8 +22,11 @@ export class HomeComponent {
     { name: 'Genero', icon: 'male', link:'genero-list' },
     { name: 'Ocupación', icon: 'work', link:'ocupacion-list' },
     { name: 'Estado Civil', icon: 'wc', link:'estado-civil-list' },
-
-
+  ];
+  parametricas = [
+    { name: 'Monedas', icon: 'paid', link:'moneda-list' },
+    { name: 'Paises', icon: 'flag', link:'pais-list' },
+ 
   ];
   toggleSidebar() {
     this.sidebarVisible = !this.sidebarVisible;
@@ -30,9 +34,12 @@ export class HomeComponent {
   sidenav() {
     this.sidebarVisible = false
   }
-  admin = false;
+  
   Admi() {
     this.admin = !this.admin;
+  }
+  param() {
+    this.parm = !this.parm;
   }
 
 }

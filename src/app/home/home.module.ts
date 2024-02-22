@@ -54,6 +54,13 @@ import { EstadoCivilEditComponent } from './estado-civil/estado-civil-edit/estad
 import { OcupacionEditComponent } from './ocupacion/ocupacion-edit/ocupacion-edit.component';
 import { OcupacionListComponent } from './ocupacion/ocupacion-list/ocupacion-list.component';
 import { OcupacionCreateComponent } from './ocupacion/ocupacion-create/ocupacion-create.component';
+import { PaisListComponent } from './pais/pais-list/pais-list.component';
+import { PaisCreateComponent } from './pais/pais-create/pais-create.component';
+import { PaisEditComponent } from './pais/pais-edit/pais-edit.component';
+import { MonedaListComponent } from './moneda/moneda-list/moneda-list.component';
+import { MonedaCreateComponent } from './moneda/moneda-create/moneda-create.component';
+import { MonedaEditComponent } from './moneda/moneda-edit/moneda-edit.component';
+import { ComponenteListarComponent } from './componente-listar/componente-listar.component';
 
 
 
@@ -95,6 +102,13 @@ import { OcupacionCreateComponent } from './ocupacion/ocupacion-create/ocupacion
     OcupacionEditComponent,
     OcupacionListComponent,
     OcupacionCreateComponent,
+    PaisListComponent,
+    PaisCreateComponent,
+    PaisEditComponent,
+    MonedaListComponent,
+    MonedaCreateComponent,
+    MonedaEditComponent,
+    ComponenteListarComponent,
 
 
   ],

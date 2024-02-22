@@ -1,41 +1,39 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalService } from '../../modal/service/modal.service';
-import { MatPaginator } from '@angular/material/paginator';
-import { genero, generoDTO } from '../genero-model/genero';
-import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
-import { MatTableDataSource } from '@angular/material/table';
-import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/advertencia-borrar.component';
 import { ApiService } from '../../service/api.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
+import { moneda, monedaDTO } from '../moneda-model/moneda';
+import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/advertencia-borrar.component';
 
 @Component({
-  selector: 'app-genero-list',
-  templateUrl: './genero-list.component.html',
-  styleUrls: ['./genero-list.component.scss']
+  selector: 'app-moneda-list',
+  templateUrl: './moneda-list.component.html',
+  styleUrls: ['./moneda-list.component.scss']
 })
-export class GeneroListComponent {
-  dataSource: any;
-  private matDialogRef!: any;
-  private url = 'generos'
+export class MonedaListComponent {
   datos: any;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  @ViewChild(MatPaginator) paginatior !: MatPaginator;
+  private url = 'monedas'
+  matDialogRef: any;
   constructor(
     private modalService: ModalService,
-    private apiService: ApiService<genero>,
+    private apiService: ApiService<moneda>,
   ) { }
-  ngOnInit() {
-    this.getAll();
+
+  ngOnInit(): void {
+    this.dataSource.paginator = this.paginatior;
   }
-  @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  displayedColumns: string[] = ['nombre', 'abreviatura', 'estado', 'action'];
-  Filterchange(data: Event) {
-    const value = (data.target as HTMLInputElement).value;
-    this.dataSource.filter = value;
-  }
+
   getAll() {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
+          console.log(data)
           this.datos = data;
-          this.dataSource = new MatTableDataSource<generoDTO>(this.datos);
+          this.dataSource = new MatTableDataSource<monedaDTO>(this.datos);
           this.dataSource.paginator = this.paginatior;
         },
         error: err => {
@@ -65,4 +63,5 @@ export class GeneroListComponent {
       }
     );
   }
+
 }

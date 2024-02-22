@@ -1,11 +1,11 @@
 <div class="body">
     <div class="body__header">
-        <h1 class="body__h1">Editar Genero</h1>
+        <h1 class="body__h1">Editar Pais</h1>
     </div>
     <div class="body__content">
         <mat-card class="card card--one">
             <mat-card-header class="card__header--form">
-                <h4>Editar Datos del Genero</h4>
+                <h4>Editar Datos del Pais</h4>
             </mat-card-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
@@ -28,14 +28,14 @@
                         </div>
                         <div class="validation">
                             <div class="content__inputs">
-                                <label for="" class="content__formlabel">Abreviatura</label>
-                                <input formControlName="abreviatura" type="text" placeholder="M" class="content__imput"
-                                    [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
+                                <label for="" class="content__formlabel">Bandera</label>
+                                <input formControlName="bandera" type="text" placeholder="M" class="content__imput"
+                                    [ngClass]="{'invalid': banderaControl.invalid && (banderaControl.dirty || banderaControl.touched), 'valid': banderaControl.valid}">
                             </div>
-                            <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
+                            <div *ngIf="banderaControl.invalid && (banderaControl.dirty || banderaControl.touched)"
                                 class="text-danger">
-                                <span *ngIf="abreviaturaControl.errors?.['required']">La Abreviatura es Requerida</span>
-                                <span *ngIf="abreviaturaControl.errors?.['maxlength']">La Abreviatura no debe tener mas
+                                <span *ngIf="banderaControl.errors?.['required']">La bandera es Requerida</span>
+                                <span *ngIf="banderaControl.errors?.['maxlength']">La bandera no debe tener mas
                                     de
                                     30
                                     caracteres</span>
@@ -45,7 +45,7 @@
                 </form>
             </mat-card-content>
             <mat-card-footer class="card__footer">
-                <button routerLink="/home/genero-list" class="button button--simple">
+                <button routerLink="/home/pais-list" class="button button--simple">
                     Cancelar
                 </button>
                 <button type="submit" class="button button--create" (click)="update()"

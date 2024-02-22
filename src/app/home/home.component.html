@@ -11,20 +11,28 @@
 
         <div class="items">
           <button (click)="Admi()" class="button_nav">
-            <span><mat-icon>settings</mat-icon></span>Administracion
+            <span><mat-icon>settings</mat-icon></span>
+            <span>Administracion</span>
           </button>
           <div *ngIf="admin">
-            <button *ngFor="let button of buttons" routerLink="{{ button.link }}" class="button_nav">
+            <button *ngFor="let button of administracion" routerLink="{{ button.link }}" class="button_nav">
               <span><mat-icon>{{ button.icon }}</mat-icon></span>
               <span>{{ button.name }}</span>
             </button>
           </div>
-          <button class="button_nav">
+
+          <button class="button_nav" (click)="param()" >
             <span>
               <mat-icon>archive</mat-icon>
             </span>
-            Parametricas
+            <span>Parametricas</span>
           </button>
+          <div *ngIf="parm">
+            <button *ngFor="let button of parametricas" routerLink="{{ button.link }}" class="button_nav">
+              <span><mat-icon>{{ button.icon }}</mat-icon></span>
+              <span>{{ button.name }}</span>
+            </button>
+          </div>
 
         </div>
       </mat-drawer-content>
