@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ComandoService } from '../comando-service/comando.service';
 import { comando } from '../comando-model/comando';
 import { MenuService } from '../../menu/menu-service/menu.service';
+import { error } from 'cypress/types/jquery';
+import { ModalService } from '../../modal/service/modal.service';
+import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
 
 @Component({
   selector: 'app-comando-edit',
@@ -23,6 +26,7 @@ export class ComandoEditComponent {
     estado: new FormControl(false, [Validators.required]),
     menus: this.menuFormGroup
   });
+  matDialogRef: any;
   get nombreControl() {
     return this.formGroup.controls.nombre;
   }
@@ -40,16 +44,16 @@ export class ComandoEditComponent {
     private comandoservice: ComandoService,
     private route: ActivatedRoute,
     private menuService: MenuService,
+    private modalService: ModalService
   ) { }
   uuidx!: any;
   edit() {
     if (this.formGroup.valid) {
-    
+
       this.uuidx = this.route.snapshot.paramMap.get('id');
       this.formGroup.value.uuid = this.uuidx;
       this.formGroup.value.menus = this.menuFormGroup.value;
-      this.formGroup.value.menus = this.menuFormGroup.value;
-      this.comandoservice.edit(this.formGroup.value as comando,this.uuidx).subscribe({
+      this.comandoservice.edit(this.formGroup.value as comando, this.uuidx).subscribe({
 
         next: (userData: any) => {
           if (userData) {
@@ -61,6 +65,12 @@ export class ComandoEditComponent {
             alert("Datos Incorrectos, Verifique sus datos");
           }
         },
+        error: err => {
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
+          this.matDialogRef.afterClosed().subscribe(() => {
+            /* accion a determinar  */
+          });
+        }
       });
     }
     else {
@@ -80,11 +90,19 @@ export class ComandoEditComponent {
   datos: any;
   getComando() {
     this.uuid = this.route.snapshot.paramMap.get('id');
-    this.comandoservice.getComand(this.uuid).subscribe((data) => {
-
-      this.datos = data;
-
-      this.formGroup.patchValue(this.datos);
-    });
+    this.comandoservice.getComand(this.uuid).subscribe(
+      {
+        next: data => {
+          this.datos = data;
+          this.formGroup.patchValue(this.datos);
+        },
+        error: err => {
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
+          this.matDialogRef.afterClosed().subscribe(() => {
+            /* accion a determinar  */
+          });
+        }
+      }
+    );
   }
 }

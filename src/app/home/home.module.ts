@@ -45,6 +45,15 @@ import { AdvertenciaBorrarComponent } from './modal/advertencia-borrar/advertenc
 
 import {MatDialogModule} from '@angular/material/dialog';
 import { AdvertenciaErrorConexionComponent } from './modal/advertencia-error-conexion/advertencia-error-conexion.component';
+import { GeneroListComponent } from './genero/genero-list/genero-list.component';
+import { GeneroCreateComponent } from './genero/genero-create/genero-create.component';
+import { GeneroEditComponent } from './genero/genero-edit/genero-edit.component';
+import { EstadoCivilListComponent } from './estado-civil/estado-civil-list/estado-civil-list.component';
+import { EstadoCivilCreateComponent } from './estado-civil/estado-civil-create/estado-civil-create.component';
+import { EstadoCivilEditComponent } from './estado-civil/estado-civil-edit/estado-civil-edit.component';
+import { OcupacionEditComponent } from './ocupacion/ocupacion-edit/ocupacion-edit.component';
+import { OcupacionListComponent } from './ocupacion/ocupacion-list/ocupacion-list.component';
+import { OcupacionCreateComponent } from './ocupacion/ocupacion-create/ocupacion-create.component';
 
 
 
@@ -77,6 +86,15 @@ import { AdvertenciaErrorConexionComponent } from './modal/advertencia-error-con
     TipoDocumentoEditComponent,
     AdvertenciaBorrarComponent,
     AdvertenciaErrorConexionComponent,
+    GeneroListComponent,
+    GeneroCreateComponent,
+    GeneroEditComponent,
+    EstadoCivilListComponent,
+    EstadoCivilCreateComponent,
+    EstadoCivilEditComponent,
+    OcupacionEditComponent,
+    OcupacionListComponent,
+    OcupacionCreateComponent,
 
 
   ],

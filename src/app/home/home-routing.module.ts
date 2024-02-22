@@ -26,6 +26,15 @@ import { TipoDocumentoEditComponent } from './tipoDocumento/tipo-documento-edit/
 import { SubsistemaEditComponent } from './subsistema/subsistema-edit/subsistema-edit.component';
 import { MenuEditComponent } from './menu/menu-edit/menu-edit.component';
 import { RoleEditComponent } from './role/role-edit/role-edit.component';
+import { GeneroCreateComponent } from './genero/genero-create/genero-create.component';
+import { GeneroListComponent } from './genero/genero-list/genero-list.component';
+import { GeneroEditComponent } from './genero/genero-edit/genero-edit.component';
+import { EstadoCivilCreateComponent } from './estado-civil/estado-civil-create/estado-civil-create.component';
+import { EstadoCivilListComponent } from './estado-civil/estado-civil-list/estado-civil-list.component';
+import { EstadoCivilEditComponent } from './estado-civil/estado-civil-edit/estado-civil-edit.component';
+import { OcupacionCreateComponent } from './ocupacion/ocupacion-create/ocupacion-create.component';
+import { OcupacionListComponent } from './ocupacion/ocupacion-list/ocupacion-list.component';
+import { OcupacionEditComponent } from './ocupacion/ocupacion-edit/ocupacion-edit.component';
 
 const routes: Routes = [
   {path: 'userlist', component: UserlistComponent},
@@ -60,6 +69,18 @@ const routes: Routes = [
 
   {path: 'documentocreate/:id', component:  DocumentocreateComponent},
   {path: 'documentoedit/:id', component:  DocumentoEditComponent},
+
+  {path: 'genero-create', component:  GeneroCreateComponent},
+  {path: 'genero-list', component:  GeneroListComponent},
+  {path: 'genero-edit/:id', component:  GeneroEditComponent},
+
+  {path: 'estado-civil-create', component:  EstadoCivilCreateComponent},
+  {path: 'estado-civil-list', component:  EstadoCivilListComponent},
+  {path: 'estado-civil-edit/:id', component:  EstadoCivilEditComponent},
+
+  {path: 'ocupacion-create', component:  OcupacionCreateComponent},
+  {path: 'ocupacion-list', component:  OcupacionListComponent},
+  {path: 'ocupacion-edit/:id', component:  OcupacionEditComponent},
 ];
 
 @NgModule({
