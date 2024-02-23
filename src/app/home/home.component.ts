@@ -60,9 +60,12 @@ export class HomeComponent {
   }
 
   checkSidebar() {
-    this.isCollapsed = window.innerWidth <= 1000;
-    if(this.isCollapsed){
-      this.sidebarVisible = !this.sidebarVisible;
+    const isCollapsedNewValue = window.innerWidth <= 1000;
+    if (isCollapsedNewValue !== this.isCollapsed) {
+      this.isCollapsed = isCollapsedNewValue;
+      if (this.isCollapsed) {
+        this.sidebarVisible = !this.sidebarVisible;
+      }
     }
   }
 }

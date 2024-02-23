@@ -13,7 +13,7 @@
                         <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Nombre:</label>
-                                <input formControlName="nombre" type="text" placeholder="Ejem. Masculino"
+                                <input formControlName="nombre" type="text" placeholder="Ejem. Boliviano"
                                     class="content__imput"
                                     [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                             </div>
@@ -29,7 +29,7 @@
                         <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Abreviatura</label>
-                                <input formControlName="abreviatura" type="text" placeholder="Ejem. M" class="content__imput"
+                                <input formControlName="abreviatura" type="text" placeholder="Ejem. BOL" class="content__imput"
                                     [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                             </div>
                             <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
@@ -43,17 +43,30 @@
                         </div>
                         <div class="validation">
                             <div class="content__inputs">
-                                <label for="" class="content__formlabel">Abreviatura</label>
-                                <input formControlName="abreviatura" type="text" placeholder="Ejem. M" class="content__imput"
-                                    [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
+                                <label for="" class="content__formlabel">Descripcion</label>
+                                <input formControlName="descripcion" type="text" placeholder="Ejem. Moneda de origen boliviano" class="content__imput"
+                                    [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
                             </div>
-                            <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
+                            <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
                                 class="text-danger">
-                                <span *ngIf="abreviaturaControl.errors?.['required']">La Abreviatura es Requerida</span>
-                                <span *ngIf="abreviaturaControl.errors?.['maxlength']">La Abreviatura no debe tener mas
+                                <span *ngIf="descripcionControl.errors?.['required']">La descripcion es Requerida</span>
+                                <span *ngIf="descripcionControl.errors?.['maxlength']">La descripcion no debe tener mas
                                     de
                                     30
                                     caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Pais:</label>
+
+                                <select formControlName="pais" class="content__imput"
+                                    [ngClass]="{'invalid': paisControl.invalid && (paisControl.dirty || paisControl.touched), 'valid': paisControl.valid}">
+                                    <option value="" disabled selected>Selecciona pais</option>
+                                    <option *ngFor="let dato of paises"
+                                        [value]="dato.uuid">{{ dato.nombre }}
+                                    </option>
+                                </select>
                             </div>
                         </div>
                     </div>

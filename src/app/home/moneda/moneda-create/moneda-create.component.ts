@@ -5,6 +5,7 @@ import { ModalService } from '../../modal/service/modal.service';
 import { ApiService } from '../../service/api.service';
 import { moneda } from '../moneda-model/moneda';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
+import { data } from 'cypress/types/jquery';
 
 @Component({
   selector: 'app-moneda-create',
@@ -14,12 +15,14 @@ import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error
 export class MonedaCreateComponent {
   private matDialogRef!: any;
   private url = 'monedas'
+  private url1 = 'paises'
+  paises: any[] = [];
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    pais: new FormControl(''),
-    
+    pais: new FormControl('', [Validators.required]),
+
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;
@@ -27,12 +30,22 @@ export class MonedaCreateComponent {
   get abreviaturaControl() {
     return this.formGroup.controls.abreviatura;
   }
+  get descripcionControl() {
+    return this.formGroup.controls.descripcion;
+  }
+  get paisControl() {
+    return this.formGroup.controls.pais;
+  }
   constructor(
     private router: Router,
     private modalService: ModalService,
     private apiService: ApiService<moneda>,
   ) { }
+  ngOnInit() {
+    this.getAll();
+ 
 
+  }
   create() {
     if (this.formGroup.valid) {
       this.apiService.create(this.url, this.formGroup.value as moneda).subscribe(
@@ -52,5 +65,14 @@ export class MonedaCreateComponent {
     else {
       this.formGroup.markAllAsTouched();
     }
+  }
+  getAll() {
+    this.apiService.getAll(this.url1).subscribe(
+      {
+        next: data => {
+          this.paises = data
+        }
+      }
+    )
   }
 }
