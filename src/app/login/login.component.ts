@@ -70,9 +70,11 @@ export class LoginComponent {
       }
       this.trigger.next();
       this.formGroup.value.foto = this.preview;
+      console.log(this.formGroup.value)
       this.loginService.login(this.formGroup.value as LoginRequest).subscribe({
         next: (userData) => {
           if (userData) {
+            console.log(userData)
             this.router.navigateByUrl('/home');
             this.formGroup.reset();
           }

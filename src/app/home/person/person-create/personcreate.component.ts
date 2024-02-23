@@ -29,9 +29,9 @@ export class PersoncreateComponent {
     segundo_apellido: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     fecha_nacimiento: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     lugar_nacimiento: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    generos: new FormControl(''),
-    ocupaciones: new FormControl(''),
-    estadosCiviles: new FormControl(''),
+    generos: new FormControl('', [Validators.required]),
+    ocupaciones: new FormControl('', [Validators.required]),
+    estadosCiviles: new FormControl('', [Validators.required]),
     celular: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
   });
 
