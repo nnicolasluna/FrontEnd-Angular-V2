@@ -10,7 +10,7 @@ export class LoginService {
   private url = 'http://localhost:8080/api/auth';
   currentUserData: BehaviorSubject<String> = new BehaviorSubject<String>("");
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  private user: any;
   constructor(private http: HttpClient) { }
 
   login(credentials: LoginRequest): Observable<any> {
@@ -19,7 +19,6 @@ export class LoginService {
 
     return this.http.post<any>(this.url, credentials).pipe(
       tap((userData) => {
-        console.log(userData)
         sessionStorage.setItem("token", userData.token);
         this.currentUserData.next(userData.token);
         this.currentUserLoginOn.next(true);
@@ -29,5 +28,12 @@ export class LoginService {
   }
   get userToken():String{
     return this.currentUserData.value;
+  }
+
+  setDatos(datos: any) {
+    this.user = datos;
+  }
+  getDatos() {
+    return this.user;
   }
 }

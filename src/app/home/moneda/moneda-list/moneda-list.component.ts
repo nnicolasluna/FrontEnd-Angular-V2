@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+  import { Component, ViewChild } from '@angular/core';
 import { ModalService } from '../../modal/service/modal.service';
 import { ApiService } from '../../service/api.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -24,6 +24,7 @@ export class MonedaListComponent {
   ) { }
 
   ngOnInit(): void {
+   this.getAll()
     this.dataSource.paginator = this.paginatior;
   }
 
@@ -31,7 +32,6 @@ export class MonedaListComponent {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
-          console.log(data)
           this.datos = data;
           this.dataSource = new MatTableDataSource<monedaDTO>(this.datos);
           this.dataSource.paginator = this.paginatior;
