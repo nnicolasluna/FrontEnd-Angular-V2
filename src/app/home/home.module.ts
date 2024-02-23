@@ -61,6 +61,7 @@ import { MonedaListComponent } from './moneda/moneda-list/moneda-list.component'
 import { MonedaCreateComponent } from './moneda/moneda-create/moneda-create.component';
 import { MonedaEditComponent } from './moneda/moneda-edit/moneda-edit.component';
 import { ComponenteListarComponent } from './componente-listar/componente-listar.component';
+import { AdvertenciaCredencialesComponent } from './modal/advertencia-credenciales/advertencia-credenciales.component';
 
 
 
@@ -109,6 +110,7 @@ import { ComponenteListarComponent } from './componente-listar/componente-listar
     MonedaCreateComponent,
     MonedaEditComponent,
     ComponenteListarComponent,
+    AdvertenciaCredencialesComponent,
 
 
   ],

@@ -28,6 +28,7 @@ export class UserService {
   }
   update(uuid: String, data: user) {
     console.log(data)
+    console.log(uuid)
     return this.http.put<any>(this.url + '/' + uuid, data);
   }
 }

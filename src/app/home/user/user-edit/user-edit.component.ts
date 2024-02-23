@@ -15,13 +15,14 @@ export class UserEditComponent {
   dataSourcePacks!: MatTableDataSource<any>;
   displayedColumns = ["rol", "eliminar"]
   uuid = new FormControl('')
-  personuuid!: any;
+  usueariouuid!: any;
   roles: any[] = [];
- 
+
   rolesFormGroup = new FormGroup({
     uuid: this._fb.array([''])
   });
   formGroup = new FormGroup({
+    uuid: new FormControl(''),
     usuario: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     password: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     correoCorporativo: new FormControl('@gambarte.com', [Validators.required, Validators.email]),
@@ -49,23 +50,22 @@ export class UserEditComponent {
 
   edit() {
     if (this.formGroup.valid) {
-      this.personuuid = this.route.snapshot.paramMap.get('id');
-      this.formGroup.value.personaUuid = this.personuuid;
+      this.usueariouuid = this.route.snapshot.paramMap.get('id');
+      this.formGroup.value.uuid = this.usueariouuid;
       this.formGroup.value.roles = this.promos.value;
       const id = this.formGroup.value.personaUuid;
-      this.userservice.update(this.personuuid,this.formGroup.value as user).subscribe({
-
-        next: (userData: any) => {
-          if (userData) {
-
+      this.userservice.update(this.usueariouuid, this.formGroup.value as user).subscribe(
+        {
+          next: () => {
+            console.log(this.formGroup.value.password)
             this.router.navigate(['/home/personprofile/', id]);
             this.formGroup.reset();
+
+          },
+          error: (error) => {
+            console.log('no se puede editar papu')
           }
-          else {
-            alert("Datos Incorrectos, Verifique sus datos");
-          }
-        },
-      });
+        });
     }
     else {
       this.formGroup.markAllAsTouched();
@@ -105,30 +105,36 @@ export class UserEditComponent {
     });
   }
   uuidUser!: any;
-  x!: any;
+  datosUsuario!: any;
 
   getUser() {
     this.uuidUser = this.route.snapshot.paramMap.get('id');
-    this.userservice.getRole(this.uuidUser).subscribe((data) => {
-      this.x = data
-      this.formGroup.patchValue(data);
-      this.fg.patchValue(this.x.roles[1])
-
-      console.log(this.fg.value)
-    })
+    this.userservice.getRole(this.uuidUser).subscribe(
+      {
+        next: (data) => {
+          this.datosUsuario = data
+          this.formGroup.patchValue(data);
+          this.fg.patchValue(this.datosUsuario.roles[1])
+          this.formGroup.value.personaUuid = this.datosUsuario.personaUuid
+        },
+        error: () => {
+          console.log('error al obtener datos del usuario')
+        }
+      }
+    )
   }
   getData(): any {
     this.uuidUser = this.route.snapshot.paramMap.get('id');
     this.userservice.getRole(this.uuidUser).subscribe((data) => {
-      this.x = data
-      return this.x.roles;
+      this.datosUsuario = data
+      return this.datosUsuario.roles;
     })
   }
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
-      let base64String:string = reader.result as string;
+      let base64String: string = reader.result as string;
       base64String = base64String.split(',')[1];
       this.formGroup.value.foto = base64String;
     };

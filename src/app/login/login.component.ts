@@ -6,6 +6,8 @@ import { LoginService } from './login-service/login.service';
 import { LoginRequest } from './login-model/loginRequest';
 import { Subject, Observable } from 'rxjs';
 import * as bcrypt from 'bcryptjs';
+import { ModalService } from '../home/modal/service/modal.service';
+import { AdvertenciaCredencialesComponent } from '../home/modal/advertencia-credenciales/advertencia-credenciales.component';
 
 
 @Component({
@@ -17,7 +19,7 @@ import * as bcrypt from 'bcryptjs';
 
 
 export class LoginComponent {
-
+  private matDialogRef!: any;
   sitekey: string;
   private trigger: Subject<void> = new Subject<void>();
   preview: string = '';
@@ -45,7 +47,12 @@ export class LoginComponent {
   }
 
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private loginService: LoginService,
+    private modalService: ModalService,
+  ) {
 
     this.sitekey = '6LdX8EwpAAAAAHmEyXWLsVNyf9iXdArqhjoBtT89';
   }
@@ -73,17 +80,16 @@ export class LoginComponent {
 
       this.loginService.login(this.formGroup.value as LoginRequest).subscribe({
         next: (userData) => {
-          if (userData) {
             this.loginService.setDatos(userData)
             this.router.navigate(['/home']);
             this.formGroup.reset();
-          }
-          else {
-            alert("Datos Incorrectos, Verifique sus datos");
-          }
+        
         },
         error: (error) => {
-          console.log('error en la respuesta')
+          console.log(error)
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaCredencialesComponent);
+          this.matDialogRef.afterClosed().subscribe(() => {
+          });
         }
       });
     }
