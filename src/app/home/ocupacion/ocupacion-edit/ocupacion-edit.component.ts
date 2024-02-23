@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from '../../modal/service/modal.service';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../service/api-generico/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ocupacion } from '../ocupacion-model/ocupacion';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';

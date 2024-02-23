@@ -1,41 +1,54 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalService } from '../../modal/service/modal.service';
 import { ApiService } from '../../service/api-generico/api.service';
-import { ocupacion } from '../ocupacion-model/ocupacion';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { cuidad } from '../cuidad-model/cuidad';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
 
 @Component({
-  selector: 'app-ocupacion-create',
-  templateUrl: './ocupacion-create.component.html',
-  styleUrls: ['./ocupacion-create.component.scss']
+  selector: 'app-cuidad-create',
+  templateUrl: './cuidad-create.component.html',
+  styleUrls: ['./cuidad-create.component.scss']
 })
-export class OcupacionCreateComponent {
+export class CuidadCreateComponent {
   private matDialogRef!: any;
-  private url = 'ocupaciones'
+  private url = 'ciudades'
+  private url1 = 'paises'
+  operacion = 'Registrar'
+  editar = ''
+  paises: any[] = [];
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    descripcion: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    pais: new FormControl('', [Validators.required]),
+
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;
   }
-  get descripcionControl() {
-    return this.formGroup.controls.descripcion;
+  get abreviaturaControl() {
+    return this.formGroup.controls.abreviatura;
+  }
+
+  get paisControl() {
+    return this.formGroup.controls.pais;
   }
   constructor(
     private router: Router,
     private modalService: ModalService,
-    private apiService: ApiService<ocupacion>,
+    private apiService: ApiService<cuidad>,
   ) { }
-
+  ngOnInit() {
+    this.getAll();
+  }
   create() {
     if (this.formGroup.valid) {
-      this.apiService.create(this.url, this.formGroup.value as ocupacion).subscribe(
+
+      this.apiService.create(this.url, this.formGroup.value as cuidad).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/ocupacion-list');
+            this.router.navigateByUrl('/home/ciudad-list');
             this.formGroup.reset();
           },
           error: err => {
@@ -49,5 +62,14 @@ export class OcupacionCreateComponent {
     else {
       this.formGroup.markAllAsTouched();
     }
+  }
+  getAll() {
+    this.apiService.getAll(this.url1).subscribe(
+      {
+        next: data => {
+          this.paises = data
+        }
+      }
+    )
   }
 }

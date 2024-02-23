@@ -35,8 +35,11 @@ export class HomeComponent {
     { name: 'Estado Civil', icon: 'wc', link: 'estado-civil-list' },
   ];
   parametricas = [
-    { name: 'Monedas', icon: 'paid', link: 'moneda-list' },
     { name: 'Paises', icon: 'flag', link: 'pais-list' },
+    { name: 'Cuidades', icon: 'location_city', link: 'ciudad-list' },
+    { name: 'Monedas', icon: 'paid', link: 'moneda-list' },
+    { name: 'Cortes', icon: 'attach_money', link: 'corte-list' },
+    { name: 'Tipo-Corte', icon: 'attach_money', link: 'tipo-corte-list' },
 
   ];
   toggleSidebar() {

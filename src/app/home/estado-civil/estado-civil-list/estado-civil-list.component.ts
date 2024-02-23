@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { estadocivil, estadocivilDTO } from '../estado-civil-model/estado-civil';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/advertencia-borrar.component';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../service/api-generico/api.service';
 
 @Component({
   selector: 'app-estado-civil-list',

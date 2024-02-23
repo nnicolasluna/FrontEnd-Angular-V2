@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalService } from '../../modal/service/modal.service';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../service/api-generico/api.service';
 import { ocupacion, ocupacionDTO } from '../ocupacion-model/ocupacion';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';

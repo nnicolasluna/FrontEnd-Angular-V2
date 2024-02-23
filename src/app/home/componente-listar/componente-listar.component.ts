@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ModalService } from '../modal/service/modal.service';
-import { ApiService } from '../service/api.service';
+import { ApiService } from '../service/api-generico/api.service';
 import { AdvertenciaErrorConexionComponent } from '../modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { AdvertenciaBorrarComponent } from '../modal/advertencia-borrar/advertencia-borrar.component';
 @Component({

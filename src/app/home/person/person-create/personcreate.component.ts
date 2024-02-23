@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {  FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
 
 import { ModalService } from '../../modal/service/modal.service';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../service/api-generico/api.service';
 import { person } from '../person-model/person';
 
 @Component({
@@ -59,8 +59,6 @@ export class PersoncreateComponent {
   get lnacimientoControl() {
     return this.formGroup.controls.lugar_nacimiento;
   }
-
-
   get celularControl() {
     return this.formGroup.controls.celular
   }
@@ -95,7 +93,6 @@ export class PersoncreateComponent {
     this.getGeneros();
     this.getEstados();
     this.getOcupaciones();
-
   }
   getGeneros() {
     this.apiService.getAll(this.url3).subscribe(

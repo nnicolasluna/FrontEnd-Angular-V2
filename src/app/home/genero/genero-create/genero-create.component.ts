@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ModalService } from '../../modal/service/modal.service';
 import { genero } from '../genero-model/genero';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../service/api-generico/api.service';
 @Component({
   selector: 'app-genero-create',
   templateUrl: './genero-create.component.html',

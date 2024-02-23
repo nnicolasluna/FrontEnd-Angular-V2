@@ -1,0 +1,9 @@
+<app-componente-listar 
+    [titulo]="'Lista de Cuidades'" 
+    [displayedColumns]="['nombre', 'abreviatura', 'estado', 'action']"  
+    [pageSizeOptions]="[5, 7]"
+    [adicionar]="'/home/ciudad-create'"
+    [editar]="'/home/ciudad-edit'"
+    [dataSource]="dataSource"
+    >
+</app-componente-listar>

@@ -5,7 +5,7 @@ import { genero, generoDTO } from '../genero-model/genero';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/advertencia-borrar.component';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../service/api-generico/api.service';
 
 @Component({
   selector: 'app-genero-list',

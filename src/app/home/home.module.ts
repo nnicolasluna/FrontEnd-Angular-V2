@@ -62,6 +62,11 @@ import { MonedaCreateComponent } from './moneda/moneda-create/moneda-create.comp
 import { MonedaEditComponent } from './moneda/moneda-edit/moneda-edit.component';
 import { ComponenteListarComponent } from './componente-listar/componente-listar.component';
 import { AdvertenciaCredencialesComponent } from './modal/advertencia-credenciales/advertencia-credenciales.component';
+import { ComponenteFormComponent } from './componente-form/componente-form.component';
+import { CuidadListComponent } from './ciudad/cuidad-list/cuidad-list.component';
+import { CuidadFormGenericComponent } from './ciudad/cuidad-form-generic/cuidad-form-generic.component';
+import { CuidadCreateComponent } from './ciudad/cuidad-create/cuidad-create.component';
+import { CuidadEditComponent } from './ciudad/cuidad-edit/cuidad-edit.component';
 
 
 
@@ -111,6 +116,11 @@ import { AdvertenciaCredencialesComponent } from './modal/advertencia-credencial
     MonedaEditComponent,
     ComponenteListarComponent,
     AdvertenciaCredencialesComponent,
+    ComponenteFormComponent,
+    CuidadListComponent,
+    CuidadFormGenericComponent,
+    CuidadCreateComponent,
+    CuidadEditComponent,
 
 
   ],

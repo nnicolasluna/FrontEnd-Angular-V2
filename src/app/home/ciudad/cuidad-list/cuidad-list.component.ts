@@ -1,42 +1,39 @@
 import { Component, ViewChild } from '@angular/core';
-import { ModalService } from '../../modal/service/modal.service';
-import { pais, paisDTO } from '../pais-model/pais';
-import { ApiService } from '../../service/api-generico/api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/advertencia-borrar.component';
+import { ModalService } from '../../modal/service/modal.service';
+import { ApiService } from '../../service/api-generico/api.service';
+import { cuidad, cuidadDTO } from '../cuidad-model/cuidad';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
+import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/advertencia-borrar.component';
 
 @Component({
-  selector: 'app-pais-list',
-  templateUrl: './pais-list.component.html',
-  styleUrls: ['./pais-list.component.scss']
+  selector: 'app-cuidad-list',
+  templateUrl: './cuidad-list.component.html',
+  styleUrls: ['./cuidad-list.component.scss']
 })
-export class PaisListComponent {
-  
-  dataSource: any;
-  private matDialogRef!: any;
-  private url = 'paises'
+export class CuidadListComponent {
   datos: any;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  @ViewChild(MatPaginator) paginatior !: MatPaginator;
+  private url = 'ciudades'
+  matDialogRef: any;
   constructor(
     private modalService: ModalService,
-    private apiService: ApiService<pais>,
+    private apiService: ApiService<cuidad>,
   ) { }
-  ngOnInit() {
-    this.getAll();
+
+  ngOnInit(): void {
+   this.getAll()
+    this.dataSource.paginator = this.paginatior;
   }
-  @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  displayedColumns: string[] = ['nombre', 'bandera', 'estado', 'action'];
-  Filterchange(data: Event) {
-    const value = (data.target as HTMLInputElement).value;
-    this.dataSource.filter = value;
-  }
+
   getAll() {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
           this.datos = data;
-          this.dataSource = new MatTableDataSource<paisDTO>(this.datos);
+          this.dataSource = new MatTableDataSource<cuidadDTO>(this.datos);
           this.dataSource.paginator = this.paginatior;
         },
         error: err => {
@@ -66,5 +63,4 @@ export class PaisListComponent {
       }
     );
   }
-
 }

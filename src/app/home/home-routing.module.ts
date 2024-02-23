@@ -41,6 +41,9 @@ import { PaisEditComponent } from './pais/pais-edit/pais-edit.component';
 import { MonedaListComponent } from './moneda/moneda-list/moneda-list.component';
 import { MonedaCreateComponent } from './moneda/moneda-create/moneda-create.component';
 import { MonedaEditComponent } from './moneda/moneda-edit/moneda-edit.component';
+import { CuidadListComponent } from './ciudad/cuidad-list/cuidad-list.component';
+import { CuidadCreateComponent } from './ciudad/cuidad-create/cuidad-create.component';
+import { CuidadEditComponent } from './ciudad/cuidad-edit/cuidad-edit.component';
 
 const routes: Routes = [
   { path: 'userlist', component: UserlistComponent },
@@ -95,6 +98,18 @@ const routes: Routes = [
   { path: 'moneda-create', component: MonedaCreateComponent },
   { path: 'moneda-list', component: MonedaListComponent },
   { path: 'moneda-edit/:id', component: MonedaEditComponent },
+  
+  { path: 'ciudad-create', component: CuidadCreateComponent },
+  { path: 'ciudad-list', component: CuidadListComponent },
+  { path: 'ciudad-edit/:id', component: CuidadEditComponent },
+
+  { path: 'corte-create', component: MonedaCreateComponent },
+  { path: 'corte-list', component: MonedaListComponent },
+  { path: 'corte-edit/:id', component: MonedaEditComponent },
+
+  { path: 'tipo-corte-create', component: MonedaCreateComponent },
+  { path: 'tipo-corte-list', component: MonedaListComponent },
+  { path: 'tipo-corte-edit/:id', component: MonedaEditComponent },
 ];
 
 @NgModule({

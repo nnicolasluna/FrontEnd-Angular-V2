@@ -5,9 +5,10 @@ import { HomeComponent } from './home/home.component';
 
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent, title: 'login' },
-  { path: 'home', component: HomeComponent, title: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)  },
- 
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, title: 'login', data: { title: 'Login' } },
+  { path: 'home', component: HomeComponent, title: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
+
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalService } from '../../modal/service/modal.service';
-import { ApiService } from '../../service/api.service';
+import { ApiService } from '../../service/api-generico/api.service';
 import { estadocivil } from '../estado-civil-model/estado-civil';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
