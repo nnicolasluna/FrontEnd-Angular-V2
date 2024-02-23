@@ -22,30 +22,16 @@ export class PersoncreateComponent {
   generos: any[] = [];
   estado: any[] = [];
   ocupacion: any[] = [];
-  ocupacionFormGroup = new FormGroup(
-    {
-      uuid: new FormControl('', Validators.required),
-    }
-  );
-  generoFormGroup = new FormGroup(
-    {
-      uuid: new FormControl('', Validators.required),
-    }
-  );
-  estadoFormGroup = new FormGroup(
-    {
-      uuid: new FormControl('', Validators.required),
-    }
-  );
+
   formGroup = new FormGroup({
     nombres: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     primer_apellido: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     segundo_apellido: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     fecha_nacimiento: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     lugar_nacimiento: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    genero: this.generoFormGroup,
-    ocupacion: this.ocupacionFormGroup,
-    estado_civil: this.estadoFormGroup,
+    generos: new FormControl(''),
+    ocupaciones: new FormControl(''),
+    estadosCiviles: new FormControl(''),
     celular: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
   });
 
@@ -59,13 +45,13 @@ export class PersoncreateComponent {
     return this.formGroup.controls.segundo_apellido;
   }
   get ocupacionControl() {
-    return this.ocupacionFormGroup.controls.uuid;
+    return this.formGroup.controls.ocupaciones;
   }
   get estadoControl() {
-    return this.estadoFormGroup.controls.uuid;
+    return this.formGroup.controls.estadosCiviles;
   }
   get generoControl() {
-    return this.generoFormGroup.controls.uuid;
+    return this.formGroup.controls.generos;
   }
   get fnacimientoControl() {
     return this.formGroup.controls.fecha_nacimiento;
@@ -76,7 +62,7 @@ export class PersoncreateComponent {
 
 
   get celularControl() {
-    return this.formGroup.controls.celular;
+    return this.formGroup.controls.celular
   }
 
   constructor(
@@ -87,9 +73,6 @@ export class PersoncreateComponent {
 
   create() {
     if (this.formGroup.valid) {
-      this.formGroup.value.ocupacion = this.ocupacionFormGroup.value;
-      this.formGroup.value.genero = this.generoFormGroup.value;
-      this.formGroup.value.estado_civil = this.estadoFormGroup.value;
       this.apiService.create(this.url, this.formGroup.value as person).subscribe(
         {
           next: () => {

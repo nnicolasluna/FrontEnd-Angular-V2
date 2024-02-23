@@ -55,7 +55,7 @@ export class PersonEditComponent {
   }
 
   getOne() {
-    this.uuid = this.route.snapshot.paramMap.get('id');
+   /*  this.uuid = this.route.snapshot.paramMap.get('id');
     this.apiService.getOne(this.url, this.uuid).subscribe(
       {
         next: data => {
@@ -67,7 +67,7 @@ export class PersonEditComponent {
           });
         }
       }
-    )
+    ) */
   }
 
   private url = 'personas'
