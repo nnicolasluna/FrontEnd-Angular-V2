@@ -1,5 +1,5 @@
 import { MatExpansionModule } from '@angular/material/expansion';
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login-service/login.service';
 
@@ -53,4 +53,16 @@ export class HomeComponent {
     this.parm = !this.parm;
   }
 
+  isCollapsed: boolean = false;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkSidebar();
+  }
+
+  checkSidebar() {
+    this.isCollapsed = window.innerWidth <= 1000;
+    if(this.isCollapsed){
+      this.sidebarVisible = !this.sidebarVisible;
+    }
+  }
 }

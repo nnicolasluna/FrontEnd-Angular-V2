@@ -1,5 +1,5 @@
 <div class="dash">
-  <div class="left" *ngIf="sidebarVisible">
+  <div class="left" [ngClass]="{ 'sidebar-collapsed': isCollapsed }" *ngIf="sidebarVisible">
     <mat-drawer-container class="example-container">
       <mat-drawer-content>
         <div class="logo">

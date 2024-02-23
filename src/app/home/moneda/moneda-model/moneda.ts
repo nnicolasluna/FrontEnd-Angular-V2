@@ -1,10 +1,8 @@
-import { pais } from "../../pais/pais-model/pais";
-
 export interface moneda {
     nombre: string
     abreviatura: string
     descripcion: string
-    pais:pais
+    pais:string
   
 }
 export interface monedaDTO {
@@ -12,5 +10,5 @@ export interface monedaDTO {
     nombre: string,
     abreviatura: string;
     descripcion: string
-    pais:pais
+    pais:string
 }
