@@ -5,6 +5,7 @@ import { ApiService } from '../../service/api-generico/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { cuidad } from '../cuidad-model/cuidad';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
+import { MetodoGenericoService } from '../../service/metodo-generico/metodo-generico.service';
 
 @Component({
   selector: 'app-cuidad-create',
@@ -38,31 +39,53 @@ export class CuidadCreateComponent {
     private router: Router,
     private modalService: ModalService,
     private apiService: ApiService<cuidad>,
+    private metodogenerico: MetodoGenericoService
   ) { }
   ngOnInit() {
     this.getAll();
+
   }
+
+  /*   create() {
+      if (this.formGroup.valid) {
+        
+        this.apiService.create(this.url, this.formGroup.value as cuidad).subscribe(
+          {
+            next: () => {
+              this.router.navigateByUrl('/home/ciudad-list');
+              this.formGroup.reset();
+            },
+            error: err => {
+              this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
+              this.matDialogRef.afterClosed().subscribe(() => {
+              });
+            }
+          }
+        );
+      }
+      else {
+        this.formGroup.markAllAsTouched();
+      }
+    } */
   create() {
     if (this.formGroup.valid) {
+      const formData = this.metodogenerico.getFormGroupData();
 
-      this.apiService.create(this.url, this.formGroup.value as cuidad).subscribe(
-        {
-          next: () => {
-            this.router.navigateByUrl('/home/ciudad-list');
-            this.formGroup.reset();
-          },
-          error: err => {
-            this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
-            this.matDialogRef.afterClosed().subscribe(() => {
-            });
-          }
+      this.apiService.create(this.url, formData).subscribe({
+        next: () => {
+          this.router.navigateByUrl('/home/ciudad-list');
+          this.formGroup.reset();
+        },
+        error: err => {
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
+          this.matDialogRef.afterClosed().subscribe(() => { });
         }
-      );
-    }
-    else {
+      });
+    } else {
       this.formGroup.markAllAsTouched();
     }
   }
+
   getAll() {
     this.apiService.getAll(this.url1).subscribe(
       {

@@ -1,10 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { cuidad } from '../cuidad-model/cuidad';
-import { Router } from '@angular/router';
-import { ModalService } from '../../modal/service/modal.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../service/api-generico/api.service';
-import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { MetodoGenericoService } from '../../service/metodo-generico/metodo-generico.service';
 
 @Component({
@@ -13,24 +11,18 @@ import { MetodoGenericoService } from '../../service/metodo-generico/metodo-gene
   styleUrls: ['./cuidad-form-generic.component.scss']
 })
 export class CuidadFormGenericComponent {
-  private matDialogRef!: any;
-
-  private url1 = 'paises'
   @Input() url: string = '';
   @Input() operacion: string = '';
   @Input() editar: string = '';
   @Input() regreso: string = '';
   @Input() paises: any[] = [];
-  @Input() metodoDesdePadre: () => void = () => {};
-  constructor(
-    private metodogenerico: MetodoGenericoService,
-    private router: Router,
-    private modalService: ModalService,
-    private apiService: ApiService<cuidad>,
-    
-  ) { }
+  @Input() ciudadData: any;
+  @Input() metodoDesdePadre: () => void = () => { };
+
+  pais!: any
   ejecutarCreate() {
     if (this.metodoDesdePadre) {
+      this.metodogenerico.setFormGroup(this.formGroup)
       this.metodoDesdePadre();
     }
   }
@@ -40,7 +32,7 @@ export class CuidadFormGenericComponent {
     paises: new FormControl('', [Validators.required]),
 
   });
- 
+
   get nombreControl() {
     return this.formGroup.controls.nombre;
   }
@@ -50,10 +42,26 @@ export class CuidadFormGenericComponent {
   get paisControl() {
     return this.formGroup.controls.paises;
   }
-  
-  ngOnInit(): void {
-   
-    this.metodogenerico.setFormGroup(this.formGroup)
+  constructor(
+    private metodogenerico: MetodoGenericoService,
+    private router: Router,
+    private apiService: ApiService<cuidad>,
+    private route: ActivatedRoute,
+  ) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['ciudadData'] && changes['ciudadData'].currentValue) {
+      this.formGroup.patchValue(this.ciudadData);
+      this.pais = this.formGroup.value.paises
+      this.getDatos('paises',this.pais)
+    }
+  }
+  getDatos(param:string, atrib:any){
+    const control = this.formGroup.get(param);
+    if (control) {
+      const UUID = atrib.uuid;
+      control.setValue(UUID);
+    }
   }
 
 }

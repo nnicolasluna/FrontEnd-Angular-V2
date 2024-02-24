@@ -5,6 +5,7 @@ import { ApiService } from '../../service/api-generico/api.service';
 import { cuidad } from '../cuidad-model/cuidad';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cuidad-edit',
@@ -12,6 +13,7 @@ import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error
   styleUrls: ['./cuidad-edit.component.scss']
 })
 export class CuidadEditComponent {
+
   private matDialogRef!: any;
   private url = 'ciudades'
   private url1 = 'paises'
@@ -19,6 +21,7 @@ export class CuidadEditComponent {
   uuid!: any;
   editar = ''
   paises: any[] = [];
+  datos!:  any;
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
@@ -42,29 +45,21 @@ export class CuidadEditComponent {
     private apiService: ApiService<cuidad>,
     private route: ActivatedRoute,
   ) { }
-  ngOnInit() {
-    this.getAll();
-  }
-  create() {
-    if (this.formGroup.valid) {
-
-      this.apiService.create(this.url, this.formGroup.value as cuidad).subscribe(
-        {
-          next: () => {
-            this.router.navigateByUrl('/home/ciudad-list');
-            this.formGroup.reset();
-          },
-          error: err => {
-            this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
-            this.matDialogRef.afterClosed().subscribe(() => {
-            });
-          }
-        }
-      );
-    }
-    else {
-      this.formGroup.markAllAsTouched();
-    }
+  ngOnInit(): void {
+    this.getAll()
+    this.route.paramMap.pipe(
+      switchMap(params => {
+        this.uuid = this.route.snapshot.paramMap.get('id');
+        return this.apiService.getOne('ciudades', this.uuid);
+      })
+    ).subscribe({
+      next: (data) => {
+        this.datos = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener los datos:', err);
+      }
+    });
   }
   update() {
     if (this.formGroup.valid) {
@@ -73,7 +68,7 @@ export class CuidadEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as cuidad).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/genero-list');
+            this.router.navigateByUrl('/home/ciudad-list');
             this.formGroup.reset();
           },
           error: err => {
@@ -98,5 +93,22 @@ export class CuidadEditComponent {
       }
     )
   }
-  
+  getOne() {
+    this.uuid = this.route.snapshot.paramMap.get('id');
+    this.apiService.getOne(this.url, this.uuid).subscribe(
+      {
+        next: data => {
+          console.log('Datos recibidos:', data); 
+          this.datos = data;
+        },
+        error: err => {
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
+          this.matDialogRef.afterClosed().subscribe(
+            /* accion por determinar */
+          );
+          console.log('error al obtener datos de usuario')
+        }
+      }
+    );
+  }
 }
