@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { UserlistComponent } from './user/user-list/userlist.component';
@@ -43,7 +43,7 @@ import { TipoDocumentoEditComponent } from './tipoDocumento/tipo-documento-edit/
 import { MatTabsModule } from '@angular/material/tabs';
 import { AdvertenciaBorrarComponent } from './modal/advertencia-borrar/advertencia-borrar.component';
 
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { AdvertenciaErrorConexionComponent } from './modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { GeneroListComponent } from './genero/genero-list/genero-list.component';
 import { GeneroCreateComponent } from './genero/genero-create/genero-create.component';
@@ -67,6 +67,15 @@ import { CuidadListComponent } from './ciudad/cuidad-list/cuidad-list.component'
 import { CuidadFormGenericComponent } from './ciudad/cuidad-form-generic/cuidad-form-generic.component';
 import { CuidadCreateComponent } from './ciudad/cuidad-create/cuidad-create.component';
 import { CuidadEditComponent } from './ciudad/cuidad-edit/cuidad-edit.component';
+import { TipoCorteListComponent } from './tipo-corte/tipo-corte-list/tipo-corte-list.component';
+import { TipoCorteCreateComponent } from './tipo-corte/tipo-corte-create/tipo-corte-create.component';
+import { TipoCorteEditComponent } from './tipo-corte/tipo-corte-edit/tipo-corte-edit.component';
+import { TipoCorteGenericComponent } from './tipo-corte/tipo-corte-generic/tipo-corte-generic.component';
+import { CorteListComponent } from './corte/corte-list/corte-list.component';
+import { CorteCreateComponent } from './corte/corte-create/corte-create.component';
+import { CorteEditComponent } from './corte/corte-edit/corte-edit.component';
+import { CorteGenericComponent } from './corte/corte-generic/corte-generic.component';
+
 
 
 
@@ -121,11 +130,20 @@ import { CuidadEditComponent } from './ciudad/cuidad-edit/cuidad-edit.component'
     CuidadFormGenericComponent,
     CuidadCreateComponent,
     CuidadEditComponent,
+    TipoCorteListComponent,
+    TipoCorteCreateComponent,
+    TipoCorteEditComponent,
+    TipoCorteGenericComponent,
+    CorteListComponent,
+    CorteCreateComponent,
+    CorteEditComponent,
+    CorteGenericComponent,
+    
 
 
   ],
   imports: [
-        
+
     MatTabsModule,
     CommonModule,
     HomeRoutingModule,
@@ -140,6 +158,7 @@ import { CuidadEditComponent } from './ciudad/cuidad-edit/cuidad-edit.component'
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
+    MatTooltipModule
   ]
 })
-  export class HomeModule { }
+export class HomeModule { }

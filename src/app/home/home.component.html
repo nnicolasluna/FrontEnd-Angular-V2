@@ -10,30 +10,21 @@
         </div>
 
         <div class="items">
-          <button (click)="Admi()" class="button_nav">
-            <span><mat-icon>settings</mat-icon></span>
-            <span>Administracion</span>
-          </button>
-          <div *ngIf="admin">
-            <button *ngFor="let button of administracion" routerLink="{{ button.link }}" class="button_nav">
-              <span><mat-icon>{{ button.icon }}</mat-icon></span>
-              <span>{{ button.name }}</span>
-            </button>
+         
+          <div class="items">
+            <ng-container *ngFor="let seccion of secciones">
+              <button (click)="toggleMarcado(seccion)" class="button_nav" [class.marcado]="seccion.marcado">
+                <span><mat-icon>{{ seccion.icono}}</mat-icon></span>
+                <span>{{ seccion.nombre}}</span>
+              </button>
+              <div *ngIf="seccion.marcado">
+                <button *ngFor="let button of seccion.botones" routerLink="{{ button.link }}" class="button_nav">
+                  <span><mat-icon>{{ button.icon }}</mat-icon></span>
+                  <span>{{ button.name }}</span>
+                </button>
+              </div>
+            </ng-container>
           </div>
-
-          <button class="button_nav" (click)="param()" >
-            <span>
-              <mat-icon>archive</mat-icon>
-            </span>
-            <span>Parametricas</span>
-          </button>
-          <div *ngIf="parm">
-            <button *ngFor="let button of parametricas" routerLink="{{ button.link }}" class="button_nav">
-              <span><mat-icon>{{ button.icon }}</mat-icon></span>
-              <span>{{ button.name }}</span>
-            </button>
-          </div>
-
         </div>
       </mat-drawer-content>
     </mat-drawer-container>
@@ -51,10 +42,10 @@
           <div class="left-toolbar">
             <div class="user">
               <div class="name">
-            <!--   {{ userData.personaDTO.nombres }} {{ userData.personaDTO.primer_apellido }} {{ userData.personaDTO.segundo_apellido }} -->
+                <!--   {{ userData.personaDTO.nombres }} {{ userData.personaDTO.primer_apellido }} {{ userData.personaDTO.segundo_apellido }} -->
               </div>
               <div class="cargo">
-             <!--    <b>Cargo: </b> -->
+                <!--    <b>Cargo: </b> -->
               </div>
             </div>
 

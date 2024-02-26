@@ -50,6 +50,7 @@ export class MonedaCreateComponent {
   }
   create() {
     if (this.formGroup.valid) {
+      console.log(this.formGroup.value)
       this.apiService.create(this.url, this.formGroup.value as moneda).subscribe(
         {
           next: () => {

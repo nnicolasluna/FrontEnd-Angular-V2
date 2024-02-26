@@ -1,27 +1,27 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { corte, corteDTO } from '../corte-model/corte';
 import { ModalService } from '../../modal/service/modal.service';
 import { ApiService } from '../../service/api-generico/api.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
-import { moneda, monedaDTO } from '../moneda-model/moneda';
 import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/advertencia-borrar.component';
 
 @Component({
-  selector: 'app-moneda-list',
-  templateUrl: './moneda-list.component.html',
-  styleUrls: ['./moneda-list.component.scss']
+  selector: 'app-corte-list',
+  templateUrl: './corte-list.component.html',
+  styleUrls: ['./corte-list.component.scss']
 })
-export class MonedaListComponent {
+export class CorteListComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'monedas'
+  private url = 'cortes'
   matDialogRef: any;
   pageSizeOptions = [5, 7]; 
   constructor(
     private modalService: ModalService,
-    private apiService: ApiService<moneda>,
+    private apiService: ApiService<corte>,
   ) { }
 
   ngOnInit(): void {
@@ -32,9 +32,8 @@ export class MonedaListComponent {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
-          console.log(data)
           this.datos = data;
-          this.dataSource = new MatTableDataSource<monedaDTO>(this.datos);
+          this.dataSource = new MatTableDataSource<corteDTO>(this.datos);
           this.dataSource.paginator = this.paginatior;
         },
         error: err => {

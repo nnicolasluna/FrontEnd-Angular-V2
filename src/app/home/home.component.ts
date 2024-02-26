@@ -1,8 +1,12 @@
-import { MatExpansionModule } from '@angular/material/expansion';
 import { Component, HostListener } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login-service/login.service';
 
+interface Seccion {
+  nombre: string
+  marcado: boolean
+  icono: string
+  botones: { name: string, icon: string, link: string }[];
+}
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,30 +20,41 @@ export class HomeComponent {
   userData: any;
   constructor(
     private loginService: LoginService,
-    private router: Router
-    ) { }
+
+  ) { }
   ngOnInit(): void {
     this.userData = this.loginService.getDatos();
 
   }
-  administracion = [
-    { name: 'Personas', icon: 'person', link: 'personlist' },
-    { name: 'Usuarios', icon: '3p', link: 'userlist' },
-    { name: 'Roles', icon: 'group', link: 'rolelist' },
-    { name: 'Menus', icon: 'menu', link: 'menulist' },
-    { name: 'Comandos', icon: 'terminal', link: 'comandolist' },
-    { name: 'Subsistema', icon: 'badge', link: 'subsistemalist' },
-    { name: 'Tipos Documentos', icon: 'badge', link: 'tipodocumentolist' },
-    { name: 'Genero', icon: 'male', link: 'genero-list' },
-    { name: 'Ocupación', icon: 'work', link: 'ocupacion-list' },
-    { name: 'Estado Civil', icon: 'wc', link: 'estado-civil-list' },
-  ];
-  parametricas = [
-    { name: 'Paises', icon: 'flag', link: 'pais-list' },
-    { name: 'Cuidades', icon: 'location_city', link: 'ciudad-list' },
-    { name: 'Monedas', icon: 'paid', link: 'moneda-list' },
-    { name: 'Cortes', icon: 'attach_money', link: 'corte-list' },
-    { name: 'Tipo-Corte', icon: 'attach_money', link: 'tipo-corte-list' },
+ 
+  secciones: Seccion[] = [
+    {
+      nombre: 'Administracion', icono: 'settings', marcado: false, botones: [
+        { name: 'Personas', icon: 'person', link: 'personlist' },
+        { name: 'Usuarios', icon: '3p', link: 'userlist' },
+        { name: 'Roles', icon: 'group', link: 'rolelist' },
+        { name: 'Menus', icon: 'menu', link: 'menulist' },
+        { name: 'Comandos', icon: 'terminal', link: 'comandolist' },
+        { name: 'Subsistema', icon: 'badge', link: 'subsistemalist' },
+        { name: 'Tipos Documentos', icon: 'badge', link: 'tipodocumentolist' },
+        { name: 'Genero', icon: 'male', link: 'genero-list' },
+        { name: 'Ocupación', icon: 'work', link: 'ocupacion-list' },
+        { name: 'Estado Civil', icon: 'wc', link: 'estado-civil-list' },
+      ]
+    },
+    {
+      nombre: 'Parametricas', icono: 'archive', marcado: false, botones: [
+        { name: 'Paises', icon: 'flag', link: 'pais-list' },
+        { name: 'Cuidades', icon: 'location_city', link: 'ciudad-list' },
+        { name: 'Monedas', icon: 'paid', link: 'moneda-list' },
+        { name: 'Cortes', icon: 'attach_money', link: 'corte-list' },
+        { name: 'Tipo Corte', icon: 'credit_card', link: 'tipo-corte-list' },
+        { name: 'Tipo Entidad Financieras', icon: 'euro', link: 'tipo-entidad-finaciera-list' },
+        { name: 'Entidades Finacieras', icon: 'payments', link: 'entidad-finaciera-list' },
+        { name: 'Tipo Cuentas Bancarias', icon: 'savings', link: 'tipo-cuenta-bancaria-list' },
+        { name: 'Cuentas Bancarias', icon: 'account_balance', link: 'cuenta-bancaria-list' },
+      ]
+    }
 
   ];
   toggleSidebar() {
@@ -71,4 +86,8 @@ export class HomeComponent {
       }
     }
   }
+  toggleMarcado(seccion: Seccion) {
+    seccion.marcado = !seccion.marcado;
+  }
+
 }

@@ -44,6 +44,12 @@ import { MonedaEditComponent } from './moneda/moneda-edit/moneda-edit.component'
 import { CuidadListComponent } from './ciudad/cuidad-list/cuidad-list.component';
 import { CuidadCreateComponent } from './ciudad/cuidad-create/cuidad-create.component';
 import { CuidadEditComponent } from './ciudad/cuidad-edit/cuidad-edit.component';
+import { TipoCorteCreateComponent } from './tipo-corte/tipo-corte-create/tipo-corte-create.component';
+import { TipoCorteListComponent } from './tipo-corte/tipo-corte-list/tipo-corte-list.component';
+import { TipoCorteEditComponent } from './tipo-corte/tipo-corte-edit/tipo-corte-edit.component';
+import { CorteCreateComponent } from './corte/corte-create/corte-create.component';
+import { CorteListComponent } from './corte/corte-list/corte-list.component';
+import { CorteEditComponent } from './corte/corte-edit/corte-edit.component';
 
 const routes: Routes = [
   { path: 'userlist', component: UserlistComponent },
@@ -103,13 +109,15 @@ const routes: Routes = [
   { path: 'ciudad-list', component: CuidadListComponent },
   { path: 'ciudad-edit/:id', component: CuidadEditComponent },
 
-  { path: 'corte-create', component: MonedaCreateComponent },
-  { path: 'corte-list', component: MonedaListComponent },
-  { path: 'corte-edit/:id', component: MonedaEditComponent },
+  { path: 'corte-create', component: CorteCreateComponent },
+  { path: 'corte-list', component: CorteListComponent },
+  { path: 'corte-edit/:id', component: CorteEditComponent },
 
-  { path: 'tipo-corte-create', component: MonedaCreateComponent },
-  { path: 'tipo-corte-list', component: MonedaListComponent },
-  { path: 'tipo-corte-edit/:id', component: MonedaEditComponent },
+  { path: 'tipo-corte-create', component: TipoCorteCreateComponent },
+  { path: 'tipo-corte-list', component: TipoCorteListComponent },
+  { path: 'tipo-corte-edit/:id', component: TipoCorteEditComponent },
+
+  
 ];
 
 @NgModule({

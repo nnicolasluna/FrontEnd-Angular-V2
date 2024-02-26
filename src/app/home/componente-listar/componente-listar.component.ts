@@ -8,50 +8,41 @@ import { AdvertenciaBorrarComponent } from '../modal/advertencia-borrar/adverten
 @Component({
   selector: 'app-componente-listar',
   templateUrl: './componente-listar.component.html',
-  styleUrls: ['./componente-listar.component.scss']
+  styleUrls: ['./componente-listar.component.scss'],
+  
 })
-export class ComponenteListarComponent<T> implements OnInit{
+export class ComponenteListarComponent<T> {
   @Input() titulo: string = '';
   @Input() adicionar: string = '';
   @Input() editar: string = '';
   @Input() borrar: string = '';
   @Input() dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @Input() displayedColumns: string[] = [];
-  @Input() pageSizeOptions: number[] = [5, 7];
+  @Input() ColumnsNames: string[] = [];
+  @Input() pageSizeOptions: number[] = [5, 7, 10];
   @Input() url = '';
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   datos: any;
   private matDialogRef!: any;
-  
+
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<T>,
   ) { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.dataSource.paginator = this.paginator;
+    if (this.dataSource && this.dataSource.data) {
+      // Si los datos se proporcionan, asignarlos a dataSource
+      this.dataSource.data = this.dataSource.data;
+    }
   }
   Filterchange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
     this.dataSource.filter = value;
   }
-  getAll() {
-    this.apiService.getAll(this.url).subscribe(
-      {
-        next: data => {
-          console.log(data)
-          this.datos = data;
-          this.dataSource = new MatTableDataSource<T>(this.datos);
-          this.dataSource.paginator = this.paginator;
-        },
-        error: err => {
-          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
-          this.matDialogRef.afterClosed().subscribe(() => {
-          });
-        }
-      }
-    );
-  }
+
   delete(id: string) {
     this.matDialogRef = this.modalService.openDialog(AdvertenciaBorrarComponent);
     this.matDialogRef.afterClosed().subscribe(
@@ -60,7 +51,7 @@ export class ComponenteListarComponent<T> implements OnInit{
           this.apiService.delete(this.url, id).subscribe(
             {
               next: () => {
-                this.getAll();
+                console.log('borrado')
               },
               error: err => {
                 console.log('No puede eliminarse este registro')
@@ -70,5 +61,12 @@ export class ComponenteListarComponent<T> implements OnInit{
         }
       }
     );
+
+  }
+  isObjectType(value: any): boolean {
+    return typeof value === 'object' && value !== null;
+  }
+  capitalizeFirstLetter(word: string): string {
+    return word.charAt(0).toUpperCase() + word.slice(1);
   }
 }

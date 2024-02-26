@@ -60,7 +60,7 @@ body {
     border: solid 1px black;
     text-decoration: none;
     color: black;
-   min-width: auto;
+    min-width: auto;
     background-color: rgb(243, 243, 243);
     width: 100%;
     flex: 1;
@@ -87,6 +87,7 @@ body {
 .button--navbar:hover {
     background-color: #EC6100;
 }
+
 .button--sin-estilos {
     background: none;
     border: none;
@@ -96,7 +97,8 @@ body {
     overflow: visible;
     padding: 0;
     cursor: pointer;
-  }
+}
+
 //Formulario
 .body {
     display: flex;
@@ -119,7 +121,7 @@ body {
     min-height: 0rex;
     padding-bottom: 10px;
     min-width: auto;
-    
+
 }
 
 //Formulario de solo una fila de inputs
@@ -165,7 +167,7 @@ body {
 .validation {
     display: flex;
     flex-direction: column;
-   /*  padding-bottom: 1%; */
+    /*  padding-bottom: 1%; */
     padding-top: 1%;
     min-width: auto;
 }
@@ -173,7 +175,7 @@ body {
 .validation--tri {
     flex: 1;
     padding-right: 15px;
-    
+
 }
 
 .validation--two {
@@ -299,8 +301,8 @@ th {
 }
 
 .table__list {
+    border: 1px solid #343A40 !important;
 
-    border: 1px solid black !important;
 }
 
 .imput__rol {
@@ -316,9 +318,11 @@ th {
 input:focus {
     outline: unset;
 }
+
 select:focus {
     outline: unset;
 }
+
 .invalid {
     border: 2px solid red;
     border-radius: 5px 5px 5px 5px;
@@ -328,5 +332,61 @@ select:focus {
 .valid {
     border: 2px solid yellowgreen;
     border-radius: 5px 5px 5px 5px;
+
+}
+
+.new__button {
+    border: 1px solid rgb(194, 190, 190);
+    border-radius: 4px;
+    margin-right: 3px;
+
+}
+
+.new__button:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(240, 235, 235);
+    border-radius: 5px;
+}
+
+.borrar {
+    color: rgb(189, 34, 34);
+}
+
+.editar {
+    color: #1F9EC9;
+}
+
+.agregar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 5px;
+    background-color: #EC6100;
+    height: 35px;
+    width: 100%;
+    max-width: 120px;
+}
+.agregar mat-icon{
+    margin-right: 5px;
+}
+
+.agregar:hover {
+ 
+
+    color: #EC6100;
+    background-color: white;
     
+}
+
+.acciones__bar {
+
+    justify-content: end;
+
+    width: 100px;
+
+
 }

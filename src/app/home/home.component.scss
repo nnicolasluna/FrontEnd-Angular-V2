@@ -17,8 +17,8 @@
 
 .left {
     background-color: #343A40;
-    width: 13%;
-    min-width: 180px;
+    width: 15%;
+    min-width: 220px;
     min-height: 100vh;
 }
 
@@ -67,7 +67,7 @@ mat-toolbar {
     flex-direction: column;
     justify-content: center;
     width: 80%;
-overflow: hidden;
+    overflow: hidden;
 }
 
 .principal {
@@ -207,8 +207,10 @@ mat-action-row:hover {
     font-size: 13px;
     vertical-align: middle;
     overflow: hidden;
-    pointer-events: none; /* Desactiva eventos de puntero */
-  user-select: none; /* Desactiva la selección de texto */
+    pointer-events: none;
+    /* Desactiva eventos de puntero */
+    user-select: none;
+    /* Desactiva la selección de texto */
 }
 
 .nav__link mat-icon {
@@ -222,23 +224,30 @@ mat-action-row:hover {
     vertical-align: middle;
 
 }
-.button_nav{
+
+.button_nav {
     display: flex;
     flex-direction: row;
     align-items: center;
-   /*  margin-left: 10px; */
+    /*  margin-left: 10px; */
     width: 100%;
     background-color: #343A40;
-    
+
     border: none;
     height: 40px;
     color: white;
-    
+
 }
-.button_nav:hover{
+
+.button_nav:hover {
     background-color: #EC6100;
     overflow: hidden;
 }
+
 .button_nav span {
-    margin-left: 15px; /* Ajusta el margen a la izquierda del texto */
+    margin-left: 15px;
+}
+
+.marcado {
+    background-color: #EC6100;
   }
