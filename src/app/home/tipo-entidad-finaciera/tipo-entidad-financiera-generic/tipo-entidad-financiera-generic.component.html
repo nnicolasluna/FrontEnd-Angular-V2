@@ -1,11 +1,11 @@
 <div class="body">
     <div class="body__header">
-        <h1 class="body__h1">Registrar Pais</h1>
+        <h1 class="body__h1">{{ operacion }}</h1>
     </div>
     <div class="body__content">
         <mat-card class="card card--one">
             <mat-card-header class="card__header--form">
-                <h4>Datos del Pais</h4>
+                <h4>{{ editar }}</h4>
             </mat-card-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
@@ -13,7 +13,7 @@
                         <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Nombre:</label>
-                                <input formControlName="nombre" type="text" placeholder="Ejem. Bolivia"
+                                <input formControlName="nombre" type="text" placeholder="Ejem. Institución Financiera de Desarrollo"
                                     class="content__imput"
                                     [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                             </div>
@@ -28,21 +28,30 @@
                         </div>
                         <div class="validation">
                             <div class="content__inputs">
-                                <label for="" class="content__formlabel">Bandera</label>
-                                <input formControlName="nacionalidad" type="text"  class="content__imput"
-                                    [ngClass]="{'invalid': banderaControl.invalid && (banderaControl.dirty || banderaControl.touched), 'valid': banderaControl.valid}">
+                                <label for="" class="content__formlabel">Abreviatura</label>
+                                <input formControlName="abreviatura" type="text" placeholder="Ejem. IFD"
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                             </div>
-                          
+                            <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="abreviaturaControl.errors?.['required']">La Abreviatura es Requerida</span>
+                                <span *ngIf="abreviaturaControl.errors?.['maxlength']">La Abreviatura no debe tener mas
+                                    de
+                                    30
+                                    caracteres</span>
+                            </div>
                         </div>
+                    
+                     
                     </div>
                 </form>
             </mat-card-content>
             <mat-card-footer class="card__footer">
-                <button routerLink="/home/pais-list" class="button button--simple">
+                <button routerLink="{{ regreso }}" class="button button--simple">
                     Cancelar
                 </button>
-                <button type="submit" class="button button--create" (click)="create()"
-                    data-cy="creargenero">Guardar</button>
+                <button type="submit" class="button button--create" (click)="ejecutarCreate()" >Guardar</button>
             </mat-card-footer>
         </mat-card>
 

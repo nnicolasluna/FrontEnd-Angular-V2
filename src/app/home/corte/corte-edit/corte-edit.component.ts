@@ -53,6 +53,7 @@ export class CorteEditComponent {
   ) { }
   ngOnInit(): void {
     this.getAll()
+    this.getOne()
     this.route.paramMap.pipe(
       switchMap(params => {
         this.uuid = this.route.snapshot.paramMap.get('id');
@@ -111,8 +112,9 @@ export class CorteEditComponent {
     this.apiService.getOne(this.url, this.uuid).subscribe(
       {
         next: data => {
+          this.datos=data
           console.log('Datos recibidos:', data); 
-          this.datos = data;
+
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);

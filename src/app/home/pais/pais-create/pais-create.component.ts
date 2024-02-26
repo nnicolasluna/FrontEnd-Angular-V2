@@ -16,13 +16,13 @@ export class PaisCreateComponent {
   private url = 'paises'
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    bandera: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    nacionalidad: new FormControl('', [Validators.required, Validators.maxLength(30)]),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;
   }
   get banderaControl() {
-    return this.formGroup.controls.bandera;
+    return this.formGroup.controls.nacionalidad;
   }
   constructor(
     private router: Router,
@@ -32,6 +32,7 @@ export class PaisCreateComponent {
 
   create() {
     if (this.formGroup.valid) {
+      console.log(this.formGroup.value)
       this.apiService.create(this.url, this.formGroup.value as pais).subscribe(
         {
           next: () => {
@@ -39,8 +40,10 @@ export class PaisCreateComponent {
             this.formGroup.reset();
           },
           error: err => {
+            
             this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
             this.matDialogRef.afterClosed().subscribe(() => {
+              console.log(err)
             });
           }
         }

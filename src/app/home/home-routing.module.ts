@@ -50,6 +50,9 @@ import { TipoCorteEditComponent } from './tipo-corte/tipo-corte-edit/tipo-corte-
 import { CorteCreateComponent } from './corte/corte-create/corte-create.component';
 import { CorteListComponent } from './corte/corte-list/corte-list.component';
 import { CorteEditComponent } from './corte/corte-edit/corte-edit.component';
+import { TipoEntidadFinancieraCreateComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-create/tipo-entidad-financiera-create.component';
+import { TipoEntidadFinancieraListComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-list/tipo-entidad-financiera-list.component';
+import { TipoEntidadFinancieraEditComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-edit/tipo-entidad-financiera-edit.component';
 
 const routes: Routes = [
   { path: 'userlist', component: UserlistComponent },
@@ -118,6 +121,9 @@ const routes: Routes = [
   { path: 'tipo-corte-edit/:id', component: TipoCorteEditComponent },
 
   
+  { path: 'tipo-entidad-finaciera-create', component: TipoEntidadFinancieraCreateComponent },
+  { path: 'tipo-entidad-finaciera-list', component: TipoEntidadFinancieraListComponent },
+  { path: 'tipo-entidad-finaciera-edit/:id', component: TipoEntidadFinancieraEditComponent },
 ];
 
 @NgModule({

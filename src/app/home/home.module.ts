@@ -75,6 +75,10 @@ import { CorteListComponent } from './corte/corte-list/corte-list.component';
 import { CorteCreateComponent } from './corte/corte-create/corte-create.component';
 import { CorteEditComponent } from './corte/corte-edit/corte-edit.component';
 import { CorteGenericComponent } from './corte/corte-generic/corte-generic.component';
+import { TipoEntidadFinancieraListComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-list/tipo-entidad-financiera-list.component';
+import { TipoEntidadFinancieraGenericComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-generic/tipo-entidad-financiera-generic.component';
+import { TipoEntidadFinancieraCreateComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-create/tipo-entidad-financiera-create.component';
+import { TipoEntidadFinancieraEditComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-edit/tipo-entidad-financiera-edit.component';
 
 
 
@@ -138,6 +142,10 @@ import { CorteGenericComponent } from './corte/corte-generic/corte-generic.compo
     CorteCreateComponent,
     CorteEditComponent,
     CorteGenericComponent,
+    TipoEntidadFinancieraListComponent,
+    TipoEntidadFinancieraGenericComponent,
+    TipoEntidadFinancieraCreateComponent,
+    TipoEntidadFinancieraEditComponent,
     
 
 

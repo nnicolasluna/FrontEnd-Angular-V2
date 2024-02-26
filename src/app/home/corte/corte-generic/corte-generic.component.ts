@@ -60,12 +60,12 @@ export class CorteGenericComponent {
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['ciudadData'] && changes['ciudadData'].currentValue) {
+    if (changes['Data'] && changes['Data'].currentValue) {
       this.formGroup.patchValue(this.Data);
       this.moneda = this.formGroup.value.monedas
       this.tipoCorte = this.formGroup.value.tipoCortes
       this.getDatos('monedas', this.moneda)
-      this.getDatos('tipo_cortes', this.tipoCorte)
+      this.getDatos('tipoCortes', this.tipoCorte)
     }
   }
   getDatos(param: string, atrib: any) {
