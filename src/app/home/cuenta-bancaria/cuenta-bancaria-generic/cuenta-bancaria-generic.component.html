@@ -13,7 +13,7 @@
                         <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Numero de Cuenta:</label>
-                                <input formControlName="numero_cuenta" type="text" placeholder="Ejem. 6 de Marzo"
+                                <input formControlName="numero_cuenta" type="text" placeholder="Ejem. 1230981238123"
                                     class="content__imput"
                                     [ngClass]="{'invalid': numero_cuentaControl.invalid && (numero_cuentaControl.dirty || numero_cuentaControl.touched), 'valid': numero_cuentaControl.valid}">
                             </div>
@@ -29,7 +29,7 @@
                         <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Fecha de Apertura</label>
-                                <input formControlName="fecha_apertura" type="text" placeholder="Ejem. 6M"
+                                <input formControlName="fecha_apertura" type="datetime-local" placeholder="Ejem. "
                                     class="content__imput"
                                     [ngClass]="{'invalid': fecha_aperturaControl.invalid && (fecha_aperturaControl.dirty || fecha_aperturaControl.touched), 'valid': fecha_aperturaControl.valid}">
                             </div>
@@ -45,7 +45,7 @@
                         <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Contrato</label>
-                                <input formControlName="contrato" type="text" placeholder="Ejem. calle 4 Avenida 6 de Marzo"
+                                <input formControlName="contrato" type="text" placeholder=""
                                     class="content__imput"
                                     [ngClass]="{'invalid': contratoControl.invalid && (contratoControl.dirty || contratoControl.touched), 'valid': contratoControl.valid}">
                             </div>
@@ -97,7 +97,7 @@
                                 <select formControlName="agencias" class="content__imput"
                                     [ngClass]="{'invalid': agenciasControl.invalid && (agenciasControl.dirty || agenciasControl.touched), 'valid': agenciasControl.valid}">
                                     <option value="" disabled selected>Selecciona entidade financiera</option>
-                                    <option *ngFor="let dato of city" [value]="dato.uuid">{{ dato.nombre }}
+                                    <option *ngFor="let dato of agencias" [value]="dato.uuid">{{ dato.nombre }}
                                     </option>
                                 </select>
                             </div>

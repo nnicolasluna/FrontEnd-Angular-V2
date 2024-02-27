@@ -1,1 +1,11 @@
-<p>cuenta-bancaria-create works!</p>
+<app-cuenta-bancaria-generic
+[operacion]="'Registrar Cuenta bancaria '" 
+[editar]="'Datos de la Cuenta Bancaria'"
+[regreso]="'/home/cuenta-bancaria-list'"
+[agencias]="agencias"
+[monedas]="monedas"
+[entidadfinancieras]="entidadfinancieras"
+[tipocuentas]="tipocuentas"
+[url]="'cuentas_bancarias'"
+[metodoDesdePadre]="create"
+></app-cuenta-bancaria-generic>

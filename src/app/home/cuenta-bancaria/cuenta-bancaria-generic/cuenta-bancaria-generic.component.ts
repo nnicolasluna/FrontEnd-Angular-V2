@@ -16,13 +16,17 @@ export class CuentaBancariaGenericComponent {
   @Input() operacion: string = '';
   @Input() editar: string = '';
   @Input() regreso: string = '';
-  @Input() city: any[] = [];
+  @Input() agencias: any[] = [];
+  @Input() monedas: any[] = [];
+  @Input() entidadfinancieras: any[] = [];
+  @Input() tipocuentas: any[] = [];
   @Input() Data: any;
   @Input() metodoDesdePadre: () => void = () => { };
   private matDialogRef!: any;
-  monedas!: any  
-  entidadfinancieras!:any
-  tipocuentas!:any
+  moneda!: any  
+  agencia!:any
+  entidadfinanciera!:any
+  tipocuenta!:any
   ejecutarCreate() {
     if (this.metodoDesdePadre) {
       this.metodogenerico.setFormGroup(this.formGroup)
@@ -71,10 +75,14 @@ export class CuentaBancariaGenericComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['Data'] && changes['Data'].currentValue) {
       this.formGroup.patchValue(this.Data);
-      this.monedas = this.formGroup.value.monedas
- 
-      this.getDatos('monedas', this.monedas)
-
+      this.moneda = this.formGroup.value.monedas
+      this.agencia = this.formGroup.value.agencias
+      this.entidadfinanciera = this.formGroup.value.entidadesFinancieras
+      this.tipocuenta = this.formGroup.value.tipoCuentasBancarias
+      this.getDatos('monedas', this.moneda)
+      this.getDatos('agencias', this.agencia)
+      this.getDatos('entidadesFinancieras ', this.entidadfinanciera)
+      this.getDatos('tipoCuentasBancarias', this.tipocuenta)
     }
   }
   getDatos(param: string, atrib: any) {

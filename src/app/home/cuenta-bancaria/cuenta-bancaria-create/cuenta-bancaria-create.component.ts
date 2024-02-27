@@ -15,19 +15,24 @@ import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error
 export class CuentaBancariaCreateComponent {
   private url = 'cuentas_bancarias'
   private url1 = 'monedas'
+  private url2 = 'tipo_cuentas_bancarias'
+  private url3 = 'entidades_financieras'
+  private url4 = 'agencias'
   operacion = 'Registrar'
   editar = ''
-  ciudad: any[] = [];
-  tipoCorte: any[] = [];
+  agencias: any[] = [];
+  monedas: any[] = [];
+  tipocuentas: any[] = [];
+  entidadfinancieras: any[] = [];
   private matDialogRef!: any;
   formGroup = new FormGroup({
     numero_cuenta: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     fecha_apertura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     contrato: new FormControl('', [Validators.required]),
     tipoCuentasBancarias: new FormControl('', [Validators.required]),
-    entidadesFinancieras: new FormControl('',[Validators.required]),
-    monedas: new FormControl('',[Validators.required]),
-    agencias: new FormControl('',[Validators.required]),
+    entidadesFinancieras: new FormControl('', [Validators.required]),
+    monedas: new FormControl('', [Validators.required]),
+    agencias: new FormControl('', [Validators.required]),
   });
   get numero_cuentaControl() {
     return this.formGroup.controls.numero_cuenta;
@@ -65,7 +70,7 @@ export class CuentaBancariaCreateComponent {
       const formData = this.metodogenerico.getFormGroupData();
       this.apiService.create(this.url, formData).subscribe({
         next: () => {
-          this.router.navigateByUrl('/home/agencia-list');
+          this.router.navigateByUrl('/home/cuenta-bancaria-list');
           this.formGroup.reset();
 
         },
@@ -83,8 +88,7 @@ export class CuentaBancariaCreateComponent {
     this.apiService.getAll(this.url1).subscribe(
       {
         next: data => {
-         
-          this.ciudad = data
+          this.monedas = data
         },
         error: () => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent)
@@ -92,6 +96,27 @@ export class CuentaBancariaCreateComponent {
         }
       }
     )
- 
+    this.apiService.getAll(this.url2).subscribe(
+      {
+        next: data => {
+          this.tipocuentas = data
+        }
+      }
+    )
+    this.apiService.getAll(this.url3).subscribe(
+      {
+        next: data => {
+          this.entidadfinancieras = data
+        }
+      }
+    )
+    this.apiService.getAll(this.url4).subscribe(
+      {
+        next: data => {
+          this.agencias = data
+        }
+      }
+    )
+
   }
 }
