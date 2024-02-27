@@ -25,7 +25,7 @@ export class AgenciaCreateComponent {
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     direccion: new FormControl('', [Validators.required]),
     telefono: new FormControl('', [Validators.required]),
-    ciudad: new FormControl('', [Validators.required]),
+    ciudades: new FormControl('', [Validators.required]),
   });
 
   get nombreControl() {
@@ -40,8 +40,8 @@ export class AgenciaCreateComponent {
   get telefonoControl() {
     return this.formGroup.controls.telefono;
   }
-  get ciudadControl() {
-    return this.formGroup.controls.ciudad;  
+  get ciudadesControl() {
+    return this.formGroup.controls.ciudades;  
   }
   constructor(
     private router: Router,

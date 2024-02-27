@@ -33,7 +33,7 @@ export class AgenciaGenericComponent {
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     direccion: new FormControl('', [Validators.required]),
     telefono: new FormControl('', [Validators.required]),
-    ciudad: new FormControl(''),
+    ciudades: new FormControl(''),
   });
 
   get nombreControl() {
@@ -48,8 +48,8 @@ export class AgenciaGenericComponent {
   get telefonoControl() {
     return this.formGroup.controls.telefono;
   }
-  get ciudadControl() {
-    return this.formGroup.controls.ciudad;
+  get ciudadesControl() {
+    return this.formGroup.controls.ciudades;
   }
   constructor(
     private metodogenerico: MetodoGenericoService,

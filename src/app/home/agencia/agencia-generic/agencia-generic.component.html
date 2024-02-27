@@ -77,8 +77,8 @@
                         <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Ciudad:</label>
-                                <select formControlName="ciudad" class="content__imput"
-                                    [ngClass]="{'invalid': ciudadControl.invalid && (ciudadControl.dirty || ciudadControl.touched), 'valid': ciudadControl.valid}">
+                                <select formControlName="ciudades" class="content__imput"
+                                    [ngClass]="{'invalid': ciudadesControl.invalid && (ciudadesControl.dirty || ciudadesControl.touched), 'valid': ciudadesControl.valid}">
                                     <option value="" disabled selected>Selecciona Ciudad</option>
                                     <option *ngFor="let dato of city" [value]="dato.uuid">{{ dato.nombre }}
                                     </option>
