@@ -3,13 +3,16 @@ import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, Valid
 import { Router } from '@angular/router';
 import { TipoDocumentoService } from '../tipo-documento-service/tipo-documento.service';
 import { tipoDocumento } from '../tipo-documento-model/tipoDocumento';
-import { PaisService } from '../../pais/pais-service/pais-service';
+import { ApiService } from '../../service/api-generico/api.service';
+import { pais } from '../../pais/pais-model/pais';
+
 @Component({
   selector: 'app-tipo-documento-create',
   templateUrl: './tipo-documento-create.component.html',
   styleUrls: ['./tipo-documento-create.component.scss']
 })
 export class TipoDocumentoCreateComponent {
+  private url ='paises'
   paises: any[] = [];
   paisFormGroup = new FormGroup({
     uuid: new FormArray([]),
@@ -32,7 +35,8 @@ export class TipoDocumentoCreateComponent {
   constructor( 
     private router: Router,
     private tipoDocumentoService: TipoDocumentoService,
-    private paisesService: PaisService,
+    private apiService: ApiService<pais>,
+
     ){}
   
   create() {
@@ -57,11 +61,12 @@ export class TipoDocumentoCreateComponent {
     }
   }
   getPaises() {
-    this.paisesService.getPaises().subscribe((data) => {
-    
-      this.paises = data;
-
-    });
+    this.apiService.getAll(this.url).subscribe({
+      next:data=>{
+        this.paises = data;
+      }
+    })
+  
   }
   ngOnInit() {
     this.getPaises();

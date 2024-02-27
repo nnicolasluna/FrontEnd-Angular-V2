@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { EstadoCivilService } from '../estado-civil-service/estado-civil.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalService } from '../../modal/service/modal.service';
 import { MatPaginator } from '@angular/material/paginator';
