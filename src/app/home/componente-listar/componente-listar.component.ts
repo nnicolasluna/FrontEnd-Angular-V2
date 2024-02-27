@@ -40,7 +40,7 @@ export class ComponenteListarComponent<T> {
   }
   Filterchange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
-    this.dataSource.filter = value;
+    this.dataSource.filter = value.trim().toLowerCase();
   }
 
   delete(id: string) {
