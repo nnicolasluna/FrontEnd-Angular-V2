@@ -39,7 +39,7 @@ export class PersonprofileComponent {
     this.userService.getPerson(this.uuid).subscribe((data) => {
       this.user = data;
       this.dataSource = new MatTableDataSource<any>(this.user.roles);
-     /*  console.log(this.user) */
+    
       this.disableCreateUser = true;
       this.disableEditUser = false;
     }, (error) => {
@@ -47,6 +47,7 @@ export class PersonprofileComponent {
     });
     this.personService.getPerson(this.uuid).subscribe((data) => {
       this.person = data
+      console.log(data)
     }, (error) => {
      
     });
