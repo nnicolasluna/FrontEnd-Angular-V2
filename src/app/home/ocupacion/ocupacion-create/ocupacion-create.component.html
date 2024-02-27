@@ -28,7 +28,7 @@
                         </div>
                         <div class="validation">
                             <div class="content__inputs">
-                                <label for="" class="content__formlabel">Abreviatura</label>
+                                <label for="" class="content__formlabel">Descripcion</label>
                                 <input formControlName="descripcion" type="text" placeholder="Ejem. Doc" class="content__imput"
                                     [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
                             </div>
@@ -49,7 +49,7 @@
                     Cancelar
                 </button>
                 <button type="submit" class="button button--create" (click)="create()"
-                    data-cy="crearocupacion">Guardar</button>
+                    data-cy="crear-ocupacion">Guardar</button>
             </mat-card-footer>
         </mat-card>
 

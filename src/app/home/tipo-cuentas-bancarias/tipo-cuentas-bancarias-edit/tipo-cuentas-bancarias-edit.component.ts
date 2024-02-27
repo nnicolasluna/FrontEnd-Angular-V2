@@ -85,7 +85,7 @@ export class TipoCuentasBancariasEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as tipoCuenta).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/ciudad-list');
+            this.router.navigateByUrl('/home/tipo-cuenta-bancaria-list');
             this.formGroup.reset();
           },
           error: err => {

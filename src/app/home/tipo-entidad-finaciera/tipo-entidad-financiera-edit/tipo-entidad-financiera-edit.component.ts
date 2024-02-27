@@ -81,7 +81,7 @@ export class TipoEntidadFinancieraEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as tipoEntidadFinanciera).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/ciudad-list');
+            this.router.navigateByUrl('/home/tipo-entidad-finaciera-list');
             this.formGroup.reset();
           },
           error: err => {

@@ -15,7 +15,7 @@ import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error
 export class AgenciaEditComponent {
   private matDialogRef!: any;
   private url = 'agencias'
-  private url1 = 'paises'
+  private url1 = 'ciudades'
   operacion = 'Registrar'
   uuid!: any;
   editar = ''
@@ -63,7 +63,7 @@ export class AgenciaEditComponent {
     ).subscribe({
       next: (data) => {
         this.datos = data;
-        console.log(this.datos)
+
       },
       error: (err) => {
         console.error('Error al obtener los datos:', err);
@@ -74,13 +74,15 @@ export class AgenciaEditComponent {
     if (this.formGroup.valid) {
       this.formGroup.value.uuid = this.route.snapshot.paramMap.get('id');
       this.uuid = this.route.snapshot.paramMap.get('id');
+
       this.apiService.update(this.url, this.uuid, this.formGroup.value as agencia).subscribe(
         {
-          next: () => {
-            this.router.navigateByUrl('/home/agencias-list');
+          next: (data) => {
+            this.router.navigateByUrl('/home/agencia-list');
             this.formGroup.reset();
           },
           error: err => {
+       console.log(err)
             this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
             this.matDialogRef.afterClosed().subscribe(() => {
               /* accion a determinar  */
@@ -108,7 +110,7 @@ export class AgenciaEditComponent {
       {
         next: data => {
           this.datos=data
-          console.log('Datos recibidos:', data); 
+
 
         },
         error: err => {

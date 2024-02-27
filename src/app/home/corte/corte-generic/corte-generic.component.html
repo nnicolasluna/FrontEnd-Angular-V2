@@ -19,11 +19,8 @@
                             </div>
                             <div *ngIf="valorControl.invalid && (valorControl.dirty || valorControl.touched)"
                                 class="text-danger">
-                                <span *ngIf="valorControl.errors?.['required']">El Valor es Requerido</span>
-                                <span *ngIf="valorControl.errors?.['minlength']">El Valor debe contener mas de 3
-                                    caracteres</span>
-                                <span *ngIf="valorControl.errors?.['maxlength']">El Valor no debe tener mas de 200
-                                    caracteres</span>
+                                <span *ngIf="valorControl.errors?.['required']">Valor es Requerido</span>
+                                <span *ngIf="valorControl.errors?.['pattern']"> Valor debe ser numero</span>
                             </div>
                         </div>
                         <div class="validation">
@@ -36,10 +33,7 @@
                             <div *ngIf="ordenControl.invalid && (ordenControl.dirty || ordenControl.touched)"
                                 class="text-danger">
                                 <span *ngIf="ordenControl.errors?.['required']">La orden es Requerida</span>
-                                <span *ngIf="ordenControl.errors?.['maxlength']">La orden no debe tener mas
-                                    de
-                                    30
-                                    caracteres</span>
+                                <span *ngIf="ordenControl.errors?.['pattern']">Orden debe ser numero</span>
                             </div>
                         </div>
                     
@@ -72,7 +66,7 @@
                 <button routerLink="{{ regreso }}" class="button button--simple">
                     Cancelar
                 </button>
-                <button type="submit" class="button button--create" (click)="ejecutarCreate()" >Guardar</button>
+                <button data-cy="guardar" type="submit" class="button button--create" (click)="ejecutarCreate()" >Guardar</button>
             </mat-card-footer>
         </mat-card>
 

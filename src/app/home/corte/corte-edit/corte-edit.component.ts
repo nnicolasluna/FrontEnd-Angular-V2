@@ -75,7 +75,7 @@ export class CorteEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as corte).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/ciudad-list');
+            this.router.navigateByUrl('/home/corte-list');
             this.formGroup.reset();
           },
           error: err => {

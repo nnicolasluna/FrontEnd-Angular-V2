@@ -32,8 +32,8 @@ export class CorteGenericComponent {
 
   }
   formGroup = new FormGroup({
-    valor: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    orden: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    valor: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+    orden: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$')]),
     monedas: new FormControl('', [Validators.required]),
     tipoCortes: new FormControl('', [Validators.required]),
 
