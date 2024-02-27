@@ -53,6 +53,8 @@ export class HomeComponent {
         { name: 'Entidades Finacieras', icon: 'payments', link: 'entidad-financiera-list' },
         { name: 'Tipo Cuentas Bancarias', icon: 'savings', link: 'tipo-cuenta-bancaria-list' },
         { name: 'Cuentas Bancarias', icon: 'account_balance', link: 'cuenta-bancaria-list' },
+        { name: 'Agencias', icon: 'apartment', link: 'agencia-list' },
+        
       ]
     }
 

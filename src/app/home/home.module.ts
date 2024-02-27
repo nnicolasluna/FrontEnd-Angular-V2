@@ -86,6 +86,14 @@ import { TipoCuentasBancariasGenericComponent } from './tipo-cuentas-bancarias/t
 import { TipoCuentasBancariasListComponent } from './tipo-cuentas-bancarias/tipo-cuentas-bancarias-list/tipo-cuentas-bancarias-list.component';
 import { TipoCuentasBancariasCreateComponent } from './tipo-cuentas-bancarias/tipo-cuentas-bancarias-create/tipo-cuentas-bancarias-create.component';
 import { TipoCuentasBancariasEditComponent } from './tipo-cuentas-bancarias/tipo-cuentas-bancarias-edit/tipo-cuentas-bancarias-edit.component';
+import { AgenciaListComponent } from './agencia/agencia-list/agencia-list.component';
+import { AgenciaGenericComponent } from './agencia/agencia-generic/agencia-generic.component';
+import { AgenciaCreateComponent } from './agencia/agencia-create/agencia-create.component';
+import { AgenciaEditComponent } from './agencia/agencia-edit/agencia-edit.component';
+import { CuentaBancariaListComponent } from './cuenta-bancaria/cuenta-bancaria-list/cuenta-bancaria-list.component';
+import { CuentaBancariaGenericComponent } from './cuenta-bancaria/cuenta-bancaria-generic/cuenta-bancaria-generic.component';
+import { CuentaBancariaCreateComponent } from './cuenta-bancaria/cuenta-bancaria-create/cuenta-bancaria-create.component';
+import { CuentaBancariaEditComponent } from './cuenta-bancaria/cuenta-bancaria-edit/cuenta-bancaria-edit.component';
 
 
 
@@ -160,6 +168,14 @@ import { TipoCuentasBancariasEditComponent } from './tipo-cuentas-bancarias/tipo
     TipoCuentasBancariasListComponent,
     TipoCuentasBancariasCreateComponent,
     TipoCuentasBancariasEditComponent,
+    AgenciaListComponent,
+    AgenciaGenericComponent,
+    AgenciaCreateComponent,
+    AgenciaEditComponent,
+    CuentaBancariaListComponent,
+    CuentaBancariaGenericComponent,
+    CuentaBancariaCreateComponent,
+    CuentaBancariaEditComponent,
     
 
 

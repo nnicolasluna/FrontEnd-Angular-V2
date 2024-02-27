@@ -1,0 +1,9 @@
+<app-componente-listar 
+    [titulo]="'Lista de Cuentas Bancarias'" 
+    [displayedColumns]="['numero_cuenta', 'fecha_apertura', 'tipoCuentasBancarias', 'entidadesFinancieras','monedas','action']"  
+    [adicionar]="'/home/cuenta-bancaria-create'"
+    [editar]="'/home/cuenta-bancaria-edit'"
+    [dataSource]="dataSource"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+</app-componente-listar>

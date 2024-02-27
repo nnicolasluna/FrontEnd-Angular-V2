@@ -59,6 +59,12 @@ import { EntidadesFinancierasEditComponent } from './entidades-financieras/entid
 import { TipoCuentasBancariasCreateComponent } from './tipo-cuentas-bancarias/tipo-cuentas-bancarias-create/tipo-cuentas-bancarias-create.component';
 import { TipoCuentasBancariasListComponent } from './tipo-cuentas-bancarias/tipo-cuentas-bancarias-list/tipo-cuentas-bancarias-list.component';
 import { TipoCuentasBancariasEditComponent } from './tipo-cuentas-bancarias/tipo-cuentas-bancarias-edit/tipo-cuentas-bancarias-edit.component';
+import { AgenciaCreateComponent } from './agencia/agencia-create/agencia-create.component';
+import { AgenciaListComponent } from './agencia/agencia-list/agencia-list.component';
+import { AgenciaEditComponent } from './agencia/agencia-edit/agencia-edit.component';
+import { CuentaBancariaCreateComponent } from './cuenta-bancaria/cuenta-bancaria-create/cuenta-bancaria-create.component';
+import { CuentaBancariaListComponent } from './cuenta-bancaria/cuenta-bancaria-list/cuenta-bancaria-list.component';
+import { CuentaBancariaEditComponent } from './cuenta-bancaria/cuenta-bancaria-edit/cuenta-bancaria-edit.component';
 
 const routes: Routes = [
   { path: 'userlist', component: UserlistComponent },
@@ -138,6 +144,13 @@ const routes: Routes = [
   { path: 'tipo-cuenta-bancaria-list', component: TipoCuentasBancariasListComponent },
   { path: 'tipo-cuenta-bancaria-edit/:id', component: TipoCuentasBancariasEditComponent },
 
+  { path: 'agencia-create', component: AgenciaCreateComponent },
+  { path: 'agencia-list', component: AgenciaListComponent },
+  { path: 'agencia-edit/:id', component: AgenciaEditComponent },
+
+  { path: 'cuenta-bancaria-create', component: CuentaBancariaCreateComponent },
+  { path: 'cuenta-bancaria-list', component: CuentaBancariaListComponent },
+  { path: 'cuenta-bancaria-edit/:id', component: CuentaBancariaEditComponent },
 ];
 
 @NgModule({
