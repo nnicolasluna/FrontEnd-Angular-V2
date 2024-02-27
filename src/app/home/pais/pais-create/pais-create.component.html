@@ -28,9 +28,16 @@
                         </div>
                         <div class="validation">
                             <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nacionalidad</label>
+                                <input formControlName="nacionalidad" type="text"  class="content__imput"placeholder="Ejem. Bolita"
+                                    [ngClass]="{'invalid': nacionalidadControl.invalid && (nacionalidadControl.dirty || nacionalidadControl.touched), 'valid': nacionalidadControl.valid}">
+                            </div>
+                          
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
                                 <label for="" class="content__formlabel">Bandera</label>
-                                <input formControlName="nacionalidad" type="text"  class="content__imput"
-                                    [ngClass]="{'invalid': banderaControl.invalid && (banderaControl.dirty || banderaControl.touched), 'valid': banderaControl.valid}">
+                                <input formControlName="bandera" type="text"  class="content__imput">
                             </div>
                           
                         </div>

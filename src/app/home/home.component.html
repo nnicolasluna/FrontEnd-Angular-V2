@@ -18,7 +18,7 @@
                 <span>{{ seccion.nombre}}</span>
               </button>
               <div *ngIf="seccion.marcado">
-                <button *ngFor="let button of seccion.botones" routerLink="{{ button.link }}" class="button_nav">
+                <button *ngFor="let button of seccion.botones" routerLink="{{ button.link }}" class="button_nav button_nav--son">
                   <span><mat-icon>{{ button.icon }}</mat-icon></span>
                   <span>{{ button.name }}</span>
                 </button>

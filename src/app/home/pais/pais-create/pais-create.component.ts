@@ -17,11 +17,12 @@ export class PaisCreateComponent {
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     nacionalidad: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    bandera: new FormControl(''),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;
   }
-  get banderaControl() {
+  get nacionalidadControl() {
     return this.formGroup.controls.nacionalidad;
   }
   constructor(

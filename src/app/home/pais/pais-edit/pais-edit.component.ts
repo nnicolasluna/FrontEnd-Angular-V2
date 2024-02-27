@@ -19,13 +19,14 @@ export class PaisEditComponent {
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    bandera: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    nacionalidad: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    bandera: new FormControl(''),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;
   }
-  get banderaControl() {
-    return this.formGroup.controls.bandera;
+  get nacionalidadControl() {
+    return this.formGroup.controls.nacionalidad;
   }
   constructor(
     private router: Router,

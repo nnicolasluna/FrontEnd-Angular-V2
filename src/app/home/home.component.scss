@@ -15,9 +15,11 @@
     flex-direction: row;
 
 }
-.bot{
+
+.bot {
     height: 100%;
 }
+
 .left {
     background-color: #343A40;
     width: 15%;
@@ -248,9 +250,10 @@ mat-action-row:hover {
 }
 
 .button_nav span {
-    margin-left: 15px;
+    margin-left: 7px;
 }
 
 .marcado {
     background-color: #EC6100;
-  }
+}
+
