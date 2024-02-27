@@ -133,10 +133,10 @@
                         </tr>
                     </table>
                     <div class="card__footer">
-                        <button routerLink="/home/useredit/{{user?.uuid}}" class="button button--simple" [disabled]="disableEditUser">
+                        <button routerLink="/home/useredit/{{user?.uuid}}"  *ngIf="disableCreateUser" class="button button--simple" [disabled]="disableEditUser">
                             Editar Usuario
                         </button>
-                        <button routerLink="/home/usercreate/{{person?.uuid}}" [disabled]="disableCreateUser" class="button button--create" data-cy="usuariocreate">
+                        <button routerLink="/home/usercreate/{{person?.uuid}}" *ngIf="disableEditUser" [disabled]="disableCreateUser" class="button button--create" data-cy="usuariocreate">
                             Añadir Usuario
                         </button>
                     </div>
