@@ -62,7 +62,6 @@ import { MonedaCreateComponent } from './moneda/moneda-create/moneda-create.comp
 import { MonedaEditComponent } from './moneda/moneda-edit/moneda-edit.component';
 import { ComponenteListarComponent } from './componente-listar/componente-listar.component';
 import { AdvertenciaCredencialesComponent } from './modal/advertencia-credenciales/advertencia-credenciales.component';
-import { ComponenteFormComponent } from './componente-form/componente-form.component';
 import { CuidadListComponent } from './ciudad/cuidad-list/cuidad-list.component';
 import { CuidadFormGenericComponent } from './ciudad/cuidad-form-generic/cuidad-form-generic.component';
 import { CuidadCreateComponent } from './ciudad/cuidad-create/cuidad-create.component';
@@ -79,6 +78,14 @@ import { TipoEntidadFinancieraListComponent } from './tipo-entidad-finaciera/tip
 import { TipoEntidadFinancieraGenericComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-generic/tipo-entidad-financiera-generic.component';
 import { TipoEntidadFinancieraCreateComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-create/tipo-entidad-financiera-create.component';
 import { TipoEntidadFinancieraEditComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-edit/tipo-entidad-financiera-edit.component';
+import { EntidadesFinancierasListComponent } from './entidades-financieras/entidades-financieras-list/entidades-financieras-list.component';
+import { EntidadesFinancierasCreateComponent } from './entidades-financieras/entidades-financieras-create/entidades-financieras-create.component';
+import { EntidadesFinancierasEditComponent } from './entidades-financieras/entidades-financieras-edit/entidades-financieras-edit.component';
+import { EntidadesFinancierasGenericComponent } from './entidades-financieras/entidades-financieras-generic/entidades-financieras-generic.component';
+import { TipoCuentasBancariasGenericComponent } from './tipo-cuentas-bancarias/tipo-cuentas-bancarias-generic/tipo-cuentas-bancarias-generic.component';
+import { TipoCuentasBancariasListComponent } from './tipo-cuentas-bancarias/tipo-cuentas-bancarias-list/tipo-cuentas-bancarias-list.component';
+import { TipoCuentasBancariasCreateComponent } from './tipo-cuentas-bancarias/tipo-cuentas-bancarias-create/tipo-cuentas-bancarias-create.component';
+import { TipoCuentasBancariasEditComponent } from './tipo-cuentas-bancarias/tipo-cuentas-bancarias-edit/tipo-cuentas-bancarias-edit.component';
 
 
 
@@ -129,7 +136,6 @@ import { TipoEntidadFinancieraEditComponent } from './tipo-entidad-finaciera/tip
     MonedaEditComponent,
     ComponenteListarComponent,
     AdvertenciaCredencialesComponent,
-    ComponenteFormComponent,
     CuidadListComponent,
     CuidadFormGenericComponent,
     CuidadCreateComponent,
@@ -146,6 +152,14 @@ import { TipoEntidadFinancieraEditComponent } from './tipo-entidad-finaciera/tip
     TipoEntidadFinancieraGenericComponent,
     TipoEntidadFinancieraCreateComponent,
     TipoEntidadFinancieraEditComponent,
+    EntidadesFinancierasListComponent,
+    EntidadesFinancierasCreateComponent,
+    EntidadesFinancierasEditComponent,
+    EntidadesFinancierasGenericComponent,
+    TipoCuentasBancariasGenericComponent,
+    TipoCuentasBancariasListComponent,
+    TipoCuentasBancariasCreateComponent,
+    TipoCuentasBancariasEditComponent,
     
 
 

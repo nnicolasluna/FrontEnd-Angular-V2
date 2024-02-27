@@ -1,0 +1,9 @@
+<app-componente-listar 
+    [titulo]="'Lista de Tipos de Cuentas Bancarias'" 
+    [displayedColumns]="['nombre', 'abreviatura','estado','action']"  
+    [adicionar]="'/home/tipo-cuenta-bancaria-create'"
+    [editar]="'/home/tipo-cuenta-bancaria-edit'"
+    [dataSource]="dataSource"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+</app-componente-listar>

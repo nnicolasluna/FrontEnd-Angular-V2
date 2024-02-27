@@ -50,7 +50,7 @@ export class HomeComponent {
         { name: 'Cortes', icon: 'attach_money', link: 'corte-list' },
         { name: 'Tipo Corte', icon: 'credit_card', link: 'tipo-corte-list' },
         { name: 'Tipo Entidad Financieras', icon: 'euro', link: 'tipo-entidad-finaciera-list' },
-        { name: 'Entidades Finacieras', icon: 'payments', link: 'entidad-finaciera-list' },
+        { name: 'Entidades Finacieras', icon: 'payments', link: 'entidad-financiera-list' },
         { name: 'Tipo Cuentas Bancarias', icon: 'savings', link: 'tipo-cuenta-bancaria-list' },
         { name: 'Cuentas Bancarias', icon: 'account_balance', link: 'cuenta-bancaria-list' },
       ]

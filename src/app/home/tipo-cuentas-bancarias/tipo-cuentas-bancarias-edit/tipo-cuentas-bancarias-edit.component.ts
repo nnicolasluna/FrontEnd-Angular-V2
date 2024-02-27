@@ -2,19 +2,19 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalService } from '../../modal/service/modal.service';
-import { tipoEntidadFinanciera } from '../tipo-entidad-financiera-model/tipo-entidad-financiera';
 import { ApiService } from '../../service/api-generico/api.service';
+import { tipoCuenta } from '../tipo-cuentas-bancarias-model/tipo-cuentas-bancarias';
 import { switchMap } from 'rxjs';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
 
 @Component({
-  selector: 'app-tipo-entidad-financiera-edit',
-  templateUrl: './tipo-entidad-financiera-edit.component.html',
-  styleUrls: ['./tipo-entidad-financiera-edit.component.scss']
+  selector: 'app-tipo-cuentas-bancarias-edit',
+  templateUrl: './tipo-cuentas-bancarias-edit.component.html',
+  styleUrls: ['./tipo-cuentas-bancarias-edit.component.scss']
 })
-export class TipoEntidadFinancieraEditComponent {
+export class TipoCuentasBancariasEditComponent {
   private matDialogRef!: any;
-  private url = 'tipo_entidades_financieras'
+  private url = 'tipo_cuentas_bancarias'
   operacion = 'Registrar'
   uuid!: any;
   editar = ''
@@ -23,6 +23,7 @@ export class TipoEntidadFinancieraEditComponent {
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    descripcion: new FormControl('', [Validators.required, Validators.maxLength(30)]),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;
@@ -30,11 +31,14 @@ export class TipoEntidadFinancieraEditComponent {
   get abreviaturaControl() {
     return this.formGroup.controls.abreviatura;
   }
+  get descripcionControl() {
+    return this.formGroup.controls.descripcion;
+  }
 
   constructor(
     private router: Router,
     private modalService: ModalService,
-    private apiService: ApiService<tipoEntidadFinanciera>,
+    private apiService: ApiService<tipoCuenta>,
     private route: ActivatedRoute,
   ) { }
   ngOnInit(): void {
@@ -44,7 +48,7 @@ export class TipoEntidadFinancieraEditComponent {
         
         this.uuid = this.route.snapshot.paramMap.get('id');
         
-        return this.apiService.getOne('tipo_entidades_financieras', this.uuid);
+        return this.apiService.getOne('tipo_cuentas_bancarias', this.uuid);
       })
     ).subscribe({
       next: (data) => {
@@ -78,7 +82,7 @@ export class TipoEntidadFinancieraEditComponent {
     if (this.formGroup.valid) {
       this.formGroup.value.uuid = this.route.snapshot.paramMap.get('id');
       this.uuid = this.route.snapshot.paramMap.get('id');
-      this.apiService.update(this.url, this.uuid, this.formGroup.value as tipoEntidadFinanciera).subscribe(
+      this.apiService.update(this.url, this.uuid, this.formGroup.value as tipoCuenta).subscribe(
         {
           next: () => {
             this.router.navigateByUrl('/home/ciudad-list');
