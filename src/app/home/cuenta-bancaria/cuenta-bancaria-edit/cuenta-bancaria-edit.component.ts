@@ -141,7 +141,7 @@ export class CuentaBancariaEditComponent {
       {
         next: data => {
           this.datos = data
-          console.log('Datos recibidos:', data);
+
 
         },
         error: err => {

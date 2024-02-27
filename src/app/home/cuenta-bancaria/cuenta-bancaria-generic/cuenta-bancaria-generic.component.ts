@@ -81,7 +81,7 @@ export class CuentaBancariaGenericComponent {
       this.tipocuenta = this.formGroup.value.tipoCuentasBancarias
       this.getDatos('monedas', this.moneda)
       this.getDatos('agencias', this.agencia)
-      this.getDatos('entidadesFinancieras ', this.entidadfinanciera)
+      this.getDatos('entidadesFinancieras', this.entidadfinanciera)
       this.getDatos('tipoCuentasBancarias', this.tipocuenta)
     }
   }
