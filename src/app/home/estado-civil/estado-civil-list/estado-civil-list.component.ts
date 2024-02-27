@@ -15,42 +15,37 @@ import { ApiService } from '../../service/api-generico/api.service';
   styleUrls: ['./estado-civil-list.component.scss']
 })
 export class EstadoCivilListComponent {
-  EstadoCivil: any;
-  dataSource: any;
   datos: any;
-  private url = 'estados_civiles'
-  private matDialogRef!: any;
-  constructor(
-    private apiService: ApiService<estadocivil>,
-    private modalService: ModalService,
-  ) { }
-  ngOnInit() {
-    this.getAll();
-  }
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  displayedColumns: string[] = ['nombre', 'abreviatura', 'estado', 'action'];
-  Filterchange(data: Event) {
-    const value = (data.target as HTMLInputElement).value;
-    this.dataSource.filter = value;
+  private url = 'estados_civiles'
+  matDialogRef: any;
+  pageSizeOptions = [5, 7]; 
+  constructor(
+    private modalService: ModalService,
+    private apiService: ApiService<estadocivil>,
+  ) { }
+
+  ngOnInit(): void {
+    this.getAll()
   }
+
   getAll() {
     this.apiService.getAll(this.url).subscribe(
-    {
-      next: data => {
-        this.datos = data;
-        this.dataSource = new MatTableDataSource<estadocivilDTO>(this.datos);
-        this.dataSource.paginator = this.paginatior;
-      },
-      error: err => {
-        this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
-        this.matDialogRef.afterClosed().subscribe(() => {
-        });
+      {
+        next: data => {
+          this.datos = data;
+          this.dataSource = new MatTableDataSource<estadocivilDTO>(this.datos);
+          this.dataSource.paginator = this.paginatior;
+        },
+        error: err => {
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
+          this.matDialogRef.afterClosed().subscribe(() => {
+          });
+        }
       }
-    }
-  );
+    );
   }
-
-
   delete(id: string) {
     this.matDialogRef = this.modalService.openDialog(AdvertenciaBorrarComponent);
     this.matDialogRef.afterClosed().subscribe(
@@ -69,7 +64,7 @@ export class EstadoCivilListComponent {
         }
       }
     );
-
   }
+
 
 }

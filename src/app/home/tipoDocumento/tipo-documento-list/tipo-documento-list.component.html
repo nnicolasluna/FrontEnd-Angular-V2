@@ -1,4 +1,4 @@
-<div class="body">
+<!-- <div class="body">
     <div class="body__header">
       <h1>Lista de Tipos de Documento</h1>
     </div>
@@ -61,4 +61,14 @@
       </mat-card>
   
     </div>
-  </div>
+  </div> -->
+
+  <app-componente-listar 
+    [titulo]="'Lista de Tipos de Documentos'" 
+    [displayedColumns]="['nombre', 'descripcion', 'estado','action']"  
+    [adicionar]="'/home/tipo-documento-create'"
+    [editar]="'/home/tipo-documento-edit'"
+    [dataSource]="dataSource"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+</app-componente-listar>

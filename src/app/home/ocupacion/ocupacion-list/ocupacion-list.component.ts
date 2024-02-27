@@ -13,30 +13,26 @@ import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/adver
   styleUrls: ['./ocupacion-list.component.scss']
 })
 export class OcupacionListComponent {
-  ocupacion!: ocupacion;
-  dataSource: any;
-  private matDialogRef!: any;
-  private url = 'ocupaciones'
   datos: any;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  @ViewChild(MatPaginator) paginatior !: MatPaginator;
+  private url = 'ocupaciones'
+  matDialogRef: any;
+  pageSizeOptions = [5, 7]; 
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<ocupacion>,
   ) { }
-  ngOnInit() {
-    this.getAll();
+
+  ngOnInit(): void {
+    this.getAll()
   }
-  @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  displayedColumns: string[] = ['nombre', 'descripcion', 'estado', 'action'];
-  Filterchange(data: Event) {
-    const value = (data.target as HTMLInputElement).value;
-    this.dataSource.filter = value;
-  }
+
   getAll() {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
           this.datos = data;
-          console.log(this.datos)
           this.dataSource = new MatTableDataSource<ocupacionDTO>(this.datos);
           this.dataSource.paginator = this.paginatior;
         },
@@ -48,7 +44,7 @@ export class OcupacionListComponent {
       }
     );
   }
-  deleteocupacion(id: string) {
+  delete(id: string) {
     this.matDialogRef = this.modalService.openDialog(AdvertenciaBorrarComponent);
     this.matDialogRef.afterClosed().subscribe(
       () => {
@@ -67,4 +63,5 @@ export class OcupacionListComponent {
       }
     );
   }
+
 }

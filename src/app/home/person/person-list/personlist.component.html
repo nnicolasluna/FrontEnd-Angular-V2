@@ -1,4 +1,4 @@
-<div class="body">
+<!-- <div class="body">
   <div class="body__header">
     <h1>Lista de Personas</h1>
   </div>
@@ -62,4 +62,13 @@
     </mat-card>
 
   </div>
-</div>
+</div> -->
+<app-componente-listar 
+    [titulo]="'Lista de Personas'" 
+    [displayedColumns]="['nombres', 'primer_apellido', 'segundo_apellido', 'generos','estadosCiviles','action']"  
+    [adicionar]="'/home/personcreate'"
+    [editar]="'/home/personprofile'"
+    [dataSource]="dataSource"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+</app-componente-listar>

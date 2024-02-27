@@ -13,23 +13,21 @@ import { ApiService } from '../../service/api-generico/api.service';
   styleUrls: ['./genero-list.component.scss']
 })
 export class GeneroListComponent {
-  dataSource: any;
-  private matDialogRef!: any;
-  private url = 'generos'
   datos: any;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  @ViewChild(MatPaginator) paginatior !: MatPaginator;
+  private url = 'generos'
+  matDialogRef: any;
+  pageSizeOptions = [5, 7]; 
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<genero>,
   ) { }
-  ngOnInit() {
-    this.getAll();
+
+  ngOnInit(): void {
+    this.getAll()
   }
-  @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  displayedColumns: string[] = ['nombre', 'abreviatura', 'estado', 'action'];
-  Filterchange(data: Event) {
-    const value = (data.target as HTMLInputElement).value;
-    this.dataSource.filter = value;
-  }
+
   getAll() {
     this.apiService.getAll(this.url).subscribe(
       {
@@ -65,4 +63,5 @@ export class GeneroListComponent {
       }
     );
   }
+
 }

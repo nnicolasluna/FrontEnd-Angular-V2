@@ -36,7 +36,7 @@ export class HomeComponent {
         { name: 'Menus', icon: 'menu', link: 'menulist' },
         { name: 'Comandos', icon: 'terminal', link: 'comandolist' },
         { name: 'Subsistema', icon: 'badge', link: 'subsistemalist' },
-        { name: 'Tipos Documentos', icon: 'badge', link: 'tipodocumentolist' },
+        { name: 'Tipos Documentos', icon: 'badge', link: 'tipo-documento-list' },
         { name: 'Genero', icon: 'male', link: 'genero-list' },
         { name: 'Ocupación', icon: 'work', link: 'ocupacion-list' },
         { name: 'Estado Civil', icon: 'wc', link: 'estado-civil-list' },

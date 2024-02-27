@@ -33,6 +33,7 @@ export class CuidadListComponent {
       {
         next: data => {
           this.datos = data;
+          console.log(data)
           this.dataSource = new MatTableDataSource<cuidadDTO>(this.datos);
           this.dataSource.paginator = this.paginatior;
         },

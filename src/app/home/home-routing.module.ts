@@ -93,9 +93,9 @@ const routes: Routes = [
   { path: 'comandolist', component: ComandolistComponent },
   { path: 'comandoedit/:id', component: ComandoEditComponent },
 
-  { path: 'tipodocumentocreate', component: TipoDocumentoCreateComponent },
-  { path: 'tipodocumentolist', component: TipoDocumentoListComponent },
-  { path: 'tipodocumentoedit/:id', component: TipoDocumentoEditComponent },
+  { path: 'tipo-documento-create', component: TipoDocumentoCreateComponent },
+  { path: 'tipo-documento-list', component: TipoDocumentoListComponent },
+  { path: 'tipo-documento-edit/:id', component: TipoDocumentoEditComponent },
 
   { path: 'documentocreate/:id', component: DocumentocreateComponent },
   { path: 'documentoedit/:id', component: DocumentoEditComponent },

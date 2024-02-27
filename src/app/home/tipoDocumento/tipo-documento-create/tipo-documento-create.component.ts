@@ -43,7 +43,7 @@ export class TipoDocumentoCreateComponent {
         
         next: (userData:any) => {
           if (userData) {
-            this.router.navigateByUrl('/home/tipodocumentolist');
+            this.router.navigateByUrl('/home/tipo-documento-list');
             this.formGroup.reset();
           }
           else {

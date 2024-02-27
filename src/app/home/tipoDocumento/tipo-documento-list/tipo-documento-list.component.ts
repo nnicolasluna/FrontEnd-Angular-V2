@@ -2,17 +2,18 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { TipoDocumentoService } from '../tipo-documento-service/tipo-documento.service';
-import { tipoDocumentoDTO } from '../tipo-documento-model/tipoDocumento';
+import { tipoDocumento, tipoDocumentoDTO } from '../tipo-documento-model/tipoDocumento';
 import { ModalService } from '../../modal/service/modal.service';
 import { AdvertenciaBorrarComponent } from '../../modal/advertencia-borrar/advertencia-borrar.component';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
+import { ApiService } from '../../service/api-generico/api.service';
 @Component({
   selector: 'app-tipo-documento-list',
   templateUrl: './tipo-documento-list.component.html',
   styleUrls: ['./tipo-documento-list.component.scss']
 })
 export class TipoDocumentoListComponent {
-
+/* 
   tipo: any;
   dataSource: any;
 
@@ -40,7 +41,7 @@ export class TipoDocumentoListComponent {
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
           this.matDialogRef.afterClosed().subscribe(
-            /* this.router.navigateByUrl('/login') */
+          
           );
         }
       }
@@ -63,5 +64,56 @@ export class TipoDocumentoListComponent {
 
 
     });
+  } */
+  datos: any;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  @ViewChild(MatPaginator) paginatior !: MatPaginator;
+  private url = 'tipo_documentos'
+  matDialogRef: any;
+  pageSizeOptions = [5, 7]; 
+  constructor(
+    private modalService: ModalService,
+    private apiService: ApiService<tipoDocumento>,
+  ) { }
+
+  ngOnInit(): void {
+    this.getAll()
   }
+
+  getAll() {
+    this.apiService.getAll(this.url).subscribe(
+      {
+        next: data => {
+          this.datos = data;
+          this.dataSource = new MatTableDataSource<tipoDocumentoDTO>(this.datos);
+          this.dataSource.paginator = this.paginatior;
+        },
+        error: err => {
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
+          this.matDialogRef.afterClosed().subscribe(() => {
+          });
+        }
+      }
+    );
+  }
+  delete(id: string) {
+    this.matDialogRef = this.modalService.openDialog(AdvertenciaBorrarComponent);
+    this.matDialogRef.afterClosed().subscribe(
+      () => {
+        if (this.matDialogRef.componentInstance.confirmado) {
+          this.apiService.delete(this.url, id).subscribe(
+            {
+              next: () => {
+                this.getAll();
+              },
+              error: err => {
+                console.log('No puede eliminarse este registro')
+              }
+            }
+          );
+        }
+      }
+    );
+  }
+
 }

@@ -46,6 +46,24 @@
                         </div>
                         <div class="validation">
                             <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nivel:</label>
+                                <input type="text" formControlName="nivel" class="content__imput"
+                                    placeholder="Ejem. nivel 1" appNoLeadingTrailingWhitespace>
+                            </div>
+                            <div *ngIf="nivelControl.invalid && (nivelControl.dirty || nivelControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="nivelControl.errors?.['required']">La nivel es Requerida</span>
+                                <span *ngIf="nivelControl.errors?.['minlength']">La nivel debe contener mas
+                                    de 3
+                                    caracteres</span>
+                                <span *ngIf="nivelControl.errors?.['maxlength']">La nivel no debe tener mas
+                                    de
+                                    100
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
                                 <label for="" class="content__formlabel">Estado:</label>
                                 <select formControlName="estado" class="content__imput">
                                     <option value="true">Activado</option>

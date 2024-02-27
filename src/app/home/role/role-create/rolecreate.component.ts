@@ -25,6 +25,7 @@ export class RolecreateComponent {
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
     estado: new FormControl(false, [Validators.required]),
+    nivel: new FormControl('', [Validators.required]),
     subsistemas: this.subsistemasFormGroup,
   });
 
@@ -37,6 +38,10 @@ export class RolecreateComponent {
   get estadoControl() {
     return this.formGroup.controls.estado;
   }
+  get nivelControl() {
+    return this.formGroup.controls.nivel;
+  }
+
 
   constructor(
     private router: Router,
