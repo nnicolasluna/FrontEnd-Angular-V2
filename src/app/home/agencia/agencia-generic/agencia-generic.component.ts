@@ -33,7 +33,7 @@ export class AgenciaGenericComponent {
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     direccion: new FormControl('', [Validators.required]),
     telefono: new FormControl('', [Validators.required]),
-    ciudad: new FormControl('',[Validators.required]),
+    ciudad: new FormControl(''),
   });
 
   get nombreControl() {

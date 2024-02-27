@@ -28,7 +28,7 @@ export class AgenciaEditComponent {
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     direccion: new FormControl('', [Validators.required]),
     telefono: new FormControl('', [Validators.required]),
-    ciudad: new FormControl('', [Validators.required]),
+    ciudad: new FormControl(''),
   });
 
   get nombreControl() {
@@ -80,6 +80,7 @@ export class AgenciaEditComponent {
           next: (data) => {
             this.router.navigateByUrl('/home/agencia-list');
             this.formGroup.reset();
+           
           },
           error: err => {
        console.log(err)
@@ -110,7 +111,7 @@ export class AgenciaEditComponent {
       {
         next: data => {
           this.datos=data
-
+console.log(data)
 
         },
         error: err => {
