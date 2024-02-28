@@ -2,13 +2,13 @@ describe('persona template', () => {
     it('Visita login', () => {
         cy.visit('http://localhost:4200/home')
         cy.url().should('include', 'home');
-        cy.get('[data-cy="Administracion"]').click();
-        cy.get('[data-cy="personaslist"]').click();
+        cy.contains('Administracion').click();
+        cy.contains('Personas').click();
         cy.url().should('include', 'home/personlist');
+        cy.contains('Agregar').click();
          // Crear Persona
-        cy.get('[data-cy="personacreate"]').click();
         cy.url().should('include', 'home/personcreate');
-        cy.get('[formControlName="nombres"]').type('debb')
+        cy.get('[formControlName="nombres"]').type('Joel')
         cy.get('[formControlName="primer_apellido"]').type('Luna')
         cy.get('[formControlName="segundo_apellido"]').type('valdivia')
         cy.get('[formControlName="estado_civil"]').type('soltera')

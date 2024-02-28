@@ -5,6 +5,7 @@ import { ModalService } from '../../modal/service/modal.service';
 import { ApiService } from '../../service/api-generico/api.service';
 import { ocupacion } from '../ocupacion-model/ocupacion';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-ocupacion-create',
@@ -39,7 +40,8 @@ export class OcupacionCreateComponent {
             this.formGroup.reset();
           },
           error: err => {
-            this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
+            /* this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent); */
+            this.matDialogRef = this.modalService.openDialog(OcupacionCreateComponent);
             this.matDialogRef.afterClosed().subscribe(() => {
             });
           }

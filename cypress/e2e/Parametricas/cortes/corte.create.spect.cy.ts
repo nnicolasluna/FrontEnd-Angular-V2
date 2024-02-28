@@ -4,7 +4,7 @@ describe('corte template', () => {
         cy.get('[formControlName="valor"]').type('1')
         cy.get('[formControlName="orden"]').type('1')
         cy.get('[formControlName="monedas"]').select('Boliviano');
-        cy.get('[formControlName="tipoEntidadesFinancieras"]').select('Gaaaaa');
+        cy.get('[formControlName="tipoCortes"]').select('Gaaaaa');
         cy.get('[data-cy="guardar"]').click();
         cy.url().should('include', 'home/corte-list');
 

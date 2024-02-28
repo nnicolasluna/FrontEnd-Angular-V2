@@ -1,5 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { LoginService } from '../login/login-service/login.service';
+import { data } from 'cypress/types/jquery';
+import { person } from './person/person-model/person';
+import { Router } from '@angular/router';
 
 interface Seccion {
   nombre: string
@@ -18,15 +21,23 @@ export class HomeComponent {
   parm = false;
   sidebarVisible = true;
   userData: any;
+  rolData: any
   constructor(
     private loginService: LoginService,
-
+    private router: Router,
   ) { }
   ngOnInit(): void {
-    this.userData = this.loginService.getDatos();
+    const datosGuardadosString = sessionStorage.getItem("datos");
+    const rol = sessionStorage.getItem("rol");
+    if (datosGuardadosString !== null && rol !== null) {
+      this.userData = JSON.parse(datosGuardadosString);
+      this.rolData = JSON.parse(rol);
 
+    } else {
+      console.log("No se encontraron datos en sessionStorage");
+    }
   }
- 
+
   secciones: Seccion[] = [
     {
       nombre: 'Administracion', icono: 'settings', marcado: false, botones: [
@@ -54,7 +65,7 @@ export class HomeComponent {
         { name: 'Tipo Cuentas Bancarias', icon: 'savings', link: 'tipo-cuenta-bancaria-list' },
         { name: 'Cuentas Bancarias', icon: 'account_balance', link: 'cuenta-bancaria-list' },
         { name: 'Agencias', icon: 'apartment', link: 'agencia-list' },
-        
+
       ]
     }
 
@@ -91,5 +102,10 @@ export class HomeComponent {
   toggleMarcado(seccion: Seccion) {
     seccion.marcado = !seccion.marcado;
   }
-
+  logout() {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('datos'); 
+    sessionStorage.removeItem('rol');
+    this.router.navigateByUrl('/login');
+  }
 }

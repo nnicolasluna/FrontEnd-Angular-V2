@@ -20,6 +20,7 @@ export class MonedaEditComponent {
   editar = 'Editar'
   datos!: any;
   paises: any[] = [];
+  pais!:any
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -88,6 +89,9 @@ export class MonedaEditComponent {
           this.datos = data;
           console.log(data)
           this.formGroup.patchValue(this.datos);
+          this.pais = this.formGroup.value.pais
+
+          this.getDatos('pais', this.pais)
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
@@ -99,4 +103,11 @@ export class MonedaEditComponent {
       }
     );
   }
- }
+  getDatos(param: string, atrib: any) {
+    const control = this.formGroup.get(param);
+    if (control) {
+      const UUID = atrib.uuid;
+      control.setValue(UUID);
+    }
+  }
+}

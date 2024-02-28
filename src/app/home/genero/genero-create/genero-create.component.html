@@ -1,4 +1,4 @@
-<div class="body">
+<!-- <div class="body">
     <div class="body__header">
         <h1 class="body__h1">Registrar Genero</h1>
     </div>
@@ -53,5 +53,60 @@
             </mat-card-footer>
         </mat-card>
 
+    </div>
+</div> --><div class="container">
+    <div class="header">
+        <h1 class="header__title">Registrar Género</h1>
+    </div>
+    <div class="content">
+        <mat-card class="card">
+            <mat-card-header class="card__header">
+                <h4>Datos del Género</h4>
+            </mat-card-header>
+            <mat-card-content class="card__content">
+                <form [formGroup]="formGroup">
+                    <div class="form-group">
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Nombre:</label>
+                                <input formControlName="nombre" type="text" placeholder="Ejem. Masculino"
+                                    class="input-control"
+                                    [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                            </div>
+                            <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                                class="error-message">
+                                <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                                <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener más de 3
+                                    caracteres</span>
+                                <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener más de 200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Abreviatura</label>
+                                <input formControlName="abreviatura" type="text" placeholder="Ejem. M" class="input-control"
+                                    [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
+                            </div>
+                            <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
+                                class="error-message">
+                                <span *ngIf="abreviaturaControl.errors?.['required']">La Abreviatura es Requerida</span>
+                                <span *ngIf="abreviaturaControl.errors?.['maxlength']">La Abreviatura no debe tener más
+                                    de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+            <mat-card-footer class="card__footer">
+                <button routerLink="/home/genero-list" class="button button--cancel">
+                    Cancelar
+                </button>
+                <button type="submit" class="button button--save" (click)="create()"
+                    data-cy="crear">Guardar</button>
+            </mat-card-footer>
+        </mat-card>
     </div>
 </div>

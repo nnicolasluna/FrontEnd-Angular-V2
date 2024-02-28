@@ -19,7 +19,13 @@ export class LoginService {
 
     return this.http.post<any>(this.url, credentials).pipe(
       tap((userData) => {
+        console.log(userData)
         sessionStorage.setItem("token", userData.token);
+        const personaDTO = userData.personaDTO;
+        sessionStorage.setItem("datos", JSON.stringify(personaDTO));
+        const rol = userData.roles;
+        /* sessionStorage.setItem("roles", userData.roles); */
+        sessionStorage.setItem("rol", JSON.stringify(rol));
         this.currentUserData.next(userData.token);
         this.currentUserLoginOn.next(true);
       }),

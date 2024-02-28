@@ -6,7 +6,7 @@ describe('agencia template', () => {
         cy.get('[formControlName="abreviatura"]').type('gaaaa')
         cy.get('[formControlName="direccion"]').type('gaaaa')
         cy.get('[formControlName="telefono"]').type('gaaaa')
-        cy.get('[formControlName="ciudad"]').select('Santa Cruz');
+        cy.get('[formControlName="ciudades"]').select('Santa Cruz');
         cy.get('[data-cy="guardar"]').click();
         cy.url().should('include', 'home/agencia-list');
 
