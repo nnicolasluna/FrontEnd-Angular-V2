@@ -20,7 +20,7 @@ export class AgenciaGenericComponent {
   @Input() Data: any;
   @Input() metodoDesdePadre: () => void = () => { };
   private matDialogRef!: any;
-  ciudad!: any  
+  ciudad!: any
   ejecutarCreate() {
     if (this.metodoDesdePadre) {
       this.metodogenerico.setFormGroup(this.formGroup)
@@ -33,7 +33,7 @@ export class AgenciaGenericComponent {
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     direccion: new FormControl('', [Validators.required]),
     telefono: new FormControl('', [Validators.required]),
-    ciudades: new FormControl(''),
+    ciudades: new FormControl('', [Validators.required]),
   });
 
   get nombreControl() {
@@ -62,8 +62,8 @@ export class AgenciaGenericComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['Data'] && changes['Data'].currentValue) {
       this.formGroup.patchValue(this.Data);
-      this.ciudad = this.formGroup.value.ciudad
- 
+      this.ciudad = this.formGroup.value.ciudades
+
       this.getDatos('ciudades', this.ciudad)
 
     }
