@@ -1,14 +1,21 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TipoDocumentoService } from '../tipo-documento-service/tipo-documento.service';
 import { tipoDocumento } from '../tipo-documento-model/tipoDocumento';
+import { ApiService } from '../../service/api-generico/api.service';
+import { pais } from '../../pais/pais-model/pais';
 @Component({
   selector: 'app-tipo-documento-edit',
   templateUrl: './tipo-documento-edit.component.html',
   styleUrls: ['./tipo-documento-edit.component.scss']
 })
 export class TipoDocumentoEditComponent {
+  paises: any[] = [];
+  private url ='paises'
+  paisFormGroup = new FormGroup({
+    uuid: new FormArray([]),
+  });
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
@@ -29,6 +36,7 @@ export class TipoDocumentoEditComponent {
     private router: Router,
     private tipoDocumentoService: TipoDocumentoService,
     private route: ActivatedRoute,
+    private apiService: ApiService<pais>,
   ) { }
 
   create() {
@@ -66,5 +74,13 @@ export class TipoDocumentoEditComponent {
       this.datos = data;
       this.formGroup.patchValue(data);
     });
+  }
+  getPaises() {
+    this.apiService.getAll(this.url).subscribe({
+      next:data=>{
+        this.paises = data;
+      }
+    })
+  
   }
 }

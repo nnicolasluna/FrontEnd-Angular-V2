@@ -1,24 +1,24 @@
-<div class="body">
-    <div class="body__header">
-        <h1 class="body__h1">Editar Pais</h1>
+<div class="container">
+    <div class="header">
+        <h1 class="header__title">Editar Pais</h1>
     </div>
-    <div class="body__content">
-        <mat-card class="card card--one">
-            <mat-card-header class="card__header--form">
+    <div class="content">
+        <mat-card class="card">
+            <mat-card-header class="card__header">
                 <h4>Editar Datos del Pais</h4>
             </mat-card-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
-                    <div class="content content--one">
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Nombre:</label>
-                                <input formControlName="nombre" type="text" placeholder="Ejem. Masculino"
-                                    class="content__imput"
+                    <div class="form-group">
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Nombre:</label>
+                                <input formControlName="nombre" type="text" placeholder="Ejem. Bolivia"
+                                    class="input-control"
                                     [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                             </div>
                             <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
-                                class="text-danger">
+                                class="error-message">
                                 <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
                                 <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
                                     caracteres</span>
@@ -26,19 +26,19 @@
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Nacionalidad</label>
-                                <input formControlName="nacionalidad" type="text" class="content__imput"
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Nacionalidad</label>
+                                <input formControlName="nacionalidad" type="text" class="input-control"
                                     placeholder="Ejem. Bolita"
                                     [ngClass]="{'invalid': nacionalidadControl.invalid && (nacionalidadControl.dirty || nacionalidadControl.touched), 'valid': nacionalidadControl.valid}">
                             </div>
 
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Bandera</label>
-                                <input formControlName="bandera" type="text" class="content__imput">
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Bandera</label>
+                                <input formControlName="bandera" type="text" class="input-control">
                             </div>
 
                         </div>
@@ -49,8 +49,7 @@
                 <button routerLink="/home/pais-list" class="button button--simple">
                     Cancelar
                 </button>
-                <button type="submit" class="button button--create" (click)="update()"
-                    data-cy="editar">Guardar</button>
+                <button type="submit" class="button button--create" (click)="update()" data-cy="editar">Guardar</button>
             </mat-card-footer>
         </mat-card>
 

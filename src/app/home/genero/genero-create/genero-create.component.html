@@ -54,7 +54,8 @@
         </mat-card>
 
     </div>
-</div> --><div class="container">
+</div> -->
+<div class="container">
     <div class="header">
         <h1 class="header__title">Registrar Género</h1>
     </div>
@@ -84,7 +85,7 @@
                         </div>
                         <div class="input-validation">
                             <div class="input-group">
-                                <label for="" class="input-label">Abreviatura</label>
+                                <label for="" class="input-label">Abreviatura:</label>
                                 <input formControlName="abreviatura" type="text" placeholder="Ejem. M" class="input-control"
                                     [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                             </div>
@@ -101,10 +102,10 @@
                 </form>
             </mat-card-content>
             <mat-card-footer class="card__footer">
-                <button routerLink="/home/genero-list" class="button button--cancel">
+                <button routerLink="/home/genero-list" class="button button--simple   ">
                     Cancelar
                 </button>
-                <button type="submit" class="button button--save" (click)="create()"
+                <button type="submit" class="button button--create" (click)="create()"
                     data-cy="crear">Guardar</button>
             </mat-card-footer>
         </mat-card>

@@ -1,0 +1,36 @@
+<!-- <form [formGroup]="formGroup">
+    <div *ngFor="let field of formFields" class="form-group">
+        <label>{{ field.label }}</label>
+        <ng-container [ngSwitch]="field.type">
+            <input *ngSwitchCase="'text'" [formControlName]="field.name" type="text">
+            <select *ngSwitchCase="'select'" [formControlName]="field.name">
+                <option *ngFor="let option of field.options">{{ option }}</option>
+            </select>
+
+        </ng-container>
+        <div *ngIf="formGroup.get(field.name)?.invalid && (formGroup.get(field.name)?.dirty || formGroup.get(field.name)?.touched)"
+            class="error-message">
+            <span *ngIf="formGroup.get(field.name)?.errors?.['required']">Campo requerido</span>
+
+        </div>
+    </div>
+</form> -->
+
+<form [formGroup]="formGroup">
+    <div *ngFor="let field of formFields" class="form-group">
+      <label>{{ field.label }}</label>
+      <ng-container [ngSwitch]="field.type">
+        <input *ngSwitchCase="'text'" [formControlName]="field.name" type="text">
+        <select *ngSwitchCase="'select'" [formControlName]="field.name">
+          <option value="" disabled selected>{{ field.label }}</option>
+          <option *ngFor="let option of field.options" [value]="option.value">{{ option.label }}</option>
+        </select>
+     
+      </ng-container>
+      <div *ngIf="formGroup.get(field.name)?.invalid && (formGroup.get(field.name)?.dirty || formGroup.get(field.name)?.touched)"
+        class="error-message">
+        <span *ngIf="formGroup.get(field.name)?.errors?.['required']">{{ field.label }} es requerido</span>
+
+      </div>
+    </div>
+  </form>

@@ -94,6 +94,7 @@ import { CuentaBancariaListComponent } from './cuenta-bancaria/cuenta-bancaria-l
 import { CuentaBancariaGenericComponent } from './cuenta-bancaria/cuenta-bancaria-generic/cuenta-bancaria-generic.component';
 import { CuentaBancariaCreateComponent } from './cuenta-bancaria/cuenta-bancaria-create/cuenta-bancaria-create.component';
 import { CuentaBancariaEditComponent } from './cuenta-bancaria/cuenta-bancaria-edit/cuenta-bancaria-edit.component';
+import { FormularioGenericoComponent } from './formulario-generico/formulario-generico/formulario-generico.component';
 
 
 
@@ -176,6 +177,7 @@ import { CuentaBancariaEditComponent } from './cuenta-bancaria/cuenta-bancaria-e
     CuentaBancariaGenericComponent,
     CuentaBancariaCreateComponent,
     CuentaBancariaEditComponent,
+    FormularioGenericoComponent,
     
 
 

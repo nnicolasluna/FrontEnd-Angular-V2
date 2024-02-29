@@ -1,24 +1,24 @@
-<div class="body">
-    <div class="body__header">
-        <h1 class="body__h1">Editar de Tipo de Documento</h1>
+<div class="container">
+    <div class="header">
+        <h1 class="header__title">Registro de Tipo de Documento</h1>
     </div>
-    <div class="body__content">
-        <form id="loginform" [formGroup]="formGroup">
-            <mat-card class="card card--one">
-                <mat-card-header class="card__header--form">
-                    <h4>Editar Datos del Tipo de Documento</h4>
-                </mat-card-header>
-                <mat-card-content class="card__content">
-
-                    <div class="content content--one">
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Nombre del Tipo de Documento:</label>
+    <div class="content">
+        <mat-card class="card">
+            <mat-card-header class="card__header">
+                <h4>Datos del Tipo de Documento</h4>
+            </mat-card-header>
+            <mat-card-content class="card__content">
+                <form id="loginform" [formGroup]="formGroup">
+                    <div class="form-group">
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Nombre del Tipo de Documento:</label>
                                 <input type="text" formControlName="nombre" placeholder="Ejem. Carnet de Identidad"
-                                    class="content__imput">
+                                    class="input-control"
+                                    [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                             </div>
                             <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
-                                class="text-danger">
+                                class="error-message">
                                 <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
                                 <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
                                     caracteres</span>
@@ -27,16 +27,16 @@
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Descripcion:</label>
-                                <input type="text" formControlName="descripcion"
-                                    class="content__imput content__imput--big"
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Descripcion:</label>
+                                <input type="text" formControlName="descripcion" class="input-control"
                                     placeholder="Ejem. Documento de identidad perteneciente a un pais" cols="3"
-                                    rows="3">
+                                    rows="3"
+                                    [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
                             </div>
                             <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
-                                class="text-danger">
+                                class="error-message">
                                 <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerida</span>
                                 <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener mas
                                     de 3
@@ -47,38 +47,30 @@
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Estado:</label>
-                                <select formControlName="estado" class="content__imput">
-                                    <option value="true">Activado</option>
-                                    <option value="false">Desactivado</option>
-                                </select>
-                            </div>
-                            <div *ngIf="estadoControl.invalid && (estadoControl.dirty || estadoControl.touched)"
-                                class="text-danger">
-                                <span *ngIf="estadoControl.errors?.['required']">El Estado es Requerido</span>
 
+                        <form [formGroup]="paisFormGroup">
+                            <div class="input-validation">
+                                <div class="input-group">
+
+                                    <label for="" class="input-label">Pais:</label>
+                                    <select formControlName="uuid" class="input-control">
+                                        <option value="" disabled selected>Selecciona un Pais</option>
+                                        <option aria-placeholder="Selecciones Tipo de Documento"
+                                            *ngFor="let pais of paises" [value]="pais.uuid">{{
+                                            pais.nombre }}
+                                        </option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
+                </form>
+            </mat-card-content>
+            <mat-card-footer class="card__footer">
+                <button class="button button--simple" routerLink="/home/tipo-documento-list">Cancelar</button>
+                <button class="button button--create" (click)="create()" data-cy="TipoDocCreate">Guardar</button>
+            </mat-card-footer>
+        </mat-card>
 
-
-
-                </mat-card-content>
-                <mat-card-footer class="card__footer">
-
-
-                    <button routerLink="/home/tipo-documento-list" class="button button--simple">
-                        Cancelar
-                    </button>
-
-                    <button class="button button--create" (click)="create()" data-cy="TipoDocEdit">Guardar</button>
-
-
-
-                </mat-card-footer>
-            </mat-card>
-        </form>
     </div>
 </div>

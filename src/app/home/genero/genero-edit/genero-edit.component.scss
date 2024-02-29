@@ -1,0 +1,88 @@
+
+.header {
+    text-align: start;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    margin-left: 15px;
+
+    &__title {
+        font-size: 24px;
+        margin: 0;
+    }
+}
+
+
+.content {
+    display: flex;
+    margin-bottom: 20px;
+    width: 100%;
+
+    .card {
+
+        max-width: 600px;
+        margin: 0 auto;
+
+        &__header {
+
+            background-color: #343A40;
+            color: white;
+            border-radius: 4px 4px 0 0;
+
+            h4 {
+
+                font-size: 18px;
+            }
+        }
+
+        &__content {
+
+            padding: 20px;
+
+            .form-group {
+
+                flex-direction: column;
+
+
+                .input-validation {
+                    margin-bottom: 20px;
+
+                    .input-group {
+                        margin-bottom: 10px;
+
+                        .input-label {
+                            font-weight: bold;
+                            display: block;
+                            margin-bottom: 5px;
+                        }
+
+                        .input-control {
+                            width: 97%;
+                            padding: 8px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+
+                            &.invalid {
+                                border-color: red;
+                            }
+
+                            &.valid {
+                                border-color: yellowgreen;
+                            }
+                        }
+                    }
+
+                    .error-message {
+                        color: red;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+
+        &__footer {
+            justify-content: space-between;
+
+
+        }
+    }
+}

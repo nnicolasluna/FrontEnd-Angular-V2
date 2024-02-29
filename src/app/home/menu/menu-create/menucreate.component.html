@@ -1,100 +1,87 @@
-<div class="body">
-    <div class="body__header">
-        <h1 class="body__h1">Registrar Menu</h1>
+<div class="container">
+    <div class="header">
+        <h1 class="header__title">Registrar Menu</h1>
     </div>
-    <div class="body__content">
-        <mat-card class="card card--one">
-            <mat-card-header class="card__header--form">
+    <div class="content">
+        <mat-card class="card">
+            <mat-card-header class="card__header">
                 <h4>Datos del Menu</h4>
             </mat-card-header>
             <mat-card-content class="card__content">
-                <form id="loginform" [formGroup]="formGroup">
-                    <div class="content content--one">
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Nombre:</label>
-                                <input formControlName="nombre" type="text" placeholder="Ejem. Personas"
-                                    class="content__imput">
+                <form [formGroup]="formGroup">
+                    <div class="form-group">
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Nombre:</label>
+                                <input formControlName="nombre" type="text" placeholder="Ejem. Masculino"
+                                    class="input-control"
+                                    [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                             </div>
                             <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
-                                class="text-danger">
+                                class="error-message">
                                 <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
-                                <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener más de 3
                                     caracteres</span>
-                                <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
+                                <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener más de 200
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Descripcion</label>
-                                <input formControlName="descripcion" type="text"
-                                    placeholder="Configuarion de Acceso menu" class="content__imput">
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Descripcion:</label>
+                                <input formControlName="descripcion" type="text" placeholder="Ejem. M" class="input-control"
+                                    [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
                             </div>
                             <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
-                                class="text-danger">
-                                <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerida</span>
-                                <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener mas
-                                    de 3
+                                class="error-message">
+                                <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerido</span>
+                                <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener más de 3
                                     caracteres</span>
-                                <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener mas
-                                    de
-                                    200
+                                <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener más de 200
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Link:</label>
-                                <input formControlName="link" type="text" class="content__imput">
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Link:</label>
+                                <input formControlName="link" type="text" placeholder="Ejem. http localhost" class="input-control"
+                                    [ngClass]="{'invalid': linkControl.invalid && (linkControl.dirty || linkControl.touched), 'valid': linkControl.valid}">
                             </div>
                             <div *ngIf="linkControl.invalid && (linkControl.dirty || linkControl.touched)"
-                                class="text-danger">
-                                <span *ngIf="linkControl.errors?.['required']">El Link es Requerido</span>
-                                <span *ngIf="linkControl.errors?.['minlength']">El Link debe contener mas de 3
+                                class="error-message">
+                                <span *ngIf="linkControl.errors?.['required']">El link es Requerido</span>
+                                <span *ngIf="linkControl.errors?.['minlength']">El link debe contener más de 3
                                     caracteres</span>
-                                <span *ngIf="linkControl.errors?.['maxlength']">El Link no debe tener mas de
-                                    200
+                                <span *ngIf="linkControl.errors?.['maxlength']">El link no debe tener más de 200
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Estado</label>
-                                <select formControlName="estado" class="content__imput">
-                                    <option value="true">Activado</option>
-                                    <option value="false">Desactivado</option>
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <form [formGroup]="subsistemaFormGroup">
+                                <label for="" class="input-label">Subsistemas:</label>
+                               <!--  <input formControlName="link" type="text" placeholder="Ejem. http localhost" class="input-control"> -->
+                                <select formControlName="uuid" class="input-control">
+                                    <option value="" disabled selected>Selecciona un Susbsistema</option>
+                                    <option aria-placeholder="Selecciones Tipo de Documento"
+                                        *ngFor="let subsistema of subsistemas" [value]="subsistema.uuid">{{
+                                        subsistema.nombre }}
+                                    </option>
                                 </select>
+                            </form>
                             </div>
                         </div>
-                        <form [formGroup]="subsistemaFormGroup">
-                            <div class="validation">
-                                <div class="content__inputs">
 
-                                    <label for="" class="content__formlabel">Subsistemas:</label>
-                                    <select formControlName="uuid" class="content__imput">
-                                        <option value="" disabled selected>Selecciona un Susbsistema</option>
-                                        <option aria-placeholder="Selecciones Tipo de Documento"
-                                            *ngFor="let subsistema of subsistemas" [value]="subsistema.uuid">{{
-                                            subsistema.nombre }}
-                                        </option>
-                                    </select>
-
-                                </div>
-
-                            </div>
-                        </form>
                     </div>
-
                 </form>
             </mat-card-content>
             <mat-card-footer class="card__footer">
-                <a class="button button--simple" routerLink="/home/subsistemalist">
-                    <span>Cancelar</span>
-                </a>
-                <button type="submit" class="button button--create" (click)="create()" data-cy="crearmenu">Guardar</button>
+                <button routerLink="/home/menulist" class="button button--simple   ">
+                    Cancelar
+                </button>
+                <button type="submit" class="button button--create" (click)="create()"
+                    data-cy="crear">Guardar</button>
             </mat-card-footer>
         </mat-card>
-
     </div>
 </div>

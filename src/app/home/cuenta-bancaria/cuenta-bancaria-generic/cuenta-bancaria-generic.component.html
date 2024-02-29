@@ -1,24 +1,24 @@
-<div class="body">
-    <div class="body__header">
-        <h1 class="body__h1">{{ operacion }}</h1>
+<div class="container">
+    <div class="header">
+        <h1 class="header__title">{{ operacion }}</h1>
     </div>
-    <div class="body__content">
+    <div class="content">
         <mat-card class="card card--one">
-            <mat-card-header class="card__header--form">
+            <mat-card-header class="card__header">
                 <h4>{{ editar }}</h4>
             </mat-card-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
-                    <div class="content content--one">
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Numero de Cuenta:</label>
+                    <div class="form-group">
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Numero de Cuenta:</label>
                                 <input formControlName="numero_cuenta" type="text" placeholder="Ejem. 1230981238123"
-                                    class="content__imput"
+                                    class="input-control"
                                     [ngClass]="{'invalid': numero_cuentaControl.invalid && (numero_cuentaControl.dirty || numero_cuentaControl.touched), 'valid': numero_cuentaControl.valid}">
                             </div>
                             <div *ngIf="numero_cuentaControl.invalid && (numero_cuentaControl.dirty || numero_cuentaControl.touched)"
-                                class="text-danger">
+                                class="error-message">
                                 <span *ngIf="numero_cuentaControl.errors?.['required']">El numero_cuenta es Requerido</span>
                                 <span *ngIf="numero_cuentaControl.errors?.['minlength']">El numero_cuenta debe contener mas de 3
                                     caracteres</span>
@@ -26,15 +26,15 @@
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Fecha de Apertura</label>
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Fecha de Apertura</label>
                                 <input formControlName="fecha_apertura" type="datetime-local" placeholder="Ejem. "
-                                    class="content__imput"
+                                    class="input-control"
                                     [ngClass]="{'invalid': fecha_aperturaControl.invalid && (fecha_aperturaControl.dirty || fecha_aperturaControl.touched), 'valid': fecha_aperturaControl.valid}">
                             </div>
                             <div *ngIf="fecha_aperturaControl.invalid && (fecha_aperturaControl.dirty || fecha_aperturaControl.touched)"
-                                class="text-danger">
+                                class="error-message">
                                 <span *ngIf="fecha_aperturaControl.errors?.['required']">La fecha_apertura es Requerida</span>
                                 <span *ngIf="fecha_aperturaControl.errors?.['maxlength']">La fecha_apertura no debe tener mas
                                     de
@@ -42,15 +42,15 @@
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Contrato</label>
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Contrato</label>
                                 <input formControlName="contrato" type="text" placeholder="introduzca el cite del contrato"
-                                    class="content__imput"
+                                    class="input-control"
                                     [ngClass]="{'invalid': contratoControl.invalid && (contratoControl.dirty || contratoControl.touched), 'valid': contratoControl.valid}">
                             </div>
                             <div *ngIf="contratoControl.invalid && (contratoControl.dirty || contratoControl.touched)"
-                                class="text-danger">
+                                class="error-message">
                                 <span *ngIf="contratoControl.errors?.['required']">La contrato es Requerida</span>
                                 <span *ngIf="contratoControl.errors?.['maxlength']">La contrato no debe tener mas
                                     de
@@ -58,10 +58,10 @@
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Tipo de Cuenta Bancaria:</label>
-                                <select formControlName="tipoCuentasBancarias" class="content__imput"
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Tipo de Cuenta Bancaria:</label>
+                                <select formControlName="tipoCuentasBancarias" class="input-control"
                                     [ngClass]="{'invalid': tipoCuentasBancariasControl.invalid && (tipoCuentasBancariasControl.dirty || tipoCuentasBancariasControl.touched), 'valid': tipoCuentasBancariasControl.valid}">
                                     <option value="" disabled selected>Selecciona tipo cuenta bancaria</option>
                                     <option *ngFor="let dato of tipocuentas" [value]="dato.uuid">{{ dato.nombre }}
@@ -69,10 +69,10 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Entidad Financiera:</label>
-                                <select formControlName="entidadesFinancieras" class="content__imput"
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Entidad Financiera:</label>
+                                <select formControlName="entidadesFinancieras" class="input-control"
                                     [ngClass]="{'invalid': entidadesFinancierasControl.invalid && (entidadesFinancierasControl.dirty || entidadesFinancierasControl.touched), 'valid': entidadesFinancierasControl.valid}">
                                     <option value="" disabled selected>Selecciona entidade financiera</option>
                                     <option *ngFor="let dato of entidadfinancieras" [value]="dato.uuid">{{ dato.nombre }}
@@ -80,10 +80,10 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Moneda:</label>
-                                <select formControlName="monedas" class="content__imput"
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Moneda:</label>
+                                <select formControlName="monedas" class="input-control"
                                     [ngClass]="{'invalid': monedasControl.invalid && (monedasControl.dirty || monedasControl.touched), 'valid':monedasControl.valid}">
                                     <option value="" disabled selected>Selecciona entidade financiera</option>
                                     <option *ngFor="let dato of monedas" [value]="dato.uuid">{{ dato.nombre }}
@@ -91,10 +91,10 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Agencia:</label>
-                                <select formControlName="agencias" class="content__imput"
+                        <div class="input-validation">
+                            <div class="input-group">
+                                <label for="" class="input-label">Agencia:</label>
+                                <select formControlName="agencias" class="input-control"
                                     [ngClass]="{'invalid': agenciasControl.invalid && (agenciasControl.dirty || agenciasControl.touched), 'valid': agenciasControl.valid}">
                                     <option value="" disabled selected>Selecciona entidade financiera</option>
                                     <option *ngFor="let dato of agencias" [value]="dato.uuid">{{ dato.nombre }}
