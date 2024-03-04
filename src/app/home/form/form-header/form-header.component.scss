@@ -1,0 +1,14 @@
+.form-header {
+    display: flex;
+    background-color: #343A40;
+    color: white;
+    align-items: center;
+    height: 50px;
+    border-radius: 4px 4px 0 0;
+}
+
+.form-header__title {
+    margin: 0; 
+    padding: 0; 
+    margin-left: 15px;
+}

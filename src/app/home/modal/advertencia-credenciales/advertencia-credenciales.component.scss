@@ -1,0 +1,17 @@
+.alert-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.alert-footer{
+    display: flex;
+    justify-content: center;
+}
+mat-icon{
+    display: flex;
+    align-items: center;
+    font-size: 100px;
+    height: 100px;
+    width: 100px;
+}

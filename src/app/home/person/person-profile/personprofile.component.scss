@@ -1,0 +1,46 @@
+.header {
+    display: flex;
+    border-radius: 5px;
+    background: #343A40;
+    color: white;
+    flex-grow: 1;
+    height: 100%;
+    min-height: 100px;
+    padding-right: 10px;
+}
+.profile__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 14%;
+
+    width: 10%;
+
+}
+.icon {
+    transform: scale(4);
+}
+.body__content {
+    width: 94%;
+    margin-left: 3%;
+    
+    border-radius: 5px;
+    box-shadow: 0 0 2px #383c44;
+}
+.usuario__body {
+
+    border-radius: 0 0 14px 14px;
+}
+.profile_datospers{
+    height: 5%;
+}
+.profile__data{
+    margin-left: 10%;
+    width: 30%;
+}
+.profile__top{
+    margin-top: 10%;
+}
+.name__profile{
+    font-size: 20px;
+}

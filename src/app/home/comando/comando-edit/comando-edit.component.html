@@ -1,0 +1,92 @@
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">Editar Comando</h1>
+    </div>
+    <div class="body__content">
+        <mat-card class="card card--one">
+            <app-form-header [titulo]="'Datos del Comando'"></app-form-header>
+            <mat-card-content class="card__content">
+                <form id="loginform" [formGroup]="formGroup">
+                    <div class="content content--one">
+                        <div class="validations">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nombre:</label>
+                                <input formControlName="nombre" type="text" placeholder="Ejem. Personas"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                                <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validations">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Descripcion</label>
+                                <input formControlName="descripcion" type="text"
+                                    placeholder="Configuarion de Acceso menu" class="content__imput">
+                            </div>
+                            <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerida</span>
+                                <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener mas
+                                    de 3
+                                    caracteres</span>
+                                <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener mas
+                                    de
+                                    200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validations">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Link:</label>
+                                <input formControlName="link" type="text" class="content__imput">
+                            </div>
+                            <div *ngIf="linkControl.invalid && (linkControl.dirty || linkControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="linkControl.errors?.['required']">El Link es Requerido</span>
+                                <span *ngIf="linkControl.errors?.['minlength']">El Link debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="linkControl.errors?.['maxlength']">El Link no debe tener mas de
+                                    200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validations">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Estado</label>
+                                <select formControlName="estado" class="content__imput">
+                                    <option value="true">Activado</option>
+                                    <option value="false">Desactivado</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <form [formGroup]="menuFormGroup">
+                            <div class="validations">
+                                <div class="content__inputs">
+
+                                    <label for="" class="content__formlabel">Menu:</label>
+                                    <select formControlName="uuid" class="content__imput">
+                                        <option value="" disabled selected>Selecciona un Menu</option>
+                                        <option *ngFor="let manu of menus" [value]="manu.uuid">{{
+                                            manu.nombre }}
+                                        </option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </form>
+            </mat-card-content>
+            <app-form-footer [routerLink]='"/home/comandolist"' (saveClicked)="edit()"></app-form-footer>
+        </mat-card>
+
+    </div>
+</div>

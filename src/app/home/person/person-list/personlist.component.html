@@ -1,0 +1,74 @@
+<!-- <div class="body">
+  <div class="body__header">
+    <h1>Lista de Personas</h1>
+  </div>
+
+  <div class="body__content">
+
+    <mat-card>
+
+      <mat-card-content>
+        <div class="card__headerlist">
+          <div class="filter">
+            <input class="input__search" matInput (keyup)="Filterchange($event)" placeholder="Buscar..." />
+            <mat-icon>search</mat-icon>
+          </div>
+
+          <a routerLink="/home/personcreate" class="button button--create" data-cy="personacreate">
+            <span>Añadir Persona</span>
+          </a>
+      
+        </div>
+
+
+        <table mat-table [dataSource]="dataSource" class="table__list">
+
+
+          <ng-container matColumnDef="nombres">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let person"> {{person.nombres}} </td>
+          </ng-container>
+          <ng-container matColumnDef="primer_apellido">
+            <th mat-header-cell *matHeaderCellDef> Apellido Paterno </th>
+            <td mat-cell *matCellDef="let element"> {{element.primer_apellido}} </td>
+          </ng-container>
+          <ng-container matColumnDef="segundo_apellido">
+            <th mat-header-cell *matHeaderCellDef> Apellido Materno </th>
+            <td mat-cell *matCellDef="let element"> {{element.segundo_apellido}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="acciones">
+                <button routerLink="/home/personprofile/{{element.uuid}}" class="button button--simple" data-cy="personaver">
+                  Ver
+                </button>
+                <button (click)="deletePerson(element.uuid)" class="button button--delete">Borrar</button>
+              </div>
+
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-paginator [pageSizeOptions]="[5,7]" showFirstLastButtons></mat-paginator>
+      </mat-card-footer>
+    </mat-card>
+
+  </div>
+</div> -->
+<app-componente-listar 
+    [titulo]="'Lista de Personas'" 
+    [displayedColumns]="['nombres', 'primer_apellido', 'segundo_apellido', 'generos','estadosCiviles','action']"  
+    [adicionar]="'/home/personcreate'"
+    [editar]="'/home/personprofile'"
+    [dataSource]="dataSource"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+</app-componente-listar>

@@ -1,0 +1,200 @@
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">Editar Persona</h1>
+    </div>
+    <div class="body__content">
+        <mat-card class="card card--tri">
+            <app-form-header [titulo]="'Datos de la Persona'" ></app-form-header>
+            <mat-card-content class="card__content">
+                <form id="loginform" [formGroup]="formGroup">
+                    <div class="content content--tri">
+                        <div class="validation validation--tri">
+
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nombres:</label>
+                                <input formControlName="nombres" type="text" placeholder="Ejem. Juan Carlos"
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                            </div>
+                            <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                                <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Apellido Paterno:</label>
+                                <input formControlName="primer_apellido" type="text" placeholder="Ejem. Mamani"
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': papellidoControl.invalid && (papellidoControl.dirty || papellidoControl.touched), 'valid': papellidoControl.valid}">
+                            </div>
+                            <div *ngIf="papellidoControl.invalid && (papellidoControl.dirty || papellidoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="papellidoControl.errors?.['required']">El Apellido es Requerido</span>
+                                <span *ngIf="papellidoControl.errors?.['minlength']">El Apellido debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="papellidoControl.errors?.['maxlength']">El Apellido no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Apellido Materno:</label>
+                                <input formControlName="segundo_apellido" type="text" placeholder="Ejem. Apaza"
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': sapellidoControl.invalid && (sapellidoControl.dirty || sapellidoControl.touched), 'valid': sapellidoControl.valid}">
+                            </div>
+                            <div *ngIf="sapellidoControl.invalid && (sapellidoControl.dirty || sapellidoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="sapellidoControl.errors?.['required']">El Apellido es Requerido</span>
+                                <span *ngIf="sapellidoControl.errors?.['minlength']">El Apellido debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="sapellidoControl.errors?.['maxlength']">El Apellido no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content content--tri">
+
+                        <div class="validation validation--tri">
+                         
+                                <div class="content__inputs">
+                                    <label for="" class="content__formlabel">Estado Civil:</label>
+
+                                    <select formControlName="estadosCiviles" class="content__imput"
+                                        [ngClass]="{'invalid': estadoControl.invalid && (estadoControl.dirty || estadoControl.touched), 'valid': estadoControl.valid}">
+                                        <option value="" disabled selected>Selecciona Estado Civil</option>
+                                        <option aria-placeholder="Seleccione Estado Civil" *ngFor="let dato of estado"
+                                            [value]="dato.uuid">{{ dato.nombre }}
+                                        </option>
+                                
+                                    </select>
+                                </div>
+
+                           
+                            <div *ngIf="estadoControl.invalid && (estadoControl.dirty || estadoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="estadoControl.errors?.['required']">El estado civil es Requerido</span>
+
+                            </div>
+                        </div>
+
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Fecha de Nacimiento:</label>
+                                <input formControlName="fecha_nacimiento" type="date" placeholder="Ejem. 24/02/1996"
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': fnacimientoControl.invalid && (fnacimientoControl.dirty || fnacimientoControl.touched), 'valid': fnacimientoControl.valid}">
+                            </div>
+                            <div *ngIf="fnacimientoControl.invalid && (fnacimientoControl.dirty || fnacimientoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="fnacimientoControl.errors?.['required']">La Fecha de Nacimiento es
+                                    Requerido</span>
+                                <span *ngIf="fnacimientoControl.errors?.['minlength']">La Fecha de Nacimiento debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="fnacimientoControl.errors?.['maxlength']">La Fecha de Nacimiento no debe
+                                    tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Lugar de Nacimiento:</label>
+                                <input formControlName="lugar_nacimiento" type="text" placeholder="Ejem. La Paz"
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': lnacimientoControl.invalid && (lnacimientoControl.dirty || lnacimientoControl.touched), 'valid': lnacimientoControl.valid}">
+                            </div>
+                            <div *ngIf="lnacimientoControl.invalid && (lnacimientoControl.dirty || lnacimientoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="lnacimientoControl.errors?.['required']">El Lugar de Nacimiento es
+                                    Requerido</span>
+                                <span *ngIf="lnacimientoControl.errors?.['minlength']">El Lugar de Nacimiento debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="lnacimientoControl.errors?.['maxlength']">El Lugar de Nacimiento no debe
+                                    tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content content--tri">
+                        <div class="validation validation--tri">
+                           
+                                <div class="content__inputs">
+                                    <label for="" class="content__formlabel">Genero:</label>
+                                    <select formControlName="generos" class="content__imput"
+                                        [ngClass]="{'invalid': generoControl.invalid && (generoControl.dirty || generoControl.touched), 'valid': generoControl.valid}">
+                                        <option value="" disabled selected>Selecciona Genero</option>
+                                        <option *ngFor="let dato of generos" [value]="dato.uuid">{{ dato.nombre }}
+                                        </option>
+                                    </select>
+
+                                </div>
+                                <div *ngIf="generoControl.invalid && (generoControl.dirty || generoControl.touched)"
+                                    class="text-danger">
+                                    <span *ngIf="generoControl.errors?.['required']">El Genero es Requerido</span>
+                                </div>
+                           
+
+                        </div>
+
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                
+                                    <div class="content__inputs">
+                                        <label for="" class="content__formlabel">Ocupacion:</label>
+                                        <select formControlName="ocupaciones" class="content__imput"
+                                            [ngClass]="{'invalid': ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched), 'valid': ocupacionControl.valid}">
+                                            <option value="" disabled selected>Selecciona Ocupacion</option>
+                                            <option *ngFor="let dato of ocupacion" [value]="dato.uuid">{{ dato.nombre }}
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                    <div *ngIf="ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched)"
+                                        class="text-danger">
+                                        <span *ngIf="ocupacionControl.errors?.['required']">La ocupacion es
+                                            Requerido</span>
+                                    </div>
+                          
+                            </div>
+
+                        </div>
+                        <div class="validation validation--tri">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Celular:</label>
+                                <input formControlName="celular" type="text" placeholder="Ejem. 73563787"
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': celularControl.invalid && (celularControl.dirty || celularControl.touched), 'valid': celularControl.valid}">
+                            </div>
+                            <div *ngIf="celularControl.invalid && (celularControl.dirty || celularControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="celularControl.errors?.['required']">El Celular es
+                                    Requerido</span>
+                                <span *ngIf="celularControl.errors?.['minlength']">El Celular debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="celularControl.errors?.['maxlength']">El Celular no debe
+                                    tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        
+            <app-form-footer [routerLink]='"/home/personlist"' (saveClicked)="update()"></app-form-footer>
+        </mat-card>
+
+    </div>
+</div>

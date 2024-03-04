@@ -1,0 +1,66 @@
+<mat-sidenav-container>
+    <mat-sidenav-content>
+        <div class="contenedor">
+            <div class="login">
+                <div class="login__img">
+                    <img src="assets/gamb.png">
+                </div>
+                <div class="login__titulo">
+                    Sistema de Compras Giros y Remesas
+                </div>
+                <form id="loginform" [formGroup]="formGroup">
+                    <div class="content">
+                        <div class="imputs"
+                            [ngClass]="{'invalid': userControl.invalid && (userControl.dirty || userControl.touched), 'valid': userControl.valid}">
+                            <input formControlName="usuario" type="text" autocomplete="off" name="usuario"
+                                placeholder="Usuario" noNewLine class="login__input">
+                            <mat-icon>person</mat-icon>
+
+                        </div>
+                        <div *ngIf="userControl.invalid && (userControl.dirty || userControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="userControl.errors?.['required']">El usuario es Requerido</span>
+                            <span *ngIf="userControl.errors?.['minlength']">El usuario debe tener mas de 3
+                                caracteres</span>
+                            <span *ngIf="userControl.errors?.['maxlength']">El usuario debe tener menos de 30
+                                caracteres</span>
+                        </div>
+
+                    </div>
+                    <div class="content">
+                        <div class="imputs"
+                            [ngClass]="{'invalid': passwordControl.invalid && (passwordControl.dirty || passwordControl.touched), 'valid': passwordControl.valid}">
+                            <input formControlName="password" type="password" autocomplete="off"
+                                placeholder="Contraseña" name="password" class="login__input">
+                            <mat-icon>lock</mat-icon>
+                        </div>
+                        <div *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="passwordControl.errors?.['required']">La Contraseña es Requerido</span>
+                            <span *ngIf="passwordControl.errors?.['minlength']">La Contraseña debe tener mas de 3
+                                caracteres</span>
+                            <span *ngIf="passwordControl.errors?.['maxlength']">La Contraseña debe tener menos de 30
+                                caracteres</span>
+                        </div>
+                    </div>
+                    <div class="auth">
+                        Autenticacion Facial
+                        <webcam [height]="180" [allowCameraSwitch]="false" [trigger]="$trigger"
+                            (imageCapture)="snapshot($event)"></webcam>
+                    </div>
+                    <div class="robot"
+                        [ngClass]="{'invalid': recaptchaControl.invalid && (recaptchaControl.dirty || recaptchaControl.touched), 'valid': recaptchaControl.valid}">
+                        <ngx-recaptcha2 #captchaElem [siteKey]="sitekey" formControlName="recaptcha"
+                            required></ngx-recaptcha2>
+                    </div>
+                    <div *ngIf="recaptchaControl.invalid && (recaptchaControl.dirty || recaptchaControl.touched)"
+                        class="text-danger">
+                        <span *ngIf="recaptchaControl.errors?.['required']">Captcha Requerido</span>
+                    </div>
+
+                    <button type="submit" title="Ingresar" (click)="login()" name="Ingresar">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

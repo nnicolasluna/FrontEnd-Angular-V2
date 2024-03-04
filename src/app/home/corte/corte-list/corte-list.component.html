@@ -1,0 +1,9 @@
+<app-componente-listar 
+    [titulo]="'Lista de Cortes'" 
+    [displayedColumns]="['valor', 'orden', 'estado', 'monedas','tipoCortes','action']"  
+    [adicionar]="'/home/corte-create'"
+    [editar]="'/home/corte-edit'"
+    [dataSource]="dataSource"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+</app-componente-listar>

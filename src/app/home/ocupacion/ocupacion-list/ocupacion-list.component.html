@@ -1,0 +1,9 @@
+<app-componente-listar 
+    [titulo]="'Lista de Ocupaciones'" 
+    [displayedColumns]="['nombre', 'descripcion', 'estado','action']"  
+    [adicionar]="'/home/ocupacion-create'"
+    [editar]="'/home/ocupacion-edit'"
+    [dataSource]="dataSource"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+</app-componente-listar>

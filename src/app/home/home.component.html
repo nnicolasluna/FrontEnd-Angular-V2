@@ -1,0 +1,76 @@
+<div class="dash">
+  <div class="left" [ngClass]="{ 'sidebar-collapsed': isCollapsed }" *ngIf="sidebarVisible">
+    <mat-drawer-container class="example-container">
+      <mat-drawer-content>
+        <div class="logo">
+          <img src="assets/gamb.png" class="img" routerLink="home">
+        </div>
+        <div class="title">
+          <div class="gambarte"><a class="gambarte__title" routerLink="/home"><span>GAMBARTE</span></a></div>
+        </div>
+
+        <div class="items">
+         
+          <div class="items">
+            <ng-container *ngFor="let seccion of secciones">
+              <button (click)="toggleMarcado(seccion)" class="button_nav" [class.marcado]="seccion.marcado">
+                <span><mat-icon>{{ seccion.icono}}</mat-icon></span>
+                <span>{{ seccion.nombre}}</span>
+              </button>
+              <div *ngIf="seccion.marcado">
+                <button *ngFor="let button of seccion.botones" routerLink="{{ button.link }}" class="button_nav button_nav--son">
+                  <span><mat-icon>{{ button.icon }}</mat-icon></span>
+                  <span>{{ button.name }}</span>
+                </button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div>
+  <div class="right">
+    <div class="top">
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <div class="icontop">
+            <button (click)="toggleSidebar()" class="button--sin-estilos">
+              <mat-icon>menu</mat-icon>
+            </button>
+
+          </div>
+          <div class="left-toolbar">
+            <div class="user">
+              <div class="name">
+               <!-- {{userData.nombres}} {{userData.primer_apellido}} {{userData.segundo_apellido}} -->
+              </div>
+              <div class="cargo">
+                   <b>Cargo: </b> <!-- {{rolData}} -->
+              </div>
+            </div>
+
+
+            <button mat-button [matMenuTriggerFor]="menu"
+              class="button--sin-estilos"><mat-icon>expand_more</mat-icon></button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="logout()" >Cerrar Sesion</button>
+
+            </mat-menu>
+          </div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+    <div class="bot">
+      <mat-drawer-container class="example-container">
+        <mat-drawer-content class="principal">
+          <div class="bodyprincipal">
+
+
+            <router-outlet></router-outlet>
+
+          </div>
+        </mat-drawer-content>
+      </mat-drawer-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">Editar de Rol</h1>
+    </div>
+    <div class="body__content">
+        <form id="loginform" [formGroup]="formGroup">
+            <mat-card class="card card--one">
+                <app-form-header [titulo]="'Datos de Rol'" ></app-form-header>
+                <mat-card-content class="card__content">
+                    <div class="content content--one">
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nombre de Rol:</label>
+                                <input type="text" formControlName="nombre" placeholder="Ejem. Cajero"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                                <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Descripcion:</label>
+                                <input type="text" formControlName="descripcion" class="content__imput"
+                                    placeholder="Ejem. Este Rol es Asignado a Cajero" cols="3" rows="3">
+                            </div>
+                            <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerida</span>
+                                <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener mas
+                                    de 3
+                                    caracteres</span>
+                                <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener mas
+                                    de
+                                    100
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nivel:</label>
+                                <input type="text" formControlName="nivel" class="content__imput"
+                                    placeholder="Ejem. nivel 1" appNoLeadingTrailingWhitespace>
+                            </div>
+                            <div *ngIf="nivelControl.invalid && (nivelControl.dirty || nivelControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="nivelControl.errors?.['required']">La nivel es Requerida</span>
+                                <span *ngIf="nivelControl.errors?.['minlength']">La nivel debe contener mas
+                                    de 3
+                                    caracteres</span>
+                                <span *ngIf="nivelControl.errors?.['maxlength']">La nivel no debe tener mas
+                                    de
+                                    100
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Estado:</label>
+                                <select formControlName="estado" class="content__imput">
+                                    <option value="true">Activado</option>
+                                    <option value="false">Desactivado</option>
+                                </select>
+                            </div>
+                            <div *ngIf="estadoControl.invalid && (estadoControl.dirty || estadoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="estadoControl.errors?.['required']">El Estado es Requerido</span>
+
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+
+                                <label for="" class="content__formlabel">SubSistemas:</label>
+                                <button class="button button--form" type="button" (click)="addLesson()">Añadir SubSistemas</button>
+                            </div>
+
+                        </div>
+                        <div class="validation--one">
+                            <form class="roles__formulario" [formGroup]="fg">
+                                <div class="roles__table-container">
+                                    <table mat-table class="roles__table" [dataSource]="dataSourcePacks">
+                                        <ng-container formArrayName="promos">
+                                            <ng-container class="rolesA" matColumnDef="rol" sticky>
+                                                <th mat-header-cell *matHeaderCellDef></th>
+                                                <td mat-cell *matCellDef="let element;" [formGroup]="element">
+                                                    <select class="imput__rol"  formControlName="uuid" >
+                                                        <option value="" disabled selected>Selecciona Subsistema
+                                                        </option>
+                                                        <option aria-placeholder="Selecciones Tipo de Documento"
+                                                            *ngFor="let dato of roles" [value]="dato.uuid">{{
+                                                            dato.nombre }}
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                            </ng-container>
+                                            <ng-container class="rolesB" matColumnDef="eliminar">
+                                                <th mat-header-cell *matHeaderCellDef></th>
+                                                <td mat-cell *matCellDef="let element; index as i"
+                                                    [formGroup]="element">
+                                                    <button class="button button--delete" type="button" (click)="deleteLesson(i)">
+                                                        Quitar
+                                                    </button>
+                                                </td>
+                                            </ng-container>
+                                            <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
+                                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                        </ng-container>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                </mat-card-content>
+                <mat-card-footer class="card__footer">
+                    <a routerLink="/home/rolelist" class="button button--simple">
+                        <span>Cancelar</span>
+                    </a>
+                    <button class="button button--create" (click)="create()" data-cy="guardarroleditado">Guardar</button>
+
+
+
+                </mat-card-footer>
+            </mat-card>
+        </form>
+    </div>
+</div>

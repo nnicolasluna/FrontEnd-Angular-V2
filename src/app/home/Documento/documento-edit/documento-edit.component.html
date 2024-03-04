@@ -1,0 +1,89 @@
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">Editar Documento</h1>
+    </div>
+    <div class="body__content">
+        <mat-card class="card card--one">
+            <app-form-header [titulo]="'Datos del Documento'" ></app-form-header>
+            <mat-card-content class="card__content">
+                <form id="loginform" [formGroup]="formGroup">
+                    <div class="content content--one">
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Numero:</label>
+                                <input formControlName="numero" type="text" placeholder="Ejem. 6830018"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="numeroControl.invalid && (numeroControl.dirty || numeroControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="numeroControl.errors?.['required']">El Nombre es Requerido</span>
+                                <span *ngIf="numeroControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="numeroControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Lugar</label>
+                                <input formControlName="lugar_emision" type="text" placeholder="Ejem LP"
+                                    class="content__imput">
+                            </div>
+                            <div *ngIf="lugarControl.invalid && (lugarControl.dirty || lugarControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="lugarControl.errors?.['required']">La Descripcion es Requerida</span>
+                                <span *ngIf="lugarControl.errors?.['minlength']">La Descripcion debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="lugarControl.errors?.['maxlength']">La Descripcion no debe tener mas de
+                                    200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <form [formGroup]="tipodocFormGroup">
+                            <div class="validation">
+                                <div class="content__inputs">
+
+                                    <label for="" class="content__formlabel">Tipo de Documento:</label>
+                                    <select formControlName="uuid" class="content__imput">
+                                        <option value="" disabled selected>Selecciona Tipo de Documento</option>
+                                        <option aria-placeholder="Selecciones Tipo de Documento"
+                                            *ngFor="let dato of datos" [value]="dato.uuid">{{ dato.nombre }}
+                                        </option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+                            <div class="validation">
+                                <div class="content__inputs">
+                                    <label for="" class="content__formlabel">Estado</label>
+                                    <select formControlName="estado" class="content__imput">
+                                        <option value="true">Activado</option>
+                                        <option value="false">Desactivado</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+
+
+
+                </form>
+            </mat-card-content>
+            <mat-card-footer class="card__footer">
+
+
+                <a class="button button--simple" routerLink="/home/personlist">Cancelar</a>
+
+
+
+                <button type="submit" class="button button--create" (click)="create()">Guardar</button>
+
+
+
+            </mat-card-footer>
+        </mat-card>
+
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">Editar Estado Civil</h1>
+    </div>
+    <div class="body__content">
+        <mat-card class="card card--one">
+            <app-form-header [titulo]="'Datos del Estado Civil'" ></app-form-header>
+            <mat-card-content class="card__content">
+                <form id="loginform" [formGroup]="formGroup">
+                    <div class="content content--one">
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Nombre:</label>
+                                <input formControlName="nombre" type="text" placeholder="Ejem. Masculino"
+                                    class="content__imput"
+                                    [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                            </div>
+                            <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                                <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="validation">
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Abreviatura</label>
+                                <input formControlName="abreviatura" type="text" placeholder="M" class="content__imput"
+                                    [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
+                            </div>
+                            <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="abreviaturaControl.errors?.['required']">La Abreviatura es Requerida</span>
+                                <span *ngIf="abreviaturaControl.errors?.['maxlength']">La Abreviatura no debe tener mas
+                                    de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+            <app-form-footer [routerLink]='"/home/estado-civil-list"' (saveClicked)="update()"></app-form-footer>
+        </mat-card>
+
+    </div>
+</div>
