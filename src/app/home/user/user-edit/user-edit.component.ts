@@ -56,7 +56,8 @@ export class UserEditComponent {
     private _fb: FormBuilder,
     private cd: ChangeDetectorRef,
     private rolservice: RoleService,
-    private apiService: ApiService<user>,) { }
+    private apiService: ApiService<user>,
+    ) { }
 
   edit() {
     if (this.formGroup.valid) {

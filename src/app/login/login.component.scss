@@ -9,6 +9,101 @@
     background-color: #333b43;
 }
 
+.formulario {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 25px;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 300px;
+
+    &__logo {
+        margin-top: -80px;
+    }
+
+    &__titulo {
+        font-weight: bold;
+        font-size: 120%;
+        color: black;
+        margin-bottom: 10px;
+        padding-bottom: 16px;
+        width: 180px;
+        margin: 0 auto;
+    }
+    &__inputs{
+        margin-bottom: 5px;
+    }
+    &__text {
+        font-weight: bold;
+        font-size: 100%;
+        color: #ff6a00;
+        text-align: center;
+    }
+
+    &__button {
+        font-family: 'Overpass', sans-serif;
+        font-size: 90%;
+        color: white;
+        width: 100%;
+        height: 40px;
+        border: none;
+        border-radius: 5px 5px 5px 5px;
+        padding-bottom: 0%;
+        background-color: #ff6a00;
+
+        margin-top: 10px;
+    }
+
+    &__button:hover {
+        background-color: black;
+    }
+
+}
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    height: 90%;
+
+    border-radius: 4px;
+    box-shadow: 0 0 3px #383c44;
+
+    &__input {
+        height: 100%;
+        border: none;
+        flex: 1;
+        padding: 5px;
+
+    }
+
+    &__icon {
+        display: flex;
+        flex: 0 0 auto;
+        justify-content: center;
+        border: 1px solid #ccc;
+        height: 100%;
+        background-color: #cfd1d2;
+        padding: 5px;
+        border-radius: 0 4px 4px 0;
+    }
+}
+
+.in{
+    
+    &__input{
+        background-color: red;
+        height: 20px;
+        outline: none;
+    }
+}
+/* 
 .login {
     padding: 10px 25px;
     background-color: white;
@@ -85,7 +180,6 @@
     display: block;
     width: 100%;
     height: 100%;
-    /* margin-bottom: 20px; */
     padding: 5px 5px 5px 10px;
     border: #383c44;
     box-sizing: border-box;
@@ -116,7 +210,7 @@
     background-color: black;
     color: white;
 }
-
+ */
 
 .text-danger {
     color: red;

@@ -28,7 +28,7 @@ export class UserlistComponent {
     this.getUsers();
   }
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  displayedColumns: string[] = ['usuario', 'CorreoCorporativo', 'estado', 'acciones'];
+  displayedColumns: string[] = ['usuario','nombre','primer_apellido','segundo_apellido', 'estado', 'acciones'];
 
   getUsers() {
     /*     this.userService.getRoles().subscribe(
@@ -50,9 +50,10 @@ export class UserlistComponent {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
+          this.roles = data;
           this.dataSource = new MatTableDataSource<userDTO>(this.roles);
           this.dataSource.paginator = this.paginatior;
-          this.roles = data
+          console.log(data)
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
