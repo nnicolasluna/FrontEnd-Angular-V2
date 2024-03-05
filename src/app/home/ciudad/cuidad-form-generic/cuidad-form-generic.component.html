@@ -62,7 +62,7 @@
                 </button>
                 <button type="submit" class="button button--create" (click)="ejecutarCreate()" data-cy="guardar">Guardar</button>
             </mat-card-footer> -->
-            <app-form-footer [routerLink]='regreso' (saveClicked)="ejecutarCreate()"></app-form-footer>
+            <app-form-footer [regreso]='regreso' (saveClicked)="ejecutarCreate()"></app-form-footer>
         </mat-card>
 
     </div>

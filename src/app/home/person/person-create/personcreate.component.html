@@ -197,7 +197,7 @@
                 <button class="button button--simple" routerLink="/home/personlist"> Cancelar</button>
                 <button class="button button--create" (click)="create()" data-cy="crearpersona">Guardar</button>
             </mat-card-footer> -->
-            <app-form-footer [routerLink]='"/home/personlist"' (saveClicked)="create()"></app-form-footer>
+            <app-form-footer [regreso]='"/home/personlist"' (saveClicked)="create()"></app-form-footer>
         </mat-card>
 
     </div>

@@ -121,7 +121,7 @@
 
 
                 </mat-card-content>
-                <mat-card-footer class="card__footer">
+             <!--    <mat-card-footer class="card__footer">
                     <a routerLink="/home/rolelist" class="button button--simple">
                         <span>Cancelar</span>
                     </a>
@@ -129,7 +129,8 @@
 
 
 
-                </mat-card-footer>
+                </mat-card-footer> -->
+                <app-form-footer [regreso]='"/home/rolelist"'  (saveClicked)="create()"></app-form-footer>
             </mat-card>
         </form>
     </div>

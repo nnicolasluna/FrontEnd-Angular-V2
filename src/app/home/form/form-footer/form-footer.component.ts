@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class FormFooterComponent {
 
   @Output() saveClicked = new EventEmitter<void>();
-  @Input() routerLink!: string;
+  @Input() regreso!: string;
 
   save() {
     this.saveClicked.emit();

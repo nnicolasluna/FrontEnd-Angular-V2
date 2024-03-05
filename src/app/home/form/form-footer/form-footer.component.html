@@ -1,5 +1,6 @@
-<div class="form-footer">
-    <button [routerLink]="routerLink" class="button button--simple">Cancelar</button>
-    <button class="button button--create" (click)="save()" data-cy="crearrol">Guardar</button>
-
-</div>
+<form (ngSubmit)="save()">
+    <div class="form-footer">
+        <button routerLink="{{ regreso }}" class="button button--simple">Cancelar</button>
+        <button type="button" class="button button--create" (click)="save()">Guardar</button>
+    </div>
+</form>

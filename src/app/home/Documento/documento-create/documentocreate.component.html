@@ -29,7 +29,7 @@
                                 <div class="content__inputs">
 
                                     <label for="" class="content__formlabel">Tipo de Documento:</label>
-                                    <select formControlName="uuid" class="content__imput">
+                                    <select formControlName="uuid" class="content__imput"  (change)="onSelectChange($event)">
                                         <option value="" disabled selected>Selecciona Tipo de Documento</option>
                                         <option aria-placeholder="Selecciones Tipo de Documento"
                                             *ngFor="let dato of datos" [value]="dato.uuid">{{ dato.nombre }}
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="validation">
+                        <div class="validation" *ngIf="tipodocFormGroup.get('uuid')?.value === '01c81fee-fe63-4751-9a10-0949929a0e9b'">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Lugar de Emision</label>
                                 <input formControlName="lugar_emision" type="text" placeholder="Ejem La Paz (Opcional)"
@@ -54,7 +54,7 @@
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation">
+                  <!--       <div class="validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Estado</label>
                                 <select formControlName="estado" class="content__imput">
@@ -62,7 +62,7 @@
                                     <option value="false">Desactivado</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </form>
             </mat-card-content>
@@ -70,7 +70,7 @@
                 <button class="button button--simple" routerLink="/home/personprofile/{{uuid}}">Cancelar</button>
                 <button type="submit" class="button button--create" (click)="create()">Guardar</button>
             </mat-card-footer> -->
-            <app-form-footer [routerLink]='"/home/personprofile/"+uuid' (saveClicked)="create()"></app-form-footer>
+            <app-form-footer [regreso]="'/home/personprofile/'+uuid"  (saveClicked)="create()"></app-form-footer>
         </mat-card>
     </div>
 </div>
