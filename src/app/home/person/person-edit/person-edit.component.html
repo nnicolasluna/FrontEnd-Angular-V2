@@ -8,7 +8,7 @@
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
                     <div class="content content--tri">
-                        <div class="validation validation--tri">
+                        <div class="content__validation">
 
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Nombres:</label>
@@ -25,7 +25,7 @@
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation validation--tri">
+                        <div class="content__validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Apellido Paterno:</label>
                                 <input formControlName="primer_apellido" type="text" placeholder="Ejem. Mamani"
@@ -42,7 +42,7 @@
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation validation--tri">
+                        <div class="content__validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Apellido Materno:</label>
                                 <input formControlName="segundo_apellido" type="text" placeholder="Ejem. Apaza"
@@ -62,22 +62,21 @@
                     </div>
                     <div class="content content--tri">
 
-                        <div class="validation validation--tri">
-                         
-                                <div class="content__inputs">
-                                    <label for="" class="content__formlabel">Estado Civil:</label>
+                        <div class="content__validation">
 
-                                    <select formControlName="estadosCiviles" class="content__imput"
-                                        [ngClass]="{'invalid': estadoControl.invalid && (estadoControl.dirty || estadoControl.touched), 'valid': estadoControl.valid}">
-                                        <option value="" disabled selected>Selecciona Estado Civil</option>
-                                        <option aria-placeholder="Seleccione Estado Civil" *ngFor="let dato of estado"
-                                            [value]="dato.uuid">{{ dato.nombre }}
-                                        </option>
-                                
-                                    </select>
-                                </div>
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Estado Civil:</label>
 
-                           
+                                <select formControlName="estadosCiviles" class="content__imput"
+                                    [ngClass]="{'invalid': estadoControl.invalid && (estadoControl.dirty || estadoControl.touched), 'valid': estadoControl.valid}">
+                                    <option value="" disabled selected>Selecciona Estado Civil</option>
+                                    <option aria-placeholder="Seleccione Estado Civil" *ngFor="let dato of estado"
+                                        [value]="dato.uuid">{{ dato.nombre }}
+                                    </option>
+                                </select>
+                            </div>
+
+
                             <div *ngIf="estadoControl.invalid && (estadoControl.dirty || estadoControl.touched)"
                                 class="text-danger">
                                 <span *ngIf="estadoControl.errors?.['required']">El estado civil es Requerido</span>
@@ -85,7 +84,7 @@
                             </div>
                         </div>
 
-                        <div class="validation validation--tri">
+                        <div class="content__validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Fecha de Nacimiento:</label>
                                 <input formControlName="fecha_nacimiento" type="date" placeholder="Ejem. 24/02/1996"
@@ -105,7 +104,7 @@
                                     caracteres</span>
                             </div>
                         </div>
-                        <div class="validation validation--tri">
+                        <div class="content__validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Lugar de Nacimiento:</label>
                                 <input formControlName="lugar_nacimiento" type="text" placeholder="Ejem. La Paz"
@@ -127,49 +126,50 @@
                         </div>
                     </div>
                     <div class="content content--tri">
-                        <div class="validation validation--tri">
-                           
+                        <div class="content__validation">
+
+                            <div class="content__inputs">
+                                <label for="" class="content__formlabel">Genero:</label>
+                                <select formControlName="generos" class="content__imput"
+                                    [ngClass]="{'invalid': generoControl.invalid && (generoControl.dirty || generoControl.touched), 'valid': generoControl.valid}">
+                                    <option value="" disabled selected>Selecciona Genero</option>
+                                    <option *ngFor="let dato of generos" [value]="dato.uuid">{{ dato.nombre }}
+                                    </option>
+                                </select>
+
+                            </div>
+                            <div *ngIf="generoControl.invalid && (generoControl.dirty || generoControl.touched)"
+                                class="text-danger">
+                                <span *ngIf="generoControl.errors?.['required']">El Genero es Requerido</span>
+                            </div>
+
+
+                        </div>
+
+                        <div class="content__validation">
+                            <div class="content__inputs">
+
                                 <div class="content__inputs">
-                                    <label for="" class="content__formlabel">Genero:</label>
-                                    <select formControlName="generos" class="content__imput"
-                                        [ngClass]="{'invalid': generoControl.invalid && (generoControl.dirty || generoControl.touched), 'valid': generoControl.valid}">
-                                        <option value="" disabled selected>Selecciona Genero</option>
-                                        <option *ngFor="let dato of generos" [value]="dato.uuid">{{ dato.nombre }}
+                                    <label for="" class="content__formlabel">Ocupacion:</label>
+                                    <select formControlName="ocupaciones" class="content__imput"
+                                        [ngClass]="{'invalid': ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched), 'valid': ocupacionControl.valid}">
+                                        <option value="" disabled selected>Selecciona Ocupacion</option>
+                                        <option *ngFor="let dato of ocupacion" [value]="dato.uuid">{{ dato.nombre }}
                                         </option>
                                     </select>
 
                                 </div>
-                                <div *ngIf="generoControl.invalid && (generoControl.dirty || generoControl.touched)"
+                                <div *ngIf="ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched)"
                                     class="text-danger">
-                                    <span *ngIf="generoControl.errors?.['required']">El Genero es Requerido</span>
+                                    <span *ngIf="ocupacionControl.errors?.['required']">La ocupacion es
+                                        Requerido</span>
                                 </div>
-                           
 
-                        </div>
 
-                        <div class="validation validation--tri">
-                            <div class="content__inputs">
-                                
-                                    <div class="content__inputs">
-                                        <label for="" class="content__formlabel">Ocupacion:</label>
-                                        <select formControlName="ocupaciones" class="content__imput"
-                                            [ngClass]="{'invalid': ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched), 'valid': ocupacionControl.valid}">
-                                            <option value="" disabled selected>Selecciona Ocupacion</option>
-                                            <option *ngFor="let dato of ocupacion" [value]="dato.uuid">{{ dato.nombre }}
-                                            </option>
-                                        </select>
-
-                                    </div>
-                                    <div *ngIf="ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched)"
-                                        class="text-danger">
-                                        <span *ngIf="ocupacionControl.errors?.['required']">La ocupacion es
-                                            Requerido</span>
-                                    </div>
-                          
                             </div>
 
                         </div>
-                        <div class="validation validation--tri">
+                        <div class="content__validation">
                             <div class="content__inputs">
                                 <label for="" class="content__formlabel">Celular:</label>
                                 <input formControlName="celular" type="text" placeholder="Ejem. 73563787"

@@ -15,7 +15,7 @@ export class SubsiscreateComponent {
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     link: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     icono: new FormControl(''),
-    estado: new FormControl(false, [Validators.required]),
+    estado: new FormControl(true, [Validators.required]),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;

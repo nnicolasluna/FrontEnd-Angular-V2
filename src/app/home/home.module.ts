@@ -96,6 +96,7 @@ import { CuentaBancariaCreateComponent } from './cuenta-bancaria/cuenta-bancaria
 import { CuentaBancariaEditComponent } from './cuenta-bancaria/cuenta-bancaria-edit/cuenta-bancaria-edit.component';
 import { FormHeaderComponent } from './form/form-header/form-header.component';
 import { FormFooterComponent } from './form/form-footer/form-footer.component';
+import { FormBuscarComponent } from './form/form-buscar/form-buscar.component';
 
 
 
@@ -180,6 +181,7 @@ import { FormFooterComponent } from './form/form-footer/form-footer.component';
     CuentaBancariaEditComponent,
     FormHeaderComponent,
     FormFooterComponent,
+    FormBuscarComponent,
     
 
 

@@ -7,57 +7,55 @@
             <app-form-header [titulo]="editar"></app-form-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
-                    <div class="content content--one">
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Valor:</label>
-                                <input formControlName="valor" type="text" placeholder="Ejem. 100"
-                                    class="content__imput"
-                                    [ngClass]="{'invalid': valorControl.invalid && (valorControl.dirty || valorControl.touched), 'valid': valorControl.valid}">
-                            </div>
-                            <div *ngIf="valorControl.invalid && (valorControl.dirty || valorControl.touched)"
-                                class="text-danger">
-                                <span *ngIf="valorControl.errors?.['required']">Valor es Requerido</span>
-                                <span *ngIf="valorControl.errors?.['pattern']"> Valor debe ser numero</span>
-                            </div>
-                        </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Orden</label>
-                                <input formControlName="orden" type="text" placeholder="Ejem. 1"
-                                    class="content__imput"
-                                    [ngClass]="{'invalid': ordenControl.invalid && (ordenControl.dirty || ordenControl.touched), 'valid': ordenControl.valid}">
-                            </div>
-                            <div *ngIf="ordenControl.invalid && (ordenControl.dirty || ordenControl.touched)"
-                                class="text-danger">
-                                <span *ngIf="ordenControl.errors?.['required']">La orden es Requerida</span>
-                                <span *ngIf="ordenControl.errors?.['pattern']">Orden debe ser numero</span>
-                            </div>
-                        </div>
-                    
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Moneda:</label>
-                                <select formControlName="monedas" class="content__imput"
-                                    [ngClass]="{'invalid': monedasControl.invalid && (monedasControl.dirty || monedasControl.touched), 'valid': monedasControl.valid}">
-                                    <option value="" disabled selected>Selecciona Moneda</option>
-                                    <option *ngFor="let dato of monedas" [value]="dato.uuid">{{ dato.nombre }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Tipo de Corte:</label>
-                                <select formControlName="tipoCortes" class="content__imput"
-                                    [ngClass]="{'invalid': tipoCortesControl.invalid && (tipoCortesControl.dirty || tipoCortesControl.touched), 'valid': tipoCortesControl.valid}">
-                                    <option value="" disabled selected>Selecciona Corte</option>
-                                    <option *ngFor="let dato of tipoCortes" [value]="dato.uuid">{{ dato.nombre }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
+
+
+                    <div class="content__inputs">
+                        <label for="" class="content__formlabel">Valor:</label>
+                        <input formControlName="valor" type="text" placeholder="Ejem. 100" class="content__imput"
+                            [ngClass]="{'invalid': valorControl.invalid && (valorControl.dirty || valorControl.touched), 'valid': valorControl.valid}">
                     </div>
+                    <div *ngIf="valorControl.invalid && (valorControl.dirty || valorControl.touched)"
+                        class="text-danger">
+                        <span *ngIf="valorControl.errors?.['required']">Valor es Requerido</span>
+                        <span *ngIf="valorControl.errors?.['pattern']"> Valor debe ser numero</span>
+                    </div>
+
+
+                    <div class="content__inputs">
+                        <label for="" class="content__formlabel">Orden</label>
+                        <input formControlName="orden" type="text" placeholder="Ejem. 1" class="content__imput"
+                            [ngClass]="{'invalid': ordenControl.invalid && (ordenControl.dirty || ordenControl.touched), 'valid': ordenControl.valid}">
+                    </div>
+                    <div *ngIf="ordenControl.invalid && (ordenControl.dirty || ordenControl.touched)"
+                        class="text-danger">
+                        <span *ngIf="ordenControl.errors?.['required']">La orden es Requerida</span>
+                        <span *ngIf="ordenControl.errors?.['pattern']">Orden debe ser numero</span>
+                    </div>
+
+
+
+                    <div class="content__inputs">
+                        <label for="" class="content__formlabel">Moneda:</label>
+                        <select formControlName="monedas" class="content__imput"
+                            [ngClass]="{'invalid': monedasControl.invalid && (monedasControl.dirty || monedasControl.touched), 'valid': monedasControl.valid}">
+                            <option value="" disabled selected>Selecciona Moneda</option>
+                            <option *ngFor="let dato of monedas" [value]="dato.uuid">{{ dato.nombre }}
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="content__inputs">
+                        <label for="" class="content__formlabel">Tipo de Corte:</label>
+                        <select formControlName="tipoCortes" class="content__imput"
+                            [ngClass]="{'invalid': tipoCortesControl.invalid && (tipoCortesControl.dirty || tipoCortesControl.touched), 'valid': tipoCortesControl.valid}">
+                            <option value="" disabled selected>Selecciona Corte</option>
+                            <option *ngFor="let dato of tipoCortes" [value]="dato.uuid">{{ dato.nombre }}
+                            </option>
+                        </select>
+                    </div>
+
+
                 </form>
             </mat-card-content>
             <app-form-footer [regreso]="regreso" (saveClicked)="ejecutarCreate()"></app-form-footer>
