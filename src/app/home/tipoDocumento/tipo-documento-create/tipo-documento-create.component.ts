@@ -20,7 +20,7 @@ export class TipoDocumentoCreateComponent {
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
-    estado: new FormControl(false, [Validators.required]),
+    estado: new FormControl(true),
     /* paises: this.paisFormGroup */
   });
   get nombreControl() {

@@ -12,57 +12,61 @@
                         <input formControlName="nombre" type="text" placeholder="Ejem. 6 de Marzo"
                             class="content__imput"
                             [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                        <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="nombreControl.errors?.['required']">El nombre es Requerido</span>
+                            <span *ngIf="nombreControl.errors?.['minlength']">El nombre debe contener mas de 3
+                                caracteres</span>
+                            <span *ngIf="nombreControl.errors?.['maxlength']">El nombre no debe tener mas de 200
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="nombreControl.errors?.['required']">El nombre es Requerido</span>
-                        <span *ngIf="nombreControl.errors?.['minlength']">El nombre debe contener mas de 3
-                            caracteres</span>
-                        <span *ngIf="nombreControl.errors?.['maxlength']">El nombre no debe tener mas de 200
-                            caracteres</span>
-                    </div>
+
 
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Abreviatura</label>
                         <input formControlName="abreviatura" type="text" placeholder="Ejem. 6M" class="content__imput"
                             [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
+                        <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="abreviaturaControl.errors?.['required']">La abreviatura es Requerida</span>
+                            <span *ngIf="abreviaturaControl.errors?.['maxlength']">La abreviatura no debe tener mas
+                                de
+                                30
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="abreviaturaControl.errors?.['required']">La abreviatura es Requerida</span>
-                        <span *ngIf="abreviaturaControl.errors?.['maxlength']">La abreviatura no debe tener mas
-                            de
-                            30
-                            caracteres</span>
-                    </div>
+
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Direccion</label>
                         <input formControlName="direccion" type="text" placeholder="Ejem. calle 4 Avenida 6 de Marzo"
                             class="content__imput"
                             [ngClass]="{'invalid': direccionControl.invalid && (direccionControl.dirty || direccionControl.touched), 'valid': direccionControl.valid}">
+                        <div *ngIf="direccionControl.invalid && (direccionControl.dirty || direccionControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="direccionControl.errors?.['required']">La direccion es Requerida</span>
+                            <span *ngIf="direccionControl.errors?.['maxlength']">La direccion no debe tener mas
+                                de
+                                30
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="direccionControl.invalid && (direccionControl.dirty || direccionControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="direccionControl.errors?.['required']">La direccion es Requerida</span>
-                        <span *ngIf="direccionControl.errors?.['maxlength']">La direccion no debe tener mas
-                            de
-                            30
-                            caracteres</span>
-                    </div>
+
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Telefono</label>
                         <input formControlName="telefono" type="text" placeholder="Ejem. 789946546"
                             class="content__imput"
                             [ngClass]="{'invalid': telefonoControl.invalid && (telefonoControl.dirty || telefonoControl.touched), 'valid': telefonoControl.valid}">
+                        <div *ngIf="telefonoControl.invalid && (telefonoControl.dirty || telefonoControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="telefonoControl.errors?.['required']">La telefono es Requerida</span>
+                            <span *ngIf="telefonoControl.errors?.['maxlength']">La telefono no debe tener mas
+                                de
+                                30
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="telefonoControl.invalid && (telefonoControl.dirty || telefonoControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="telefonoControl.errors?.['required']">La telefono es Requerida</span>
-                        <span *ngIf="telefonoControl.errors?.['maxlength']">La telefono no debe tener mas
-                            de
-                            30
-                            caracteres</span>
-                    </div>
+
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Ciudad:</label>
                         <select formControlName="ciudades" class="content__imput"

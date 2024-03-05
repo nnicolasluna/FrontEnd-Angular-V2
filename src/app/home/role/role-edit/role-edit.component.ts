@@ -26,7 +26,7 @@ export class RoleEditComponent {
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
-    estado: new FormControl(false, [Validators.required]),
+    estado: new FormControl(),
     nivel: new FormControl('', [Validators.required]),
     subsistemas: this.subsistemasFormGroup,
   });

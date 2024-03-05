@@ -5,12 +5,15 @@ import { RoleService } from '../role-service/role.service';
 import { role } from '../role-model/role';
 import { MatTableDataSource } from '@angular/material/table'
 import { SubsistemaService } from '../../subsistema/subsistema-service/subsistema.service';
+import { ApiService } from '../../service/api-generico/api.service';
 @Component({
   selector: 'app-rolecreate',
   templateUrl: './rolecreate.component.html',
   styleUrls: ['./rolecreate.component.scss']
 })
 export class RolecreateComponent {
+  private url = 'roles'
+  private url1 = 'subsistemas'
   fg!: FormGroup
   dataSourcePacks!: MatTableDataSource<any>;
   displayedColumns = ["rol", "eliminar"]
@@ -24,7 +27,7 @@ export class RolecreateComponent {
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
-    estado: new FormControl(false, [Validators.required]),
+    estado: new FormControl(true),
     nivel: new FormControl('', [Validators.required]),
     subsistemas: this.subsistemasFormGroup,
   });
@@ -48,7 +51,8 @@ export class RolecreateComponent {
     private roleservice: RoleService,
     private forBuilder: FormBuilder,
     private subsistemaService: SubsistemaService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private apiService: ApiService<role>,
   ) { }
 
 
@@ -62,31 +66,42 @@ export class RolecreateComponent {
   };
   create() {
     if (this.formGroup.valid) {
-      this.formGroup.value.subsistemas=this.promos.value;
-      console.log(this.formGroup.value)
-      this.roleservice.create(this.formGroup.value as role).subscribe({
-
-        next: (userData: any) => {
-          if (userData) {
+      this.formGroup.value.subsistemas = this.promos.value;
+      /*  this.roleservice.create(this.formGroup.value as role).subscribe({
+         next: (userData: any) => {
+             this.router.navigateByUrl('/home/rolelist');
+             this.formGroup.reset();
+         
+         },
+       }); */
+      this.apiService.create(this.url, this.formGroup.value as role).subscribe(
+        {
+          next: () => {
             this.router.navigateByUrl('/home/rolelist');
             this.formGroup.reset();
-          }
-          else {
-            alert("Datos Incorrectos, Verifique sus datos");
-          }
-        },
-      });
+
+          },
+        }
+      )
     }
     else {
       this.formGroup.markAllAsTouched();
     }
   }
   getSubsistemas() {
-    this.subsistemaService.getSubsis().subscribe((data) => {
-      console.log(data);
+
+    /* this.subsistemaService.getSubsis().subscribe((data) => {
       this.roles = data;
 
-    });
+    }); */
+    this.apiService.getAll(this.url1).subscribe(
+      {
+        next: data => {
+
+          this.roles = data
+        }
+      }
+    )
   }
   get promos() {
     return this.fg.controls["promos"] as FormArray;

@@ -10,63 +10,72 @@
 
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Nombre de Usuario:</label>
-                        <input type="text" formControlName="usuario" placeholder="Ejem. cmamani" class="content__imput">
+                        <input type="text" formControlName="usuario" placeholder="Ejem. cmamani" class="content__imput"
+                        [ngClass]="{'invalid': usuarioControl.invalid && (usuarioControl.dirty || usuarioControl.touched), 'valid': usuarioControl.valid}">
+                        <div *ngIf="usuarioControl.invalid && (usuarioControl.dirty || usuarioControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="usuarioControl.errors?.['required']">El usuario es Requerido</span>
+                            <span *ngIf="usuarioControl.errors?.['minlength']">El usuario debe contener mas de 3
+                                caracteres</span>
+                            <span *ngIf="usuarioControl.errors?.['maxlength']">El usuario no debe tener mas de
+                                30
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="usuarioControl.invalid && (usuarioControl.dirty || usuarioControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="usuarioControl.errors?.['required']">El usuario es Requerido</span>
-                        <span *ngIf="usuarioControl.errors?.['minlength']">El usuario debe contener mas de 3
-                            caracteres</span>
-                        <span *ngIf="usuarioControl.errors?.['maxlength']">El usuario no debe tener mas de
-                            30
-                            caracteres</span>
-                    </div>
+
 
 
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Contraseña:</label>
                         <input type="password" formControlName="password" placeholder="*********"
-                            class="content__imput">
+                            class="content__imput"
+                            [ngClass]="{'invalid': contControl.invalid && (contControl.dirty || contControl.touched), 'valid': contControl.valid}">
+                        <div *ngIf="contControl.invalid && (contControl.dirty || contControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="contControl.errors?.['required']">La contraseña es Requerida</span>
+                            <span *ngIf="contControl.errors?.['minlength']">La contraseña debe contener mas de 3
+                                caracteres</span>
+                            <span *ngIf="contControl.errors?.['maxlength']">La contraseña no debe tener mas de
+                                30
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="contControl.invalid && (contControl.dirty || contControl.touched)" class="text-danger">
-                        <span *ngIf="contControl.errors?.['required']">La contraseña es Requerido</span>
-                        <span *ngIf="contControl.errors?.['minlength']">La contraseña debe contener mas de 3
-                            caracteres</span>
-                        <span *ngIf="contControl.errors?.['maxlength']">La contraseña no debe tener mas de
-                            30
-                            caracteres</span>
-                    </div>
+
 
 
 
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Correo institucional:</label>
                         <input type="text" formControlName="correoCorporativo" placeholder="cmamani@gambarte"
-                            class="content__imput">
-                    </div>
-                    <div *ngIf="correoCControl.invalid && (correoCControl.dirty || correoCControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="correoCControl.errors?.['required']">El correo es Requerido</span>
-                        <span *ngIf="correoCControl.errors?.['email']">El correo debe contar minimamente con un
-                            arroba</span>
+                            class="content__imput"
+                            [ngClass]="{'invalid': correoCControl.invalid && (correoCControl.dirty || correoCControl.touched), 'valid': correoCControl.valid}">
+                        <div *ngIf="correoCControl.invalid && (correoCControl.dirty || correoCControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="correoCControl.errors?.['required']">El correo es Requerido</span>
+                            <span *ngIf="correoCControl.errors?.['email']">El correo debe contar minimamente con un
+                                arroba</span>
 
+                        </div>
                     </div>
+
 
 
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Correo Personal:</label>
                         <input type="text" formControlName="correoPersonal" placeholder="mamani@example"
-                            class="content__imput">
-                    </div>
-                    <div *ngIf="correoPControl.invalid && (correoPControl.dirty || correoPControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="correoPControl.errors?.['required']">El correo es Requerido</span>
-                        <span *ngIf="correoPControl.errors?.['email']">El correo debe contar minimamente con un
-                            arroba</span>
+                            class="content__imput"
+                            [ngClass]="{'invalid': correoPControl.invalid && (correoPControl.dirty || correoPControl.touched), 'valid': correoPControl.valid}">
+                        <div *ngIf="correoPControl.invalid && (correoPControl.dirty || correoPControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="correoPControl.errors?.['required']">El correo es Requerido</span>
+                            <span *ngIf="correoPControl.errors?.['email']">El correo debe contar minimamente con un
+                                arroba</span>
 
+                        </div>
                     </div>
 
-                 
+
+
 
 
                     <div class="content__inputs">
@@ -117,14 +126,6 @@
                     </form>
 
                 </mat-card-content>
-
-                <!--      <mat-card-footer class="card__footer">
-
-                    <a class="button button--simple" routerLink="/home/personlist">Cancelar</a>
-                    <button class="button button--create" (click)="create()" data-cy="usuariocreate">Guardar</button>
-
-
-                </mat-card-footer> -->
                 <app-form-footer [regreso]='"/home/personlist"' (saveClicked)="create()"></app-form-footer>
             </mat-card>
         </form>

@@ -33,6 +33,7 @@ export class PersoncreateComponent {
     ocupaciones: new FormControl('', [Validators.required]),
     estadosCiviles: new FormControl('', [Validators.required]),
     celular: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(7)]),
+    estado: new FormControl(true),
   });
 
   get nombreControl() {

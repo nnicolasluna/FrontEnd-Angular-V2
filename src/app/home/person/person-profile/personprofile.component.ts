@@ -55,6 +55,7 @@ export class PersonprofileComponent {
   documentos() {
     this.uuid = this.route.snapshot.paramMap.get('id');
     this.personService.getDocuments(this.uuid).subscribe((data) => {
+      console.log(data)
       this.documents = data
       this.dataSource1 = new MatTableDataSource<any>(this.documents);
     })

@@ -24,7 +24,7 @@ export class MonedaCreateComponent {
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     pais: new FormControl('', [Validators.required]),
-
+    estado: new FormControl(true),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;

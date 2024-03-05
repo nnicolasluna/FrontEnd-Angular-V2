@@ -7,6 +7,7 @@ import { MenuService } from '../../menu/menu-service/menu.service';
 import { error } from 'cypress/types/jquery';
 import { ModalService } from '../../modal/service/modal.service';
 import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error-conexion/advertencia-error-conexion.component';
+import { ApiService } from '../../service/api-generico/api.service';
 
 @Component({
   selector: 'app-comando-edit',
@@ -14,6 +15,8 @@ import { AdvertenciaErrorConexionComponent } from '../../modal/advertencia-error
   styleUrls: ['./comando-edit.component.scss']
 })
 export class ComandoEditComponent {
+  url = 'menus'
+  url1 = 'comandos'
   menus: any[] = [];
   menuFormGroup = new FormGroup({
     uuid: new FormControl(''),
@@ -23,8 +26,8 @@ export class ComandoEditComponent {
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     link: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    estado: new FormControl(false, [Validators.required]),
-    menus: this.menuFormGroup
+    estado: new FormControl(),
+    menus: this.menuFormGroup,
   });
   matDialogRef: any;
   get nombreControl() {
@@ -44,7 +47,8 @@ export class ComandoEditComponent {
     private comandoservice: ComandoService,
     private route: ActivatedRoute,
     private menuService: MenuService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private apiService: ApiService<comando>,
   ) { }
   uuidx!: any;
   edit() {
@@ -53,34 +57,37 @@ export class ComandoEditComponent {
       this.uuidx = this.route.snapshot.paramMap.get('id');
       this.formGroup.value.uuid = this.uuidx;
       this.formGroup.value.menus = this.menuFormGroup.value;
-      this.comandoservice.edit(this.formGroup.value as comando, this.uuidx).subscribe({
-
-        next: (userData: any) => {
-          if (userData) {
+      this.apiService.update(this.url1, this.uuidx, this.formGroup.value as comando).subscribe(
+        {
+          next: (userData: any) => {
             this.router.navigateByUrl('/home/comandolist');
-
             this.formGroup.reset();
+          }, error: err => {
+            this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
+            this.matDialogRef.afterClosed().subscribe(() => {
+
+            });
           }
-          else {
-            alert("Datos Incorrectos, Verifique sus datos");
-          }
-        },
-        error: err => {
-          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
-          this.matDialogRef.afterClosed().subscribe(() => {
-            /* accion a determinar  */
-          });
         }
-      });
+      )
     }
     else {
       this.formGroup.markAllAsTouched();
     }
   }
   getMenus() {
-    this.menuService.getMenus().subscribe((data) => {
-      this.menus = data;
-    });
+    this.apiService.getAll(this.url).subscribe(
+      {
+        next: data => {
+
+          this.menus = data
+        },
+        error: () => {
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent)
+          this.matDialogRef.afterClosed().subscribe(() => { })
+        }
+      }
+    )
   }
   ngOnInit() {
     this.getMenus();
@@ -90,19 +97,21 @@ export class ComandoEditComponent {
   datos: any;
   getComando() {
     this.uuid = this.route.snapshot.paramMap.get('id');
-    this.comandoservice.getComand(this.uuid).subscribe(
+    this.apiService.getOne(this.url1, this.uuid).subscribe(
       {
+
         next: data => {
           this.datos = data;
           this.formGroup.patchValue(this.datos);
         },
-        error: err => {
+        error: () => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
           this.matDialogRef.afterClosed().subscribe(() => {
-            /* accion a determinar  */
+
           });
         }
+
       }
-    );
+    )
   }
 }

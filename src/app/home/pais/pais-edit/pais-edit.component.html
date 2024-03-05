@@ -11,17 +11,18 @@
 
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Nombre:</label>
-                        <input formControlName="nombre" type="text" placeholder="Ejem. Masculino" class="content__imput"
+                        <input formControlName="nombre" type="text" placeholder="Ejem. Bolivia" class="content__imput"
                             [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                        <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                            <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                caracteres</span>
+                            <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
-                        <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
-                            caracteres</span>
-                        <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
-                            caracteres</span>
-                    </div>
+
 
 
                     <div class="content__inputs">
@@ -29,7 +30,14 @@
                         <input formControlName="nacionalidad" type="text" class="content__imput"
                             placeholder="Ejem. Bolita"
                             [ngClass]="{'invalid': nacionalidadControl.invalid && (nacionalidadControl.dirty || nacionalidadControl.touched), 'valid': nacionalidadControl.valid}">
+
+                        <div *ngIf="nacionalidadControl.invalid && (nacionalidadControl.dirty || nacionalidadControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="nacionalidadControl.errors?.['required']">NacionalidadRequerido</span>
+                           
+                        </div>
                     </div>
+
 
 
                     <div class="content__inputs">
@@ -41,13 +49,7 @@
 
                 </form>
             </mat-card-content>
-            <!--             <mat-card-footer class="card__footer">
-                <button routerLink="/home/pais-list" class="button button--simple">
-                    Cancelar
-                </button>
-                <button type="submit" class="button button--create" (click)="update()"
-                    data-cy="editar">Guardar</button>
-            </mat-card-footer> -->
+     
             <app-form-footer [regreso]='"/home/pais-list"' (saveClicked)="update()"></app-form-footer>
         </mat-card>
 

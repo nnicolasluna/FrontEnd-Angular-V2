@@ -5,12 +5,15 @@ import { user } from '../user-model/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table'
 import { RoleService } from '../../role/role-service/role.service';
+import { ApiService } from '../../service/api-generico/api.service';
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent {
+  private url = 'usuarios'
+  private url1 = 'roles'
   fg!: FormGroup
   dataSourcePacks!: MatTableDataSource<any>;
   displayedColumns = ["rol", "eliminar"]
@@ -27,7 +30,7 @@ export class UserEditComponent {
     password: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     correoCorporativo: new FormControl('@gambarte.com', [Validators.required, Validators.email]),
     correoPersonal: new FormControl('@gmail.com', [Validators.required, Validators.email]),
-    estado: new FormControl(false, [Validators.required]),
+    estado: new FormControl(),
     personaUuid: new FormControl(''),
     foto: new FormControl(''),
     roles: this.rolesFormGroup
@@ -46,7 +49,14 @@ export class UserEditComponent {
     return this.formGroup.controls.correoPersonal;
   }
 
-  constructor(private router: Router, private userservice: UserService, private route: ActivatedRoute, private _fb: FormBuilder, private cd: ChangeDetectorRef, private rolservice: RoleService) { }
+  constructor(
+    private router: Router,
+    private userservice: UserService,
+    private route: ActivatedRoute,
+    private _fb: FormBuilder,
+    private cd: ChangeDetectorRef,
+    private rolservice: RoleService,
+    private apiService: ApiService<user>,) { }
 
   edit() {
     if (this.formGroup.valid) {
@@ -99,17 +109,34 @@ export class UserEditComponent {
 
   };
   getroles() {
-    this.rolservice.getRoles().subscribe((data) => {
-      this.roles = data;
+    this.apiService.getAll(this.url1).subscribe(
+      {
+        next: data => {
 
-    });
+          this.roles = data
+        }
+      }
+    )
   }
   uuidUser!: any;
   datosUsuario!: any;
 
   getUser() {
     this.uuidUser = this.route.snapshot.paramMap.get('id');
-    this.userservice.getRole(this.uuidUser).subscribe(
+    /*     this.userservice.getRole(this.uuidUser).subscribe(
+          {
+            next: (data) => {
+              this.datosUsuario = data
+              this.formGroup.patchValue(data);
+              this.fg.patchValue(this.datosUsuario.roles[1])
+              this.formGroup.value.personaUuid = this.datosUsuario.personaUuid
+            },
+            error: () => {
+              console.log('error al obtener datos del usuario')
+            }
+          }
+        ) */
+    this.apiService.getOne(this.url, this.uuidUser).subscribe(
       {
         next: (data) => {
           this.datosUsuario = data

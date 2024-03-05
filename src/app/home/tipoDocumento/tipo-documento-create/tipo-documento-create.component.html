@@ -10,35 +10,39 @@
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Nombre del Tipo de Documento:</label>
                         <input type="text" formControlName="nombre" placeholder="Ejem. Carnet de Identidad"
-                            class="content__imput">
+                            class="content__imput"
+                            [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                        <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                            <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                caracteres</span>
+                            <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de
+                                30
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
-                        <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
-                            caracteres</span>
-                        <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de
-                            30
-                            caracteres</span>
-                    </div>
+
 
 
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Descripcion:</label>
                         <input type="text" formControlName="descripcion" class="content__imput"
-                            placeholder="Ejem. Documento de identidad perteneciente a un pais" cols="3" rows="3">
+                            placeholder="Ejem. Documento de identidad perteneciente a un pais" cols="3" rows="3"
+                            [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
+                        <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerida</span>
+                            <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener mas
+                                de 3
+                                caracteres</span>
+                            <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener mas
+                                de
+                                50
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerida</span>
-                        <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener mas
-                            de 3
-                            caracteres</span>
-                        <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener mas
-                            de
-                            50
-                            caracteres</span>
-                    </div>
+
 
 
                     <form [formGroup]="paisFormGroup">

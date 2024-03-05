@@ -21,7 +21,7 @@ export class AgenciaEditComponent {
   editar = ''
   paises: any[] = [];
   tipoCorte: any[] = [];
-  datos!:  any;
+  datos!: any;
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -29,6 +29,7 @@ export class AgenciaEditComponent {
     direccion: new FormControl('', [Validators.required]),
     telefono: new FormControl('', [Validators.required]),
     ciudades: new FormControl(''),
+    estado: new FormControl(),
   });
 
   get nombreControl() {
@@ -80,10 +81,10 @@ export class AgenciaEditComponent {
           next: (data) => {
             this.router.navigateByUrl('/home/agencia-list');
             this.formGroup.reset();
-           
+
           },
           error: err => {
-       console.log(err)
+            console.log(err)
             this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
             this.matDialogRef.afterClosed().subscribe(() => {
               /* accion a determinar  */
@@ -110,14 +111,11 @@ export class AgenciaEditComponent {
     this.apiService.getOne(this.url, this.uuid).subscribe(
       {
         next: data => {
-          this.datos=data
-console.log(data)
-
+          this.datos = data
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
           this.matDialogRef.afterClosed().subscribe(
-            /* accion por determinar */
           );
           console.log('error al obtener datos de usuario')
         }

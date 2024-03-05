@@ -18,6 +18,7 @@ export class PaisCreateComponent {
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     nacionalidad: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     bandera: new FormControl(''),
+    estado: new FormControl(true),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;

@@ -13,15 +13,16 @@
                         <label for="" class="content__formlabel">Nombre:</label>
                         <input formControlName="nombre" type="text" placeholder="Ejem. Bolivia" class="content__imput"
                             [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                        <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                            <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                caracteres</span>
+                            <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
-                        <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
-                            caracteres</span>
-                        <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
-                            caracteres</span>
-                    </div>
+
 
 
                     <div class="content__inputs">
@@ -29,6 +30,12 @@
                         <input formControlName="nacionalidad" type="text" class="content__imput"
                             placeholder="Ejem. Bolita"
                             [ngClass]="{'invalid': nacionalidadControl.invalid && (nacionalidadControl.dirty || nacionalidadControl.touched), 'valid': nacionalidadControl.valid}">
+
+                        <div *ngIf="nacionalidadControl.invalid && (nacionalidadControl.dirty || nacionalidadControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="nacionalidadControl.errors?.['required']">NacionalidadRequerido</span>
+                           
+                        </div>
                     </div>
 
 

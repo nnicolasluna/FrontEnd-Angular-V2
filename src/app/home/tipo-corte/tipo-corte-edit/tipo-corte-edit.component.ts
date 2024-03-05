@@ -26,7 +26,7 @@ export class TipoCorteEditComponent {
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    
+    estado: new FormControl(),
 
   });
   get nombreControl() {

@@ -22,7 +22,7 @@ export class TipoCorteCreateComponent {
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-
+    estado: new FormControl(true),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;
@@ -45,6 +45,7 @@ export class TipoCorteCreateComponent {
       const formData = this.metodogenerico.getFormGroupData();
       this.apiService.create(this.url, formData).subscribe({
         next: () => {
+  
           this.router.navigateByUrl('/home/tipo-corte-list');
           this.formGroup.reset();
         },

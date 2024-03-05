@@ -23,7 +23,7 @@ export class CuidadCreateComponent {
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     pais: new FormControl('', [Validators.required]),
-
+    estado: new FormControl(true),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;

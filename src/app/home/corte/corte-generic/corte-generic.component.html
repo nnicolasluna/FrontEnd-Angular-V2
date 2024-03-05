@@ -13,24 +13,26 @@
                         <label for="" class="content__formlabel">Valor:</label>
                         <input formControlName="valor" type="text" placeholder="Ejem. 100" class="content__imput"
                             [ngClass]="{'invalid': valorControl.invalid && (valorControl.dirty || valorControl.touched), 'valid': valorControl.valid}">
+                        <div *ngIf="valorControl.invalid && (valorControl.dirty || valorControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="valorControl.errors?.['required']">Valor es Requerido</span>
+                            <span *ngIf="valorControl.errors?.['pattern']"> Valor debe ser numero</span>
+                        </div>
                     </div>
-                    <div *ngIf="valorControl.invalid && (valorControl.dirty || valorControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="valorControl.errors?.['required']">Valor es Requerido</span>
-                        <span *ngIf="valorControl.errors?.['pattern']"> Valor debe ser numero</span>
-                    </div>
+
 
 
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Orden</label>
                         <input formControlName="orden" type="text" placeholder="Ejem. 1" class="content__imput"
                             [ngClass]="{'invalid': ordenControl.invalid && (ordenControl.dirty || ordenControl.touched), 'valid': ordenControl.valid}">
+                        <div *ngIf="ordenControl.invalid && (ordenControl.dirty || ordenControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="ordenControl.errors?.['required']">La orden es Requerida</span>
+                            <span *ngIf="ordenControl.errors?.['pattern']">Orden debe ser numero</span>
+                        </div>
                     </div>
-                    <div *ngIf="ordenControl.invalid && (ordenControl.dirty || ordenControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="ordenControl.errors?.['required']">La orden es Requerida</span>
-                        <span *ngIf="ordenControl.errors?.['pattern']">Orden debe ser numero</span>
-                    </div>
+
 
 
 

@@ -26,6 +26,7 @@ export class AgenciaCreateComponent {
     direccion: new FormControl('', [Validators.required]),
     telefono: new FormControl('', [Validators.required]),
     ciudades: new FormControl('', [Validators.required]),
+    estado: new FormControl(true),
   });
 
   get nombreControl() {

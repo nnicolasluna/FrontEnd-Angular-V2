@@ -8,61 +8,51 @@
                 <app-form-header [titulo]="'Datos del Usuario'"></app-form-header>
                 <mat-card-content class="card__content">
 
-
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Nombre de Usuario:</label>
-                        <input type="text" formControlName="usuario" placeholder="Ejem. cmamani" class="content__imput">
+                        <input type="text" formControlName="usuario" placeholder="Ejem. cmamani" class="content__imput"
+                        [ngClass]="{'invalid': usuarioControl.invalid && (usuarioControl.dirty || usuarioControl.touched), 'valid': usuarioControl.valid}">
+                        <div *ngIf="usuarioControl.invalid && (usuarioControl.dirty || usuarioControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="usuarioControl.errors?.['required']">El usuario es Requerido</span>
+                            <span *ngIf="usuarioControl.errors?.['minlength']">El usuario debe contener mas de 3
+                                caracteres</span>
+                            <span *ngIf="usuarioControl.errors?.['maxlength']">El usuario no debe tener mas de
+                                30
+                                caracteres</span>
+                        </div>
                     </div>
-                    <div *ngIf="usuarioControl.invalid && (usuarioControl.dirty || usuarioControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="usuarioControl.errors?.['required']">El usuario es Requerido</span>
-                        <span *ngIf="usuarioControl.errors?.['minlength']">El usuario debe contener mas de 3
-                            caracteres</span>
-                        <span *ngIf="usuarioControl.errors?.['maxlength']">El usuario no debe tener mas de
-                            30
-                            caracteres</span>
-                    </div>
-
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Contraseña:</label>
-                        <input type="password" formControlName="password" placeholder="*********"
-                            class="content__imput">
-                    </div>
-                    <div *ngIf="contControl.invalid && (contControl.dirty || contControl.touched)" class="text-danger">
-                        <span *ngIf="contControl.errors?.['required']">La contraseña es Requerido</span>
-                        <span *ngIf="contControl.errors?.['minlength']">La contraseña debe contener mas de 3
-                            caracteres</span>
-                        <span *ngIf="contControl.errors?.['maxlength']">La contraseña no debe tener mas de
-                            30
-                            caracteres</span>
-                    </div>
-
-
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Correo institucional:</label>
-                        <input type="text" formControlName="correoCorporativo" placeholder="cmamaniarrobagambarte"
-                            class="content__imput">
-                    </div>
-                    <div *ngIf="correoCControl.invalid && (correoCControl.dirty || correoCControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="correoCControl.errors?.['required']">El correo es Requerido</span>
-                        <span *ngIf="correoCControl.errors?.['email']">El correo debe contar minimamente con un
-                            arroba</span>
+                        <input type="text" formControlName="correoCorporativo" placeholder="cmamani@gambarte"
+                            class="content__imput"
+                            [ngClass]="{'invalid': correoCControl.invalid && (correoCControl.dirty || correoCControl.touched), 'valid': correoCControl.valid}">
+                        <div *ngIf="correoCControl.invalid && (correoCControl.dirty || correoCControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="correoCControl.errors?.['required']">El correo es Requerido</span>
+                            <span *ngIf="correoCControl.errors?.['email']">El correo debe contar minimamente con un
+                                arroba</span>
 
+                        </div>
                     </div>
+
+
 
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Correo Personal:</label>
                         <input type="text" formControlName="correoPersonal" placeholder="mamani@example"
-                            class="content__imput">
-                    </div>
-                    <div *ngIf="correoPControl.invalid && (correoPControl.dirty || correoPControl.touched)"
-                        class="text-danger">
-                        <span *ngIf="correoPControl.errors?.['required']">El correo es Requerido</span>
-                        <span *ngIf="correoPControl.errors?.['email']">El correo debe contar minimamente con un
-                            arroba</span>
+                            class="content__imput"
+                            [ngClass]="{'invalid': correoPControl.invalid && (correoPControl.dirty || correoPControl.touched), 'valid': correoPControl.valid}">
+                        <div *ngIf="correoPControl.invalid && (correoPControl.dirty || correoPControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="correoPControl.errors?.['required']">El correo es Requerido</span>
+                            <span *ngIf="correoPControl.errors?.['email']">El correo debe contar minimamente con un
+                                arroba</span>
 
+                        </div>
                     </div>
+
+
 
 
 
@@ -72,13 +62,13 @@
                         <input class="content__imput_typeFile" type="file" (change)="onFileSelected($event)">
                     </div>
 
-
                     <div class="content__inputs">
 
                         <label for="" class="content__formlabel">Roles:</label>
                         <button class="button button--form" type="button" (click)="addLesson()">Añadir
-                            Role</button>
+                            Rol</button>
                     </div>
+
 
                     <form class="roles__formulario" [formGroup]="fg">
                         <div class="roles__table-container">
@@ -112,7 +102,6 @@
                             </table>
                         </div>
                     </form>
-
 
                 </mat-card-content>
 

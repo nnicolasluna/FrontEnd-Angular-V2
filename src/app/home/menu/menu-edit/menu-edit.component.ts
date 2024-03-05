@@ -21,7 +21,7 @@ export class MenuEditComponent {
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     link: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     icono: new FormControl(''),
-    estado: new FormControl(false, [Validators.required]),
+    estado: new FormControl(),
     subsistemas: this.subsistemaFormGroup
   });
   get nombreControl() {
@@ -31,9 +31,7 @@ export class MenuEditComponent {
   } get linkControl() {
     return this.formGroup.controls.link;
   }
-  get estadoControl() {
-    return this.formGroup.controls.estado;
-  }
+
   constructor(private router: Router, 
     private menuservice: MenuService, 
     private route: ActivatedRoute,

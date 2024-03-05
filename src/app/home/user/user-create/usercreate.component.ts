@@ -6,12 +6,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table'
 import { RoleService } from '../../role/role-service/role.service';
 import * as bcrypt from 'bcryptjs';
+import { ApiService } from '../../service/api-generico/api.service';
 @Component({
   selector: 'app-usercreate',
   templateUrl: './usercreate.component.html',
   styleUrls: ['./usercreate.component.scss']
 })
 export class UsercreateComponent {
+  private url = 'usuarios'
+  private url1 = 'roles'
   fg!: FormGroup
   dataSourcePacks!: MatTableDataSource<any>;
   displayedColumns = ["rol", "eliminar"]
@@ -26,7 +29,7 @@ export class UsercreateComponent {
     password: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     correoCorporativo: new FormControl('', [Validators.required, Validators.email]),
     correoPersonal: new FormControl('', [Validators.required, Validators.email]),
-    estado: new FormControl(false, [Validators.required]),
+    estado: new FormControl(true),
     personaUuid: new FormControl(''),
     foto: new FormControl(''),
     roles: this.rolesFormGroup
@@ -51,7 +54,9 @@ export class UsercreateComponent {
     private route: ActivatedRoute,
     private _fb: FormBuilder,
     private cd: ChangeDetectorRef,
-    private rolservice: RoleService) { }
+    private rolservice: RoleService,
+    private apiService: ApiService<user>,
+    ) { }
 
   private salt: string = '$2a$10$5pTYs/37QMz6j3ShLlSYEO';
   hashPassword(password: string, salt: string): string {
@@ -71,19 +76,22 @@ export class UsercreateComponent {
       this.formGroup.value.roles = this.promos.value;
       const id = this.formGroup.value.personaUuid;
 
-      this.userservice.create(this.formGroup.value as user).subscribe({
-
-        next: (userData: any) => {
-          if (userData) {
-
+      /*  this.userservice.create(this.formGroup.value as user).subscribe({
+ 
+         next: (userData: any) => {
+           this.router.navigate(['/home/personprofile/', id]);
+           this.formGroup.reset();
+ 
+         },
+       }); */
+      this.apiService.create(this.url, this.formGroup.value as user).subscribe(
+        {
+          next: () => {
             this.router.navigate(['/home/personprofile/', id]);
             this.formGroup.reset();
-          }
-          else {
-            alert("Datos Incorrectos, Verifique sus datos");
-          }
-        },
-      });
+          },
+        }
+      )
     }
     else {
       this.formGroup.markAllAsTouched();
@@ -116,16 +124,21 @@ export class UsercreateComponent {
 
   };
   getroles() {
-    this.rolservice.getRoles().subscribe((data) => {
-      this.roles = data;
-    });
+    this.apiService.getAll(this.url1).subscribe(
+      {
+        next: data => {
+
+          this.roles = data
+        }
+      }
+    )
   }
-  
+
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     const reader = new FileReader();
     reader.onload = () => {
-      let base64String:string = reader.result as string;
+      let base64String: string = reader.result as string;
       base64String = base64String.split(',')[1];
       this.formGroup.value.foto = base64String;
     };

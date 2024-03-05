@@ -61,7 +61,7 @@ export class PersonEditComponent {
     this.apiService.getOne(this.url, this.uuid).subscribe(
       {
         next: data => {
-          console.log(data)
+
           this.formGroup.patchValue(data);
 
           this.estadosCiviles = this.formGroup.value.estadosCiviles
@@ -146,6 +146,7 @@ export class PersonEditComponent {
     ocupaciones: new FormControl('', [Validators.required]),
     estadosCiviles: new FormControl('', [Validators.required]),
     celular: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
+    estado: new FormControl(),
   });
 
   get nombreControl() {

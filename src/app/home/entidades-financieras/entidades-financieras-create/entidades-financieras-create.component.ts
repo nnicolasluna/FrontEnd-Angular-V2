@@ -25,7 +25,7 @@ export class EntidadesFinancierasCreateComponent {
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     descripcion: new FormControl('', [Validators.required]),
     tipoEntidadesFinancieras: new FormControl('', [Validators.required]),
-
+    estado: new FormControl(true),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;

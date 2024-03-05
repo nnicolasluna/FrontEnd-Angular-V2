@@ -26,7 +26,7 @@ export class CorteCreateComponent {
     orden: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     monedas: new FormControl('', [Validators.required]),
     tipoCortes: new FormControl('', [Validators.required]),
-
+    estado: new FormControl(true),
   });
   get valorControl() {
     return this.formGroup.controls.valor;

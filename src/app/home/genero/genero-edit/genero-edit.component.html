@@ -7,13 +7,11 @@
             <app-form-header [titulo]="'Datos del Genero'"></app-form-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
-                
-                        <div class="content__inputs">
-                            <label for="" class="content__formlabel">Nombre:</label>
-                            <input formControlName="nombre" type="text" placeholder="Ejem. Masculino"
-                                class="content__imput"
-                                [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
-                        </div>
+
+                    <div class="content__inputs">
+                        <label for="" class="content__formlabel">Nombre:</label>
+                        <input formControlName="nombre" type="text" placeholder="Ejem. Masculino" class="content__imput"
+                            [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                         <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                             class="text-danger">
                             <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
@@ -22,11 +20,12 @@
                             <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de 200
                                 caracteres</span>
                         </div>
-                        <div class="content__inputs">
-                            <label for="" class="content__formlabel">Abreviatura</label>
-                            <input formControlName="abreviatura" type="text" placeholder="M" class="content__imput"
-                                [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
-                        </div>
+                    </div>
+
+                    <div class="content__inputs">
+                        <label for="" class="content__formlabel">Abreviatura</label>
+                        <input formControlName="abreviatura" type="text" placeholder="M" class="content__imput"
+                            [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                         <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
                             class="text-danger">
                             <span *ngIf="abreviaturaControl.errors?.['required']">La Abreviatura es Requerida</span>
@@ -35,7 +34,7 @@
                                 30
                                 caracteres</span>
                         </div>
-             
+                    </div>
                 </form>
             </mat-card-content>
             <app-form-footer [regreso]='"/home/genero-list"' (saveClicked)="update()"></app-form-footer>
