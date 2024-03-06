@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup,Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuService } from '../menu-service/menu.service';
 import { menu } from '../menu-model/menu';
 import { SubsistemaService } from '../../subsistema/subsistema-service/subsistema.service';
+import { ApiService } from '../../service/api-generico/api.service';
+import { data } from 'cypress/types/jquery';
 
 @Component({
   selector: 'app-menu-edit',
@@ -11,6 +13,8 @@ import { SubsistemaService } from '../../subsistema/subsistema-service/subsistem
   styleUrls: ['./menu-edit.component.scss']
 })
 export class MenuEditComponent {
+  private url = 'administracion/menus'
+  private url1 = 'administracion/subsistemas'
   subsistemas: any[] = [];
   subsistemaFormGroup = new FormGroup({
     uuid: new FormControl(''),
@@ -32,42 +36,61 @@ export class MenuEditComponent {
     return this.formGroup.controls.link;
   }
 
-  constructor(private router: Router, 
-    private menuservice: MenuService, 
+  constructor(private router: Router,
+    private menuservice: MenuService,
     private route: ActivatedRoute,
-    private subsistemaService: SubsistemaService
-    ) { }
+    private subsistemaService: SubsistemaService,
+    private apiService: ApiService<menu>,
+  ) { }
 
   create() {
     if (this.formGroup.valid) {
       this.uuid = this.route.snapshot.paramMap.get('id');
-      this.formGroup.value.uuid=this.uuid;
+      this.formGroup.value.uuid = this.uuid;
       this.formGroup.value.subsistemas = this.subsistemaFormGroup.value;
-  
-      this.menuservice.update(this.formGroup.value as menu, this.uuid).subscribe({
 
-        next: (userData: any) => {
-          if (userData) {
+      /*       this.menuservice.update(this.formGroup.value as menu, this.uuid).subscribe(
+              {
+                next: (userData: any) => {
+                  if (userData) {
+                    this.router.navigateByUrl('/home/menulist');
+      
+                    this.formGroup.reset();
+                  }
+                  else {
+                    alert("Datos Incorrectos, Verifique sus datos");
+                  }
+                },
+              }); */
+      this.apiService.update(this.url, this.uuid, this.formGroup.value as menu,).subscribe(
+        {
+          next: (userData: any) => {
+
             this.router.navigateByUrl('/home/menulist');
 
             this.formGroup.reset();
           }
-          else {
-            alert("Datos Incorrectos, Verifique sus datos");
-          }
-        },
-      });
+        }
+      )
+
     }
     else {
       this.formGroup.markAllAsTouched();
     }
   }
   getSubsistemas() {
-    this.subsistemaService.getSubsis().subscribe((data) => {
-      
-      this.subsistemas = data;
+    this.apiService.getAll(this.url1).subscribe(
+      {
+        next:data =>{
+          this.subsistemas = data;
+        }
+      }
+    )
+  /*   this.subsistemaService.getSubsis().subscribe((data) => {
 
-    });
+
+
+    }); */
   }
   ngOnInit() {
     this.getSubsistemas();
@@ -77,10 +100,14 @@ export class MenuEditComponent {
   uuid!: any;
   getmenu() {
     this.uuid = this.route.snapshot.paramMap.get('id');
-    this.menuservice.getmenu(this.uuid).subscribe((data) => {
-      
-      this.datos = data;
-      this.formGroup.patchValue(data);
-    });
+    this.apiService.getOne(this.url,this.uuid).subscribe(
+      {
+        next: data =>{ this.datos = data;
+          this.formGroup.patchValue(data);
+
+        }
+      }
+    )
+  
   }
 }

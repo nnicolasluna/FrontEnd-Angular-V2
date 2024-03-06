@@ -12,8 +12,8 @@ import { ApiService } from '../../service/api-generico/api.service';
   styleUrls: ['./menucreate.component.scss']
 })
 export class MenucreateComponent {
-  private url = 'menus'
-  private url1 = 'subsistemas'
+  private url = 'administracion/menus'
+  private url1 = 'administracion/subsistemas'
   subsistemas: any[] = [];
   subsistemaFormGroup = new FormGroup({
     uuid: new FormControl(''),

@@ -19,7 +19,7 @@ export class ComandolistComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'comandos'
+  private url = 'administracion/comandos'
   matDialogRef: any;
   pageSizeOptions = [5, 7]; 
   constructor(

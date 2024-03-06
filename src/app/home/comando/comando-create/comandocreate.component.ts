@@ -14,8 +14,8 @@ import { ApiService } from '../../service/api-generico/api.service';
 })
 export class ComandocreateComponent {
   menus: any[] = [];
-  url = 'menus'
-  url1 = 'comandos'
+  url = 'administracion/menus'
+  url1 = 'administracion/comandos'
   private matDialogRef!: any;
   menuFormGroup = new FormGroup({
     uuid: new FormControl(''),

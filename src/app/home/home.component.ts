@@ -51,7 +51,7 @@ export class HomeComponent {
       ]
     },
     {
-      nombre: 'Parametricas', icono: 'archive', marcado: false, botones: [
+      nombre: 'Parametros', icono: 'archive', marcado: false, botones: [
         { name: 'Genero', icon: 'male', link: 'parametros/genero-list' },
         { name: 'Ocupación', icon: 'work', link: 'parametros/ocupacion-list' },
         { name: 'Estado Civil', icon: 'wc', link: 'parametros/estado-civil-list' },

@@ -12,8 +12,8 @@ import { ApiService } from '../../service/api-generico/api.service';
 })
 export class DocumentoEditComponent {
   uuid!: any;
-  private url2 = 'documentos'
-  private url1 = 'tipo_documentos'
+  private url2 = 'administracion/documentos'
+  private url1 = 'administracion/tipo_documentos'
   tipodocuments: any;
   datos: any[] = [];
   personaFormGroup = new FormGroup({

@@ -17,8 +17,8 @@ interface CustomMatTab extends MatTab {
   styleUrls: ['./documentocreate.component.scss']
 })
 export class DocumentocreateComponent {
-  private url2 = 'documentos'
-  private url1 = 'tipo_documentos'
+  private url2 = 'administracion/documentos'
+  private url1 = 'administracion/tipo_documentos'
   uuid!: any;
   tipodocuments: any;
   datos: any[] = [];

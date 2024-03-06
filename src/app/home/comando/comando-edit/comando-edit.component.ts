@@ -15,8 +15,8 @@ import { ApiService } from '../../service/api-generico/api.service';
   styleUrls: ['./comando-edit.component.scss']
 })
 export class ComandoEditComponent {
-  url = 'menus'
-  url1 = 'comandos'
+  url = 'administracion/menus'
+  url1 = 'administracion/comandos'
   menus: any[] = [];
   menuFormGroup = new FormGroup({
     uuid: new FormControl(''),
