@@ -33,14 +33,23 @@
         width: 180px;
         margin: 0 auto;
     }
-    &__inputs{
+
+    &__inputs {
         margin-bottom: 5px;
     }
+
     &__text {
         font-weight: bold;
         font-size: 100%;
         color: #ff6a00;
         text-align: center;
+    }
+
+    &__captcha {
+        display: flex;
+        flex-direction: column;
+
+        background-color: red;
     }
 
     &__button {
@@ -53,7 +62,7 @@
         border-radius: 5px 5px 5px 5px;
         padding-bottom: 0%;
         background-color: #ff6a00;
-
+        max-width: 300px;
         margin-top: 10px;
     }
 
@@ -95,14 +104,15 @@
     }
 }
 
-.in{
-    
-    &__input{
+.in {
+
+    &__input {
         background-color: red;
         height: 20px;
         outline: none;
     }
 }
+
 /* 
 .login {
     padding: 10px 25px;

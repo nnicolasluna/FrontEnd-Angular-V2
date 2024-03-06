@@ -6,12 +6,16 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { userDTO } from '../../user/user-model/user';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { person } from '../person-model/person';
+import { ApiService } from '../../service/api-generico/api.service';
 @Component({
   selector: 'app-personprofile',
   templateUrl: './personprofile.component.html',
   styleUrls: ['./personprofile.component.scss']
 })
 export class PersonprofileComponent {
+  private url = 'personas'
+  private url1 = 'documentos'
   documents: any;
   uuid: any = '';
   person: any = null;
@@ -26,6 +30,7 @@ export class PersonprofileComponent {
     private route: ActivatedRoute,
     private personService: PersonService,
     private userService: UserService,
+    private apiService: ApiService<person>,
   ) { }
 
   ngOnInit() {
@@ -36,29 +41,42 @@ export class PersonprofileComponent {
   disableEditUser: boolean = true;
   Userdatos() {
     this.uuid = this.route.snapshot.paramMap.get('id');
-    this.userService.getPerson(this.uuid).subscribe((data) => {
-      this.user = data;
-      this.dataSource = new MatTableDataSource<any>(this.user.roles);
-    
-      this.disableCreateUser = true;
-      this.disableEditUser = false;
-    }, (error) => {
-     
-    });
-    this.personService.getPerson(this.uuid).subscribe((data) => {
-      this.person = data
-      console.log(data)
-    }, (error) => {
-     
-    });
+    this.apiService.getOne(this.url, this.uuid).subscribe(
+      {
+        next: data => {
+          this.user = data;
+          this.dataSource = new MatTableDataSource<any>(this.user.roles);
+          this.disableCreateUser = true;
+          this.disableEditUser = false;
+        }
+      }
+    )
+    /*     this.userService.getPerson(this.uuid).subscribe(
+          (data) => {
+          this.user = data;
+          this.dataSource = new MatTableDataSource<any>(this.user.roles);
+        
+          this.disableCreateUser = true;
+          this.disableEditUser = false;
+        }, (error) => {
+         
+        }); */
+
   }
   documentos() {
     this.uuid = this.route.snapshot.paramMap.get('id');
-    this.personService.getDocuments(this.uuid).subscribe((data) => {
-      console.log(data)
-      this.documents = data
-      this.dataSource1 = new MatTableDataSource<any>(this.documents);
-    })
+    this.apiService.getOne(this.url1, this.uuid).subscribe(
+      {
+        next: data => {
+          this.documents = data
+          this.dataSource1 = new MatTableDataSource<any>(this.documents);
+        }
+      }
+    )
+    /* 
+        this.personService.getDocuments(this.uuid).subscribe((data) => {
+         
+        }) */
   }
 
 }

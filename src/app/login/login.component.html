@@ -49,11 +49,12 @@
             <div class="formulario__captcha"
                 [ngClass]="{'invalid': recaptchaControl.invalid && (recaptchaControl.dirty || recaptchaControl.touched), 'valid': recaptchaControl.valid}">
                 <ngx-recaptcha2 #captchaElem [siteKey]="sitekey" formControlName="recaptcha" required></ngx-recaptcha2>
+                <div *ngIf="recaptchaControl.invalid && (recaptchaControl.dirty || recaptchaControl.touched)"
+                    class="text-danger">
+                    <span *ngIf="recaptchaControl.errors?.['required']">Captcha Requerido</span>
+                </div>
             </div>
-            <div *ngIf="recaptchaControl.invalid && (recaptchaControl.dirty || recaptchaControl.touched)"
-                class="text-danger">
-                <span *ngIf="recaptchaControl.errors?.['required']">Captcha Requerido</span>
-            </div>
+
 
             <button class="formulario__button" type="submit" title="Ingresar" (click)="login()"
                 name="Ingresar">Ingresar</button>
