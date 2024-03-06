@@ -6,13 +6,13 @@
         <div class="formulario__titulo">
             Sistema de Compras Giros y Remesas
         </div>
-        <form id="loginform" [formGroup]="formGroup">
-            <div class="formulario__inputs">
-                <div class="input-group"
-                    [ngClass]="{'invalid': userControl.invalid && (userControl.dirty || userControl.touched), 'valid': userControl.valid}">
+        <form class="form" [formGroup]="formGroup">
+            <div class="form__inputs">
+                <div class="form__group"
+                    [ngClass]="{'form__invalid': userControl.invalid && (userControl.dirty || userControl.touched), 'form__valid': userControl.valid}">
                     <input formControlName="usuario" type="text" autocomplete="off" name="usuario" placeholder="Usuario"
-                        noNewLine class="input-group__input">
-                    <mat-icon class="input-group__icon">person</mat-icon>
+                        noNewLine class="form__group__input">
+                    <mat-icon class="form__group__icon">person</mat-icon>
                 </div>
 
                 <div *ngIf="userControl.invalid && (userControl.dirty || userControl.touched)" class="text-danger">
@@ -23,12 +23,12 @@
                         caracteres</span>
                 </div>
             </div>
-            <div class="formulario__inputs">
-                <div class="input-group"
-                    [ngClass]="{'invalid': passwordControl.invalid && (passwordControl.dirty || passwordControl.touched), 'valid': passwordControl.valid}">
+            <div class="form__inputs">
+                <div class="form__group"
+                    [ngClass]="{'form__invalid': passwordControl.invalid && (passwordControl.dirty || passwordControl.touched), 'form__valid': passwordControl.valid}">
                     <input formControlName="password" type="password" autocomplete="off" placeholder="Contraseña"
-                        name="password" class="input-group__input">
-                    <mat-icon class="input-group__icon">lock</mat-icon>
+                        name="password" class="form__group__input">
+                    <mat-icon class="form__group__icon">lock</mat-icon>
 
                 </div>
                 <div *ngIf="passwordControl.invalid && (passwordControl.dirty || passwordControl.touched)"
@@ -40,23 +40,25 @@
                         caracteres</span>
                 </div>
             </div>
-            <p class="formulario__text">Autenticacion Facial</p>
+            <p class="form__text">Autenticacion Facial</p>
 
             <webcam [height]="180" [allowCameraSwitch]="false" [trigger]="$trigger" (imageCapture)="snapshot($event)">
             </webcam>
 
 
-            <div class="formulario__captcha"
+            <div class="form__captcha"
                 [ngClass]="{'invalid': recaptchaControl.invalid && (recaptchaControl.dirty || recaptchaControl.touched), 'valid': recaptchaControl.valid}">
-                <ngx-recaptcha2 #captchaElem [siteKey]="sitekey" formControlName="recaptcha" required></ngx-recaptcha2>
-                <div *ngIf="recaptchaControl.invalid && (recaptchaControl.dirty || recaptchaControl.touched)"
-                    class="text-danger">
-                    <span *ngIf="recaptchaControl.errors?.['required']">Captcha Requerido</span>
-                </div>
+                <ngx-recaptcha2 #captchaElem [siteKey]="sitekey" formControlName="recaptcha"></ngx-recaptcha2>
+            </div>
+
+            <div *ngIf="recaptchaControl.invalid && (recaptchaControl.dirty || recaptchaControl.touched)"
+                class="text-danger">
+                <span *ngIf="recaptchaControl.errors?.['required']">Captcha Requerido</span>
             </div>
 
 
-            <button class="formulario__button" type="submit" title="Ingresar" (click)="login()"
+
+            <button class="form__button" type="submit" title="Ingresar" (click)="login()"
                 name="Ingresar">Ingresar</button>
         </form>
     </div>

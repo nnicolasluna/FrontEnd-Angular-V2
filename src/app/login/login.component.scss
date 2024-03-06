@@ -18,13 +18,14 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 300px;
+    max-width: 305px;
 
     &__logo {
         margin-top: -80px;
     }
 
     &__titulo {
+
         font-weight: bold;
         font-size: 120%;
         color: black;
@@ -34,84 +35,96 @@
         margin: 0 auto;
     }
 
-    &__inputs {
-        margin-bottom: 5px;
-    }
-
-    &__text {
-        font-weight: bold;
-        font-size: 100%;
-        color: #ff6a00;
-        text-align: center;
-    }
-
-    &__captcha {
-        display: flex;
-        flex-direction: column;
-
-        background-color: red;
-    }
-
-    &__button {
-        font-family: 'Overpass', sans-serif;
-        font-size: 90%;
-        color: white;
+    .form {
         width: 100%;
-        height: 40px;
-        border: none;
-        border-radius: 5px 5px 5px 5px;
-        padding-bottom: 0%;
-        background-color: #ff6a00;
-        max-width: 300px;
-        margin-top: 10px;
+
+        &__inputs {
+            margin-bottom: 5px;
+
+        }
+
+        &__group {
+            display: flex;
+            align-items: center;
+            width: 100%;
+          
+            border-radius: 6px;
+            box-shadow: 0 0 4px #383c44;
+            height: 32px;
+
+            &__input {
+                flex: 1;
+                border: none;
+                padding: 8px;
+                width: 100%;
+                border-radius: 6px;
+            }
+
+            &__input:focus {
+                outline: unset;
+            }
+            &__icon {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                width: 10%;
+             
+                background-color: #cfd1d2;
+                border-radius: 0px 5px 5px 0px;
+                font-size: 20px;
+            }
+
+        
+        }
+        &__invalid {
+            border: 2px solid red;
+            border-radius: 5px 5px 5px 5px;
+            box-shadow: 2px red;
+        }
+
+        &__valid {
+            border: 2px solid yellowgreen;
+            border-radius: 5px 5px 5px 5px;
+            box-shadow: 2px yellowgreen;
+        }
+        &__text {
+            font-weight: bold;
+            font-size: 100%;
+            color: #ff6a00;
+            text-align: center;
+        }
+
+        &__button {
+            font-family: 'Overpass', sans-serif;
+            font-size: 90%;
+            color: white;
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 5px 5px 5px 5px;
+            padding-bottom: 0%;
+            background-color: #ff6a00;
+            max-width: 300px;
+            margin-top: 10px;
+        }
+
+        &__button:hover {
+            background-color: black;
+        }
     }
 
-    &__button:hover {
-        background-color: black;
-    }
+
+
+
+
+
 
 }
 
-.input-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
 
-    height: 90%;
-
-    border-radius: 4px;
-    box-shadow: 0 0 3px #383c44;
-
-    &__input {
-        height: 100%;
-        border: none;
-        flex: 1;
-        padding: 5px;
-
-    }
-
-    &__icon {
-        display: flex;
-        flex: 0 0 auto;
-        justify-content: center;
-        border: 1px solid #ccc;
-        height: 100%;
-        background-color: #cfd1d2;
-        padding: 5px;
-        border-radius: 0 4px 4px 0;
-    }
-}
-
-.in {
-
-    &__input {
-        background-color: red;
-        height: 20px;
-        outline: none;
-    }
-}
 
 /* 
 .login {
@@ -243,6 +256,3 @@
     box-shadow: 2px yellowgreen;
 }
 
-input:focus {
-    outline: unset;
-}

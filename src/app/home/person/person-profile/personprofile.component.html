@@ -102,6 +102,7 @@
                         <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
                         <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
                     </table>
+                    <mat-paginator #paginator [pageSizeOptions]="[5,7,10]" showFirstLastButtons></mat-paginator>
                     <div class="card__footer">
        
                         <button routerLink="/home/documentocreate/{{person?.uuid}}" class="button button--create">Agregar Documento</button>

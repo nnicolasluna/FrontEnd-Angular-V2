@@ -12,7 +12,8 @@ import { pais } from '../../pais/pais-model/pais';
   styleUrls: ['./tipo-documento-create.component.scss']
 })
 export class TipoDocumentoCreateComponent {
-  private url ='paises'
+  private url = 'paises'
+  private url1 = 'tipo_documentos'
   paises: any[] = [];
   paisFormGroup = new FormGroup({
     uuid: new FormArray([]),
@@ -21,7 +22,7 @@ export class TipoDocumentoCreateComponent {
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
     estado: new FormControl(true),
-    /* paises: this.paisFormGroup */
+    paises: this.paisFormGroup
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;
@@ -32,29 +33,34 @@ export class TipoDocumentoCreateComponent {
   get estadoControl() {
     return this.formGroup.controls.estado;
   }
-  constructor( 
+  constructor(
     private router: Router,
     private tipoDocumentoService: TipoDocumentoService,
-    private apiService: ApiService<pais>,
+    private apiService: ApiService<tipoDocumento>,
 
-    ){}
-  
+  ) { }
+
   create() {
     if (this.formGroup.valid) {
       /* this.formGroup.value.paises = this.paisFormGroup.value; */
-      console.log(this.formGroup.value)
-      this.tipoDocumentoService.createTipoDoc(this.formGroup.value as tipoDocumento).subscribe({
-        
-        next: (userData:any) => {
-          if (userData) {
+
+      /*  this.tipoDocumentoService.createTipoDoc(this.formGroup.value as tipoDocumento).subscribe({
+         
+         next: (userData:any) => {
+             this.router.navigateByUrl('/home/tipo-documento-list');
+             this.formGroup.reset();
+          
+         },
+       }); */
+      this.formGroup.value.paises = this.paisFormGroup.value;
+      this.apiService.create(this.url1, this.formGroup.value as tipoDocumento).subscribe(
+        {
+          next: () => {
             this.router.navigateByUrl('/home/tipo-documento-list');
             this.formGroup.reset();
           }
-          else {
-            alert("Datos Incorrectos, Verifique sus datos");
-          }
-        },
-      });
+        }
+      )
     }
     else {
       this.formGroup.markAllAsTouched();
@@ -62,11 +68,11 @@ export class TipoDocumentoCreateComponent {
   }
   getPaises() {
     this.apiService.getAll(this.url).subscribe({
-      next:data=>{
+      next: data => {
         this.paises = data;
       }
     })
-  
+
   }
   ngOnInit() {
     this.getPaises();

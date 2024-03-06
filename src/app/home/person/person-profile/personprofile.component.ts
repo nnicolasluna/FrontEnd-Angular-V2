@@ -15,6 +15,7 @@ import { ApiService } from '../../service/api-generico/api.service';
 })
 export class PersonprofileComponent {
   private url = 'personas'
+  private url1 = 'usuarios'
   documents: any;
   uuid: any = '';
   person: any = null;
@@ -27,13 +28,10 @@ export class PersonprofileComponent {
   displayedColumns1: string[] = ['documento', 'numero', 'estado', 'lugar', 'acciones'];
   constructor(
     private route: ActivatedRoute,
-    private personService: PersonService,
-    private userService: UserService,
     private apiService: ApiService<person>,
   ) { }
 
   ngOnInit() {
-    this.documentos()
     this.Userdatos()
   }
   disableCreateUser: boolean = false;
@@ -44,25 +42,30 @@ export class PersonprofileComponent {
       {
         next: data => {
           this.person = data
-          this.user = data;
           this.dataSource = new MatTableDataSource<any>(this.user.roles);
-          this.disableCreateUser = true;
-          this.disableEditUser = false;
+          this.dataSource.paginator = this.paginatior;
         }
       }
     )
-
-  }
-  documentos() {
-    this.uuid = this.route.snapshot.paramMap.get('id');
     this.apiService.getOne(this.url, this.uuid + '/documentos').subscribe(
       {
         next: data => {
           this.documents = data
           this.dataSource1 = new MatTableDataSource<any>(this.documents);
+          this.dataSource1.paginator = this.paginatior;
+        }
+      }
+    )
+    this.apiService.getOne(this.url1, 'persona/' + this.uuid).subscribe(
+      {
+        next: data => {
+          this.user = data;
+          this.disableCreateUser = true;
+          this.disableEditUser = false;
         }
       }
     )
   }
+
 
 }

@@ -48,13 +48,13 @@ export class HomeComponent {
         { name: 'Comandos', icon: 'terminal', link: 'comandolist' },
         { name: 'Subsistema', icon: 'badge', link: 'subsistemalist' },
         { name: 'Tipos Documentos', icon: 'badge', link: 'tipo-documento-list' },
-        { name: 'Genero', icon: 'male', link: 'genero-list' },
-        { name: 'Ocupación', icon: 'work', link: 'ocupacion-list' },
-        { name: 'Estado Civil', icon: 'wc', link: 'estado-civil-list' },
-      ]
+              ]
     },
     {
       nombre: 'Parametricas', icono: 'archive', marcado: false, botones: [
+        { name: 'Genero', icon: 'male', link: 'genero-list' },
+        { name: 'Ocupación', icon: 'work', link: 'ocupacion-list' },
+        { name: 'Estado Civil', icon: 'wc', link: 'estado-civil-list' },
         { name: 'Paises', icon: 'flag', link: 'pais-list' },
         { name: 'Cuidades', icon: 'location_city', link: 'ciudad-list' },
         { name: 'Monedas', icon: 'paid', link: 'moneda-list' },

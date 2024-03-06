@@ -53,7 +53,6 @@ export class UserlistComponent {
           this.roles = data;
           this.dataSource = new MatTableDataSource<userDTO>(this.roles);
           this.dataSource.paginator = this.paginatior;
-          console.log(data)
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
