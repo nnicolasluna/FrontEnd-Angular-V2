@@ -15,7 +15,6 @@ import { ApiService } from '../../service/api-generico/api.service';
 })
 export class PersonprofileComponent {
   private url = 'personas'
-  private url1 = 'documentos'
   documents: any;
   uuid: any = '';
   person: any = null;
@@ -44,6 +43,7 @@ export class PersonprofileComponent {
     this.apiService.getOne(this.url, this.uuid).subscribe(
       {
         next: data => {
+          this.person = data
           this.user = data;
           this.dataSource = new MatTableDataSource<any>(this.user.roles);
           this.disableCreateUser = true;
@@ -51,21 +51,11 @@ export class PersonprofileComponent {
         }
       }
     )
-    /*     this.userService.getPerson(this.uuid).subscribe(
-          (data) => {
-          this.user = data;
-          this.dataSource = new MatTableDataSource<any>(this.user.roles);
-        
-          this.disableCreateUser = true;
-          this.disableEditUser = false;
-        }, (error) => {
-         
-        }); */
 
   }
   documentos() {
     this.uuid = this.route.snapshot.paramMap.get('id');
-    this.apiService.getOne(this.url1, this.uuid).subscribe(
+    this.apiService.getOne(this.url, this.uuid + '/documentos').subscribe(
       {
         next: data => {
           this.documents = data
@@ -73,10 +63,6 @@ export class PersonprofileComponent {
         }
       }
     )
-    /* 
-        this.personService.getDocuments(this.uuid).subscribe((data) => {
-         
-        }) */
   }
 
 }
