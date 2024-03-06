@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TipoDocumentoService } from '../tipo-documento-service/tipo-documento.service';
 import { tipoDocumento } from '../tipo-documento-model/tipoDocumento';
 import { ApiService } from '../../service/api-generico/api.service';
-import { pais } from '../../pais/pais-model/pais';
+
 
 @Component({
   selector: 'app-tipo-documento-create',

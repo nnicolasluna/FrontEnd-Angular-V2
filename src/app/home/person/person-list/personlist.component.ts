@@ -75,7 +75,7 @@ export class PersonlistComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'personas'
+  private url = 'administracion/personas'
   matDialogRef: any;
   pageSizeOptions = [5, 7]; 
   constructor(

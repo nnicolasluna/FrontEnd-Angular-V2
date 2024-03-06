@@ -45,36 +45,36 @@ import { AdvertenciaBorrarComponent } from './modal/advertencia-borrar/advertenc
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { AdvertenciaErrorConexionComponent } from './modal/advertencia-error-conexion/advertencia-error-conexion.component';
-import { GeneroListComponent } from './genero/genero-list/genero-list.component';
+/* import { GeneroListComponent } from './genero/genero-list/genero-list.component';
 import { GeneroCreateComponent } from './genero/genero-create/genero-create.component';
-import { GeneroEditComponent } from './genero/genero-edit/genero-edit.component';
-import { EstadoCivilListComponent } from './estado-civil/estado-civil-list/estado-civil-list.component';
+import { GeneroEditComponent } from './genero/genero-edit/genero-edit.component'; */
+/* import { EstadoCivilListComponent } from './estado-civil/estado-civil-list/estado-civil-list.component';
 import { EstadoCivilCreateComponent } from './estado-civil/estado-civil-create/estado-civil-create.component';
 import { EstadoCivilEditComponent } from './estado-civil/estado-civil-edit/estado-civil-edit.component';
 import { OcupacionEditComponent } from './ocupacion/ocupacion-edit/ocupacion-edit.component';
 import { OcupacionListComponent } from './ocupacion/ocupacion-list/ocupacion-list.component';
-import { OcupacionCreateComponent } from './ocupacion/ocupacion-create/ocupacion-create.component';
-import { PaisListComponent } from './pais/pais-list/pais-list.component';
+import { OcupacionCreateComponent } from './ocupacion/ocupacion-create/ocupacion-create.component'; */
+/* import { PaisListComponent } from './pais/pais-list/pais-list.component';
 import { PaisCreateComponent } from './pais/pais-create/pais-create.component';
-import { PaisEditComponent } from './pais/pais-edit/pais-edit.component';
-import { MonedaListComponent } from './moneda/moneda-list/moneda-list.component';
+import { PaisEditComponent } from './pais/pais-edit/pais-edit.component'; */
+/* import { MonedaListComponent } from './moneda/moneda-list/moneda-list.component';
 import { MonedaCreateComponent } from './moneda/moneda-create/moneda-create.component';
-import { MonedaEditComponent } from './moneda/moneda-edit/moneda-edit.component';
+import { MonedaEditComponent } from './moneda/moneda-edit/moneda-edit.component'; */
 import { ComponenteListarComponent } from './componente-listar/componente-listar.component';
 import { AdvertenciaCredencialesComponent } from './modal/advertencia-credenciales/advertencia-credenciales.component';
-import { CuidadListComponent } from './ciudad/cuidad-list/cuidad-list.component';
+/* import { CuidadListComponent } from './ciudad/cuidad-list/cuidad-list.component';
 import { CuidadFormGenericComponent } from './ciudad/cuidad-form-generic/cuidad-form-generic.component';
 import { CuidadCreateComponent } from './ciudad/cuidad-create/cuidad-create.component';
-import { CuidadEditComponent } from './ciudad/cuidad-edit/cuidad-edit.component';
-import { TipoCorteListComponent } from './tipo-corte/tipo-corte-list/tipo-corte-list.component';
+import { CuidadEditComponent } from './ciudad/cuidad-edit/cuidad-edit.component'; */
+/* import { TipoCorteListComponent } from './tipo-corte/tipo-corte-list/tipo-corte-list.component';
 import { TipoCorteCreateComponent } from './tipo-corte/tipo-corte-create/tipo-corte-create.component';
 import { TipoCorteEditComponent } from './tipo-corte/tipo-corte-edit/tipo-corte-edit.component';
 import { TipoCorteGenericComponent } from './tipo-corte/tipo-corte-generic/tipo-corte-generic.component';
 import { CorteListComponent } from './corte/corte-list/corte-list.component';
 import { CorteCreateComponent } from './corte/corte-create/corte-create.component';
 import { CorteEditComponent } from './corte/corte-edit/corte-edit.component';
-import { CorteGenericComponent } from './corte/corte-generic/corte-generic.component';
-import { TipoEntidadFinancieraListComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-list/tipo-entidad-financiera-list.component';
+import { CorteGenericComponent } from './corte/corte-generic/corte-generic.component'; */
+/* import { TipoEntidadFinancieraListComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-list/tipo-entidad-financiera-list.component';
 import { TipoEntidadFinancieraGenericComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-generic/tipo-entidad-financiera-generic.component';
 import { TipoEntidadFinancieraCreateComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-create/tipo-entidad-financiera-create.component';
 import { TipoEntidadFinancieraEditComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-edit/tipo-entidad-financiera-edit.component';
@@ -93,7 +93,7 @@ import { AgenciaEditComponent } from './agencia/agencia-edit/agencia-edit.compon
 import { CuentaBancariaListComponent } from './cuenta-bancaria/cuenta-bancaria-list/cuenta-bancaria-list.component';
 import { CuentaBancariaGenericComponent } from './cuenta-bancaria/cuenta-bancaria-generic/cuenta-bancaria-generic.component';
 import { CuentaBancariaCreateComponent } from './cuenta-bancaria/cuenta-bancaria-create/cuenta-bancaria-create.component';
-import { CuentaBancariaEditComponent } from './cuenta-bancaria/cuenta-bancaria-edit/cuenta-bancaria-edit.component';
+import { CuentaBancariaEditComponent } from './cuenta-bancaria/cuenta-bancaria-edit/cuenta-bancaria-edit.component'; */
 import { FormHeaderComponent } from './form/form-header/form-header.component';
 import { FormFooterComponent } from './form/form-footer/form-footer.component';
 import { FormBuscarComponent } from './form/form-buscar/form-buscar.component';
@@ -130,27 +130,28 @@ import { FormBuscarComponent } from './form/form-buscar/form-buscar.component';
     TipoDocumentoEditComponent,
     AdvertenciaBorrarComponent,
     AdvertenciaErrorConexionComponent,
-    GeneroListComponent,
+/*     GeneroListComponent,
     GeneroCreateComponent,
-    GeneroEditComponent,
-    EstadoCivilListComponent,
+    GeneroEditComponent, */
+/*     EstadoCivilListComponent,
     EstadoCivilCreateComponent,
     EstadoCivilEditComponent,
     OcupacionEditComponent,
     OcupacionListComponent,
-    OcupacionCreateComponent,
-    PaisListComponent,
+    OcupacionCreateComponent, */
+/*     PaisListComponent,
     PaisCreateComponent,
     PaisEditComponent,
-    MonedaListComponent,
-    MonedaCreateComponent,
-    MonedaEditComponent,
-    ComponenteListarComponent,
-    AdvertenciaCredencialesComponent,
-    CuidadListComponent,
+      CuidadListComponent,
     CuidadFormGenericComponent,
     CuidadCreateComponent,
-    CuidadEditComponent,
+    CuidadEditComponent, */
+/*     MonedaListComponent,
+    MonedaCreateComponent,
+    MonedaEditComponent, */
+    ComponenteListarComponent,
+    AdvertenciaCredencialesComponent,
+/* 
     TipoCorteListComponent,
     TipoCorteCreateComponent,
     TipoCorteEditComponent,
@@ -158,8 +159,8 @@ import { FormBuscarComponent } from './form/form-buscar/form-buscar.component';
     CorteListComponent,
     CorteCreateComponent,
     CorteEditComponent,
-    CorteGenericComponent,
-    TipoEntidadFinancieraListComponent,
+    CorteGenericComponent, */
+    /* TipoEntidadFinancieraListComponent,
     TipoEntidadFinancieraGenericComponent,
     TipoEntidadFinancieraCreateComponent,
     TipoEntidadFinancieraEditComponent,
@@ -178,7 +179,7 @@ import { FormBuscarComponent } from './form/form-buscar/form-buscar.component';
     CuentaBancariaListComponent,
     CuentaBancariaGenericComponent,
     CuentaBancariaCreateComponent,
-    CuentaBancariaEditComponent,
+    CuentaBancariaEditComponent, */
     FormHeaderComponent,
     FormFooterComponent,
     FormBuscarComponent,
@@ -202,7 +203,15 @@ import { FormBuscarComponent } from './form/form-buscar/form-buscar.component';
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+
+  ]
+  ,
+  exports: [
+    FormHeaderComponent,
+    FormFooterComponent,
+    ComponenteListarComponent,
+ 
   ]
 })
 export class HomeModule { }

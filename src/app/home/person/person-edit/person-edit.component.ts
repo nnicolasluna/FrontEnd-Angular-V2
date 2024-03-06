@@ -124,10 +124,10 @@ export class PersonEditComponent {
     )
   }
 
-  private url = 'personas'
-  private url1 = 'ocupaciones'
-  private url2 = 'estados_civiles'
-  private url3 = 'generos'
+  private url = 'administracion/personas'
+  private url1 = 'parametros/ocupaciones'
+  private url2 = 'parametros/estados_civiles'
+  private url3 = 'parametros/generos'
   persona!: any
   estadosCiviles!: any
   ocuapaciones!: any

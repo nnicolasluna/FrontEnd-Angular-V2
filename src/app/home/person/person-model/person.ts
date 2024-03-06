@@ -1,6 +1,3 @@
-import { estadocivilDTO } from "../../estado-civil/estado-civil-model/estado-civil";
-import { generoDTO } from "../../genero/genero-model/genero";
-import { ocupacionDTO } from "../../ocupacion/ocupacion-model/ocupacion";
 
 export interface person {
     nombres: string,

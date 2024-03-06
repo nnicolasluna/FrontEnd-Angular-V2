@@ -14,8 +14,8 @@ import { ApiService } from '../../service/api-generico/api.service';
   styleUrls: ['./personprofile.component.scss']
 })
 export class PersonprofileComponent {
-  private url = 'personas'
-  private url1 = 'usuarios'
+  private url = 'administracion/personas'
+  private url1 = 'administracion/usuarios'
   documents: any;
   uuid: any = '';
   person: any = null;

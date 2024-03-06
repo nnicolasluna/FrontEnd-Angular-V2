@@ -15,10 +15,10 @@ import { person } from '../person-model/person';
 })
 export class PersoncreateComponent {
   private matDialogRef!: any;
-  private url = 'personas'
-  private url1 = 'ocupaciones'
-  private url2 = 'estados_civiles'
-  private url3 = 'generos'
+  private url = 'administracion/personas'
+  private url1 = 'parametros/ocupaciones'
+  private url2 = 'parametros/estados_civiles'
+  private url3 = 'parametros/generos'
   generos: any[] = [];
   estado: any[] = [];
   ocupacion: any[] = [];

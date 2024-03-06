@@ -1,0 +1,9 @@
+<app-componente-listar 
+    [titulo]="'Lista de Paises'" 
+    [displayedColumns]="['nombre', 'nacionalidad', 'estado', 'action']"  
+    [pageSizeOptions]="[5, 7]"
+    [adicionar]="'/home/parametros/pais-create'"
+    [editar]="'/home/parametros/pais-edit'"
+    [dataSource]="dataSource"
+    >
+</app-componente-listar>

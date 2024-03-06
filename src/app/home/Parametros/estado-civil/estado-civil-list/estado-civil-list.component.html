@@ -1,0 +1,9 @@
+<app-componente-listar 
+    [titulo]="'Lista de Estados Civiles'" 
+    [displayedColumns]="['nombre', 'abreviatura', 'estado','action']"  
+    [adicionar]="'/home/parametros/estado-civil-create'"
+    [editar]="'/home/parametros/estado-civil-edit'"
+    [dataSource]="dataSource"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+</app-componente-listar>

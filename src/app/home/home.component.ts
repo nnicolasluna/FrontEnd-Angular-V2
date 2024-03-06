@@ -48,23 +48,23 @@ export class HomeComponent {
         { name: 'Comandos', icon: 'terminal', link: 'comandolist' },
         { name: 'Subsistema', icon: 'badge', link: 'subsistemalist' },
         { name: 'Tipos Documentos', icon: 'badge', link: 'tipo-documento-list' },
-              ]
+      ]
     },
     {
       nombre: 'Parametricas', icono: 'archive', marcado: false, botones: [
-        { name: 'Genero', icon: 'male', link: 'genero-list' },
-        { name: 'Ocupación', icon: 'work', link: 'ocupacion-list' },
-        { name: 'Estado Civil', icon: 'wc', link: 'estado-civil-list' },
-        { name: 'Paises', icon: 'flag', link: 'pais-list' },
-        { name: 'Cuidades', icon: 'location_city', link: 'ciudad-list' },
-        { name: 'Monedas', icon: 'paid', link: 'moneda-list' },
-        { name: 'Cortes', icon: 'attach_money', link: 'corte-list' },
-        { name: 'Tipo Corte', icon: 'credit_card', link: 'tipo-corte-list' },
-        { name: 'Tipo Entidad Financieras', icon: 'euro', link: 'tipo-entidad-finaciera-list' },
-        { name: 'Entidades Finacieras', icon: 'payments', link: 'entidad-financiera-list' },
-        { name: 'Tipo Cuentas Bancarias', icon: 'savings', link: 'tipo-cuenta-bancaria-list' },
-        { name: 'Cuentas Bancarias', icon: 'account_balance', link: 'cuenta-bancaria-list' },
-        { name: 'Agencias', icon: 'apartment', link: 'agencia-list' },
+        { name: 'Genero', icon: 'male', link: 'parametros/genero-list' },
+        { name: 'Ocupación', icon: 'work', link: 'parametros/ocupacion-list' },
+        { name: 'Estado Civil', icon: 'wc', link: 'parametros/estado-civil-list' },
+        { name: 'Paises', icon: 'flag', link: 'parametros/pais-list' },
+        { name: 'Cuidades', icon: 'location_city', link: 'parametros/ciudad-list' },
+        { name: 'Monedas', icon: 'paid', link: 'parametros/moneda-list' },
+        { name: 'Cortes', icon: 'attach_money', link: 'parametros/corte-list' },
+        { name: 'Tipo Corte', icon: 'credit_card', link: 'parametros/tipo-corte-list' },
+        { name: 'Tipo Entidad Financieras', icon: 'euro', link: 'parametros/tipo-entidad-finaciera-list' },
+        { name: 'Entidades Finacieras', icon: 'payments', link: 'parametros/entidad-financiera-list' },
+        { name: 'Tipo Cuentas Bancarias', icon: 'savings', link: 'parametros/tipo-cuenta-bancaria-list' },
+        { name: 'Cuentas Bancarias', icon: 'account_balance', link: 'parametros/cuenta-bancaria-list' },
+        { name: 'Agencias', icon: 'apartment', link: 'parametros/agencia-list' },
 
       ]
     }
@@ -104,7 +104,7 @@ export class HomeComponent {
   }
   logout() {
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('datos'); 
+    sessionStorage.removeItem('datos');
     sessionStorage.removeItem('rol');
     this.router.navigateByUrl('/login');
   }
