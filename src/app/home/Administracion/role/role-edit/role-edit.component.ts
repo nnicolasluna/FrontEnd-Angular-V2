@@ -74,7 +74,7 @@ export class RoleEditComponent {
       this.apiService.update(this.url, this.uuidx, this.formGroup.value as role).subscribe(
         {
           next: (userData: any) => {
-            this.router.navigateByUrl('/home/rolelist');
+            this.router.navigateByUrl('/home/administracion/rolelist');
             this.formGroup.reset();
           },
         }

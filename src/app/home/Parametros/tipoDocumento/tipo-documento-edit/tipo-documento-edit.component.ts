@@ -52,7 +52,7 @@ export class TipoDocumentoEditComponent {
       this.apiService.update(this.url1, this.uuid, this.formGroup.value as tipoDocumento).subscribe(
         {
           next: (userData: any) => {
-            this.router.navigateByUrl('/home/parametros/tipodocumentolist');
+            this.router.navigateByUrl('/home/parametros/tipo-documento-list');
             this.formGroup.reset();
           },
         }
@@ -71,15 +71,16 @@ export class TipoDocumentoEditComponent {
 
   getTipoDoc() {
     this.uuid = this.route.snapshot.paramMap.get('id');
-  /*   this.tipoDocumentoService.getDocument(this.uuid).subscribe((data) => {
-      this.datos = data;
-      this.formGroup.patchValue(data);
-    }); */
-    this.apiService.getOne(this.url1,this.uuid).subscribe(
+    /*   this.tipoDocumentoService.getDocument(this.uuid).subscribe((data) => {
+        this.datos = data;
+        this.formGroup.patchValue(data);
+      }); */
+    this.apiService.getOne(this.url1, this.uuid).subscribe(
       {
-        next: data =>{
+        next: data => {
           this.datos = data;
-      this.formGroup.patchValue(data);
+          console.log(data)
+          this.formGroup.patchValue(data);
         }
       }
     )

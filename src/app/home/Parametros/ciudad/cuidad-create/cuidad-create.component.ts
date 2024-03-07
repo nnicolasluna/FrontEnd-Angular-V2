@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-
-
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { cuidad } from '../cuidad-model/cuidad';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
@@ -9,7 +6,7 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cuidad-create',
   templateUrl: './cuidad-create.component.html',
@@ -48,36 +45,17 @@ export class CuidadCreateComponent {
     this.getAll();
 
   }
-
-  /*   create() {
-      if (this.formGroup.valid) {
-        
-        this.apiService.create(this.url, this.formGroup.value as cuidad).subscribe(
-          {
-            next: () => {
-              this.router.navigateByUrl('/home/ciudad-list');
-              this.formGroup.reset();
-            },
-            error: err => {
-              this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
-              this.matDialogRef.afterClosed().subscribe(() => {
-              });
-            }
-          }
-        );
-      }
-      else {
-        this.formGroup.markAllAsTouched();
-      }
-    } */
   create() {
     if (this.formGroup.valid) {
       const formData = this.metodogenerico.getFormGroupData();
-console.log(formData)
+
       this.apiService.create(this.url, formData).subscribe({
         next: () => {
-/*           this.router.navigateByUrl('/home/parametros/ciudad-list'); */
+          console.log('gaaaaa')
+
+          this.router.navigateByUrl('home/parametros/ciudad-list')
           this.formGroup.reset();
+
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
@@ -88,7 +66,6 @@ console.log(formData)
       this.formGroup.markAllAsTouched();
     }
   }
-
   getAll() {
     this.apiService.getAll(this.url1).subscribe(
       {

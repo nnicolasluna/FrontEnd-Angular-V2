@@ -23,7 +23,7 @@ export class CuidadEditComponent {
   uuid!: any;
   editar = ''
   paises: any[] = [];
-  datos!:  any;
+  datos!: any;
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
@@ -49,10 +49,11 @@ export class CuidadEditComponent {
   ) { }
   ngOnInit(): void {
     this.getAll()
+    this.getOne
     this.route.paramMap.pipe(
       switchMap(params => {
         this.uuid = this.route.snapshot.paramMap.get('id');
-        return this.apiService.getOne('ciudades', this.uuid);
+        return this.apiService.getOne('parametros/ciudades', this.uuid);
       })
     ).subscribe({
       next: (data) => {
@@ -100,7 +101,7 @@ export class CuidadEditComponent {
     this.apiService.getOne(this.url, this.uuid).subscribe(
       {
         next: data => {
-          console.log('Datos recibidos:', data); 
+          console.log(data)
           this.datos = data;
         },
         error: err => {

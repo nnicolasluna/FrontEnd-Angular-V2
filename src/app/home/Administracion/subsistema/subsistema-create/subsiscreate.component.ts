@@ -38,16 +38,16 @@ export class SubsiscreateComponent {
     
   create() {
     if (this.formGroup.valid) {
-
+/* 
       this.personservice.create(this.formGroup.value as subsistema).subscribe({
         
         next: (userData:any) => {
       
-            this.router.navigateByUrl('/home/subsistemalist');
+            this.router.navigateByUrl('/home/administracion/subsistemalist');
             this.formGroup.reset();
           
         },
-      });
+      }); */
       this.apiService.create(this.url, this.formGroup.value as subsistema).subscribe(
         {
           next: (userData:any) => {

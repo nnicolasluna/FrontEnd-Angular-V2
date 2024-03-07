@@ -68,13 +68,6 @@ export class RolecreateComponent {
   create() {
     if (this.formGroup.valid) {
       this.formGroup.value.subsistemas = this.promos.value;
-      /*  this.roleservice.create(this.formGroup.value as role).subscribe({
-         next: (userData: any) => {
-             this.router.navigateByUrl('/home/rolelist');
-             this.formGroup.reset();
-         
-         },
-       }); */
       this.apiService.create(this.url, this.formGroup.value as role).subscribe(
         {
           next: () => {

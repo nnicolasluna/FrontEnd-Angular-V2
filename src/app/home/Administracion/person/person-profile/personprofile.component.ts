@@ -43,8 +43,7 @@ export class PersonprofileComponent {
       {
         next: data => {
           this.person = data
-          this.dataSource = new MatTableDataSource<any>(this.user.roles);
-          this.dataSource.paginator = this.paginatior;
+       
         }
       }
     )
@@ -52,6 +51,7 @@ export class PersonprofileComponent {
       {
         next: data => {
           this.documents = data
+          console.log(data)
           this.dataSource1 = new MatTableDataSource<any>(this.documents);
           this.dataSource1.paginator = this.paginatior;
         }
@@ -63,6 +63,9 @@ export class PersonprofileComponent {
           this.user = data;
           this.disableCreateUser = true;
           this.disableEditUser = false;
+          console.log(this.user.roles)
+          this.dataSource = new MatTableDataSource<any>(this.user.roles);
+          this.dataSource.paginator = this.paginatior;
         }
       }
     )

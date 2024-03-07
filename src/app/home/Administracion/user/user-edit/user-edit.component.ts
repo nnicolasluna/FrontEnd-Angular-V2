@@ -28,9 +28,9 @@ export class UserEditComponent {
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     usuario: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    password: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    correoCorporativo: new FormControl('@gambarte.com', [Validators.required, Validators.email]),
-    correoPersonal: new FormControl('@gmail.com', [Validators.required, Validators.email]),
+    
+    correoCorporativo: new FormControl('', [Validators.required, Validators.email]),
+    correoPersonal: new FormControl('', [Validators.required, Validators.email]),
     estado: new FormControl(),
     personaUuid: new FormControl(''),
     foto: new FormControl(''),
@@ -40,9 +40,7 @@ export class UserEditComponent {
   get usuarioControl() {
     return this.formGroup.controls.usuario;
   }
-  get contControl() {
-    return this.formGroup.controls.password;
-  }
+
   get correoCControl() {
     return this.formGroup.controls.correoCorporativo;
   }
@@ -60,24 +58,12 @@ export class UserEditComponent {
     private apiService: ApiService<user>,
   ) { }
 
-  edit() {
+  create() {
     if (this.formGroup.valid) {
       this.usueariouuid = this.route.snapshot.paramMap.get('id');
       this.formGroup.value.uuid = this.usueariouuid;
       this.formGroup.value.roles = this.promos.value;
       const id = this.formGroup.value.personaUuid;
-      /*    this.userservice.update(this.usueariouuid, this.formGroup.value as user).subscribe(
-           {
-             next: () => {
-               this.router.navigate(['/home/administracion/personprofile/', id]);
-               this.formGroup.reset();
-   
-             },
-             error: (error) => {
-               console.log('no se puede editar papu')
-             }
-           }
-         ); */
       this.apiService.update(this.url, this.usueariouuid, this.formGroup.value as user).subscribe(
         {
           next: () => {

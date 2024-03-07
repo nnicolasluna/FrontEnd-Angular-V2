@@ -47,13 +47,14 @@ export class CuidadFormGenericComponent {
     private metodogenerico: MetodoGenericoService,
     private apiService: ApiService<cuidad>,
     private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['ciudadData'] && changes['ciudadData'].currentValue) {
       this.formGroup.patchValue(this.ciudadData);
       this.pais = this.formGroup.value.paises
-      this.getDatos('parametros/paises',this.pais)
+      this.getDatos('paises',this.pais)
     }
   }
   getDatos(param:string, atrib:any){

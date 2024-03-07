@@ -60,7 +60,7 @@ const routes: Routes = [
   { path: 'pais-list', component: PaisListComponent },
   { path: 'pais-edit/:id', component: PaisEditComponent },
 
-    { path: 'ciudad-create', component: CuidadCreateComponent },
+  { path: 'ciudad-create', component: CuidadCreateComponent },
   { path: 'ciudad-list', component: CuidadListComponent },
   { path: 'ciudad-edit/:id', component: CuidadEditComponent },
 
@@ -74,7 +74,7 @@ const routes: Routes = [
 
   { path: 'tipo-corte-create', component: TipoCorteCreateComponent },
   { path: 'tipo-corte-list', component: TipoCorteListComponent },
-  { path: 'tipo-corte-edit/:id', component: TipoCorteEditComponent }, 
+  { path: 'tipo-corte-edit/:id', component: TipoCorteEditComponent },
 
   { path: 'tipo-entidad-finaciera-create', component: TipoEntidadFinancieraCreateComponent },
   { path: 'tipo-entidad-finaciera-list', component: TipoEntidadFinancieraListComponent },

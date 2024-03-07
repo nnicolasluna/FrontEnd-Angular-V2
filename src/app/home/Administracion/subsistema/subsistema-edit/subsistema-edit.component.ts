@@ -42,17 +42,17 @@ export class SubsistemaEditComponent {
     if (this.formGroup.valid) {
       this.uuid = this.route.snapshot.paramMap.get('id');
       this.formGroup.value.uuid = this.uuid;
-      this.susbistema.update(this.uuid, this.formGroup.value as subsistema).subscribe({
+   /*    this.susbistema.update(this.uuid, this.formGroup.value as subsistema).subscribe({
 
         next: (userData: any) => {
-          this.router.navigateByUrl('/home/subsistemalist');
+          this.router.navigateByUrl('/home/administracion/subsistemalist');
           this.formGroup.reset();
         },
-      });
+      }); */
       this.apiService.update(this.url, this.uuid, this.formGroup.value as subsistema).subscribe(
         {
           next: (userData: any) => {
-            this.router.navigateByUrl('/home/subsistemalist');
+            this.router.navigateByUrl('/home/administracion/subsistemalist');
             this.formGroup.reset();
           },
         }
