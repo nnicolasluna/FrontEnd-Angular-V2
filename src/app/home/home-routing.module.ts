@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserlistComponent } from './user/user-list/userlist.component';
+/* import { UserlistComponent } from './user/user-list/userlist.component';
 import { UsercreateComponent } from './user/user-create/usercreate.component';
 import { PersoncreateComponent } from './person/person-create/personcreate.component';
 import { PersonlistComponent } from './person/person-list/personlist.component';
@@ -26,11 +26,14 @@ import { SubsistemaEditComponent } from './subsistema/subsistema-edit/subsistema
 import { MenuEditComponent } from './menu/menu-edit/menu-edit.component';
 import { RoleEditComponent } from './role/role-edit/role-edit.component';
 import { ParametrosModule } from './Parametros/parametros.module';
+import { AdministracionModule } from './Administracion/administracion/administracion.module';
 
-
+ */
 const routes: Routes = [
-  { path: 'parametros',loadChildren: () => import('./Parametros/parametros.module').then(m => m.ParametrosModule) },
-  { path: 'userlist', component: UserlistComponent },
+  { path: 'parametros', loadChildren: () => import('./Parametros/parametros.module').then(m => m.ParametrosModule) },
+  { path: 'administracion', loadChildren: () => import('./Administracion/administracion/administracion.module').then(m => m.AdministracionModule) },
+
+ /*  { path: 'userlist', component: UserlistComponent },
   { path: 'usercreate/:id', component: UsercreateComponent },
   { path: 'usershow/:id', component: UsershowComponent },
   { path: 'useredit/:id', component: UserEditComponent },
@@ -61,11 +64,11 @@ const routes: Routes = [
   { path: 'tipo-documento-edit/:id', component: TipoDocumentoEditComponent },
 
   { path: 'documentocreate/:id', component: DocumentocreateComponent },
-  { path: 'documentoedit/:id', component: DocumentoEditComponent },
+  { path: 'documentoedit/:id', component: DocumentoEditComponent }, */
 
 
 
- 
+
 ];
 
 @NgModule({

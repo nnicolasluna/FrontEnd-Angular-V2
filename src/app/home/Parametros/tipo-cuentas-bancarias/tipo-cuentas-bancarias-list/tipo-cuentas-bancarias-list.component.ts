@@ -17,7 +17,7 @@ export class TipoCuentasBancariasListComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'tipo_cuentas_bancarias'
+  private url = 'parametros/tipo_cuentas_bancarias'
   matDialogRef: any;
   pageSizeOptions = [5, 7]; 
   constructor(

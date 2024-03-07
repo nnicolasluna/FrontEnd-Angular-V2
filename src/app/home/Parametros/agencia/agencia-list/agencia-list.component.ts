@@ -16,7 +16,7 @@ export class AgenciaListComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'agencias'
+  private url = 'parametros/agencias'
   matDialogRef: any;
   pageSizeOptions = [5, 7]; 
   constructor(

@@ -17,8 +17,8 @@ import { ModalService } from 'src/app/home/modal/service/modal.service';
 })
 export class CuidadCreateComponent {
   private matDialogRef!: any;
-  private url = 'ciudades'
-  private url1 = 'paises'
+  private url = 'parametros/ciudades'
+  private url1 = 'parametros/paises'
   operacion = 'Registrar'
   editar = ''
   paises: any[] = [];
@@ -73,10 +73,10 @@ export class CuidadCreateComponent {
   create() {
     if (this.formGroup.valid) {
       const formData = this.metodogenerico.getFormGroupData();
-
+console.log(formData)
       this.apiService.create(this.url, formData).subscribe({
         next: () => {
-          this.router.navigateByUrl('/home/ciudad-list');
+/*           this.router.navigateByUrl('/home/parametros/ciudad-list'); */
           this.formGroup.reset();
         },
         error: err => {

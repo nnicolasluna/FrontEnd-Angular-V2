@@ -14,8 +14,8 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class MonedaCreateComponent {
   private matDialogRef!: any;
-  private url = 'monedas'
-  private url1 = 'paises'
+  private url = 'parametros/monedas'
+  private url1 = 'parametros/paises'
   operacion='Registrar'
   editar=''
   paises: any[] = [];
@@ -54,7 +54,7 @@ export class MonedaCreateComponent {
       this.apiService.create(this.url, this.formGroup.value as moneda).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/moneda-list');
+            this.router.navigateByUrl('/home/parametros/moneda-list');
             this.formGroup.reset();
           },
           error: err => {

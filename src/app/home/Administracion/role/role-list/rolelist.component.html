@@ -1,0 +1,9 @@
+<app-componente-listar 
+    [titulo]="'Lista de Roles'" 
+    [displayedColumns]="['nombre', 'nivel', 'descripcion','estado','action']"  
+    [adicionar]="'/home/administracion/rolecreate'"
+    [editar]="'/home/administracion/roledit'"
+    [dataSource]="dataSource"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+</app-componente-listar>

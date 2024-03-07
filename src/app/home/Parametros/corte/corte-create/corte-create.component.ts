@@ -14,9 +14,9 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
   styleUrls: ['./corte-create.component.scss']
 })
 export class CorteCreateComponent {
-  private url = 'cortes'
-  private url1 = 'monedas'
-  private url2 = 'tipo_cortes'
+  private url = 'parametros/cortes'
+  private url1 = 'parametros/monedas'
+  private url2 = 'parametros/tipo_cortes'
   operacion = 'Registrar'
   editar = ''
   moneda: any[] = [];
@@ -57,7 +57,7 @@ export class CorteCreateComponent {
       const formData = this.metodogenerico.getFormGroupData();
       this.apiService.create(this.url, formData).subscribe({
         next: () => {
-          this.router.navigateByUrl('/home/corte-list');
+          this.router.navigateByUrl('/home/parametros/corte-list');
           this.formGroup.reset();
 
         },

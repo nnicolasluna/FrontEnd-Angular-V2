@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { LoginService } from '../login/login-service/login.service';
 import { data } from 'cypress/types/jquery';
-import { person } from './person/person-model/person';
+
 import { Router } from '@angular/router';
 
 interface Seccion {
@@ -41,13 +41,13 @@ export class HomeComponent {
   secciones: Seccion[] = [
     {
       nombre: 'Administracion', icono: 'settings', marcado: false, botones: [
-        { name: 'Personas', icon: 'person', link: 'personlist' },
-        { name: 'Usuarios', icon: '3p', link: 'userlist' },
-        { name: 'Roles', icon: 'group', link: 'rolelist' },
-        { name: 'Menus', icon: 'menu', link: 'menulist' },
-        { name: 'Comandos', icon: 'terminal', link: 'comandolist' },
-        { name: 'Subsistema', icon: 'badge', link: 'subsistemalist' },
-        { name: 'Tipos Documentos', icon: 'badge', link: 'tipo-documento-list' },
+        { name: 'Personas', icon: 'person', link: 'administracion/personlist' },
+        { name: 'Usuarios', icon: '3p', link: 'administracion/userlist' },
+        { name: 'Roles', icon: 'group', link: 'administracion/rolelist' },
+        { name: 'Menus', icon: 'menu', link: 'administracion/menulist' },
+        { name: 'Comandos', icon: 'terminal', link: 'administracion/comandolist' },
+        { name: 'Subsistema', icon: 'badge', link: 'administracion/subsistemalist' },
+        
       ]
     },
     {
@@ -65,7 +65,7 @@ export class HomeComponent {
         { name: 'Tipo Cuentas Bancarias', icon: 'savings', link: 'parametros/tipo-cuenta-bancaria-list' },
         { name: 'Cuentas Bancarias', icon: 'account_balance', link: 'parametros/cuenta-bancaria-list' },
         { name: 'Agencias', icon: 'apartment', link: 'parametros/agencia-list' },
-
+        { name: 'Tipos Documentos', icon: 'badge', link: 'administracion/tipo-documento-list' },
       ]
     }
 

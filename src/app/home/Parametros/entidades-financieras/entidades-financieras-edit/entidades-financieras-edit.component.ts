@@ -15,8 +15,8 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 export class EntidadesFinancierasEditComponent {
 
   private matDialogRef!: any;
-  private url = 'entidades_financieras'
-  private url1 = 'tipo_entidades_financieras'
+  private url = 'parametros/entidades_financieras'
+  private url1 = 'parametros/tipo_entidades_financieras'
   operacion = 'Registrar'
   uuid!: any;
   editar = ''
@@ -73,7 +73,7 @@ export class EntidadesFinancierasEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as entidadesFinancieras).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/entidad-financiera-list');
+            this.router.navigateByUrl('/home/parametros/entidad-financiera-list');
             this.formGroup.reset();
           },
           error: err => {

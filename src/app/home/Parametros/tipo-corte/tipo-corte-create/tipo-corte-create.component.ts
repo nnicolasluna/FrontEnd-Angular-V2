@@ -15,7 +15,7 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
 })
 export class TipoCorteCreateComponent {
   private matDialogRef!: any;
-  private url = 'tipo-cortes'
+  private url = 'parametros/tipo-cortes'
 
   operacion = 'Registrar'
   editar = ''
@@ -47,7 +47,7 @@ export class TipoCorteCreateComponent {
       this.apiService.create(this.url, formData).subscribe({
         next: () => {
   
-          this.router.navigateByUrl('/home/tipo-corte-list');
+          this.router.navigateByUrl('/home/parametros/tipo-corte-list');
           this.formGroup.reset();
         },
         error: (err:any) => {

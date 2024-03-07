@@ -18,7 +18,7 @@ export class PaisListComponent {
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   private matDialogRef!: any;
-  private url = 'paises'
+  private url = 'parametros/paises'
   datos: any;
   constructor(
     private modalService: ModalService,

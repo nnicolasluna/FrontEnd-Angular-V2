@@ -17,7 +17,7 @@ export class CorteListComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'cortes'
+  private url = 'parametros/cortes'
   matDialogRef: any;
   pageSizeOptions = [5, 7]; 
   constructor(

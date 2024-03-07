@@ -18,7 +18,7 @@ export class CuidadListComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'ciudades'
+  private url = 'parametros/ciudades'
   matDialogRef: any;
   constructor(
     private modalService: ModalService,
@@ -35,6 +35,7 @@ export class CuidadListComponent {
       {
         next: data => {
           this.datos = data;
+          console.log(data)
           this.dataSource = new MatTableDataSource<cuidadDTO>(this.datos);
           this.dataSource.paginator = this.paginatior;
         },

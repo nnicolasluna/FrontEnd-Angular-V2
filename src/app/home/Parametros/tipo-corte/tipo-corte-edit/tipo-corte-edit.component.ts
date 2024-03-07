@@ -16,7 +16,7 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 export class TipoCorteEditComponent {
 
   private matDialogRef!: any;
-  private url = 'tipo_cortes'
+  private url = 'parametros/tipo_cortes'
  
   operacion = 'Registrar'
   uuid!: any;
@@ -68,7 +68,7 @@ export class TipoCorteEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as TipoCorte).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/tipo-corte-list');
+            this.router.navigateByUrl('/home/parametros/tipo-corte-list');
             this.formGroup.reset();
           },
           error: (err:any) => {

@@ -17,7 +17,7 @@ export class CuentaBancariaListComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'cuentas_bancarias'
+  private url = 'parametros/cuentas_bancarias'
   matDialogRef: any;
   pageSizeOptions = [5, 7]; 
   constructor(

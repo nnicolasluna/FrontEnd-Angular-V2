@@ -14,11 +14,11 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
   styleUrls: ['./cuenta-bancaria-create.component.scss']
 })
 export class CuentaBancariaCreateComponent {
-  private url = 'cuentas_bancarias'
-  private url1 = 'monedas'
-  private url2 = 'tipo_cuentas_bancarias'
-  private url3 = 'entidades_financieras'
-  private url4 = 'agencias'
+  private url = 'parametros/cuentas_bancarias'
+  private url1 = 'parametros/monedas'
+  private url2 = 'parametros/tipo_cuentas_bancarias'
+  private url3 = 'parametros/entidades_financieras'
+  private url4 = 'parametros/agencias'
   operacion = 'Registrar'
   editar = ''
   agencias: any[] = [];
@@ -71,7 +71,7 @@ export class CuentaBancariaCreateComponent {
       const formData = this.metodogenerico.getFormGroupData();
       this.apiService.create(this.url, formData).subscribe({
         next: () => {
-          this.router.navigateByUrl('/home/cuenta-bancaria-list');
+          this.router.navigateByUrl('/home/parametros/cuenta-bancaria-list');
           this.formGroup.reset();
 
         },

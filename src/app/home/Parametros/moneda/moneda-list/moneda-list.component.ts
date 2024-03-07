@@ -17,7 +17,7 @@ export class MonedaListComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'monedas'
+  private url = 'parametros/monedas'
   matDialogRef: any;
   pageSizeOptions = [5, 7]; 
   constructor(

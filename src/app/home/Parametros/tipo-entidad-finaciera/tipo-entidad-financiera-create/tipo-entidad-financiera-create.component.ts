@@ -16,7 +16,7 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
 export class TipoEntidadFinancieraCreateComponent {
 
   private matDialogRef!: any;
-  private url = 'tipo_entidades_financieras'
+  private url = 'parametros/tipo_entidades_financieras'
 
   operacion = 'Registrar'
   editar = ''
@@ -46,7 +46,7 @@ export class TipoEntidadFinancieraCreateComponent {
 
       this.apiService.create(this.url, formData).subscribe({
         next: () => {
-          this.router.navigateByUrl('/home/tipo-entidad-finaciera-list');
+          this.router.navigateByUrl('/home/parametros/tipo-entidad-finaciera-list');
           this.formGroup.reset();
           console.log('todo correcto papu')
         },

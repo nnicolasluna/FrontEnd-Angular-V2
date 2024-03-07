@@ -53,7 +53,7 @@ export class CuidadFormGenericComponent {
     if (changes['ciudadData'] && changes['ciudadData'].currentValue) {
       this.formGroup.patchValue(this.ciudadData);
       this.pais = this.formGroup.value.paises
-      this.getDatos('paises',this.pais)
+      this.getDatos('parametros/paises',this.pais)
     }
   }
   getDatos(param:string, atrib:any){

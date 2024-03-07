@@ -15,7 +15,7 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class PaisCreateComponent {
   private matDialogRef!: any;
-  private url = 'paises'
+  private url = 'parametros/paises'
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     nacionalidad: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -40,7 +40,7 @@ export class PaisCreateComponent {
       this.apiService.create(this.url, this.formGroup.value as pais).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/pais-list');
+            this.router.navigateByUrl('/home/parametros/pais-list');
             this.formGroup.reset();
           },
           error: err => {

@@ -19,7 +19,7 @@ export class TipoCorteListComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'tipo_cortes'
+  private url = 'parametros/tipo_cortes'
   matDialogRef: any;
   constructor(
     private modalService: ModalService,

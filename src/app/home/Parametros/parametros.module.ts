@@ -66,6 +66,9 @@ import { TipoEntidadFinancieraCreateComponent } from './tipo-entidad-finaciera/t
 import { TipoEntidadFinancieraEditComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-edit/tipo-entidad-financiera-edit.component';
 import { TipoEntidadFinancieraGenericComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-generic/tipo-entidad-financiera-generic.component';
 import { TipoEntidadFinancieraListComponent } from './tipo-entidad-finaciera/tipo-entidad-financiera-list/tipo-entidad-financiera-list.component';
+import { TipoDocumentoCreateComponent } from './tipoDocumento/tipo-documento-create/tipo-documento-create.component';
+import { TipoDocumentoEditComponent } from './tipoDocumento/tipo-documento-edit/tipo-documento-edit.component';
+import { TipoDocumentoListComponent } from './tipoDocumento/tipo-documento-list/tipo-documento-list.component';
 
 
 
@@ -123,6 +126,10 @@ import { TipoEntidadFinancieraListComponent } from './tipo-entidad-finaciera/tip
     CuentaBancariaGenericComponent,
     CuentaBancariaCreateComponent,
     CuentaBancariaEditComponent,
+
+    TipoDocumentoCreateComponent,
+    TipoDocumentoListComponent,
+    TipoDocumentoEditComponent,
   ],
   imports: [
     CommonModule,

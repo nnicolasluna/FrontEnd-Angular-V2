@@ -17,8 +17,8 @@ import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertenci
 export class CuidadEditComponent {
 
   private matDialogRef!: any;
-  private url = 'ciudades'
-  private url1 = 'paises'
+  private url = 'parametros/ciudades'
+  private url1 = 'parametros/paises'
   operacion = 'Registrar'
   uuid!: any;
   editar = ''
@@ -70,7 +70,7 @@ export class CuidadEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as cuidad).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/ciudad-list');
+            this.router.navigateByUrl('/home/parametros/ciudad-list');
             this.formGroup.reset();
           },
           error: err => {

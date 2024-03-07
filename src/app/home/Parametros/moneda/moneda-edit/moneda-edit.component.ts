@@ -14,8 +14,8 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class MonedaEditComponent {
   private matDialogRef!: any;
-  private url = 'monedas'
-  private url1 = 'paises'
+  private url = 'parametros/monedas'
+  private url1 = 'parametros/paises'
   uuid!: any
   operacion = 'Editar'
   editar = 'Editar'
@@ -57,7 +57,7 @@ export class MonedaEditComponent {
       this.apiService.create(this.url, this.formGroup.value as moneda).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/moneda-list');
+            this.router.navigateByUrl('/home/parametros/moneda-list');
             this.formGroup.reset();
           },
           error: err => {

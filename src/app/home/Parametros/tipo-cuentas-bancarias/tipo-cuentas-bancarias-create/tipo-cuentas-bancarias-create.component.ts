@@ -16,7 +16,7 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
 export class TipoCuentasBancariasCreateComponent {
 
   private matDialogRef!: any;
-  private url = 'tipo_cuentas_bancarias'
+  private url = 'parametros/tipo_cuentas_bancarias'
 
   operacion = 'Registrar'
   editar = ''
@@ -56,7 +56,7 @@ export class TipoCuentasBancariasCreateComponent {
           console.log(err)
         },
         complete: () => {
-          this.router.navigateByUrl('/home/tipo-cuenta-bancaria-list');
+          this.router.navigateByUrl('/home/parametros/tipo-cuenta-bancaria-list');
         }
       });
     } else {

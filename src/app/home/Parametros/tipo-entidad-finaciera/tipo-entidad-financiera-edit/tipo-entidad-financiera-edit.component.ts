@@ -15,7 +15,7 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class TipoEntidadFinancieraEditComponent {
   private matDialogRef!: any;
-  private url = 'tipo_entidades_financieras'
+  private url = 'parametros/tipo_entidades_financieras'
   operacion = 'Registrar'
   uuid!: any;
   editar = ''
@@ -83,7 +83,7 @@ export class TipoEntidadFinancieraEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as tipoEntidadFinanciera).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/tipo-entidad-finaciera-list');
+            this.router.navigateByUrl('/home/parametros/tipo-entidad-finaciera-list');
             this.formGroup.reset();
           },
           error: (err:any) => {

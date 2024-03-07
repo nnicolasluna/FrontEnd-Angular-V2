@@ -16,7 +16,7 @@ export class PaisEditComponent {
   private matDialogRef!: any;
   dato!: any;
   uuid!: any;
-  private url = 'paises'
+  private url = 'parametros/paises'
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
@@ -44,7 +44,7 @@ export class PaisEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as pais).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/pais-list');
+            this.router.navigateByUrl('/home/parametros/pais-list');
             this.formGroup.reset();
           },
           error: err => {

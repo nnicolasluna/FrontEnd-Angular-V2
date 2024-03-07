@@ -14,11 +14,11 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./cuenta-bancaria-edit.component.scss']
 })
 export class CuentaBancariaEditComponent {
-  private url = 'cuentas_bancarias'
-  private url1 = 'monedas'
-  private url2 = 'tipo_cuentas_bancarias'
-  private url3 = 'entidades_financieras'
-  private url4 = 'agencias'
+  private url = 'parametros/cuentas_bancarias'
+  private url1 = 'parametros/monedas'
+  private url2 = 'parametros/tipo_cuentas_bancarias'
+  private url3 = 'parametros/entidades_financieras'
+  private url4 = 'parametros/agencias'
   operacion = 'Registrar'
   editar = ''
   agencias: any[] = [];
@@ -91,7 +91,7 @@ export class CuentaBancariaEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as cuentaBancaria).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/cuenta-bancaria-list');
+            this.router.navigateByUrl('/home/parametros/cuenta-bancaria-list');
             this.formGroup.reset();
           },
           error: err => {

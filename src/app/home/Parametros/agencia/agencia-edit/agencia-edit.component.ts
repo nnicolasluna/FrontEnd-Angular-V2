@@ -14,8 +14,8 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class AgenciaEditComponent {
   private matDialogRef!: any;
-  private url = 'agencias'
-  private url1 = 'ciudades'
+  private url = 'parametros/agencias'
+  private url1 = 'parametros/ciudades'
   operacion = 'Registrar'
   uuid!: any;
   editar = ''
@@ -79,7 +79,7 @@ export class AgenciaEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as agencia).subscribe(
         {
           next: (data) => {
-            this.router.navigateByUrl('/home/agencia-list');
+            this.router.navigateByUrl('/home/parametros/agencia-list');
             this.formGroup.reset();
 
           },

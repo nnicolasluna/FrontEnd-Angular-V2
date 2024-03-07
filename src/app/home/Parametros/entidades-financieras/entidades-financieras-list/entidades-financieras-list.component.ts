@@ -16,7 +16,7 @@ export class EntidadesFinancierasListComponent {
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'entidades_financieras'
+  private url = 'parametros/entidades_financieras'
   matDialogRef: any;
   pageSizeOptions = [5, 7]; 
   constructor(

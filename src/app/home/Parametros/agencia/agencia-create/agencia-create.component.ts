@@ -13,8 +13,8 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
   styleUrls: ['./agencia-create.component.scss']
 })
 export class AgenciaCreateComponent {
-  private url = 'agencias'
-  private url1 = 'ciudades'
+  private url = 'parametros/agencias'
+  private url1 = 'parametros/ciudades'
   operacion = 'Registrar'
   editar = ''
   ciudad: any[] = [];
@@ -59,7 +59,7 @@ export class AgenciaCreateComponent {
       const formData = this.metodogenerico.getFormGroupData();
       this.apiService.create(this.url, formData).subscribe({
         next: () => {
-          this.router.navigateByUrl('/home/agencia-list');
+          this.router.navigateByUrl('/home/parametros/agencia-list');
           this.formGroup.reset();
         },
         error: err => {

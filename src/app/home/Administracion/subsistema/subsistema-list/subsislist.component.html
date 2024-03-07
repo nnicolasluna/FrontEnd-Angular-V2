@@ -1,0 +1,9 @@
+<app-componente-listar 
+    [titulo]="'Lista de Subsistemas'" 
+    [displayedColumns]="['nombre', 'descripcion', 'link', 'estado','action']"  
+    [adicionar]="'/home/administracion/subsistemacreate'"
+    [editar]="'/home/administracion/subsistemaedit'"
+    [dataSource]="dataSource"
+    [pageSizeOptions]="pageSizeOptions"
+    >
+</app-componente-listar>

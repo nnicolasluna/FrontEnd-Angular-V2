@@ -15,7 +15,7 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class TipoCuentasBancariasEditComponent {
   private matDialogRef!: any;
-  private url = 'tipo_cuentas_bancarias'
+  private url = 'parametros/tipo_cuentas_bancarias'
   operacion = 'Registrar'
   uuid!: any;
   editar = ''
@@ -86,7 +86,7 @@ export class TipoCuentasBancariasEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as tipoCuenta).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/tipo-cuenta-bancaria-list');
+            this.router.navigateByUrl('/home/parametros/tipo-cuenta-bancaria-list');
             this.formGroup.reset();
           },
           error: (err:any) => {

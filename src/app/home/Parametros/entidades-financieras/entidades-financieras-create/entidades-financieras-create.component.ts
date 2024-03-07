@@ -13,8 +13,8 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
   styleUrls: ['./entidades-financieras-create.component.scss']
 })
 export class EntidadesFinancierasCreateComponent {
-  private url = 'entidades_financieras'
-  private url1 = 'tipo_entidades_financieras'
+  private url = 'parametros/entidades_financieras'
+  private url1 = 'parametros/tipo_entidades_financieras'
   operacion = 'Registrar'
   editar = ''
   data: any[] = [];
@@ -55,7 +55,7 @@ export class EntidadesFinancierasCreateComponent {
       const formData = this.metodogenerico.getFormGroupData();
       this.apiService.create(this.url, formData).subscribe({
         next: () => {
-          this.router.navigateByUrl('/home/entidad-financiera-list');
+          this.router.navigateByUrl('/home/parametros/entidad-financiera-list');
           this.formGroup.reset();
 
         },
