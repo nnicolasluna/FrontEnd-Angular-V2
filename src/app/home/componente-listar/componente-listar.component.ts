@@ -5,6 +5,7 @@ import { ModalService } from '../modal/service/modal.service';
 import { ApiService } from '../service/api-generico/api.service';
 import { AdvertenciaErrorConexionComponent } from '../modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { AdvertenciaBorrarComponent } from '../modal/advertencia-borrar/advertencia-borrar.component';
+import { AdvertenciaDeshabilitarComponent } from '../modal/advertencia-deshabilitar/advertencia-deshabilitar.component';
 @Component({
   selector: 'app-componente-listar',
   templateUrl: './componente-listar.component.html',
@@ -21,7 +22,6 @@ export class ComponenteListarComponent<T> {
   @Input() ColumnsNames: string[] = [];
   @Input() pageSizeOptions: number[] = [5, 7, 10];
   @Input() url = '';
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   datos: any;
   private matDialogRef!: any;
@@ -57,13 +57,37 @@ export class ComponenteListarComponent<T> {
           this.apiService.delete(this.url, id).subscribe(
             {
               next: () => {
+                window.location.reload();
                 console.log('borrado')
               },
               error: err => {
+                console.log(err)
                 console.log('No puede eliminarse este registro')
               }
             }
           );
+        }
+      }
+    );
+
+  }
+  disable(id: string) {
+    this.matDialogRef = this.modalService.openDialog(AdvertenciaDeshabilitarComponent);
+    this.matDialogRef.afterClosed().subscribe(
+      () => {
+        if (this.matDialogRef.componentInstance.confirmado) {
+          this.apiService.disable(this.url + '/edit-estado', id).subscribe(
+            {
+              next: () => {
+                window.location.reload();
+                console.log('deshabilitado')
+              },
+              error: err => {
+                console.log(err)
+                console.log('No puede deshabilitar este registro')
+              }
+            }
+          )
         }
       }
     );

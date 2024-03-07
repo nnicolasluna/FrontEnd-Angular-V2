@@ -96,6 +96,7 @@ import { CuentaBancariaEditComponent } from './cuenta-bancaria/cuenta-bancaria-e
 import { FormHeaderComponent } from './form/form-header/form-header.component';
 import { FormFooterComponent } from './form/form-footer/form-footer.component';
 import { FormBuscarComponent } from './form/form-buscar/form-buscar.component';
+import { AdvertenciaDeshabilitarComponent } from './modal/advertencia-deshabilitar/advertencia-deshabilitar.component';
 
 
 
@@ -182,6 +183,7 @@ import { FormBuscarComponent } from './form/form-buscar/form-buscar.component';
     FormHeaderComponent,
     FormFooterComponent,
     FormBuscarComponent,
+    AdvertenciaDeshabilitarComponent,
     
 
 

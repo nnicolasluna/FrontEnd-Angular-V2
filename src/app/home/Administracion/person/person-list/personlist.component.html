@@ -65,10 +65,11 @@
 </div> -->
 <app-componente-listar 
     [titulo]="'Lista de Personas'" 
-    [displayedColumns]="['nombres', 'primer_apellido', 'segundo_apellido', 'generos','estadosCiviles','action']"  
+    [displayedColumns]="['nombres', 'primer_apellido', 'segundo_apellido', 'generos','estadosCiviles','estado','action']"  
     [adicionar]="'/home/administracion/personcreate'"
     [editar]="'/home/administracion/personprofile'"
     [dataSource]="dataSource"
     [pageSizeOptions]="pageSizeOptions"
+    [url]="'administracion/personas'"
     >
 </app-componente-listar>

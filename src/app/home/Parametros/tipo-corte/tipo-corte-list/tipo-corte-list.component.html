@@ -1,9 +1,10 @@
 <app-componente-listar 
     [titulo]="'Lista de Tipo de Cortes'" 
     [displayedColumns]="['nombre', 'abreviatura', 'estado', 'action']"  
-    [pageSizeOptions]="[5, 7]"
+    [pageSizeOptions]="[10, 15]"
     [adicionar]="'/home/parametros/tipo-corte-create'"
     [editar]="'/home/parametros/tipo-corte-edit'"
     [dataSource]="dataSource"
+    [url]="'parametros/tipo_cortes'"
     >
 </app-componente-listar>

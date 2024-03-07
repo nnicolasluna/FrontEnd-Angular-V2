@@ -19,7 +19,7 @@ export class TipoCuentasBancariasListComponent {
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url = 'parametros/tipo_cuentas_bancarias'
   matDialogRef: any;
-  pageSizeOptions = [5, 7]; 
+  pageSizeOptions = [10, 15]; 
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<tipoCuenta>,

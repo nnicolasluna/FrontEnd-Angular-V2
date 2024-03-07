@@ -19,7 +19,7 @@ export class RolelistComponent {
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url = 'administracion/roles'
   matDialogRef: any;
-  pageSizeOptions = [5, 7]; 
+  pageSizeOptions = [10, 15]; 
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<role>,

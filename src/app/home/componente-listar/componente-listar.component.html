@@ -39,7 +39,8 @@
                 <div class="table__acciones__bar">
                   <mat-icon class=" button-icon  button-icon--editar" matTooltip="Editar"
                     routerLink="{{editar}}/{{ element.uuid }}" data-cy="editar">edit</mat-icon>
-                  <mat-icon class="button-icon  button-icon--desactivar" matTooltip="Desactivar">unpublished</mat-icon>
+                  <mat-icon class="button-icon  button-icon--desactivar" matTooltip="Desactivar"
+                    (click)="disable(element.uuid)">unpublished</mat-icon>
                   <mat-icon class="button-icon  button-icon--borrar" matTooltip="Borrar"
                     (click)="delete(element.uuid)">delete</mat-icon>
                 </div>

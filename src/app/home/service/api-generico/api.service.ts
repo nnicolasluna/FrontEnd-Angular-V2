@@ -2,12 +2,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
-
+import { Subject } from 'rxjs';
+import { tap } from 'cypress/types/lodash';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService<T> {
   private baseUrl = environment.apiBaseUrl;
+  private disableSubject = new Subject<void>();
+  disableComplete$ = this.disableSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -29,5 +32,9 @@ export class ApiService<T> {
 
   delete(resourceUrl: string, id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}${resourceUrl}/${id}`);
+  }
+
+  disable(resourceUrl: string, id: string): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}${resourceUrl}/${id}`, null);
   }
 }

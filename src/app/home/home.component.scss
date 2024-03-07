@@ -1,7 +1,7 @@
 .dash {
     width: 100vw;
     display: flex;
-  
+
     height: 100vh;
 
 
@@ -12,6 +12,7 @@
     width: 100%;
     flex: 1;
     height: 100%;
+    overflow: auto;
 }
 
 .top {
@@ -21,13 +22,14 @@
 }
 
 .bot {
-    overflow-y: auto;
+    overflow: auto;
 }
 
 .left {
     background-color: #343A40;
-    width: 15%;
-    min-width: 220px;
+    /*    width: 15%; */
+    width: 240px;
+    min-width: 240px;
     min-height: 100vh;
     overflow: auto;
 }
@@ -252,6 +254,7 @@ mat-action-row:hover {
 .marcado {
     background-color: #EC6100;
 }
-.button_nav--son{
+
+.button_nav--son {
     padding-left: 20px;
 }

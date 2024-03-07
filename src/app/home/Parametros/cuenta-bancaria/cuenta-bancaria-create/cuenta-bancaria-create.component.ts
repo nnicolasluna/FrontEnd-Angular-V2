@@ -34,6 +34,7 @@ export class CuentaBancariaCreateComponent {
     entidadesFinancieras: new FormControl('', [Validators.required]),
     monedas: new FormControl('', [Validators.required]),
     agencias: new FormControl('', [Validators.required]),
+    estado: new FormControl(true),
   });
   get numero_cuentaControl() {
     return this.formGroup.controls.numero_cuenta;

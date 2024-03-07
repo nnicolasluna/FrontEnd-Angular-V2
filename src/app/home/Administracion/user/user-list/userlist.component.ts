@@ -8,6 +8,7 @@ import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borra
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
+import { AdvertenciaDeshabilitarComponent } from 'src/app/home/modal/advertencia-deshabilitar/advertencia-deshabilitar.component';
 
 @Component({
   selector: 'app-userlist',
@@ -87,6 +88,28 @@ export class UserlistComponent {
 
 
     });
+  }
+  disable(id: string) {
+    this.matDialogRef = this.modalService.openDialog(AdvertenciaDeshabilitarComponent);
+    this.matDialogRef.afterClosed().subscribe(
+      () => {
+        if (this.matDialogRef.componentInstance.confirmado) {
+          this.apiService.disable(this.url + '/edit-estado', id).subscribe(
+            {
+              next: () => {
+                window.location.reload();
+                console.log('deshabilitado')
+              },
+              error: err => {
+                console.log(err)
+                console.log('No puede deshabilitar este registro')
+              }
+            }
+          )
+        }
+      }
+    );
+
   }
 
 

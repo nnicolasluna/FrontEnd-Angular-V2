@@ -78,7 +78,7 @@ export class PersonlistComponent {
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url = 'administracion/personas'
   matDialogRef: any;
-  pageSizeOptions = [5, 7]; 
+  pageSizeOptions = [10, 15]; 
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<person>,
