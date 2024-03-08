@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./subsiscreate.component.scss']
 })
 export class SubsiscreateComponent {
-  url = 'administracion/subsistemas'
+  url_subsistemas = 'administracion/subsistemas'
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
@@ -31,26 +31,15 @@ export class SubsiscreateComponent {
   }
   constructor( 
     private router: Router,
-    private personservice: SubsistemaService,
     private apiService: ApiService<subsistema>,
     ){}
 
     
   create() {
     if (this.formGroup.valid) {
-/* 
-      this.personservice.create(this.formGroup.value as subsistema).subscribe({
-        
-        next: (userData:any) => {
-      
-            this.router.navigateByUrl('/home/administracion/subsistemalist');
-            this.formGroup.reset();
-          
-        },
-      }); */
-      this.apiService.create(this.url, this.formGroup.value as subsistema).subscribe(
+      this.apiService.create(this.url_subsistemas, this.formGroup.value as subsistema).subscribe(
         {
-          next: (userData:any) => {
+          next: () => {
             this.router.navigateByUrl('/home/administracion/subsistemalist');
             this.formGroup.reset();
           

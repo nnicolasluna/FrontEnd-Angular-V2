@@ -1,7 +1,6 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { RoleService } from '../role-service/role.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { role, roleDTO } from '../role-model/role';
 import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borrar/advertencia-borrar.component';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
@@ -14,12 +13,12 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./rolelist.component.scss']
 })
 export class RolelistComponent {
-  datos: any;
-  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  registros_roles: any;
+  roles_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'administracion/roles'
+  private url_endpoint_roles = 'administracion/roles'
   matDialogRef: any;
-  pageSizeOptions = [10, 15]; 
+  pageSizeOptions = [10, 15];
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<role>,
@@ -30,12 +29,12 @@ export class RolelistComponent {
   }
 
   getAll() {
-    this.apiService.getAll(this.url).subscribe(
+    this.apiService.getAll(this.url_endpoint_roles).subscribe(
       {
         next: data => {
-          this.datos = data;
-          this.dataSource = new MatTableDataSource<roleDTO>(this.datos);
-          this.dataSource.paginator = this.paginatior;
+          this.registros_roles = data;
+          this.roles_dataSource = new MatTableDataSource<roleDTO>(this.registros_roles);
+          this.roles_dataSource.paginator = this.paginatior;
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
@@ -50,7 +49,7 @@ export class RolelistComponent {
     this.matDialogRef.afterClosed().subscribe(
       () => {
         if (this.matDialogRef.componentInstance.confirmado) {
-          this.apiService.delete(this.url, id).subscribe(
+          this.apiService.delete(this.url_endpoint_roles, id).subscribe(
             {
               next: () => {
                 this.getAll();

@@ -1,10 +1,10 @@
 <app-componente-listar 
     [titulo]="'Lista de Entidades Financieras'" 
     [displayedColumns]="['nombre', 'abreviatura', 'estado','action']"  
-    [adicionar]="'/home/parametros/entidad-financiera-create'"
-    [editar]="'/home/parametros/entidad-financiera-edit'"
-    [dataSource]="dataSource"
+    [link_adicionar]="'/home/parametros/entidad-financiera-create'"
+    [link_editar]="'/home/parametros/entidad-financiera-edit'"
+    [table_dataSource]="dataSource"
     [pageSizeOptions]="pageSizeOptions"
-    [url]="'parametros/entidades_financieras'"
+    [url_endpoint]="'parametros/entidades_financieras'"
     >
 </app-componente-listar>

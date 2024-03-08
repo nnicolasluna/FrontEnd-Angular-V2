@@ -13,19 +13,19 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
   styleUrls: ['./agencia-generic.component.scss']
 })
 export class AgenciaGenericComponent {
-  @Input() url: string = '';
-  @Input() operacion: string = '';
-  @Input() editar: string = '';
-  @Input() regreso: string = '';
-  @Input() city: any[] = [];
-  @Input() Data: any;
-  @Input() metodoDesdePadre: () => void = () => { };
+  @Input() url_endpoint_agencia: string = '';
+  @Input() titulo_operacion: string = '';
+  @Input() subtitulo_operacion: string = '';
+  @Input() link_boton_regresar: string = '';
+  @Input() registros_ciudades: any[] = [];
+  @Input() datos_recuperados_agencia: any;
+  @Input() ejecutar_metodoDesdePadre: () => void = () => { };
   private matDialogRef!: any;
   ciudad!: any
   ejecutarCreate() {
-    if (this.metodoDesdePadre) {
+    if (this.ejecutar_metodoDesdePadre) {
       this.metodogenerico.setFormGroup(this.formGroup)
-      this.metodoDesdePadre();
+      this.ejecutar_metodoDesdePadre();
     }
 
   }
@@ -61,11 +61,11 @@ export class AgenciaGenericComponent {
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['Data'] && changes['Data'].currentValue) {
-      this.formGroup.patchValue(this.Data);
+    if (changes['datos_recuperados_agencia'] && changes['datos_recuperados_agencia'].currentValue) {
+      this.formGroup.patchValue(this.datos_recuperados_agencia);
       this.ciudad = this.formGroup.value.ciudades
 
-      this.getDatos('ciudades', this.ciudad)
+      this.getDatos('ciudades', this.formGroup.value.ciudades)
 
     }
   }

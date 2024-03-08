@@ -1,10 +1,10 @@
 <app-componente-listar 
     [titulo]="'Lista de Estados Civiles'" 
     [displayedColumns]="['nombre', 'abreviatura', 'estado','action']"  
-    [adicionar]="'/home/parametros/estado-civil-create'"
-    [editar]="'/home/parametros/estado-civil-edit'"
-    [dataSource]="dataSource"
+    [link_adicionar]="'/home/parametros/estado-civil-create'"
+    [link_editar]="'/home/parametros/estado-civil-edit'"
+    [table_dataSource]="dataSource"
     [pageSizeOptions]="pageSizeOptions"
-    [url]="'parametros/estados_civiles'"
+    [url_endpoint]="'parametros/estados_civiles'"
     >
 </app-componente-listar>

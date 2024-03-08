@@ -1,10 +1,10 @@
 <app-componente-listar 
     [titulo]="'Lista de Agencias'" 
     [displayedColumns]="['nombre', 'abreviatura', 'direccion', 'telefono','ciudades','estado','action']"  
-    [adicionar]="'/home/parametros/agencia-create'"
-    [editar]="'/home/parametros/agencia-edit'"
-    [dataSource]="dataSource"
+    [link_adicionar]="'/home/parametros/agencia-create'"
+    [link_editar]="'/home/parametros/agencia-edit'"
+    [table_dataSource]="dataSource"
     [pageSizeOptions]="pageSizeOptions"
-    [url]="'parametros/agencias'"
+    [url_endpoint]="'parametros/agencias'"
     >
 </app-componente-listar>

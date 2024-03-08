@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { person } from '../person-model/person';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
@@ -12,16 +12,15 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./personcreate.component.scss']
 })
 export class PersoncreateComponent {
-  private matDialogRef!: any;
-  private url = 'administracion/personas'
-  private url1 = 'parametros/ocupaciones'
-  private url2 = 'parametros/estados_civiles'
-  private url3 = 'parametros/generos'
+  private url_personas = 'administracion/personas'
+  private url_ocupaciones = 'parametros/ocupaciones'
+  private url_estados_civiles = 'parametros/estados_civiles'
+  private url_generos = 'parametros/generos'
   generos: any[] = [];
   estado: any[] = [];
   ocupacion: any[] = [];
-
-  formGroup = new FormGroup({
+  private matDialogRef!: any;
+  persona_formGroup = new FormGroup({
     nombres: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     primer_apellido: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     segundo_apellido: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
@@ -35,31 +34,31 @@ export class PersoncreateComponent {
   });
 
   get nombreControl() {
-    return this.formGroup.controls.nombres;
+    return this.persona_formGroup.controls.nombres;
   }
   get papellidoControl() {
-    return this.formGroup.controls.primer_apellido;
+    return this.persona_formGroup.controls.primer_apellido;
   }
   get sapellidoControl() {
-    return this.formGroup.controls.segundo_apellido;
+    return this.persona_formGroup.controls.segundo_apellido;
   }
   get ocupacionControl() {
-    return this.formGroup.controls.ocupaciones;
+    return this.persona_formGroup.controls.ocupaciones;
   }
   get estadoControl() {
-    return this.formGroup.controls.estadosCiviles;
+    return this.persona_formGroup.controls.estadosCiviles;
   }
   get generoControl() {
-    return this.formGroup.controls.generos;
+    return this.persona_formGroup.controls.generos;
   }
   get fnacimientoControl() {
-    return this.formGroup.controls.fecha_nacimiento;
+    return this.persona_formGroup.controls.fecha_nacimiento;
   }
   get lnacimientoControl() {
-    return this.formGroup.controls.lugar_nacimiento;
+    return this.persona_formGroup.controls.lugar_nacimiento;
   }
   get celularControl() {
-    return this.formGroup.controls.celular
+    return this.persona_formGroup.controls.celular
   }
 
   constructor(
@@ -69,12 +68,12 @@ export class PersoncreateComponent {
   ) { }
 
   create() {
-    if (this.formGroup.valid) {
-      this.apiService.create(this.url, this.formGroup.value as person).subscribe(
+    if (this.persona_formGroup.valid) {
+      this.apiService.create(this.url_personas, this.persona_formGroup.value as person).subscribe(
         {
           next: () => {
             this.router.navigateByUrl('/home/administracion/personlist');
-            this.formGroup.reset();
+            this.persona_formGroup.reset();
           },
           error: err => {
             this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
@@ -85,7 +84,7 @@ export class PersoncreateComponent {
       );
     }
     else {
-      this.formGroup.markAllAsTouched();
+      this.persona_formGroup.markAllAsTouched();
     }
   }
   ngOnInit() {
@@ -94,7 +93,7 @@ export class PersoncreateComponent {
     this.getOcupaciones();
   }
   getGeneros() {
-    this.apiService.getAll(this.url3).subscribe(
+    this.apiService.getAll(this.url_generos).subscribe(
       {
         next: data => {
           this.generos = data
@@ -106,7 +105,7 @@ export class PersoncreateComponent {
     )
   }
   getOcupaciones() {
-    this.apiService.getAll(this.url1).subscribe(
+    this.apiService.getAll(this.url_ocupaciones).subscribe(
       {
         next: data => {
           this.ocupacion = data
@@ -118,7 +117,7 @@ export class PersoncreateComponent {
     )
   }
   getEstados() {
-    this.apiService.getAll(this.url2).subscribe(
+    this.apiService.getAll(this.url_estados_civiles).subscribe(
       {
         next: data => {
           this.estado = data

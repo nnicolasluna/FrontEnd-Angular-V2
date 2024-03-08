@@ -1,10 +1,10 @@
 <div class="body">
     <div class="body__header">
-        <h1 class="body__h1">{{ operacion }}</h1>
+        <h1 class="body__h1">{{ titulo_operacion }}</h1>
     </div>
     <div class="body__content">
         <mat-card class="card card--small">
-            <app-form-header [titulo]="editar"></app-form-header>
+            <app-form-header [titulo]="subtitulo_operacion"></app-form-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
                     <div class="input-group">
@@ -72,14 +72,14 @@
                         <select formControlName="ciudades" class="input-group__imput"
                             [ngClass]="{'invalid': ciudadesControl.invalid && (ciudadesControl.dirty || ciudadesControl.touched), 'valid': ciudadesControl.valid}">
                             <option value="" disabled selected>Selecciona Ciudad</option>
-                            <option *ngFor="let dato of city" [value]="dato.uuid">{{ dato.nombre }}
+                            <option *ngFor="let dato of registros_ciudades" [value]="dato.uuid">{{ dato.nombre }}
                             </option>
                         </select>
                     </div>
 
                 </form>
             </mat-card-content>
-            <app-form-footer [regreso]="regreso" (saveClicked)="ejecutarCreate()"></app-form-footer>
+            <app-form-footer [regreso]="link_boton_regresar" (saveClicked)="ejecutarCreate()"></app-form-footer>
         </mat-card>
 
     </div>

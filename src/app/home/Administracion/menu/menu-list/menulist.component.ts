@@ -14,10 +14,10 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./menulist.component.scss']
 })
 export class MenulistComponent {
-  datos: any;
-  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  registros_menus: any;
+  menus_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  private url = 'administracion/menus'
+  private url_menus = 'administracion/menus'
   matDialogRef: any;
   pageSizeOptions = [10, 15]; 
   constructor(
@@ -30,12 +30,12 @@ export class MenulistComponent {
   }
 
   getAll() {
-    this.apiService.getAll(this.url).subscribe(
+    this.apiService.getAll(this.url_menus).subscribe(
       {
         next: data => {
-          this.datos = data;
-          this.dataSource = new MatTableDataSource<menuDTO>(this.datos);
-          this.dataSource.paginator = this.paginatior;
+          this.registros_menus = data;
+          this.menus_dataSource = new MatTableDataSource<menuDTO>(this.registros_menus);
+          this.menus_dataSource.paginator = this.paginatior;
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
@@ -50,7 +50,7 @@ export class MenulistComponent {
     this.matDialogRef.afterClosed().subscribe(
       () => {
         if (this.matDialogRef.componentInstance.confirmado) {
-          this.apiService.delete(this.url, id).subscribe(
+          this.apiService.delete(this.url_menus, id).subscribe(
             {
               next: () => {
                 this.getAll();

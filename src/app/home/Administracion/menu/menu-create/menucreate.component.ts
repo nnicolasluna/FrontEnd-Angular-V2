@@ -13,8 +13,8 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./menucreate.component.scss']
 })
 export class MenucreateComponent {
-  private url = 'administracion/menus'
-  private url1 = 'administracion/subsistemas'
+  private url_menus = 'administracion/menus'
+  private url_subsistemas = 'administracion/subsistemas'
   subsistemas: any[] = [];
   subsistemaFormGroup = new FormGroup({
     uuid: new FormControl(''),
@@ -49,7 +49,7 @@ export class MenucreateComponent {
 
       this.formGroup.value.subsistemas = this.subsistemaFormGroup.value;
 
-      this.apiService.create(this.url, this.formGroup.value as menu).subscribe(
+      this.apiService.create(this.url_menus, this.formGroup.value as menu).subscribe(
         {
           next: () => {
             this.formGroup.reset();
@@ -68,7 +68,7 @@ export class MenucreateComponent {
     }
   }
   getSubsistemas() {
-    this.apiService.getAll(this.url1).subscribe(
+    this.apiService.getAll(this.url_subsistemas).subscribe(
       {
         next: data => {
           this.subsistemas = data

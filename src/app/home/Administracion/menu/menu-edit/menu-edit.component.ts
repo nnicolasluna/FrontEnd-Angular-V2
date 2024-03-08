@@ -17,6 +17,7 @@ export class MenuEditComponent {
   private url = 'administracion/menus'
   private url1 = 'administracion/subsistemas'
   subsistemas: any[] = [];
+  uuid_menu!: any;
   subsistemaFormGroup = new FormGroup({
     uuid: new FormControl(''),
   });
@@ -38,37 +39,19 @@ export class MenuEditComponent {
   }
 
   constructor(private router: Router,
-    private menuservice: MenuService,
     private route: ActivatedRoute,
-    private subsistemaService: SubsistemaService,
     private apiService: ApiService<menu>,
   ) { }
-
-  create() {
+  
+  edit() {
     if (this.formGroup.valid) {
-      this.uuid = this.route.snapshot.paramMap.get('id');
-      this.formGroup.value.uuid = this.uuid;
+      this.uuid_menu = this.route.snapshot.paramMap.get('id');
+      this.formGroup.value.uuid = this.uuid_menu;
       this.formGroup.value.subsistemas = this.subsistemaFormGroup.value;
-
-      /*       this.menuservice.update(this.formGroup.value as menu, this.uuid).subscribe(
-              {
-                next: (userData: any) => {
-                  if (userData) {
-                    this.router.navigateByUrl('/home/menulist');
-      
-                    this.formGroup.reset();
-                  }
-                  else {
-                    alert("Datos Incorrectos, Verifique sus datos");
-                  }
-                },
-              }); */
-      this.apiService.update(this.url, this.uuid, this.formGroup.value as menu,).subscribe(
+      this.apiService.update(this.url, this.uuid_menu, this.formGroup.value as menu,).subscribe(
         {
-          next: (userData: any) => {
-
+          next: () => {
             this.router.navigateByUrl('/home/administracion/menulist');
-
             this.formGroup.reset();
           }
         }
@@ -82,33 +65,27 @@ export class MenuEditComponent {
   getSubsistemas() {
     this.apiService.getAll(this.url1).subscribe(
       {
-        next:data =>{
+        next: data => {
           this.subsistemas = data;
         }
       }
     )
-  /*   this.subsistemaService.getSubsis().subscribe((data) => {
-
-
-
-    }); */
   }
   ngOnInit() {
     this.getSubsistemas();
     this.getmenu();
   }
-  datos: any;
-  uuid!: any;
+  
   getmenu() {
-    this.uuid = this.route.snapshot.paramMap.get('id');
-    this.apiService.getOne(this.url,this.uuid).subscribe(
+    this.uuid_menu = this.route.snapshot.paramMap.get('id');
+    this.apiService.getOne(this.url, this.uuid_menu).subscribe(
       {
-        next: data =>{ this.datos = data;
+        next: data => {
           this.formGroup.patchValue(data);
 
         }
       }
     )
-  
+
   }
 }

@@ -1,10 +1,10 @@
 <app-componente-listar 
     [titulo]="'Lista de Tipos de Entidades Financieras'" 
     [displayedColumns]="['nombre', 'abreviatura','estado','action']"  
-    [adicionar]="'/home/parametros/tipo-entidad-finaciera-create'"
-    [editar]="'/home/parametros/tipo-entidad-finaciera-edit'"
-    [dataSource]="dataSource"
+    [link_adicionar]="'/home/parametros/tipo-entidad-finaciera-create'"
+    [link_editar]="'/home/parametros/tipo-entidad-finaciera-edit'"
+    [table_dataSource]="dataSource"
     [pageSizeOptions]="pageSizeOptions"
-    [url]="'parametros/entidades_financieras'"
+    [url_endpoint]="'parametros/entidades_financieras'"
     >
 </app-componente-listar>

@@ -1,10 +1,10 @@
 <app-componente-listar 
     [titulo]="'Lista de Cuentas Bancarias'" 
     [displayedColumns]="['numero_cuenta', 'fecha_apertura', 'tipoCuentasBancarias', 'entidadesFinancieras','monedas','estado','action']"  
-    [adicionar]="'/home/parametros/cuenta-bancaria-create'"
-    [editar]="'/home/parametros/cuenta-bancaria-edit'"
-    [dataSource]="dataSource"
+    [link_adicionar]="'/home/parametros/cuenta-bancaria-create'"
+    [link_adicionar]="'/home/parametros/cuenta-bancaria-edit'"
+    [table_dataSource]="dataSource"
     [pageSizeOptions]="pageSizeOptions"
-    [url]="'parametros/cuentas_bancarias'"
+    [url_endpoint]="'parametros/cuentas_bancarias'"
     >
 </app-componente-listar>

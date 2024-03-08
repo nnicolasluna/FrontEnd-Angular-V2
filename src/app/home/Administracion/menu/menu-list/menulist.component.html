@@ -1,10 +1,10 @@
 <app-componente-listar 
     [titulo]="'Lista de Menus'" 
     [displayedColumns]="['nombre', 'descripcion', 'link', 'subsistemas','estado','action']"  
-    [adicionar]="'/home/administracion/menucreate'"
-    [editar]="'/home/administracion/menuedit'"
-    [dataSource]="dataSource"
+    [link_adicionar]="'/home/administracion/menucreate'"
+    [link_editar]="'/home/administracion/menuedit'"
+    [table_dataSource]="menus_dataSource"
     [pageSizeOptions]="pageSizeOptions"
-    [url]="'administracion/menus'"
+    [url_endpoint]="'administracion/menus'"
     >
 </app-componente-listar>

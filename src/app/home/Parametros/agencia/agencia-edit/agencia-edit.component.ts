@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { agencia } from '../agencia-model/agencia';
-import { switchMap } from 'rxjs';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
@@ -14,14 +13,14 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class AgenciaEditComponent {
   private matDialogRef!: any;
-  private url = 'parametros/agencias'
-  private url1 = 'parametros/ciudades'
+  url_endpoint_agencias = 'parametros/agencias'
+  private url_endpoint_ciuades = 'parametros/ciudades'
   operacion = 'Registrar'
   uuid!: any;
   editar = ''
   paises: any[] = [];
   tipoCorte: any[] = [];
-  datos!: any;
+  datos_recuperados_agencia!: any;
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -56,29 +55,16 @@ export class AgenciaEditComponent {
   ngOnInit(): void {
     this.getAll()
     this.getOne()
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        this.uuid = this.route.snapshot.paramMap.get('id');
-        return this.apiService.getOne('agencias', this.uuid);
-      })
-    ).subscribe({
-      next: (data) => {
-        this.datos = data;
-
-      },
-      error: (err) => {
-        console.error('Error al obtener los datos:', err);
-      }
-    });
+    
   }
   update() {
     if (this.formGroup.valid) {
       this.formGroup.value.uuid = this.route.snapshot.paramMap.get('id');
       this.uuid = this.route.snapshot.paramMap.get('id');
 
-      this.apiService.update(this.url, this.uuid, this.formGroup.value as agencia).subscribe(
+      this.apiService.update(this.url_endpoint_agencias, this.uuid, this.formGroup.value as agencia).subscribe(
         {
-          next: (data) => {
+          next: () => {
             this.router.navigateByUrl('/home/parametros/agencia-list');
             this.formGroup.reset();
 
@@ -98,7 +84,7 @@ export class AgenciaEditComponent {
     }
   }
   getAll() {
-    this.apiService.getAll(this.url1).subscribe(
+    this.apiService.getAll(this.url_endpoint_ciuades).subscribe(
       {
         next: data => {
           this.paises = data
@@ -108,10 +94,10 @@ export class AgenciaEditComponent {
   }
   getOne() {
     this.uuid = this.route.snapshot.paramMap.get('id');
-    this.apiService.getOne(this.url, this.uuid).subscribe(
+    this.apiService.getOne(this.url_endpoint_agencias, this.uuid).subscribe(
       {
         next: data => {
-          this.datos = data
+          this.datos_recuperados_agencia = data
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);

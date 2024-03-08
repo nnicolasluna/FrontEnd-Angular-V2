@@ -16,8 +16,8 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./comandolist.component.scss']
 })
 export class ComandolistComponent {
-  datos: any;
-  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  registros_comandos: any;
+  comandos_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url = 'administracion/comandos'
   matDialogRef: any;
@@ -35,9 +35,9 @@ export class ComandolistComponent {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
-          this.datos = data;
-          this.dataSource = new MatTableDataSource<comandoDTO>(this.datos);
-          this.dataSource.paginator = this.paginatior;
+          this.registros_comandos = data;
+          this.comandos_dataSource = new MatTableDataSource<comandoDTO>(this.registros_comandos);
+          this.comandos_dataSource.paginator = this.paginatior;
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);

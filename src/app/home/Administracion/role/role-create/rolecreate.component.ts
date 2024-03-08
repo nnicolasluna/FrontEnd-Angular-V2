@@ -49,9 +49,7 @@ export class RolecreateComponent {
 
   constructor(
     private router: Router,
-    private roleservice: RoleService,
     private forBuilder: FormBuilder,
-    private subsistemaService: SubsistemaService,
     private cd: ChangeDetectorRef,
     private apiService: ApiService<role>,
   ) { }
@@ -83,11 +81,6 @@ export class RolecreateComponent {
     }
   }
   getSubsistemas() {
-
-    /* this.subsistemaService.getSubsis().subscribe((data) => {
-      this.roles = data;
-
-    }); */
     this.apiService.getAll(this.url1).subscribe(
       {
         next: data => {

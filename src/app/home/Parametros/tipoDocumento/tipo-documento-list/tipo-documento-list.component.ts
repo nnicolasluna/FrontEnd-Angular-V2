@@ -14,60 +14,8 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./tipo-documento-list.component.scss']
 })
 export class TipoDocumentoListComponent {
-/* 
-  tipo: any;
-  dataSource: any;
-
-  constructor(
-    private tipoDocumentoService: TipoDocumentoService,
-    private modalService: ModalService,
-  ) { }
-  ngOnInit() {
-    this.getTipoDocumento();
-  }
-  @ViewChild(MatPaginator) paginatior !: MatPaginator;
-  displayedColumns: string[] = ['nombre', 'descripcion', 'estado', 'acciones'];
-
-
-
-
-  getTipoDocumento() {
-    this.tipoDocumentoService.getDocuments().subscribe(
-      {
-        next: data => {
-          this.tipo = data;
-          this.dataSource = new MatTableDataSource<tipoDocumentoDTO>(this.tipo);
-          this.dataSource.paginator = this.paginatior;
-        },
-        error: err => {
-          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
-          this.matDialogRef.afterClosed().subscribe(
-          
-          );
-        }
-      }
-    );
-  }
-  Filterchange(data: Event) {
-    const value = (data.target as HTMLInputElement).value;
-    this.dataSource.filter = value;
-  }
-
-  private matDialogRef!: any;
-  deleteTipoDocumento(uuid: string) {
-    this.matDialogRef = this.modalService.openDialog(AdvertenciaBorrarComponent);
-    this.matDialogRef.afterClosed().subscribe(() => {
-      if (this.matDialogRef.componentInstance.confirmado) {
-        this.tipoDocumentoService.destroy(uuid).subscribe((res: any) => {
-          this.getTipoDocumento();
-        });
-      }
-
-
-    });
-  } */
-  datos: any;
-  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  registros_tipos_documentos!:any
+  tipodocumentos_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url = 'parametros/tipo_documentos'
   matDialogRef: any;
@@ -85,9 +33,9 @@ export class TipoDocumentoListComponent {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
-          this.datos = data;
-          this.dataSource = new MatTableDataSource<tipoDocumentoDTO>(this.datos);
-          this.dataSource.paginator = this.paginatior;
+          this.registros_tipos_documentos = data;
+          this.tipodocumentos_dataSource = new MatTableDataSource<tipoDocumentoDTO>(this.registros_tipos_documentos);
+          this.tipodocumentos_dataSource.paginator = this.paginatior;
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);

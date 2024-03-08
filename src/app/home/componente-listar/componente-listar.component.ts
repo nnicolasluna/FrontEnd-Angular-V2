@@ -14,14 +14,14 @@ import { AdvertenciaDeshabilitarComponent } from '../modal/advertencia-deshabili
 })
 export class ComponenteListarComponent<T> {
   @Input() titulo: string = '';
-  @Input() adicionar: string = '';
-  @Input() editar: string = '';
+  @Input() link_adicionar: string = '';
+  @Input() link_editar: string = '';
   @Input() borrar: string = '';
-  @Input() dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  @Input() table_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @Input() displayedColumns: string[] = [];
   @Input() ColumnsNames: string[] = [];
   @Input() pageSizeOptions: number[] = [5, 7, 10];
-  @Input() url = '';
+  @Input() url_endpoint = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   datos: any;
   private matDialogRef!: any;
@@ -31,22 +31,20 @@ export class ComponenteListarComponent<T> {
     private apiService: ApiService<T>,
   ) { }
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
-    if (this.dataSource && this.dataSource.data) {
-      // Si los datos se proporcionan, asignarlos a dataSource
-      this.dataSource.data = this.dataSource.data;
+    this.table_dataSource.paginator = this.paginator;
+    if (this.table_dataSource && this.table_dataSource.data) {
+      this.table_dataSource.data = this.table_dataSource.data;
     }
   }
   ngOnChanges(): void {
-    this.dataSource.paginator = this.paginator;
-    if (this.dataSource && this.dataSource.data) {
-      // Si los datos se proporcionan, asignarlos a dataSource
-      this.dataSource.data = this.dataSource.data;
+    this.table_dataSource.paginator = this.paginator;
+    if (this.table_dataSource && this.table_dataSource.data) {
+      this.table_dataSource.data = this.table_dataSource.data;
     }
   }
   Filterchange(data: Event) {
     const value = (data.target as HTMLInputElement).value;
-    this.dataSource.filter = value.trim().toLowerCase();
+    this.table_dataSource.filter = value.trim().toLowerCase();
   }
 
   delete(id: string) {
@@ -54,7 +52,7 @@ export class ComponenteListarComponent<T> {
     this.matDialogRef.afterClosed().subscribe(
       () => {
         if (this.matDialogRef.componentInstance.confirmado) {
-          this.apiService.delete(this.url, id).subscribe(
+          this.apiService.delete(this.url_endpoint, id).subscribe(
             {
               next: () => {
                 window.location.reload();
@@ -76,7 +74,7 @@ export class ComponenteListarComponent<T> {
     this.matDialogRef.afterClosed().subscribe(
       () => {
         if (this.matDialogRef.componentInstance.confirmado) {
-          this.apiService.disable(this.url + '/edit-estado', id).subscribe(
+          this.apiService.disable(this.url_endpoint + '/edit-estado', id).subscribe(
             {
               next: () => {
                 window.location.reload();

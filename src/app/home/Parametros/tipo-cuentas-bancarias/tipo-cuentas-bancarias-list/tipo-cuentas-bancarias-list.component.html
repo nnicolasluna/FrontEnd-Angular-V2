@@ -1,10 +1,10 @@
 <app-componente-listar 
     [titulo]="'Lista de Tipos de Cuentas Bancarias'" 
     [displayedColumns]="['nombre', 'abreviatura','estado','action']"  
-    [adicionar]="'/home/parametros/tipo-cuenta-bancaria-create'"
-    [editar]="'/home/parametros/tipo-cuenta-bancaria-edit'"
-    [dataSource]="dataSource"
+    [link_adicionar]="'/home/parametros/tipo-cuenta-bancaria-create'"
+    [link_editar]="'/home/parametros/tipo-cuenta-bancaria-edit'"
+    [table_dataSource]="dataSource"
     [pageSizeOptions]="pageSizeOptions"
-    [url]="'parametros/cuentas_bancarias'"
+    [url_endpoint]="'parametros/cuentas_bancarias'"
     >
 </app-componente-listar>

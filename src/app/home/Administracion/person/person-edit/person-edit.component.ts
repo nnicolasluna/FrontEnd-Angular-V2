@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PersonService } from '../person-service/person.service';
-import { person } from '../person-model/person';
+import { person, personDTO } from '../person-model/person';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
@@ -16,7 +16,17 @@ export class PersonEditComponent {
   datos: any;
   uuid!: any;
   private matDialogRef!: any;
-
+  private url_personas = 'administracion/personas'
+  private url_ocupaciones = 'parametros/ocupaciones'
+  private url_estados_civiles = 'parametros/estados_civiles'
+  private url_generos = 'parametros/generos'
+  persona!: personDTO
+  estadosCiviles_recuperado!: any
+  ocuapaciones_recuperado!: any
+  genero_recuperado!: any
+  generos: any[] = [];
+  estado: any[] = [];
+  ocupacion: any[] = [];
 
   constructor(
     private router: Router,
@@ -29,7 +39,7 @@ export class PersonEditComponent {
     if (this.formGroup.valid) {
       this.uuid = this.route.snapshot.paramMap.get('id');
       this.formGroup.value.uuid = this.uuid;
-      this.apiService.update(this.url, this.uuid, this.formGroup.value as person).subscribe(
+      this.apiService.update(this.url_personas, this.uuid, this.formGroup.value as person).subscribe(
         {
           next: () => {
             this.router.navigate(['/home/administracion/personprofile/', this.uuid]);
@@ -51,26 +61,22 @@ export class PersonEditComponent {
 
 
   ngOnInit() {
-    this.getOne();
+    this.get_persona();
     this.getGeneros();
     this.getEstados();
     this.getOcupaciones();
   }
 
-  getOne() {
+  get_persona() {
     this.uuid = this.route.snapshot.paramMap.get('id');
-    this.apiService.getOne(this.url, this.uuid).subscribe(
+    this.apiService.getOne(this.url_personas, this.uuid).subscribe(
       {
         next: data => {
 
           this.formGroup.patchValue(data);
-
-          this.estadosCiviles = this.formGroup.value.estadosCiviles
-          this.ocuapaciones = this.formGroup.value.ocupaciones
-          this.genero = this.formGroup.value.generos
-          this.getDatos('generos',this.genero)
-          this.getDatos('estadosCiviles',this.estadosCiviles)
-          this.getDatos('ocupaciones',this.ocuapaciones)
+          this.patchValue_select('generos',this.formGroup.value.generos)
+          this.patchValue_select('estadosCiviles',this.formGroup.value.estadosCiviles)
+          this.patchValue_select('ocupaciones',this.formGroup.value.ocupaciones)
 
         },
         error: err => {
@@ -81,7 +87,7 @@ export class PersonEditComponent {
       }
     )
   }
-  getDatos(param:string, atrib:any){
+  patchValue_select(param:string, atrib:any){
     const control = this.formGroup.get(param);
     if (control) {
       const UUID = atrib.uuid;
@@ -89,7 +95,7 @@ export class PersonEditComponent {
     }
   }
   getGeneros() {
-    this.apiService.getAll(this.url3).subscribe(
+    this.apiService.getAll(this.url_generos).subscribe(
       {
         next: data => {
           this.generos = data
@@ -101,7 +107,7 @@ export class PersonEditComponent {
     )
   }
   getOcupaciones() {
-    this.apiService.getAll(this.url1).subscribe(
+    this.apiService.getAll(this.url_ocupaciones).subscribe(
       {
         next: data => {
           this.ocupacion = data
@@ -113,7 +119,7 @@ export class PersonEditComponent {
     )
   }
   getEstados() {
-    this.apiService.getAll(this.url2).subscribe(
+    this.apiService.getAll(this.url_estados_civiles).subscribe(
       {
         next: data => {
           this.estado = data
@@ -125,17 +131,6 @@ export class PersonEditComponent {
     )
   }
 
-  private url = 'administracion/personas'
-  private url1 = 'parametros/ocupaciones'
-  private url2 = 'parametros/estados_civiles'
-  private url3 = 'parametros/generos'
-  persona!: any
-  estadosCiviles!: any
-  ocuapaciones!: any
-  genero!: any
-  generos: any[] = [];
-  estado: any[] = [];
-  ocupacion: any[] = [];
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombres: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),

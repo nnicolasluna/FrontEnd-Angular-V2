@@ -13,12 +13,9 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
   styleUrls: ['./agencia-create.component.scss']
 })
 export class AgenciaCreateComponent {
-  private url = 'parametros/agencias'
-  private url1 = 'parametros/ciudades'
-  operacion = 'Registrar'
-  editar = ''
-  ciudad: any[] = [];
-  tipoCorte: any[] = [];
+  url_endpoint_agencias = 'parametros/agencias'
+  private url_endpoint_ciudades = 'parametros/ciudades'
+  registros_ciudades: any[] = [];
   private matDialogRef!: any;
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -57,7 +54,7 @@ export class AgenciaCreateComponent {
   create() {
     if (this.formGroup.valid) {
       const formData = this.metodogenerico.getFormGroupData();
-      this.apiService.create(this.url, formData).subscribe({
+      this.apiService.create(this.url_endpoint_agencias, formData).subscribe({
         next: () => {
           this.router.navigateByUrl('/home/parametros/agencia-list');
           this.formGroup.reset();
@@ -73,11 +70,11 @@ export class AgenciaCreateComponent {
   }
 
   getAll() {
-    this.apiService.getAll(this.url1).subscribe(
+    this.apiService.getAll(this.url_endpoint_ciudades).subscribe(
       {
         next: data => {
          
-          this.ciudad = data
+          this.registros_ciudades = data
         },
         error: () => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent)

@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { SubsistemaService } from '../subsistema-service/subsistema.service';
 import { subsistema, subsistemaDTO } from '../subsistema-model/subsistema';
 import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borrar/advertencia-borrar.component';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
@@ -14,12 +13,12 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./subsislist.component.scss']
 })
 export class SubsislistComponent {
-  datos: any;
-  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  registros_subsistemas: any;
+  subsistemas_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url = 'administracion/subsistemas'
   matDialogRef: any;
-  pageSizeOptions = [10, 15]; 
+  pageSizeOptions = [10, 15];
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<subsistema>,
@@ -33,9 +32,9 @@ export class SubsislistComponent {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
-          this.datos = data;
-          this.dataSource = new MatTableDataSource<subsistemaDTO>(this.datos);
-          this.dataSource.paginator = this.paginatior;
+          this.registros_subsistemas = data;
+          this.subsistemas_dataSource = new MatTableDataSource<subsistemaDTO>(this.registros_subsistemas);
+          this.subsistemas_dataSource.paginator = this.paginatior;
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);

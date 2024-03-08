@@ -15,13 +15,13 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class ComandocreateComponent {
   menus: any[] = [];
-  url = 'administracion/menus'
-  url1 = 'administracion/comandos'
+  url_menus = 'administracion/menus'
+  url_comandos = 'administracion/comandos'
   private matDialogRef!: any;
   menuFormGroup = new FormGroup({
     uuid: new FormControl(''),
   });
-  formGroup = new FormGroup({
+  comando_formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     link: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
@@ -29,33 +29,30 @@ export class ComandocreateComponent {
     menus: this.menuFormGroup
   });
   get nombreControl() {
-    return this.formGroup.controls.nombre;
+    return this.comando_formGroup.controls.nombre;
   }
   get descripcionControl() {
-    return this.formGroup.controls.descripcion;
+    return this.comando_formGroup.controls.descripcion;
   }
   get linkControl() {
-    return this.formGroup.controls.link;
+    return this.comando_formGroup.controls.link;
   }
   get estadoControl() {
-    return this.formGroup.controls.estado;
+    return this.comando_formGroup.controls.estado;
   }
   constructor(
     private router: Router,
-    private comandoservice: ComandoService,
-    private route: ActivatedRoute,
-    private menuService: MenuService,
     private modalService: ModalService,
     private apiService: ApiService<comando>,
   ) { }
   create() {
-    if (this.formGroup.valid) {
-      this.formGroup.value.menus = this.menuFormGroup.value;
-      this.apiService.create(this.url1, this.formGroup.value as comando).subscribe(
+    if (this.comando_formGroup.valid) {
+      this.comando_formGroup.value.menus = this.menuFormGroup.value;
+      this.apiService.create(this.url_comandos, this.comando_formGroup.value as comando).subscribe(
         {
           next: () => {
             this.router.navigateByUrl('/home/administracion/comandolist');
-            this.formGroup.reset();
+            this.comando_formGroup.reset();
           },
           error: err => {
             this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
@@ -67,11 +64,11 @@ export class ComandocreateComponent {
       )
     }
     else {
-      this.formGroup.markAllAsTouched();
+      this.comando_formGroup.markAllAsTouched();
     }
   }
   getMenus() {
-    this.apiService.getAll(this.url).subscribe(
+    this.apiService.getAll(this.url_menus).subscribe(
       {
         next: data => {
 

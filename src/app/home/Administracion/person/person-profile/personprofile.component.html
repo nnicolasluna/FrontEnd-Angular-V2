@@ -11,7 +11,7 @@
             <div class="profile_datospers">
                 <table class="profile__top">
                     <tr>
-                        <td class="name__profile"><b>{{person?.nombres}} {{person?.primer_apellido}} {{person?.segundo_apellido}}</b></td>
+                        <td class="name__profile"><b>{{person_data?.nombres}} {{person_data?.primer_apellido}} {{person_data?.segundo_apellido}}</b></td>
                     </tr>
                     <tr>
                         <td>Cargo: </td>
@@ -30,33 +30,33 @@
                         <table class="profile__data">
                             <tr>
                                 <td><b>Estado Civil:</b></td>
-                                <td>{{person?.estadosCiviles.nombre}}</td>
+                                <td>{{person_data?.estadosCiviles.nombre}}</td>
                             </tr>
                             <tr>
                                 <td><b>Fecha de Nacimiento:</b></td>
-                                <td>{{person?.fecha_nacimiento}} </td>
+                                <td>{{person_data?.fecha_nacimiento}} </td>
                             </tr>
                             <tr>
                                 <td><b>Celular:</b></td>
-                                <td>{{person?.celular}}</td>
+                                <td>{{person_data?.celular}}</td>
                             </tr>
                             <tr>
                                 <td><b>Genero:</b></td>
-                                <td>{{person?.generos.nombre}}</td>
+                                <td>{{person_data?.generos.nombre}}</td>
                             </tr>
                             <tr>
                                 <td><b>Ocupacion:</b></td>
-                                <td>{{person?.ocupaciones.nombre}}</td>
+                                <td>{{person_data?.ocupaciones.nombre}}</td>
                             </tr>
                         </table>
                     </div>
                     <div class="card__footer">
-                        <button  routerLink="/home/administracion/personedit/{{person?.uuid}}" class="button button--create">Editar Datos Personales</button>
+                        <button  routerLink="/home/administracion/personedit/{{person_data?.uuid}}" class="button button--create">Editar Datos Personales</button>
                    
                     </div>
                 </mat-tab>
                 <mat-tab label="Roles">
-                    <table mat-table [dataSource]="dataSource" class="card__table">
+                    <table mat-table [dataSource]="dataSource_roles" class="card__table">
                         <ng-container matColumnDef="nombre">
                             <th mat-header-cell *matHeaderCellDef> Rol </th>
                             <td mat-cell *matCellDef="let element"> {{element?.nombre}} </td>
@@ -75,7 +75,7 @@
                 </mat-tab>
                 <mat-tab label="Documentos" id="documentos">
                    
-                    <table mat-table [dataSource]="dataSource1" class="card__table">
+                    <table mat-table [dataSource]="dataSource_documentos" class="card__table">
                         <ng-container matColumnDef="documento">
                             <th mat-header-cell *matHeaderCellDef> Documento </th>
                             <td mat-cell *matCellDef="let element1"> {{element1?.tipoDocumentos.nombre}} </td>
@@ -105,7 +105,7 @@
                     <mat-paginator #paginator [pageSizeOptions]="[5,7,10]" showFirstLastButtons></mat-paginator>
                     <div class="card__footer">
        
-                        <button routerLink="/home/administracion/documentocreate/{{person?.uuid}}" class="button button--create">Agregar Documento</button>
+                        <button routerLink="/home/administracion/documentocreate/{{person_data?.uuid}}" class="button button--create">Agregar Documento</button>
                     </div>
                 </mat-tab>
                 <mat-tab label="Usuario" data-cy="usuariover">
@@ -114,26 +114,26 @@
 
                         <tr>
                             <td><b>Usuario:</b></td>
-                            <td>{{user?.usuario}}</td>
+                            <td>{{user_data?.usuario}}</td>
                         </tr>
                         <tr>
                             <td><b>Correo Personal:</b></td>
-                            <td>{{user?.correoPersonal}}</td>
+                            <td>{{user_data?.correoPersonal}}</td>
                         </tr>
                         <tr>
                             <td><b>Correo Corporativo:</b></td>
-                            <td>{{user?.correoCorporativo}}</td>
+                            <td>{{user_data?.correoCorporativo}}</td>
                         </tr>
                         <tr>
                             <td><b>Estado:</b></td>
-                            <td>{{user?.estado}}</td>
+                            <td>{{user_data?.estado}}</td>
                         </tr>
                     </table>
                     <div class="card__footer">
-                        <button routerLink="/home/administracion/useredit/{{user?.uuid}}"  *ngIf="disableCreateUser" class="button button--simple" [disabled]="disableEditUser">
+                        <button routerLink="/home/administracion/useredit/{{user_data?.uuid}}"  *ngIf="disableCreateUser" class="button button--simple" [disabled]="disableEditUser">
                             Editar Usuario
                         </button>
-                        <button routerLink="/home/administracion/usercreate/{{person?.uuid}}" *ngIf="disableEditUser" [disabled]="disableCreateUser" class="button button--create" data-cy="usuariocreate">
+                        <button routerLink="/home/administracion/usercreate/{{person_data?.uuid}}" *ngIf="disableEditUser" [disabled]="disableCreateUser" class="button button--create" data-cy="usuariocreate">
                             Añadir Usuario
                         </button>
                     </div>

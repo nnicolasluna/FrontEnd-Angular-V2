@@ -1,10 +1,10 @@
 <app-componente-listar 
     [titulo]="'Lista de Ocupaciones'" 
     [displayedColumns]="['nombre', 'descripcion', 'estado','action']"  
-    [adicionar]="'/home/parametros/ocupacion-create'"
-    [editar]="'/home/parametros/ocupacion-edit'"
-    [dataSource]="dataSource"
+    [link_adicionar]="'/home/parametros/ocupacion-create'"
+    [link_editar]="'/home/parametros/ocupacion-edit'"
+    [table_dataSource]="dataSource"
     [pageSizeOptions]="pageSizeOptions"
-    [url]="'parametros/ocupaciones'"
+    [url_endpoint]="'parametros/ocupaciones'"
     >
 </app-componente-listar>

@@ -2,9 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ComandoService } from '../comando-service/comando.service';
-import { comando } from '../comando-model/comando';
+import { comando, comandoDTO } from '../comando-model/comando';
 import { MenuService } from '../../menu/menu-service/menu.service';
-import { error } from 'cypress/types/jquery';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
@@ -15,13 +14,15 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./comando-edit.component.scss']
 })
 export class ComandoEditComponent {
-  url = 'administracion/menus'
-  url1 = 'administracion/comandos'
+  url_menus = 'administracion/menus'
+  url_comandos = 'administracion/comandos'
+  comando_uuid!: any;
+  comando_datos_recuperados!: comando;
   menus: any[] = [];
   menuFormGroup = new FormGroup({
     uuid: new FormControl(''),
   });
-  formGroup = new FormGroup({
+  comando_formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
@@ -31,37 +32,34 @@ export class ComandoEditComponent {
   });
   matDialogRef: any;
   get nombreControl() {
-    return this.formGroup.controls.nombre;
+    return this.comando_formGroup.controls.nombre;
   }
   get descripcionControl() {
-    return this.formGroup.controls.descripcion;
+    return this.comando_formGroup.controls.descripcion;
   }
   get linkControl() {
-    return this.formGroup.controls.link;
+    return this.comando_formGroup.controls.link;
   }
   get estadoControl() {
-    return this.formGroup.controls.estado;
+    return this.comando_formGroup.controls.estado;
   }
   constructor(
     private router: Router,
-    private comandoservice: ComandoService,
     private route: ActivatedRoute,
-    private menuService: MenuService,
     private modalService: ModalService,
     private apiService: ApiService<comando>,
   ) { }
-  uuidx!: any;
   edit() {
-    if (this.formGroup.valid) {
+    if (this.comando_formGroup.valid) {
 
-      this.uuidx = this.route.snapshot.paramMap.get('id');
-      this.formGroup.value.uuid = this.uuidx;
-      this.formGroup.value.menus = this.menuFormGroup.value;
-      this.apiService.update(this.url1, this.uuidx, this.formGroup.value as comando).subscribe(
+      this.comando_uuid = this.route.snapshot.paramMap.get('id');
+      this.comando_formGroup.value.uuid = this.comando_uuid;
+      this.comando_formGroup.value.menus = this.menuFormGroup.value;
+      this.apiService.update(this.url_comandos, this.comando_uuid, this.comando_formGroup.value as comando).subscribe(
         {
           next: (userData: any) => {
             this.router.navigateByUrl('/home/administracion/comandolist');
-            this.formGroup.reset();
+            this.comando_formGroup.reset();
           }, error: err => {
             this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
             this.matDialogRef.afterClosed().subscribe(() => {
@@ -72,14 +70,13 @@ export class ComandoEditComponent {
       )
     }
     else {
-      this.formGroup.markAllAsTouched();
+      this.comando_formGroup.markAllAsTouched();
     }
   }
   getMenus() {
-    this.apiService.getAll(this.url).subscribe(
+    this.apiService.getAll(this.url_menus).subscribe(
       {
         next: data => {
-
           this.menus = data
         },
         error: () => {
@@ -93,16 +90,15 @@ export class ComandoEditComponent {
     this.getMenus();
     this.getComando();
   }
-  uuid!: any;
-  datos: any;
+
   getComando() {
-    this.uuid = this.route.snapshot.paramMap.get('id');
-    this.apiService.getOne(this.url1, this.uuid).subscribe(
+    this.comando_uuid = this.route.snapshot.paramMap.get('id');
+    this.apiService.getOne(this.url_comandos, this.comando_uuid).subscribe(
       {
 
         next: data => {
-          this.datos = data;
-          this.formGroup.patchValue(this.datos);
+          this.comando_datos_recuperados = data;
+          this.comando_formGroup.patchValue(this.comando_datos_recuperados);
         },
         error: () => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);

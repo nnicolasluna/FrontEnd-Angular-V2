@@ -1,11 +1,11 @@
 <app-componente-listar 
     [titulo]="'Lista de Generos'" 
     [displayedColumns]="['nombre', 'abreviatura','estado','action']"  
-    [adicionar]="'/home/parametros/genero-create'"
-    [editar]="'/home/parametros/genero-edit'"
-    [dataSource]="dataSource"
+    [link_adicionar]="'/home/parametros/genero-create'"
+    [link_editar]="'/home/parametros/genero-edit'"
+    [table_dataSource]="dataSource"
     [pageSizeOptions]="pageSizeOptions"
-    [url]="'parametros/generos'"
+    [url_endpoint]="'parametros/generos'"
     >
 </app-componente-listar>
 
