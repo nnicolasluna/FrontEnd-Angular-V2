@@ -4,16 +4,16 @@
     </div>
     <div class="body__content">
         <form id="loginform" [formGroup]="formGroup">
-            <mat-card class="card card--one">
+            <mat-card class="card card--small">
                 <app-form-header [titulo]="'Datos del Subsistema'"></app-form-header>
                 <mat-card-content class="card__content">
                     <form id="loginform" [formGroup]="formGroup">
     
     
-                        <div class="content__inputs">
-                            <label for="" class="content__formlabel">Nombre:</label>
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Nombre:</label>
                             <input formControlName="nombre" type="text" placeholder="Ejem. Contaduria"
-                                class="content__imput"
+                                class="input-group__imput"
                                 [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                             <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                                 class="text-danger">
@@ -27,10 +27,10 @@
     
     
     
-                        <div class="content__inputs">
-                            <label for="" class="content__formlabel">Descripcion</label>
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Descripcion</label>
                             <input formControlName="descripcion" type="text" placeholder="Ejem. Modulo para Contadores"
-                                class="content__imput"
+                                class="input-group__imput"
                                 [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
                             <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
                                 class="text-danger">
@@ -47,9 +47,9 @@
                         </div>
     
     
-                        <div class="content__inputs">
-                            <label for="" class="content__formlabel">Link:</label>
-                            <input formControlName="link" type="text" class="content__imput"
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Link:</label>
+                            <input formControlName="link" type="text" class="input-group__imput"
                             [ngClass]="{'invalid': linkControl.invalid && (linkControl.dirty || linkControl.touched), 'valid': linkControl.valid}">
                             <div *ngIf="linkControl.invalid && (linkControl.dirty || linkControl.touched)"
                                 class="text-danger">

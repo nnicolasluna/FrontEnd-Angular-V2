@@ -3,15 +3,15 @@
         <h1 class="body__h1">Registrar Estado Civil</h1>
     </div>
     <div class="body__content">
-        <mat-card class="card card--one">
+        <mat-card class="card card--small">
             <app-form-header [titulo]="'Datos del Estado Civil'"></app-form-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Nombre:</label>
-                        <input formControlName="nombre" type="text" placeholder="Ejem. Casado" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Nombre:</label>
+                        <input formControlName="nombre" type="text" placeholder="Ejem. Casado" class="input-group__imput"
                             [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                         <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                             class="text-danger">
@@ -25,9 +25,9 @@
 
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Abreviatura</label>
-                        <input formControlName="abreviatura" type="text" placeholder="Ejem. C" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Abreviatura</label>
+                        <input formControlName="abreviatura" type="text" placeholder="Ejem. C" class="input-group__imput"
                             [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                         <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
                             class="text-danger">

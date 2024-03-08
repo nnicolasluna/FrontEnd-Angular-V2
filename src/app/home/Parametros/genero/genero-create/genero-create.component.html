@@ -3,7 +3,7 @@
         <h1 class="body__h1">Registrar Genero</h1>
     </div>
     <div class="body__content">
-        <mat-card class="card card--one">
+        <mat-card class="card card--small">
             <mat-card-header class="card__header--form">
                 <h4>Datos del Genero</h4>
             </mat-card-header>
@@ -11,10 +11,10 @@
                 <form id="loginform" [formGroup]="formGroup">
                     <div class="content content--one">
                         <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Nombre:</label>
+                            <div class="input-group">
+                                <label for="" class="input-group__formlabel">Nombre:</label>
                                 <input formControlName="nombre" type="text" placeholder="Ejem. Masculino"
-                                    class="content__imput"
+                                    class="input-group__imput"
                                     [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                             </div>
                             <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
@@ -27,9 +27,9 @@
                             </div>
                         </div>
                         <div class="validation">
-                            <div class="content__inputs">
-                                <label for="" class="content__formlabel">Abreviatura</label>
-                                <input formControlName="abreviatura" type="text" placeholder="Ejem. M" class="content__imput"
+                            <div class="input-group">
+                                <label for="" class="input-group__formlabel">Abreviatura</label>
+                                <input formControlName="abreviatura" type="text" placeholder="Ejem. M" class="input-group__imput"
                                     [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                             </div>
                             <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
@@ -109,15 +109,15 @@
         <h1 class="body__h1">Crear Genero</h1>
     </div>
     <div class="body__content">
-        <mat-card class="card card--one">
+        <mat-card class="card card--small">
             <app-form-header [titulo]="titulo"></app-form-header>
 
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Nombre:</label>
-                        <input formControlName="nombre" type="text" placeholder="Ejem. Masculino" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Nombre:</label>
+                        <input formControlName="nombre" type="text" placeholder="Ejem. Masculino" class="input-group__imput"
                             [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                         <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                             class="text-danger">
@@ -129,9 +129,9 @@
                         </div>
                     </div>
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Abreviatura</label>
-                        <input formControlName="abreviatura" type="text" placeholder="M" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Abreviatura</label>
+                        <input formControlName="abreviatura" type="text" placeholder="M" class="input-group__imput"
                             [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                         <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
                             class="text-danger">

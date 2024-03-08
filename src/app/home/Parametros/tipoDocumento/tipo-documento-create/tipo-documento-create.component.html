@@ -4,13 +4,13 @@
     </div>
     <div class="body__content">
         <form id="loginform" [formGroup]="formGroup">
-            <mat-card class="card card--one">
+            <mat-card class="card card--small">
                 <app-form-header [titulo]="'Datos de Tipo de Documento'"></app-form-header>
                 <mat-card-content class="card__content">
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Nombre del Tipo de Documento:</label>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Nombre del Tipo de Documento:</label>
                         <input type="text" formControlName="nombre" placeholder="Ejem. Carnet de Identidad"
-                            class="content__imput"
+                            class="input-group__imput"
                             [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                         <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                             class="text-danger">
@@ -25,9 +25,9 @@
 
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Descripcion:</label>
-                        <input type="text" formControlName="descripcion" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Descripcion:</label>
+                        <input type="text" formControlName="descripcion" class="input-group__imput"
                             placeholder="Ejem. Documento de identidad perteneciente a un pais" cols="3" rows="3"
                             [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
                         <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
@@ -47,10 +47,10 @@
 
                     <form [formGroup]="paisFormGroup">
 
-                        <div class="content__inputs">
+                        <div class="input-group">
 
-                            <label for="" class="content__formlabel">Pais:</label>
-                            <select formControlName="uuid" class="content__imput">
+                            <label for="" class="input-group__formlabel">Pais:</label>
+                            <select formControlName="uuid" class="input-group__imput">
                                 <option value="" disabled selected>Selecciona un Pais</option>
                                 <option aria-placeholder="Selecciones Tipo de Documento" *ngFor="let pais of paises"
                                     [value]="pais.uuid">{{ pais.nombre }}

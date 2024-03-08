@@ -191,7 +191,7 @@ $neutral-color: rgb(243, 243, 243);
 
     }
 
-    &--one {
+    &--small {
         width: 50%;
         min-width: 230px;
     }
@@ -201,7 +201,7 @@ $neutral-color: rgb(243, 243, 243);
         min-width: 430px;
     }
 
-    &--tri {
+    &--big {
         width: 95%;
     }
 }
@@ -232,20 +232,23 @@ $neutral-color: rgb(243, 243, 243);
 
 
 
-.content {
+.content-inputs-group {
     margin: 10px;
     display: flex;
     flex-grow: 1;
     flex-wrap: wrap;
     flex-basis: 20rem;
+    flex-direction: row;
+    justify-content: space-around;
 
-    &__inputs {
-        display: flex;
-        flex: 1;
-        padding: 5px;
-        flex-direction: column;
-        margin-bottom: 4px;
-    }
+}
+
+.input-group {
+    display: flex;
+    flex: 1;
+    padding: 5px;
+    flex-direction: column;
+    margin-bottom: 4px;
 
     &__formlabel {
         display: block;
@@ -279,19 +282,9 @@ $neutral-color: rgb(243, 243, 243);
         }
 
     }
-
-    &--tri {
-        flex-direction: row;
-        justify-content: space-around;
-
-    }
-
-   /*  &__validation {
-        flex: 1;
-
-
-    } */
 }
+
+
 
 // Pantallas Listar
 //filtro buscar de los template buscar
@@ -331,7 +324,7 @@ $neutral-color: rgb(243, 243, 243);
     th {
         background-color: #343A40 !important;
         color: white;
-/*         text-align: center; */
+        /*         text-align: center; */
     }
 
     border: 1px solid #343A40 !important;

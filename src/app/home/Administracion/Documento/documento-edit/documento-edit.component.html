@@ -3,15 +3,15 @@
         <h1 class="body__h1">Editar Documento</h1>
     </div>
     <div class="body__content">
-        <mat-card class="card card--one">
+        <mat-card class="card card--small">
             <app-form-header [titulo]="'Datos del Documento'"></app-form-header>
             <mat-card-content>
                 <form id="loginform" [formGroup]="formGroup">
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Numero:</label>
-                        <input formControlName="numero" type="text" placeholder="Ejem. 6830018" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Numero:</label>
+                        <input formControlName="numero" type="text" placeholder="Ejem. 6830018" class="input-group__imput"
                         [ngClass]="{'invalid': numeroControl.invalid && (numeroControl.dirty || numeroControl.touched), 'valid': numeroControl.valid}">
                         <div *ngIf="numeroControl.invalid && (numeroControl.dirty || numeroControl.touched)"
                             class="text-danger">
@@ -27,10 +27,10 @@
 
                     <form [formGroup]="tipodocFormGroup">
 
-                        <div class="content__inputs">
+                        <div class="input-group">
 
-                            <label for="" class="content__formlabel">Tipo de Documento:</label>
-                            <select formControlName="uuid" class="content__imput" 
+                            <label for="" class="input-group__formlabel">Tipo de Documento:</label>
+                            <select formControlName="uuid" class="input-group__imput" 
                             [ngClass]="{'invalid': tipodoc.invalid && (tipodoc.dirty || tipodoc.touched), 'valid': tipodoc.valid}">
                                 <option value="" disabled selected>Selecciona Tipo de Documento</option>
                                 <option aria-placeholder="Selecciones Tipo de Documento" *ngFor="let dato of datos"
@@ -46,10 +46,10 @@
 
                     </form>
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Lugar de Emision</label>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Lugar de Emision</label>
                         <input formControlName="lugar_emision" type="text" placeholder="Ejem La Paz (Opcional)"
-                            class="content__imput">
+                            class="input-group__imput">
         
                     </div>
 

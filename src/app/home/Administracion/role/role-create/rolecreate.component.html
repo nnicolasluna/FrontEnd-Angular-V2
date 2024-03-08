@@ -4,14 +4,14 @@
     </div>
     <div class="body__content">
         <form id="loginform" [formGroup]="formGroup">
-            <mat-card class="card card--one">
+            <mat-card class="card card--small">
                 <app-form-header [titulo]="'Datos de Rol'"></app-form-header>
                 <mat-card-content class="card__content">
 
               
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Nombre de Rol:</label>
-                        <input type="text" formControlName="nombre" placeholder="Ejem. Cajero" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Nombre de Rol:</label>
+                        <input type="text" formControlName="nombre" placeholder="Ejem. Cajero" class="input-group__imput"
                             [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                         <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                             class="text-danger">
@@ -26,9 +26,9 @@
 
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Descripcion:</label>
-                        <input type="text" formControlName="descripcion" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Descripcion:</label>
+                        <input type="text" formControlName="descripcion" class="input-group__imput"
                             placeholder="Ejem. Este Rol es Asignado a Cajero" appNoLeadingTrailingWhitespace
                             [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
                         <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
@@ -46,9 +46,9 @@
 
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Nivel:</label>
-                        <input type="text" formControlName="nivel" class="content__imput" placeholder="Ejem. nivel 1"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Nivel:</label>
+                        <input type="text" formControlName="nivel" class="input-group__imput" placeholder="Ejem. nivel 1"
                             appNoLeadingTrailingWhitespace
                             [ngClass]="{'invalid': nivelControl.invalid && (nivelControl.dirty || nivelControl.touched), 'valid': nivelControl.valid}">
                         <div *ngIf="nivelControl.invalid && (nivelControl.dirty || nivelControl.touched)"
@@ -67,9 +67,9 @@
 
 
 
-                    <div class="content__inputs">
+                    <div class="input-group">
 
-                        <label for="" class="content__formlabel">SubSistemas:</label>
+                        <label for="" class="input-group__formlabel">SubSistemas:</label>
                         <button class="button button--form" type="button" (click)="addLesson()"
                             data-cy="Addsubsistema">Añadir SubSistemas</button>
                     </div>
@@ -83,7 +83,7 @@
                                     <ng-container class="rolesA" matColumnDef="rol" sticky>
                                         <th mat-header-cell *matHeaderCellDef></th>
                                         <td mat-cell *matCellDef="let element;" [formGroup]="element">
-                                            <select class="content__imput" formControlName="uuid">
+                                            <select class="input-group__imput" formControlName="uuid">
                                                 <option value="" disabled selected>Selecciona Subsistema
                                                 </option>
                                                 <option aria-placeholder="Selecciones Tipo de Documento"

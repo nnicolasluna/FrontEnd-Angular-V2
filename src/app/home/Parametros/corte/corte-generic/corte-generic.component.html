@@ -3,15 +3,15 @@
         <h1 class="body__h1">{{ operacion }}</h1>
     </div>
     <div class="body__content">
-        <mat-card class="card card--one">
+        <mat-card class="card card--small">
             <app-form-header [titulo]="editar"></app-form-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Valor:</label>
-                        <input formControlName="valor" type="text" placeholder="Ejem. 100" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Valor:</label>
+                        <input formControlName="valor" type="text" placeholder="Ejem. 100" class="input-group__imput"
                             [ngClass]="{'invalid': valorControl.invalid && (valorControl.dirty || valorControl.touched), 'valid': valorControl.valid}">
                         <div *ngIf="valorControl.invalid && (valorControl.dirty || valorControl.touched)"
                             class="text-danger">
@@ -22,9 +22,9 @@
 
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Orden</label>
-                        <input formControlName="orden" type="text" placeholder="Ejem. 1" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Orden</label>
+                        <input formControlName="orden" type="text" placeholder="Ejem. 1" class="input-group__imput"
                             [ngClass]="{'invalid': ordenControl.invalid && (ordenControl.dirty || ordenControl.touched), 'valid': ordenControl.valid}">
                         <div *ngIf="ordenControl.invalid && (ordenControl.dirty || ordenControl.touched)"
                             class="text-danger">
@@ -36,9 +36,9 @@
 
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Moneda:</label>
-                        <select formControlName="monedas" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Moneda:</label>
+                        <select formControlName="monedas" class="input-group__imput"
                             [ngClass]="{'invalid': monedasControl.invalid && (monedasControl.dirty || monedasControl.touched), 'valid': monedasControl.valid}">
                             <option value="" disabled selected>Selecciona Moneda</option>
                             <option *ngFor="let dato of monedas" [value]="dato.uuid">{{ dato.nombre }}
@@ -47,9 +47,9 @@
                     </div>
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Tipo de Corte:</label>
-                        <select formControlName="tipoCortes" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Tipo de Corte:</label>
+                        <select formControlName="tipoCortes" class="input-group__imput"
                             [ngClass]="{'invalid': tipoCortesControl.invalid && (tipoCortesControl.dirty || tipoCortesControl.touched), 'valid': tipoCortesControl.valid}">
                             <option value="" disabled selected>Selecciona Corte</option>
                             <option *ngFor="let dato of tipoCortes" [value]="dato.uuid">{{ dato.nombre }}

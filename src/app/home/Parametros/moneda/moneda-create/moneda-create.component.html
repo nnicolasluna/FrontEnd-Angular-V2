@@ -3,15 +3,15 @@
         <h1 class="body__h1">{{ operacion }} Moneda</h1>
     </div>
     <div class="body__content">
-        <mat-card class="card card--one">
+        <mat-card class="card card--small">
             <app-form-header [titulo]="'Datos de Moneda'"></app-form-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Nombre:</label>
-                        <input formControlName="nombre" type="text" placeholder="Ejem. Boliviano" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Nombre:</label>
+                        <input formControlName="nombre" type="text" placeholder="Ejem. Boliviano" class="input-group__imput"
                             [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                         <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                             class="text-danger">
@@ -25,9 +25,9 @@
 
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Abreviatura</label>
-                        <input formControlName="abreviatura" type="text" placeholder="Ejem. BOL" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Abreviatura</label>
+                        <input formControlName="abreviatura" type="text" placeholder="Ejem. BOL" class="input-group__imput"
                             [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                         <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
                             class="text-danger">
@@ -40,10 +40,10 @@
                     </div>
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Descripcion</label>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Descripcion</label>
                         <input formControlName="descripcion" type="text" placeholder="Ejem. Moneda de origen boliviano"
-                            class="content__imput"
+                            class="input-group__imput"
                             [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
                         <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
                             class="text-danger">
@@ -57,10 +57,10 @@
 
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Pais:</label>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Pais:</label>
 
-                        <select formControlName="pais" class="content__imput"
+                        <select formControlName="pais" class="input-group__imput"
                             [ngClass]="{'invalid': paisControl.invalid && (paisControl.dirty || paisControl.touched), 'valid': paisControl.valid}">
                             <option value="" disabled selected>Selecciona pais</option>
                             <option *ngFor="let dato of paises" [value]="dato.uuid">{{ dato.nombre }}

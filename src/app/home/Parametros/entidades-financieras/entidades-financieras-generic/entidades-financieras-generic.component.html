@@ -3,16 +3,16 @@
         <h1 class="body__h1">{{ operacion }}</h1>
     </div>
     <div class="body__content">
-        <mat-card class="card card--one">
+        <mat-card class="card card--small">
             <app-form-header [titulo]="editar"></app-form-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Nombre:</label>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Nombre:</label>
                         <input formControlName="nombre" type="text" placeholder="Ejem. Banco Union"
-                            class="content__imput"
+                            class="input-group__imput"
                             [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                     </div>
                     <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
@@ -25,9 +25,9 @@
                     </div>
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Abreviatura</label>
-                        <input formControlName="abreviatura" type="text" placeholder="Ejem. BN" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Abreviatura</label>
+                        <input formControlName="abreviatura" type="text" placeholder="Ejem. BN" class="input-group__imput"
                             [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                     </div>
                     <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
@@ -41,10 +41,10 @@
 
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Descripcion</label>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Descripcion</label>
                         <input formControlName="descripcion" type="text" placeholder="Ejem. Banco nacional boliviano"
-                            class="content__imput"
+                            class="input-group__imput"
                             [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
                     </div>
                     <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
@@ -57,9 +57,9 @@
                     </div>
 
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Tipo de Entidad Financiera:</label>
-                        <select formControlName="tipoEntidadesFinancieras" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Tipo de Entidad Financiera:</label>
+                        <select formControlName="tipoEntidadesFinancieras" class="input-group__imput"
                             [ngClass]="{'invalid': tipoEntidadesFinancierasControl.invalid && (tipoEntidadesFinancierasControl.dirty || tipoEntidadesFinancierasControl.touched), 'valid': tipoEntidadesFinancierasControl.valid}">
                             <option value="" disabled selected>Selecciona tipo de entidad financiera</option>
                             <option *ngFor="let dato of tipoEntidad" [value]="dato.uuid">{{ dato.nombre }}

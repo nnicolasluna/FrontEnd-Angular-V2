@@ -3,14 +3,14 @@
         <h1 class="body__h1">{{ operacion }}</h1>
     </div>
     <div class="body__content">
-        <mat-card class="card card--one">
+        <mat-card class="card card--small">
             <app-form-header [titulo]="editar"></app-form-header>
             <mat-card-content class="card__content">
                 <form id="loginform" [formGroup]="formGroup">
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Nombre:</label>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Nombre:</label>
                         <input formControlName="nombre" type="text" placeholder="Ejem. 6 de Marzo"
-                            class="content__imput"
+                            class="input-group__imput"
                             [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
                         <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                             class="text-danger">
@@ -21,11 +21,11 @@
                                 caracteres</span>
                         </div>
                     </div>
+ 
 
-
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Abreviatura</label>
-                        <input formControlName="abreviatura" type="text" placeholder="Ejem. 6M" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Abreviatura</label>
+                        <input formControlName="abreviatura" type="text" placeholder="Ejem. 6M" class="input-group__imput"
                             [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                         <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
                             class="text-danger">
@@ -37,10 +37,10 @@
                         </div>
                     </div>
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Direccion</label>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Direccion</label>
                         <input formControlName="direccion" type="text" placeholder="Ejem. calle 4 Avenida 6 de Marzo"
-                            class="content__imput"
+                            class="input-group__imput"
                             [ngClass]="{'invalid': direccionControl.invalid && (direccionControl.dirty || direccionControl.touched), 'valid': direccionControl.valid}">
                         <div *ngIf="direccionControl.invalid && (direccionControl.dirty || direccionControl.touched)"
                             class="text-danger">
@@ -52,10 +52,10 @@
                         </div>
                     </div>
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Telefono</label>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Telefono</label>
                         <input formControlName="telefono" type="text" placeholder="Ejem. 789946546"
-                            class="content__imput"
+                            class="input-group__imput"
                             [ngClass]="{'invalid': telefonoControl.invalid && (telefonoControl.dirty || telefonoControl.touched), 'valid': telefonoControl.valid}">
                         <div *ngIf="telefonoControl.invalid && (telefonoControl.dirty || telefonoControl.touched)"
                             class="text-danger">
@@ -67,9 +67,9 @@
                         </div>
                     </div>
 
-                    <div class="content__inputs">
-                        <label for="" class="content__formlabel">Ciudad:</label>
-                        <select formControlName="ciudades" class="content__imput"
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Ciudad:</label>
+                        <select formControlName="ciudades" class="input-group__imput"
                             [ngClass]="{'invalid': ciudadesControl.invalid && (ciudadesControl.dirty || ciudadesControl.touched), 'valid': ciudadesControl.valid}">
                             <option value="" disabled selected>Selecciona Ciudad</option>
                             <option *ngFor="let dato of city" [value]="dato.uuid">{{ dato.nombre }}
