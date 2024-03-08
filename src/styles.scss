@@ -198,6 +198,7 @@ $neutral-color: rgb(243, 243, 243);
 
     &--two {
         width: 70%;
+        min-width: 430px;
     }
 
     &--tri {
@@ -285,17 +286,12 @@ $neutral-color: rgb(243, 243, 243);
 
     }
 
-    &__validation {
+   /*  &__validation {
         flex: 1;
 
 
-    }
+    } */
 }
-
-//contenedores para los formulario de 1, 2 y 3 filas
-
-
-
 
 // Pantallas Listar
 //filtro buscar de los template buscar

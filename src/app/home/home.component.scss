@@ -1,10 +1,7 @@
 .dash {
     width: 100vw;
     display: flex;
-
     height: 100vh;
-
-
     flex-grow: 1;
 }
 
@@ -27,14 +24,23 @@
 
 .left {
     background-color: #343A40;
-    /*    width: 15%; */
     width: 240px;
     min-width: 240px;
     min-height: 100vh;
-    overflow: auto;
+      overflow-y: scroll;
 }
 
+.left::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
 
+.left::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+.left::-webkit-scrollbar-thumb:hover {
+    background-color: black;
+}
 
 .logo {
     display: flex;

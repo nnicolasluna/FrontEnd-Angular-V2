@@ -8,7 +8,7 @@
                 <app-form-header [titulo]="'Datos de Rol'"></app-form-header>
                 <mat-card-content class="card__content">
 
-
+              
                     <div class="content__inputs">
                         <label for="" class="content__formlabel">Nombre de Rol:</label>
                         <input type="text" formControlName="nombre" placeholder="Ejem. Cajero" class="content__imput"
@@ -83,7 +83,7 @@
                                     <ng-container class="rolesA" matColumnDef="rol" sticky>
                                         <th mat-header-cell *matHeaderCellDef></th>
                                         <td mat-cell *matCellDef="let element;" [formGroup]="element">
-                                            <select class="imput__rol" formControlName="uuid">
+                                            <select class="content__imput" formControlName="uuid">
                                                 <option value="" disabled selected>Selecciona Subsistema
                                                 </option>
                                                 <option aria-placeholder="Selecciones Tipo de Documento"

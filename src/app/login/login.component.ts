@@ -81,6 +81,7 @@ export class LoginComponent {
 
       this.loginService.login(this.formGroup.value as LoginRequest).subscribe({
         next: (userData) => {
+
             this.loginService.setDatos(userData)
             this.router.navigate(['/home']);
             this.formGroup.reset();
