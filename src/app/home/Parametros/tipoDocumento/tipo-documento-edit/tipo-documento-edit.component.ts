@@ -13,13 +13,14 @@ export class TipoDocumentoEditComponent {
   private url = 'parametros/paises'
   private url1 = 'parametros/tipo_documentos'
   paises: any[] = [];
-  paisFormGroup = new FormGroup({
-    uuid: new FormArray([]),
-  });
+  /*   paisFormGroup = new FormGroup({
+      uuid: new FormArray([]),
+    }); */
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
+    paises: new FormControl(''),
     estado: new FormControl(),
 
   });
@@ -32,9 +33,11 @@ export class TipoDocumentoEditComponent {
   get estadoControl() {
     return this.formGroup.controls.estado;
   }
+  get paisesControl() {
+    return this.formGroup.controls.paises;
+  }
   constructor(
     private router: Router,
-    private tipoDocumentoService: TipoDocumentoService,
     private route: ActivatedRoute,
     private apiService: ApiService<tipoDocumento>,
   ) { }
@@ -43,12 +46,6 @@ export class TipoDocumentoEditComponent {
     if (this.formGroup.valid) {
       this.uuid = this.route.snapshot.paramMap.get('id');
       this.formGroup.value.uuid = this.uuid;
-      /*  this.tipoDocumentoService.update(this.formGroup.value as tipoDocumento,this.uuid ).subscribe({
-         next: (userData: any) => {
-             this.router.navigateByUrl('/home/administracion/tipodocumentolist');
-             this.formGroup.reset();
-         },
-       }); */
       this.apiService.update(this.url1, this.uuid, this.formGroup.value as tipoDocumento).subscribe(
         {
           next: (userData: any) => {
@@ -71,18 +68,26 @@ export class TipoDocumentoEditComponent {
 
   getTipoDoc() {
     this.uuid = this.route.snapshot.paramMap.get('id');
-    /*   this.tipoDocumentoService.getDocument(this.uuid).subscribe((data) => {
-        this.datos = data;
-        this.formGroup.patchValue(data);
-      }); */
     this.apiService.getOne(this.url1, this.uuid).subscribe(
       {
         next: data => {
           this.datos = data;
-          console.log(data)
           this.formGroup.patchValue(data);
+          this.getDatos('paises', this.formGroup.value.paises)
         }
       }
     )
+    this.apiService.getAll(this.url).subscribe({
+      next: data => {
+        this.paises = data;
+      }
+    })
+  }
+  getDatos(param: string, atrib: any) {
+    const control = this.formGroup.get(param);
+    if (control) {
+      const UUID = atrib.uuid;
+      control.setValue(UUID);
+    }
   }
 }

@@ -10,9 +10,14 @@ export class FormFooterComponent {
 
   @Output() saveClicked = new EventEmitter<void>();
   @Input() regreso!: string;
-
+  guardarHabilitado: boolean = true;
   save() {
-    this.saveClicked.emit();
+    if (this.guardarHabilitado) {
+      // Lógica para guardar el formulario
+      this.saveClicked.emit();
+      this.guardarHabilitado = false;
+    }
+
 
   }
 

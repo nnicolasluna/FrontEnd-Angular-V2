@@ -16,14 +16,15 @@ export class TipoDocumentoCreateComponent {
   private url = 'parametros/paises'
   private url1 = 'parametros/tipo_documentos'
   paises: any[] = [];
-  paisFormGroup = new FormGroup({
-    uuid: new FormArray([]),
-  });
+  /*   paisFormGroup = new FormGroup({
+      uuid: new FormArray([]),
+    }); */
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
     estado: new FormControl(true),
-   /*  paises: this.paisFormGroup */
+    paises: new FormControl('',[Validators.required]),
+    /*  paises: this.paisFormGroup */
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;
@@ -34,6 +35,9 @@ export class TipoDocumentoCreateComponent {
   get estadoControl() {
     return this.formGroup.controls.estado;
   }
+  get paisesControl() {
+    return this.formGroup.controls.paises;
+  }
   constructor(
     private router: Router,
     private tipoDocumentoService: TipoDocumentoService,
@@ -43,17 +47,6 @@ export class TipoDocumentoCreateComponent {
 
   create() {
     if (this.formGroup.valid) {
-      /* this.formGroup.value.paises = this.paisFormGroup.value; */
-
-      /*  this.tipoDocumentoService.createTipoDoc(this.formGroup.value as tipoDocumento).subscribe({
-         
-         next: (userData:any) => {
-             this.router.navigateByUrl('/home/tipo-documento-list');
-             this.formGroup.reset();
-          
-         },
-       }); */
-   /*    this.formGroup.value.paises = this.paisFormGroup.value; */
       console.log(this.formGroup.value)
       this.apiService.create(this.url1, this.formGroup.value as tipoDocumento).subscribe(
         {

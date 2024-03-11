@@ -44,27 +44,29 @@
                     </div>
 
 
+                    <!-- 
+                    <form [formGroup]="paisFormGroup"> -->
 
-                    <form [formGroup]="paisFormGroup">
+                    <div class="input-group">
 
-                        <div class="input-group">
+                        <label for="" class="input-group__formlabel">Pais:</label>
+                        <select formControlName="paises" class="input-group__imput"
+                        [ngClass]="{'invalid': paisesControl.invalid && (paisesControl.dirty || paisesControl.touched), 'valid': paisesControl.valid}">
+                            <option value="" disabled selected>Selecciona un Pais</option>
+                            <option aria-placeholder="Selecciones Tipo de Documento" *ngFor="let pais of paises"
+                                [value]="pais.uuid">{{
+                                pais.nombre }}
+                            </option>
+                        </select>
 
-                            <label for="" class="input-group__formlabel">Pais:</label>
-                            <select formControlName="uuid" class="input-group__imput">
-                                <option value="" disabled selected>Selecciona un Pais</option>
-                                <option aria-placeholder="Selecciones Tipo de Documento" *ngFor="let pais of paises"
-                                    [value]="pais.uuid">{{
-                                    pais.nombre }}
-                                </option>
-                            </select>
+                    </div>
 
-                        </div>
-
-
-                    </form>
+                    <!-- 
+                    </form> -->
 
                 </mat-card-content>
-                <app-form-footer [regreso]='"/home/parametros/tipo-documento-list"' (saveClicked)="create()"></app-form-footer>
+                <app-form-footer [regreso]='"/home/parametros/tipo-documento-list"'
+                    (saveClicked)="create()"></app-form-footer>
             </mat-card>
         </form>
     </div>

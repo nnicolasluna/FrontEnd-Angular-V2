@@ -106,6 +106,10 @@ $neutral-color: rgb(243, 243, 243);
         cursor: pointer;
     }
 
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 }
 
 //botones del listar

@@ -30,15 +30,15 @@ export class DocumentocreateComponent {
       uuid: new FormControl(''),
     }
   );
-  tipodocFormGroup = new FormGroup(
+/*   tipodocFormGroup = new FormGroup(
     {
       uuid: new FormControl('',[Validators.required]),
     }
-  );
+  ); */
   formGroup = new FormGroup({
     numero: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     lugar_emision: new FormControl(''),
-    tipoDocumentos: this.tipodocFormGroup,
+    tipoDocumentos: new FormControl('', [Validators.required]),
     estado: new FormControl(true),
     personas: this.personaFormGroup
   });
@@ -49,7 +49,7 @@ export class DocumentocreateComponent {
     return this.formGroup.controls.lugar_emision;
   }
   get tipodoc() {
-    return this.tipodocFormGroup.controls.uuid;
+    return this.formGroup.controls.tipoDocumentos;
   }
   constructor(
     private router: Router,
@@ -103,7 +103,6 @@ export class DocumentocreateComponent {
     this.apiService.getAll(this.url1).subscribe(
       {
         next: data => {
-          console.log(data)
           this.datos = data
         },
     

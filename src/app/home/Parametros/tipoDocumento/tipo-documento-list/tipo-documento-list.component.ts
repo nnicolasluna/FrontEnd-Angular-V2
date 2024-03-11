@@ -33,6 +33,7 @@ export class TipoDocumentoListComponent {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
+          console.log(data)
           this.registros_tipos_documentos = data;
           this.tipodocumentos_dataSource = new MatTableDataSource<tipoDocumentoDTO>(this.registros_tipos_documentos);
           this.tipodocumentos_dataSource.paginator = this.paginatior;

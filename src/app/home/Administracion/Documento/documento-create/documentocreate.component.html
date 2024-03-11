@@ -25,12 +25,12 @@
 
 
 
-                    <form [formGroup]="tipodocFormGroup">
+                <!--     <form [formGroup]="tipodocFormGroup"> -->
 
                         <div class="input-group">
-<!-- (change)="onSelectChange($event)" -->
+
                             <label for="" class="input-group__formlabel">Tipo de Documento:</label>
-                            <select formControlName="uuid" class="input-group__imput" 
+                            <select formControlName="tipoDocumentos" class="input-group__imput" 
                             [ngClass]="{'invalid': tipodoc.invalid && (tipodoc.dirty || tipodoc.touched), 'valid': tipodoc.valid}">
                                 <option value="" disabled selected>Selecciona Tipo de Documento</option>
                                 <option aria-placeholder="Selecciones Tipo de Documento" *ngFor="let dato of datos"
@@ -44,7 +44,7 @@
                         </div>
                         </div>
 
-                    </form>
+                   <!--  </form> -->
 
                     <div class="input-group">
                         <label for="" class="input-group__formlabel">Lugar de Emision</label>

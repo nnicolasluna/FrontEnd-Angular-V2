@@ -4,7 +4,7 @@
             <!-- <mat-icon class="button__icon">cancel</mat-icon> -->
             Cancelar
         </button>
-        <button type="button" class="button button--create" (click)="save()">
+        <button type="button" class="button button--create" (click)="save()" [disabled]="!guardarHabilitado">
             <!-- <mat-icon class="button__icon">check_circle</mat-icon> -->
             Guardar
         </button>
