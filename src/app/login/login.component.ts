@@ -23,6 +23,12 @@ export class LoginComponent {
   sitekey: string;
   private trigger: Subject<void> = new Subject<void>();
   preview: string = '';
+
+  hasCamera: boolean = false;
+
+  ngOnInit(): void {
+    this.checkCamera();
+  }
   get $trigger(): Observable<void> {
     return this.trigger.asObservable();
   }
@@ -81,11 +87,10 @@ export class LoginComponent {
 
       this.loginService.login(this.formGroup.value as LoginRequest).subscribe({
         next: (userData) => {
+          this.loginService.setDatos(userData)
+          this.router.navigate(['/home']);
+          this.formGroup.reset();
 
-            this.loginService.setDatos(userData)
-            this.router.navigate(['/home']);
-            this.formGroup.reset();
-        
         },
         error: (error) => {
           console.log(error)
@@ -106,5 +111,14 @@ export class LoginComponent {
   }
   onInputBlur() {
     this.isFocused = false;
+  }
+  checkCamera() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(() => {
+        this.hasCamera = true;
+      })
+      .catch(() => {
+        this.hasCamera = false;
+      });
   }
 }

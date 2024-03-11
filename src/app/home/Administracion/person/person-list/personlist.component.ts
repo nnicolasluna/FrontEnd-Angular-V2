@@ -57,7 +57,7 @@ export class PersonlistComponent {
     /*       this.pageSizeOptions=this.personas.pageable.pageSize */
           console.log(this.pageSizeOptions)
           console.log(this.personas)
-          this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas.content);
+          this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas);
           this.personas_dataSource.paginator = this.paginatior;
         },
         error: err => {

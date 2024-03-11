@@ -40,11 +40,17 @@
                         caracteres</span>
                 </div>
             </div>
-            <p class="form__text">Autenticacion Facial</p>
-
-            <webcam [height]="180" [allowCameraSwitch]="false" [trigger]="$trigger" (imageCapture)="snapshot($event)">
-            </webcam>
-
+            
+            <ng-container *ngIf="hasCamera">
+                <p class="form__text">Autenticacion Facial</p>
+                <webcam [height]="180" [allowCameraSwitch]="false" [trigger]="$trigger"
+                    (imageCapture)="snapshot($event)">
+                </webcam>
+            </ng-container>
+            <ng-container *ngIf="!hasCamera">
+                <!-- Código HTML para mostrar cuando no hay cámara disponible -->
+                <p>No se detectó una cámara disponible.</p>
+            </ng-container>
 
             <div class="form__captcha"
                 [ngClass]="{'invalid': recaptchaControl.invalid && (recaptchaControl.dirty || recaptchaControl.touched), 'valid': recaptchaControl.valid}">
