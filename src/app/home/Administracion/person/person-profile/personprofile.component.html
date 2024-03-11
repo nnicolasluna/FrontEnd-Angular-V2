@@ -11,7 +11,8 @@
             <div class="profile_datospers">
                 <table class="profile__top">
                     <tr>
-                        <td class="name__profile"><b>{{person_data?.nombres}} {{person_data?.primer_apellido}} {{person_data?.segundo_apellido}}</b></td>
+                        <td class="name__profile"><b>{{person_data?.nombres}} {{person_data?.primer_apellido}}
+                                {{person_data?.segundo_apellido}}</b></td>
                     </tr>
                     <tr>
                         <td>Cargo: </td>
@@ -20,12 +21,12 @@
             </div>
         </div>
         <div class="usuario__body">
-            <mat-tab-group>
-                <mat-tab>
+            <mat-tab-group [selectedIndex]="selectedIndex">
+                <mat-tab id="tab0">
                     <ng-template mat-tab-label>
                         Datos Personales
                     </ng-template>
-                  
+
                     <div class="card__content">
                         <table class="profile__data">
                             <tr>
@@ -51,8 +52,9 @@
                         </table>
                     </div>
                     <div class="card__footer">
-                        <button  routerLink="/home/administracion/personedit/{{person_data?.uuid}}" class="button button--create">Editar Datos Personales</button>
-                   
+                        <button routerLink="/home/administracion/personedit/{{person_data?.uuid}}"
+                            class="button button--create">Editar Datos Personales</button>
+
                     </div>
                 </mat-tab>
                 <mat-tab label="Roles">
@@ -74,7 +76,7 @@
                     </table>
                 </mat-tab>
                 <mat-tab label="Documentos" id="documentos">
-                   
+
                     <table mat-table [dataSource]="dataSource_documentos" class="card__table">
                         <ng-container matColumnDef="documento">
                             <th mat-header-cell *matHeaderCellDef> Documento </th>
@@ -95,8 +97,9 @@
                         <ng-container matColumnDef="acciones">
                             <th mat-header-cell *matHeaderCellDef> Accciones </th>
                             <td mat-cell *matCellDef="let element1">
-                               <button routerLink="/home/administracion/documentoedit/{{element1.uuid}}"class="button button--simple">Editar</button>
-                           
+                                <button routerLink="/home/administracion/documentoedit/{{element1.uuid}}"
+                                    class="button button--simple">Editar</button>
+
                             </td>
                         </ng-container>
                         <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
@@ -104,12 +107,13 @@
                     </table>
                     <mat-paginator #paginator [pageSizeOptions]="[5,7,10]" showFirstLastButtons></mat-paginator>
                     <div class="card__footer">
-       
-                        <button routerLink="/home/administracion/documentocreate/{{person_data?.uuid}}" class="button button--create">Agregar Documento</button>
+
+                        <button routerLink="/home/administracion/documentocreate/{{person_data?.uuid}}"
+                            class="button button--create">Agregar Documento</button>
                     </div>
                 </mat-tab>
                 <mat-tab label="Usuario" data-cy="usuariover">
-                
+
                     <table class="profile__data">
 
                         <tr>
@@ -130,10 +134,13 @@
                         </tr>
                     </table>
                     <div class="card__footer">
-                        <button routerLink="/home/administracion/useredit/{{user_data?.uuid}}"  *ngIf="disableCreateUser" class="button button--simple" [disabled]="disableEditUser">
+                        <button routerLink="/home/administracion/useredit/{{user_data?.uuid}}" *ngIf="disableCreateUser"
+                            class="button button--simple" [disabled]="disableEditUser">
                             Editar Usuario
                         </button>
-                        <button routerLink="/home/administracion/usercreate/{{person_data?.uuid}}" *ngIf="disableEditUser" [disabled]="disableCreateUser" class="button button--create" data-cy="usuariocreate">
+                        <button routerLink="/home/administracion/usercreate/{{person_data?.uuid}}"
+                            *ngIf="disableEditUser" [disabled]="disableCreateUser" class="button button--create"
+                            data-cy="usuariocreate">
                             Añadir Usuario
                         </button>
                     </div>

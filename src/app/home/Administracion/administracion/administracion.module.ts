@@ -39,6 +39,7 @@ import { UsercreateComponent } from '../user/user-create/usercreate.component';
 import { UserEditComponent } from '../user/user-edit/user-edit.component';
 import { UserlistComponent } from '../user/user-list/userlist.component';
 import { UsershowComponent } from '../user/user-show/usershow.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -86,7 +87,7 @@ import { UsershowComponent } from '../user/user-show/usershow.component';
     MatInputModule,
     MatDialogModule,
     MatTooltipModule,
-    
+    MatExpansionModule,
   ]
 })
 export class AdministracionModule { }

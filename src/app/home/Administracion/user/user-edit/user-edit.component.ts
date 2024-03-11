@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { UserService } from '../user-service/user.service';
 import { user } from '../user-model/user';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table'
 import { RoleService } from '../../role/role-service/role.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
@@ -67,7 +67,10 @@ export class UserEditComponent {
       this.apiService.update(this.url, this.usueariouuid, this.formGroup.value as user).subscribe(
         {
           next: () => {
-            this.router.navigate(['/home/administracion/personprofile/', id]);
+            const navigationExtras: NavigationExtras = {
+              queryParams: { tabIndex: 3 } // Establece el índice de la pestaña que deseas seleccionar
+            };
+            this.router.navigate(['/home/administracion/personprofile/', id],navigationExtras);
             this.formGroup.reset();
 
           },

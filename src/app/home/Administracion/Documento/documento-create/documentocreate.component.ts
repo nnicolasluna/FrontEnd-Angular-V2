@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { DocumentoService } from '../documento-service/documento.service';
 import { documento } from '../documento-model/documento';
 import { MatTabGroup } from '@angular/material/tabs';
@@ -77,7 +77,10 @@ export class DocumentocreateComponent {
       this.apiService.create(this.url2, this.formGroup.value as documento).subscribe(
         {
           next: () => {
-            this.router.navigate(['/home/administracion/personprofile/', id])
+            const navigationExtras: NavigationExtras = {
+              queryParams: { tabIndex: 2 } // Establece el índice de la pestaña que deseas seleccionar
+            };
+            this.router.navigate(['/home/administracion/personprofile/', id],navigationExtras)
             this.formGroup.reset();
           },
       

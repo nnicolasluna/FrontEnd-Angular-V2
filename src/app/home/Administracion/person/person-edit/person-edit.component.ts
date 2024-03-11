@@ -42,7 +42,7 @@ export class PersonEditComponent {
       this.apiService.update(this.url_personas, this.uuid, this.formGroup.value as person).subscribe(
         {
           next: () => {
-            this.router.navigate(['/home/administracion/personprofile/', this.uuid]);
+            this.router.navigate(['/home/administracion/personprofile/', this.uuid])
             this.formGroup.reset();
           },
           error: err => {
@@ -61,13 +61,19 @@ export class PersonEditComponent {
 
 
   ngOnInit() {
-    this.get_persona();
+    this.getOne()
     this.getGeneros();
     this.getEstados();
     this.getOcupaciones();
+    this.route.fragment.subscribe(fragment => {
+      if (fragment) {
+        // Se encontró un fragmento en la URL, intenta seleccionar la pestaña correspondiente
+        /* this.selectTab(fragment); */
+      }
+    });
   }
 
-  get_persona() {
+  getOne() {
     this.uuid = this.route.snapshot.paramMap.get('id');
     this.apiService.getOne(this.url_personas, this.uuid).subscribe(
       {
@@ -172,5 +178,6 @@ export class PersonEditComponent {
   get celularControl() {
     return this.formGroup.controls.celular
   }
+  
 
 }

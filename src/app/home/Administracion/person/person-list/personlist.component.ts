@@ -6,6 +6,8 @@ import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borra
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
+import { AdvertenciaDeshabilitarComponent } from 'src/app/home/modal/advertencia-deshabilitar/advertencia-deshabilitar.component';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -14,7 +16,10 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./personlist.component.scss']
 })
 export class PersonlistComponent {
+  link_adicionar = "'/home/administracion/personcreate'"
+  link_editar = '/home/administracion/personprofile'
   personas: any;
+  displayedColumns: string[] = ['nombres', 'primer_apellido', 'segundo_apellido', 'generos', 'estadosCiviles', 'estado', 'action']
   personas_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url_personas = 'administracion/personas'
@@ -28,13 +33,21 @@ export class PersonlistComponent {
   ngOnInit(): void {
     this.getAll()
   }
-
+  actualizarDatosTabla(datos: any) {
+    this.personas = datos;
+    /* this.personas_dataSource = new MatTableDataSource(datos); */
+    this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas);
+    this.personas_dataSource.paginator = this.paginatior;
+    console.log(this.personas_dataSource)
+  }
   getAll() {
     this.apiService.getAll(this.url_personas).subscribe(
       {
         next: data => {
+          
           this.personas = data;
           this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas.content);
+          console.log(this.personas_dataSource)
           this.personas_dataSource.paginator = this.paginatior;
         },
         error: err => {
@@ -63,5 +76,39 @@ export class PersonlistComponent {
         }
       }
     );
+  }
+  disable(id: string) {
+    this.matDialogRef = this.modalService.openDialog(AdvertenciaDeshabilitarComponent);
+    this.matDialogRef.afterClosed().subscribe(
+      () => {
+        if (this.matDialogRef.componentInstance.confirmado) {
+          this.apiService.disable(this.url_personas + '/edit-estado', id).subscribe(
+            {
+              next: () => {
+                window.location.reload();
+                console.log('deshabilitado')
+              },
+              error: err => {
+                console.log(err)
+                console.log('No puede deshabilitar este registro')
+              }
+            }
+          )
+        }
+      }
+    );
+
+  }
+  isObjectType(value: any): boolean {
+    return typeof value === 'object' && value !== null;
+  }
+  capitalizeFirstLetter(word: string): string {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+  find_advanced()   { }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim().toLowerCase();
+    this.personas_dataSource.filter = filterValue;
   }
 }

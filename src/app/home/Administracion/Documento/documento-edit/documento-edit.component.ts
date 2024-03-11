@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras  } from '@angular/router';
 import { DocumentoService } from '../documento-service/documento.service';
 import { documento } from '../documento-model/documento';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
@@ -60,27 +60,15 @@ export class DocumentoEditComponent {
       this.uuidx = this.route.snapshot.paramMap.get('id');
       this.formGroup.value.uuid = this.uuidx;
       this.formGroup.value.personas = this.personaFormGroup.value;
-
-     /*  this.documentoService.update(this.formGroup.value as documento, this.uuidx).subscribe({
-
-        next: (userData: any) => {
-          if (userData) {
-            this.router.navigate(['/home/personprofile/', this, this.formGroup.value.personas?.uuid]);
-
-            this.formGroup.reset();
-          }
-          else {
-            alert("Datos Incorrectos, Verifique sus datos");
-          }
-        },
-      }); */
       this.apiService.update(this.url2, this.uuidx, this.formGroup.value as documento).subscribe(
         {
-          next: (data) => {
-            this.router.navigate(['/home/administracion/personprofile/', this, this.formGroup.value.personas?.uuid]);
-
+          next: () => {
+            
+            const navigationExtras: NavigationExtras = {
+              queryParams: { tabIndex: 2 } // Establece el índice de la pestaña que deseas seleccionar
+            };
             this.formGroup.reset();
-
+            this.router.navigate(['/home/administracion/personprofile/',this.formGroup.value.personas?.uuid],navigationExtras);
           },
          
         }

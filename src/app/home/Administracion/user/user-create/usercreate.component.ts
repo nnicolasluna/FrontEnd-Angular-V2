@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { UserService } from '../user-service/user.service';
 import { user } from '../user-model/user';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table'
 import { RoleService } from '../../role/role-service/role.service';
 import * as bcrypt from 'bcryptjs';
@@ -77,20 +77,13 @@ export class UsercreateComponent {
       this.formGroup.value.personaUuid = this.personuuid;
       this.formGroup.value.roles = this.promos.value;
       const id = this.formGroup.value.personaUuid;
-
-      /*  this.userservice.create(this.formGroup.value as user).subscribe({
- 
-         next: (userData: any) => {
-           this.router.navigate(['/home/personprofile/', id]);
-           this.formGroup.reset();
- 
-         },
-       }); */
       this.apiService.create(this.url, this.formGroup.value as user).subscribe(
         {
           next: () => {
-            console.log('holamundo')
-            this.router.navigate(['/home/administracion/personprofile/', id]);
+            const navigationExtras: NavigationExtras = {
+              queryParams: { tabIndex: 2 } // Establece el índice de la pestaña que deseas seleccionar
+            };
+            this.router.navigate(['/home/administracion/personprofile/', id],navigationExtras);
             this.formGroup.reset();
           },
         }

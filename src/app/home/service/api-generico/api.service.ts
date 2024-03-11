@@ -37,4 +37,8 @@ export class ApiService<T> {
   disable(resourceUrl: string, id: string): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}${resourceUrl}/${id}`, null);
   }
+  
+  find_register(resourceUrl: string, data: T): Observable<T> {
+    return this.http.post<T>(this.baseUrl + resourceUrl, data);
+  }
 }

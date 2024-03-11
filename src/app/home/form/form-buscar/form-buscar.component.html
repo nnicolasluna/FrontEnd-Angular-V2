@@ -1,9 +1,64 @@
-<div class="buscar">
-    <div class="card card--big">
-        <div class="content-inputs-group">'
-            
+<div class="buscar-avanzado">
+    <form [formGroup]="buscar_formGroup">
+        <div class="content-inputs-group">
+            <div class="input-group">
+                <label for="" class="input-group__formlabel">Nombres:</label>
+                <input type="text" formControlName="nombres" class="input-group__imput">
+
+            </div>
+            <div class="input-group">
+                <label for="" class="input-group__formlabel">Primer Apellido:</label>
+                <input type="text" formControlName="primer_apellido" class="input-group__imput">
+            </div>
+            <div class="input-group">
+                <label for="" class="input-group__formlabel">Segundo Apellido</label>
+                <input type="text" formControlName="segundo_apellido" class="input-group__imput">
+            </div>
+
         </div>
-    </div>
-    <div class="buscar__parametros"></div>
-    <div class="buscar__fechas"></div>
+        <div class="content-inputs-group">
+            <div class="input-group">
+                <label for="" class="input-group__formlabel">Lugar de Nacimiento:</label>
+                <input type="text" formControlName="lugar_nacimiento" class="input-group__imput">
+            </div>
+
+
+            <div class="input-group">
+                <label for="" class="input-group__formlabel">Estado Civil:</label>
+                <select formControlName="estadosCiviles" formControlName="estadosCiviles" class="input-group__imput">
+                    <option value="" disabled selected>Selecciona Estado Civil</option>
+                    <option *ngFor="let dato of estados_civiles" [value]="dato.nombre">{{ dato.nombre }}
+                    </option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="" class="input-group__formlabel">Ocupación:</label>
+                <select formControlName="ocupaciones" class="input-group__imput">
+                    <option value="" disabled selected>Selecciona Ocupación</option>
+                    <option *ngFor="let dato of ocupaciones" [value]="dato.nombre">{{ dato.nombre }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="content-inputs-group">
+            <div class="input-group">
+                <label for="" class="input-group__formlabel">Numero de Documento:</label>
+                <input type="text" formControlName="numeroDocumento" class="input-group__imput">
+            </div>
+            <div class="input-group">
+                <label for="" class="input-group__formlabel">Genero:</label>
+                <select formControlName="generos" class="input-group__imput">
+                    <option value="" disabled selected>Selecciona Genero</option>
+                    <option *ngFor="let dato of generos" [value]="dato.nombre">{{ dato.nombre }}
+                    </option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="" class="input-group__formlabel">Fecha de Nacimiento:</label>
+                <input type="date" formControlName="fecha_nacimiento" class="input-group__imput">
+            </div>
+
+        </div>
+        <button (click)="find_advanced()" class="button button--simple">Buscar</button>
+    </form>
 </div>

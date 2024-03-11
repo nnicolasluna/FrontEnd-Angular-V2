@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { person } from '../person-model/person';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-personprofile',
@@ -19,6 +20,7 @@ export class PersonprofileComponent {
   user_data!: any;
   dataSource_roles: any;
   dataSource_documentos: any;
+  selectedIndex!:any
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   displayedColumns: string[] = ['nombre', 'descripcion', 'estado'];
   displayedColumns1: string[] = ['documento', 'numero', 'estado', 'lugar', 'acciones'];
@@ -29,6 +31,10 @@ export class PersonprofileComponent {
 
   ngOnInit() {
     this.Userdatos()
+    this.route.queryParams.subscribe(params => {
+      const selectedTabIndex = params['tabIndex'] ? +params['tabIndex'] : 0; 
+      this.selectedIndex = selectedTabIndex; 
+    });
   }
   disableCreateUser: boolean = false;
   disableEditUser: boolean = true;
@@ -63,6 +69,5 @@ export class PersonprofileComponent {
       }
     )
   }
-
 
 }
