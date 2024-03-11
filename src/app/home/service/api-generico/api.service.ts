@@ -18,6 +18,10 @@ export class ApiService<T> {
     return this.http.get<T[]>(this.baseUrl + resourceUrl);
   }
 
+  getAllpageable(resourceUrl: string, page: string): Observable<T[]> {
+    return this.http.get<T[]>(this.baseUrl + resourceUrl + '?pageable=' + page);
+  }
+
   getOne(resourceUrl: string, id: string): Observable<T> {
     return this.http.get<T>(`${this.baseUrl}${resourceUrl}/${id}`);
   }
@@ -37,7 +41,7 @@ export class ApiService<T> {
   disable(resourceUrl: string, id: string): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}${resourceUrl}/${id}`, null);
   }
-  
+
   find_register(resourceUrl: string, data: T): Observable<T> {
     return this.http.post<T>(this.baseUrl + resourceUrl, data);
   }

@@ -13,29 +13,25 @@
 <div class="body">
   <div class="body__header">
     <h1>Lista de Personas</h1>
+    <button class="button-icon button-icon--agregar" matTooltip="Añadir nuevo elemento a la lista"
+      routerLink="/home/administracion/personcreate">
+      <mat-icon>add</mat-icon>
+      Agregar
+    </button>
   </div>
 
   <div class="body__content">
     <mat-card>
-
       <mat-card-content>
-      
-          <mat-expansion-panel hideToggle class="buscar-avanzado">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Buscar Avanzado..
-              </mat-panel-title>
-              <mat-icon>search</mat-icon>
-            </mat-expansion-panel-header>
-            <app-form-buscar (datosEncontrados)="actualizarDatosTabla($event)"></app-form-buscar>
-          </mat-expansion-panel>
-
-          <button class="button-icon button-icon--agregar" matTooltip="Añadir nuevo elemento a la lista"
-            routerLink="/home/administracion/personcreate">
-            <mat-icon>add</mat-icon>
-            Agregar
-          </button>
-    
+        <mat-expansion-panel hideToggle class="buscar-avanzado">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Filtro Avanzado..
+            </mat-panel-title>
+            <mat-icon>search</mat-icon>
+          </mat-expansion-panel-header>
+          <app-form-buscar (datosEncontrados)="actualizarDatosTabla($event)"></app-form-buscar>
+        </mat-expansion-panel>
         <table mat-table [dataSource]="personas_dataSource" class="table">
           <ng-container *ngFor="let column of displayedColumns">
             <ng-container *ngIf="column !== 'action'; else actionColumn">
@@ -70,10 +66,10 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-
       </mat-card-content>
       <mat-card-footer>
-        <mat-paginator [pageSizeOptions]="[5,7,10]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex_datatable"
+          (page)="handlePageEvent($event)" showFirstLastButtons></mat-paginator>
       </mat-card-footer>
     </mat-card>
 

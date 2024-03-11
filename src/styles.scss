@@ -168,8 +168,13 @@ $neutral-color: rgb(243, 243, 243);
     overflow: hidden;
 
     &__header {
-        margin-top: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 10px;
         margin-left: 15px;
+        height: 50px;
+
     }
 }
 

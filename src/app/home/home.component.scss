@@ -22,13 +22,13 @@
 }
 
 .bot {
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .left {
     background-color: #343A40;
     
-    min-width: 200px;
+    min-width: 230px;
     overflow-y: scroll;
 }
 
@@ -36,16 +36,16 @@
 
 }
 
-.left::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 10px;
     background-color: transparent;
 }
 
-.left::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background-color: transparent;
 }
 
-.left::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
     background-color: black;
 }
 
