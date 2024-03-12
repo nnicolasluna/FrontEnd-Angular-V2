@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, NavigationExtras  } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { DocumentoService } from '../documento-service/documento.service';
-import { documento } from '../documento-model/documento';
+import { documento, documentoDTO } from '../documento-model/documento';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 
 @Component({
@@ -11,24 +11,21 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./documento-edit.component.scss']
 })
 export class DocumentoEditComponent {
-  uuid!: any;
-  private url2 = 'administracion/documentos'
-  private url1 = 'administracion/tipo_documentos'
-  tipodocuments: any;
-  datos: any[] = [];
-  personaFormGroup = new FormGroup({
-    uuid: new FormControl(''),
-  });
-  tipodocFormGroup = new FormGroup({
-    uuid: new FormControl('', [Validators.required]),
-  });
+  uuid_documento!: any;
+  uuid_persona!: string
+  private url_endpoint_documentos = 'administracion/documentos'
+  private url_endpoitn_tipoDocumentos = 'parametros/tipo_documentos'
+
+  registro_datos_tipoDocumento: any[] = [];
+  documento_obtenido!: any;
+
   formGroup = new FormGroup({
     uuid: new FormControl(''),
     numero: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     lugar_emision: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    tipoDocumentos: this.tipodocFormGroup,
+    tipoDocumentos: new FormControl(''),
     estado: new FormControl(),
-    personas: this.personaFormGroup,
+    personas: new FormControl('')
 
   });
   get numeroControl() {
@@ -41,36 +38,34 @@ export class DocumentoEditComponent {
     return this.formGroup.controls.estado;
   }
   get tipodoc() {
-    return this.tipodocFormGroup.controls.uuid;
+    return this.formGroup.controls.tipoDocumentos;
   }
   constructor(
     private router: Router,
-    private documentoService: DocumentoService,
     private route: ActivatedRoute,
-
-    private apiService: ApiService<documento>,) { }
+    private apiService: ApiService<any>,) { }
 
   ngOnInit() {
     this.gettipoDoc();
     this.getdocumento();
   }
-  uuidx!: any;
+
   create() {
     if (this.formGroup.valid) {
-      this.uuidx = this.route.snapshot.paramMap.get('id');
-      this.formGroup.value.uuid = this.uuidx;
-      this.formGroup.value.personas = this.personaFormGroup.value;
-      this.apiService.update(this.url2, this.uuidx, this.formGroup.value as documento).subscribe(
+      this.uuid_documento = this.route.snapshot.paramMap.get('id');
+      this.formGroup.value.uuid = this.uuid_documento;
+      this.formGroup.value.personas = this.documento_obtenido.personas
+      this.apiService.update(this.url_endpoint_documentos, this.uuid_documento, this.formGroup.value as documento).subscribe(
         {
           next: () => {
-            
+
             const navigationExtras: NavigationExtras = {
-              queryParams: { tabIndex: 2 } // Establece el índice de la pestaña que deseas seleccionar
+              queryParams: { tabIndex: 2 }
             };
             this.formGroup.reset();
-            this.router.navigate(['/home/administracion/personprofile/',this.formGroup.value.personas?.uuid],navigationExtras);
+            this.router.navigate(['/home/administracion/personprofile/', this.documento_obtenido.personas.uuid], navigationExtras);
           },
-         
+
         }
       );
     }
@@ -80,10 +75,11 @@ export class DocumentoEditComponent {
   }
 
   gettipoDoc() {
-    this.apiService.getAll(this.url1).subscribe(
+    this.apiService.getAll(this.url_endpoitn_tipoDocumentos).subscribe(
       {
         next: data => {
-          this.datos = data
+
+          this.registro_datos_tipoDocumento = data
         },
 
       }
@@ -92,20 +88,26 @@ export class DocumentoEditComponent {
   }
 
   getdocumento() {
-    this.uuid = this.route.snapshot.paramMap.get('id');
-    this.apiService.getOne(this.url2, this.uuid).subscribe(
+    this.uuid_documento = this.route.snapshot.paramMap.get('id');
+    this.apiService.getOne(this.url_endpoint_documentos, this.uuid_documento).subscribe(
       {
         next: data => {
+
+          this.documento_obtenido = data
+          this.uuid_persona = this.documento_obtenido.personas.uuid
           this.formGroup.patchValue(data);
+          this.getDatos('tipoDocumentos', this.formGroup.value.tipoDocumentos)
+
         },
 
       }
     );
-    /*    this.documentoService.getdocumento(this.uuid).subscribe((data) => {
-         console.log(data);
-         this.datos = data;
-         this.formGroup.patchValue(data);
-       }); */
   }
-
+  getDatos(param: string, atrib: any) {
+    const control = this.formGroup.get(param);
+    if (control) {
+      const UUID = atrib.uuid;
+      control.setValue(UUID);
+    }
+  }
 }

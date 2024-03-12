@@ -11,8 +11,9 @@
 
                     <div class="input-group">
                         <label for="" class="input-group__formlabel">Numero:</label>
-                        <input formControlName="numero" type="text" placeholder="Ejem. 6830018" class="input-group__imput"
-                        [ngClass]="{'invalid': numeroControl.invalid && (numeroControl.dirty || numeroControl.touched), 'valid': numeroControl.valid}">
+                        <input formControlName="numero" type="text" placeholder="Ejem. 6830018"
+                            class="input-group__imput"
+                            [ngClass]="{'invalid': numeroControl.invalid && (numeroControl.dirty || numeroControl.touched), 'valid': numeroControl.valid}">
                         <div *ngIf="numeroControl.invalid && (numeroControl.dirty || numeroControl.touched)"
                             class="text-danger">
                             <span *ngIf="numeroControl.errors?.['required']">El Nombre es Requerido</span>
@@ -24,39 +25,36 @@
                     </div>
 
 
+                    <div class="input-group">
 
-                    <form [formGroup]="tipodocFormGroup">
-
-                        <div class="input-group">
-
-                            <label for="" class="input-group__formlabel">Tipo de Documento:</label>
-                            <select formControlName="uuid" class="input-group__imput" 
+                        <label for="" class="input-group__formlabel">Tipo de Documento:</label>
+                        <select formControlName="tipoDocumentos" class="input-group__imput"
                             [ngClass]="{'invalid': tipodoc.invalid && (tipodoc.dirty || tipodoc.touched), 'valid': tipodoc.valid}">
-                                <option value="" disabled selected>Selecciona Tipo de Documento</option>
-                                <option aria-placeholder="Selecciones Tipo de Documento" *ngFor="let dato of datos"
-                                    [value]="dato.uuid">{{ dato.nombre }}
-                                </option>
-                            </select>
-                            <div *ngIf="tipodoc.invalid && (tipodoc.dirty || tipodoc.touched)"
-                            class="text-danger">
+                            <option value="" disabled selected>Selecciona Tipo de Documento</option>
+                            <option aria-placeholder="Selecciones Tipo de Documento" *ngFor="let dato of registro_datos_tipoDocumento"
+                                [value]="dato.uuid">{{ dato.nombre }}
+                            </option>
+                        </select>
+                        <div *ngIf="tipodoc.invalid && (tipodoc.dirty || tipodoc.touched)" class="text-danger">
                             <span *ngIf="tipodoc.errors?.['required']">Tipo Documento Requerido</span>
-                          
-                        </div>
-                        </div>
 
-                    </form>
+                        </div>
+                    </div>
+
+
 
                     <div class="input-group">
                         <label for="" class="input-group__formlabel">Lugar de Emision</label>
                         <input formControlName="lugar_emision" type="text" placeholder="Ejem La Paz (Opcional)"
                             class="input-group__imput">
-        
+
                     </div>
 
                 </form>
             </mat-card-content>
 
-            <app-form-footer [regreso]="'/home/administracion/personprofile/'+uuid" (saveClicked)="create()"></app-form-footer>
+            <app-form-footer [regreso]="'/home/administracion/personprofile/'+uuid_persona"
+                (saveClicked)="create()"></app-form-footer>
         </mat-card>
 
     </div>

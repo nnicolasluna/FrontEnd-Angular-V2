@@ -68,11 +68,11 @@ export class UsercreateComponent {
     console.log()
     if (this.formGroup.valid) {
       const currentPassword = this.formGroup.value.password;
-    /*   if (currentPassword !== undefined && currentPassword !== null) {
+      if (currentPassword !== undefined && currentPassword !== null) {
         this.formGroup.value.password = this.hashPassword(currentPassword, this.salt);
       } else {
         console.error("El valor actual de password es undefined o null");
-      } */
+      }
       this.personuuid = this.route.snapshot.paramMap.get('id');
       this.formGroup.value.personaUuid = this.personuuid;
       this.formGroup.value.roles = this.promos.value;

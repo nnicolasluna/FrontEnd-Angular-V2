@@ -15,15 +15,16 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   constructor(private loginService: LoginService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token: String = this.loginService.userToken;
+    const token_sesion = sessionStorage.getItem("token");
 
-    if (token != "") {
+    const token: String = this.loginService.userToken;
+    if (token_sesion) {
       request = request.clone(
         {
           setHeaders: {
             'Content-Type': 'application/json; charset=utf-8',
             'Accept': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            'Authorization': `Bearer ${token_sesion}`,
           },
         }
       );

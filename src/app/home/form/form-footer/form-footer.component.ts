@@ -12,11 +12,12 @@ export class FormFooterComponent {
   @Input() regreso!: string;
   guardarHabilitado: boolean = true;
   save() {
-    if (this.guardarHabilitado) {
-      // Lógica para guardar el formulario
+    this.saveClicked.emit();
+    /* if (this.guardarHabilitado) {
+      
       this.saveClicked.emit();
       this.guardarHabilitado = false;
-    }
+    } */
 
 
   }

@@ -8,39 +8,26 @@ import { MatTab } from '@angular/material/tabs';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 
 
-interface CustomMatTab extends MatTab {
-  id: string;
-}
 @Component({
   selector: 'app-documentocreate',
   templateUrl: './documentocreate.component.html',
   styleUrls: ['./documentocreate.component.scss']
 })
 export class DocumentocreateComponent {
-  private url2 = 'administracion/documentos'
-  private url1 = 'parametros/tipo_documentos'
+  private url_endpoint_documentos = 'administracion/documentos'
+  private url_endpoint_tipoDocumentos = 'parametros/tipo_documentos'
   private url='/home/administracion/personprofile'
   uuid!: any;
   tipodocuments: any;
   datos: any[] = [];
  
   @ViewChild('tabGroup') tabGroup?: MatTabGroup;
-  personaFormGroup = new FormGroup(
-    {
-      uuid: new FormControl(''),
-    }
-  );
-/*   tipodocFormGroup = new FormGroup(
-    {
-      uuid: new FormControl('',[Validators.required]),
-    }
-  ); */
   formGroup = new FormGroup({
     numero: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     lugar_emision: new FormControl(''),
     tipoDocumentos: new FormControl('', [Validators.required]),
     estado: new FormControl(true),
-    personas: this.personaFormGroup
+    personas: new FormControl(''),
   });
   get numeroControl() {
     return this.formGroup.controls.numero;
@@ -53,7 +40,6 @@ export class DocumentocreateComponent {
   }
   constructor(
     private router: Router,
-    private documentoService: DocumentoService,
     private route: ActivatedRoute,
 
     private cdr: ChangeDetectorRef,
@@ -71,12 +57,14 @@ export class DocumentocreateComponent {
   create() {
     if (this.formGroup.valid) {
       this.uuid = this.route.snapshot.paramMap.get('id');
-      this.personaFormGroup.value.uuid = this.uuid;
-      this.formGroup.value.personas = this.personaFormGroup.value;
+    /*   this.personaFormGroup.value.uuid = this.uuid; */
+      this.formGroup.value.personas = this.uuid;
       const id = this.route.snapshot.paramMap.get('id');;
-      this.apiService.create(this.url2, this.formGroup.value as documento).subscribe(
+      console.log(this.formGroup.value)
+      this.apiService.create(this.url_endpoint_documentos, this.formGroup.value as documento).subscribe(
         {
           next: () => {
+           
             const navigationExtras: NavigationExtras = {
               queryParams: { tabIndex: 2 } // Establece el índice de la pestaña que deseas seleccionar
             };
@@ -100,7 +88,7 @@ export class DocumentocreateComponent {
     }
   }
   gettipoDoc() {
-    this.apiService.getAll(this.url1).subscribe(
+    this.apiService.getAll(this.url_endpoint_tipoDocumentos).subscribe(
       {
         next: data => {
           this.datos = data

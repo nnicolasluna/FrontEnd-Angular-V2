@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { person } from '../person-model/person';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { error } from 'cypress/types/jquery';
 
 @Component({
   selector: 'app-personprofile',
@@ -15,12 +16,12 @@ export class PersonprofileComponent {
   private url_personas = 'administracion/personas'
   private url_usuarios = 'administracion/usuarios'
   documents: any;
-  uuid_persona: any='';
+  uuid_persona: any = '';
   person_data!: any;
   user_data!: any;
   dataSource_roles: any;
   dataSource_documentos: any;
-  selectedIndex!:any
+  selectedIndex!: any
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   displayedColumns: string[] = ['nombre', 'descripcion', 'estado'];
   displayedColumns1: string[] = ['documento', 'numero', 'estado', 'lugar', 'acciones'];
@@ -32,8 +33,8 @@ export class PersonprofileComponent {
   ngOnInit() {
     this.Userdatos()
     this.route.queryParams.subscribe(params => {
-      const selectedTabIndex = params['tabIndex'] ? +params['tabIndex'] : 0; 
-      this.selectedIndex = selectedTabIndex; 
+      const selectedTabIndex = params['tabIndex'] ? +params['tabIndex'] : 0;
+      this.selectedIndex = selectedTabIndex;
     });
   }
   disableCreateUser: boolean = false;
@@ -44,7 +45,10 @@ export class PersonprofileComponent {
       {
         next: data => {
           this.person_data = data
-       
+
+        },
+        error: error => {
+          console.log(error,'error en personas')
         }
       }
     )
@@ -54,6 +58,10 @@ export class PersonprofileComponent {
           this.documents = data
           this.dataSource_documentos = new MatTableDataSource<any>(this.documents);
           this.dataSource_documentos.paginator = this.paginatior;
+        }
+        ,
+        error: error => {
+          console.log(error,'error en documentos de personas')
         }
       }
     )
@@ -65,6 +73,9 @@ export class PersonprofileComponent {
           this.disableEditUser = false;
           this.dataSource_roles = new MatTableDataSource<any>(this.user_data.roles);
           this.dataSource_roles.paginator = this.paginatior;
+        },
+        error: error => {
+          console.log(error,'error en usuario de personas no se encontro')
         }
       }
     )

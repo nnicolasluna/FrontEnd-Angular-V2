@@ -4,13 +4,15 @@ export interface documento {
     numero: string;
     lugar_emision: string;
     estado: boolean;
-    personas: personDTO,
+    personas: string,
     tipo_documentoUuid:string
     
 }
 export interface documentoDTO {
-    uuid: string,
+
     numero: string,
     lugar_emision: string,
     estado: boolean,
+    personas: string,
+    tipo_documentoUuid:string
 }

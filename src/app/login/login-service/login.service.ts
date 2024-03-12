@@ -14,19 +14,15 @@ export class LoginService {
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private user: any;
   constructor(private http: HttpClient) { }
-
+  token: string = ''
   login(credentials: LoginRequest): Observable<any> {
-
-    /* return this.http.post<any>(this.url, credentials); */
-
-    return this.http.post<any>(this.baseUrl+this.url, credentials).pipe(
+    return this.http.post<any>(this.baseUrl + this.url, credentials).pipe(
       tap((userData) => {
-        console.log(userData)
+        this.token = userData.token
         sessionStorage.setItem("token", userData.token);
         const personaDTO = userData.personaDTO;
         sessionStorage.setItem("datos", JSON.stringify(personaDTO));
         const rol = userData.roles;
-        /* sessionStorage.setItem("roles", userData.roles); */
         sessionStorage.setItem("rol", JSON.stringify(rol));
         this.currentUserData.next(userData.token);
         this.currentUserLoginOn.next(true);
@@ -34,10 +30,12 @@ export class LoginService {
 
     );
   }
-  get userToken():String{
+  isAuth(){
+    return this.token.length>0
+  }
+  get userToken(): String {
     return this.currentUserData.value;
   }
-
   setDatos(datos: any) {
     this.user = datos;
   }

@@ -68,8 +68,19 @@
         </table>
       </mat-card-content>
       <mat-card-footer>
-        <mat-paginator [pageSizeOptions]="pageSizeOptions" [pageIndex]="pageIndex_datatable"
-          (page)="handlePageEvent($event)" showFirstLastButtons></mat-paginator>
+        <!-- <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageIndex]="pageIndex" [pageSize]="pageSize"[pageIndex]="pageIndex_datatable"></mat-paginator> -->
+        <mat-paginator #paginator
+               class="demo-paginator"
+               (page)="handlePageEvent($event)"
+               [length]="length"
+               [pageSize]="pageSize"
+
+               [showFirstLastButtons]="showFirstLastButtons"
+               
+               [hidePageSize]="hidePageSize"
+               [pageIndex]="pageIndex"
+               aria-label="Select page">
+</mat-paginator>
       </mat-card-footer>
     </mat-card>
 
