@@ -70,6 +70,7 @@ import { TipoDocumentoCreateComponent } from './tipoDocumento/tipo-documento-cre
 import { TipoDocumentoEditComponent } from './tipoDocumento/tipo-documento-edit/tipo-documento-edit.component';
 import { TipoDocumentoListComponent } from './tipoDocumento/tipo-documento-list/tipo-documento-list.component';
 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -150,6 +151,7 @@ import { TipoDocumentoListComponent } from './tipoDocumento/tipo-documento-list/
     MatInputModule,
     MatDialogModule,
     MatTooltipModule,
+    MatSlideToggleModule,
   ]
 })
 export class ParametrosModule { }

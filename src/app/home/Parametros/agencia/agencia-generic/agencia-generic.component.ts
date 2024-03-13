@@ -18,6 +18,7 @@ export class AgenciaGenericComponent {
   @Input() subtitulo_operacion: string = '';
   @Input() link_boton_regresar: string = '';
   @Input() registros_ciudades: any[] = [];
+  @Input() registros_paises: any[] = [];
   @Input() datos_recuperados_agencia: any;
   @Input() ejecutar_metodoDesdePadre: () => void = () => { };
   private matDialogRef!: any;
@@ -34,7 +35,9 @@ export class AgenciaGenericComponent {
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     direccion: new FormControl('', [Validators.required]),
     telefono: new FormControl('', [Validators.required]),
+    paises: new FormControl('', [Validators.required]),
     ciudades: new FormControl('', [Validators.required]),
+    estado: new FormControl(true),
   });
 
   get nombreControl() {
@@ -51,6 +54,9 @@ export class AgenciaGenericComponent {
   }
   get ciudadesControl() {
     return this.formGroup.controls.ciudades;
+  }
+  get paisesControl() {
+    return this.formGroup.controls.paises;
   }
   constructor(
     private metodogenerico: MetodoGenericoService,

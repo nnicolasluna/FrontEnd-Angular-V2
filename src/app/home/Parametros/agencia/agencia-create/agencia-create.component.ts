@@ -6,6 +6,7 @@ import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertenci
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
+import { error } from 'cypress/types/jquery';
 
 @Component({
   selector: 'app-agencia-create',
@@ -15,13 +16,16 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
 export class AgenciaCreateComponent {
   url_endpoint_agencias = 'parametros/agencias'
   private url_endpoint_ciudades = 'parametros/ciudades'
+  private url_endpoint_paises = 'parametros/paises'
   registros_ciudades: any[] = [];
+  registros_paises: any[] = [];
   private matDialogRef!: any;
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     abreviatura: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     direccion: new FormControl('', [Validators.required]),
     telefono: new FormControl('', [Validators.required]),
+    paises: new FormControl('', [Validators.required]),
     ciudades: new FormControl('', [Validators.required]),
     estado: new FormControl(true),
   });
@@ -54,12 +58,14 @@ export class AgenciaCreateComponent {
   create() {
     if (this.formGroup.valid) {
       const formData = this.metodogenerico.getFormGroupData();
+      console.log(this.formGroup.value)
       this.apiService.create(this.url_endpoint_agencias, formData).subscribe({
         next: () => {
           this.router.navigateByUrl('/home/parametros/agencia-list');
           this.formGroup.reset();
         },
         error: err => {
+          console.log(err)
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent)
           this.matDialogRef.afterClosed().subscribe(() => { })
         }
@@ -76,12 +82,25 @@ export class AgenciaCreateComponent {
          
           this.registros_ciudades = data
         },
-        error: () => {
+        error: (error) => {
+          console.log(error)
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent)
           this.matDialogRef.afterClosed().subscribe(() => { })
         }
       }
     )
- 
+    this.apiService.getAll(this.url_endpoint_paises).subscribe(
+      {
+        next: data => {
+         
+          this.registros_paises= data
+        },
+        error: (error) => {
+          console.log(error)
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent)
+          this.matDialogRef.afterClosed().subscribe(() => { })
+        }
+      }
+    )
   }
 }

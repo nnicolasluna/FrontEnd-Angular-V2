@@ -47,5 +47,13 @@
 
 
 .card__footer{
+    display: flex;
+    flex-direction: row;
     padding: 20px;
+
+}
+.fotos{
+  display: flex;
+    flex-direction: row;
+    
 }

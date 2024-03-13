@@ -23,6 +23,7 @@ export class PaisEditComponent {
     nacionalidad: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     bandera: new FormControl(''),
     estado: new FormControl(),
+    opera:new FormControl(),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;

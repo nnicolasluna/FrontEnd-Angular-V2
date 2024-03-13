@@ -1,0 +1,43 @@
+<!-- <app-foto-generic
+[titulo_operacion]="'Registrar Foto'" 
+[subtitulo_operacion]="'Datos de Foto'"
+[link_boton_regresar]="'/home/Administracion/personalist'"
+[url_endpoint_foto]="url_endpoint_foto"
+[ejecutar_metodoDesdePadre]="create"
+></app-foto-generic> -->
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">{{ titulo_operacion }}</h1>
+    </div>
+    <div class="body__content">
+        <form id="loginform" [formGroup]="formGroup">
+            <mat-card class="card card--small">
+                <app-form-header [titulo]="subtitulo_operacion"></app-form-header>
+                <mat-card-content class="card__content">
+
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Foto:</label>
+                        <input class="input-group__imput_typeFile" type="file" (change)="onFileSelected($event)">
+                    </div>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Descripción</label>
+                        <input formControlName="descripcion" type="text"
+                            placeholder="Ejem. Fotografia del Empleado Faustino Mamani" class="input-group__imput"
+                            [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
+                        <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
+                            class="text-danger">
+                            <span *ngIf="descripcionControl.errors?.['required']">La Descripción es Requerida</span>
+                            <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripción no debe tener mas
+                                de
+                                30
+                                caracteres</span>
+                        </div>
+                    </div>
+
+                </mat-card-content>
+                <app-form-footer [regreso]='"/home/administracion/personlist"'
+                    (saveClicked)="create()"></app-form-footer>
+            </mat-card>
+        </form>
+    </div>
+</div>

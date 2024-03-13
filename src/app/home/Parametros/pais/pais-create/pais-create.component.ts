@@ -21,6 +21,7 @@ export class PaisCreateComponent {
     nacionalidad: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     bandera: new FormControl(''),
     estado: new FormControl(true),
+    opera:new FormControl(false),
   });
   get nombreControl() {
     return this.formGroup.controls.nombre;
@@ -36,7 +37,6 @@ export class PaisCreateComponent {
 
   create() {
     if (this.formGroup.valid) {
-      console.log(this.formGroup.value)
       this.apiService.create(this.url, this.formGroup.value as pais).subscribe(
         {
           next: () => {

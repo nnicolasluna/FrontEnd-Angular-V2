@@ -66,13 +66,21 @@
                                 caracteres</span>
                         </div>
                     </div>
-
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Paises:</label>
+                        <select formControlName="paises" class="input-group__imput"
+                            [ngClass]="{'invalid': paisesControl.invalid && (paisesControl.dirty || paisesControl.touched), 'valid': paisesControl.valid}">
+                            <option value="" disabled selected>Selecciona Pais</option>
+                            <option *ngFor="let pais of registros_paises" [value]="pais.uuid">{{ pais.nombre }}
+                            </option>
+                        </select>
+                    </div>
                     <div class="input-group">
                         <label for="" class="input-group__formlabel">Ciudad:</label>
                         <select formControlName="ciudades" class="input-group__imput"
                             [ngClass]="{'invalid': ciudadesControl.invalid && (ciudadesControl.dirty || ciudadesControl.touched), 'valid': ciudadesControl.valid}">
                             <option value="" disabled selected>Selecciona Ciudad</option>
-                            <option *ngFor="let dato of registros_ciudades" [value]="dato.uuid">{{ dato.nombre }}
+                            <option *ngFor="let ciudad of registros_ciudades" [value]="ciudad.uuid">{{ ciudad.nombre }}
                             </option>
                         </select>
                     </div>

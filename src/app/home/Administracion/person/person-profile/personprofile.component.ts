@@ -4,9 +4,6 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { person } from '../person-model/person';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { error } from 'cypress/types/jquery';
-
 @Component({
   selector: 'app-personprofile',
   templateUrl: './personprofile.component.html',
@@ -15,6 +12,7 @@ import { error } from 'cypress/types/jquery';
 export class PersonprofileComponent {
   private url_personas = 'administracion/personas'
   private url_usuarios = 'administracion/usuarios'
+  private url_foto = 'administracion/fotos'
   documents: any;
   uuid_persona: any = '';
   person_data!: any;
@@ -22,6 +20,7 @@ export class PersonprofileComponent {
   dataSource_roles: any;
   dataSource_documentos: any;
   selectedIndex!: any
+  foto_persona!:any
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   displayedColumns: string[] = ['nombre', 'descripcion', 'estado'];
   displayedColumns1: string[] = ['documento', 'numero', 'estado', 'lugar', 'acciones'];
@@ -49,6 +48,17 @@ export class PersonprofileComponent {
         },
         error: error => {
           console.log(error,'error en personas')
+        }
+      }
+    )
+    this.apiService.getOne(this.url_foto, this.uuid_persona).subscribe(
+      {
+        next: data => {
+          this.foto_persona = data
+
+        },
+        error: error => {
+          console.log(error,'error al obtener en foto-persona')
         }
       }
     )

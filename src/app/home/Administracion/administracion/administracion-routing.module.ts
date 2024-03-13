@@ -22,6 +22,8 @@ import { UsercreateComponent } from '../user/user-create/usercreate.component';
 import { UserEditComponent } from '../user/user-edit/user-edit.component';
 import { UserlistComponent } from '../user/user-list/userlist.component';
 import { UsershowComponent } from '../user/user-show/usershow.component';
+import { FotoCreateComponent } from '../foto/foto-create/foto-create.component';
+import { FotoEditComponent } from '../foto/foto-edit/foto-edit.component';
 
 
 
@@ -59,6 +61,9 @@ const routes: Routes = [
 
   { path: 'documentocreate/:id', component: DocumentocreateComponent },
   { path: 'documentoedit/:id', component: DocumentoEditComponent },
+
+  { path: 'foto-create/:id', component: FotoCreateComponent },
+  { path: 'foto-edit/:id', component: FotoEditComponent },
 ];
 
 @NgModule({

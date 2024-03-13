@@ -21,6 +21,10 @@ import { FormHeaderComponent } from './form/form-header/form-header.component';
 import { FormFooterComponent } from './form/form-footer/form-footer.component';
 import { FormBuscarComponent } from './form/form-buscar/form-buscar.component';
 import { AdvertenciaDeshabilitarComponent } from './modal/advertencia-deshabilitar/advertencia-deshabilitar.component';
+import { FotoCreateComponent } from './Administracion/foto/foto-create/foto-create.component';
+import { FotoGenericComponent } from './Administracion/foto/foto-generic/foto-generic.component';
+import { FotoEditComponent } from './Administracion/foto/foto-edit/foto-edit.component';
+
 
 
 
@@ -35,6 +39,10 @@ import { AdvertenciaDeshabilitarComponent } from './modal/advertencia-deshabilit
     FormFooterComponent,
     FormBuscarComponent,
     AdvertenciaDeshabilitarComponent,
+    FotoCreateComponent,
+    FotoGenericComponent,
+    FotoEditComponent,
+    
   ],
   imports: [
 

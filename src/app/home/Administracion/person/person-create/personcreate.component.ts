@@ -76,6 +76,7 @@ export class PersoncreateComponent {
             this.persona_formGroup.reset();
           },
           error: err => {
+            console.log(err)
             this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
             this.matDialogRef.afterClosed().subscribe(() => {
             });

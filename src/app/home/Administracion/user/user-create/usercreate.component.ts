@@ -51,11 +51,9 @@ export class UsercreateComponent {
 
   constructor(
     private router: Router,
-    private userservice: UserService,
     private route: ActivatedRoute,
     private _fb: FormBuilder,
     private cd: ChangeDetectorRef,
-    private rolservice: RoleService,
     private apiService: ApiService<user>,
     ) { }
 
@@ -65,7 +63,7 @@ export class UsercreateComponent {
     return newpassword;
   }
   create() {
-    console.log()
+   
     if (this.formGroup.valid) {
       const currentPassword = this.formGroup.value.password;
       if (currentPassword !== undefined && currentPassword !== null) {
@@ -77,6 +75,7 @@ export class UsercreateComponent {
       this.formGroup.value.personaUuid = this.personuuid;
       this.formGroup.value.roles = this.promos.value;
       const id = this.formGroup.value.personaUuid;
+      console.log(this.formGroup.value)
       this.apiService.create(this.url, this.formGroup.value as user).subscribe(
         {
           next: () => {
