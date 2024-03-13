@@ -15,10 +15,12 @@ export class AgenciaEditComponent {
   private matDialogRef!: any;
   url_endpoint_agencias = 'parametros/agencias'
   private url_endpoint_ciuades = 'parametros/ciudades'
+  private url_endpoint_paises = 'parametros/paises'
   operacion = 'Registrar'
   uuid!: any;
   editar = ''
-  paises: any[] = [];
+  registros_ciudades: any[] = [];
+  registros_paises: any[] = [];
   tipoCorte: any[] = [];
   datos_recuperados_agencia!: any;
   formGroup = new FormGroup({
@@ -62,7 +64,7 @@ export class AgenciaEditComponent {
       this.formGroup.value.uuid = this.route.snapshot.paramMap.get('id');
       this.uuid = this.route.snapshot.paramMap.get('id');
 
-      this.apiService.update(this.url_endpoint_agencias, this.uuid, this.formGroup.value as agencia).subscribe(
+      this.apiService.update('parametros/agencias', this.uuid, this.formGroup.value as agencia).subscribe(
         {
           next: () => {
             this.router.navigateByUrl('/home/parametros/agencia-list');
@@ -87,7 +89,20 @@ export class AgenciaEditComponent {
     this.apiService.getAll(this.url_endpoint_ciuades).subscribe(
       {
         next: data => {
-          this.paises = data
+          this.registros_ciudades = data
+        }
+      }
+    )
+    this.apiService.getAll(this.url_endpoint_paises).subscribe(
+      {
+        next: data => {
+
+          this.registros_paises = data
+        },
+        error: (error) => {
+          console.log(error)
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent)
+          this.matDialogRef.afterClosed().subscribe(() => { })
         }
       }
     )
@@ -107,5 +122,6 @@ export class AgenciaEditComponent {
         }
       }
     );
+ 
   }
 }

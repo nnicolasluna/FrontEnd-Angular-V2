@@ -43,7 +43,7 @@ export class AgenciaCreateComponent {
     return this.formGroup.controls.telefono;
   }
   get ciudadesControl() {
-    return this.formGroup.controls.ciudades;  
+    return this.formGroup.controls.ciudades;
   }
   constructor(
     private router: Router,
@@ -57,18 +57,20 @@ export class AgenciaCreateComponent {
   }
   create() {
     if (this.formGroup.valid) {
-      const formData = this.metodogenerico.getFormGroupData();
-      console.log(this.formGroup.value)
-      this.apiService.create(this.url_endpoint_agencias, formData).subscribe({
+      this.apiService.create('parametros/agencias', this.formGroup.value as agencia).subscribe({
         next: () => {
           this.router.navigateByUrl('/home/parametros/agencia-list');
           this.formGroup.reset();
         },
-        error: err => {
-          console.log(err)
+        error: (error) => {
+          console.log(error)
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent)
           this.matDialogRef.afterClosed().subscribe(() => { })
         }
+
+
+
+
       });
     } else {
       this.formGroup.markAllAsTouched();
@@ -79,7 +81,7 @@ export class AgenciaCreateComponent {
     this.apiService.getAll(this.url_endpoint_ciudades).subscribe(
       {
         next: data => {
-         
+
           this.registros_ciudades = data
         },
         error: (error) => {
@@ -92,8 +94,8 @@ export class AgenciaCreateComponent {
     this.apiService.getAll(this.url_endpoint_paises).subscribe(
       {
         next: data => {
-         
-          this.registros_paises= data
+
+          this.registros_paises = data
         },
         error: (error) => {
           console.log(error)

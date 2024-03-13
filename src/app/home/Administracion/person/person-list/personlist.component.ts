@@ -92,8 +92,7 @@ export class PersonlistComponent {
         next: (data) => {
           
           this.personas = data
-          console.log(this.personas)
-          console.log(this.length)
+      /*     console.log(this.length) */
           this.pageSize=this.personas.size
           this.length=this.personas.totalElements
           this.pageIndex=this.personas.number

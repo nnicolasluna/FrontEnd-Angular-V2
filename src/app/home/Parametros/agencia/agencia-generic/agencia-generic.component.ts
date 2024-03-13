@@ -23,6 +23,7 @@ export class AgenciaGenericComponent {
   @Input() ejecutar_metodoDesdePadre: () => void = () => { };
   private matDialogRef!: any;
   ciudad!: any
+  paises!: any
   ejecutarCreate() {
     if (this.ejecutar_metodoDesdePadre) {
       this.metodogenerico.setFormGroup(this.formGroup)
@@ -71,6 +72,7 @@ export class AgenciaGenericComponent {
       this.formGroup.patchValue(this.datos_recuperados_agencia);
       this.ciudad = this.formGroup.value.ciudades
 
+      this.getDatos('paises', this.formGroup.value.paises)
       this.getDatos('ciudades', this.formGroup.value.ciudades)
 
     }
