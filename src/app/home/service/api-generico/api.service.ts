@@ -18,8 +18,8 @@ export class ApiService<T> {
     return this.http.get<T[]>(this.baseUrl + resourceUrl);
   }
 
-  getAllpageable(resourceUrl: string, page: string): Observable<T[]> {
-    return this.http.get<T[]>(this.baseUrl + resourceUrl + '?pageable=' + page);
+  getAllpageable(resourceUrl: string, page: string, size: string): Observable<T[]> {
+    return this.http.get<T[]>(this.baseUrl + resourceUrl + '?page=' + page + '&size=' + size);
   }
 
   getOne(resourceUrl: string, id: string): Observable<T> {
@@ -42,7 +42,7 @@ export class ApiService<T> {
     return this.http.put<void>(`${this.baseUrl}${resourceUrl}/${id}`, null);
   }
 
-  find_register(resourceUrl: string, data: T): Observable<T> {
-    return this.http.post<T>(this.baseUrl + resourceUrl, data);
+  find_register(resourceUrl: string, page: string, size: string, data: T): Observable<T> {
+    return this.http.post<T>(this.baseUrl + resourceUrl + '?page=' + page + '&size=' + size, data);
   }
 }

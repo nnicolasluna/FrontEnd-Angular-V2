@@ -21,6 +21,10 @@ export class PersonprofileComponent {
   dataSource_documentos: any;
   selectedIndex!: any
   foto_persona!:any
+  disableCreateUser: boolean = false;
+  disableEditUser: boolean = true;
+  disableCreateFOTO: boolean = false;
+  disableEditFOTO: boolean = true;
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   displayedColumns: string[] = ['nombre', 'descripcion', 'estado'];
   displayedColumns1: string[] = ['documento', 'numero', 'estado', 'lugar', 'acciones'];
@@ -36,8 +40,7 @@ export class PersonprofileComponent {
       this.selectedIndex = selectedTabIndex;
     });
   }
-  disableCreateUser: boolean = false;
-  disableEditUser: boolean = true;
+
   Userdatos() {
     this.uuid_persona = this.route.snapshot.paramMap.get('id');
     this.apiService.getOne(this.url_personas, this.uuid_persona).subscribe(
@@ -51,11 +54,13 @@ export class PersonprofileComponent {
         }
       }
     )
-    this.apiService.getOne(this.url_foto, this.uuid_persona).subscribe(
+    this.apiService.getOne(this.url_personas, this.uuid_persona +'/foto').subscribe(
       {
         next: data => {
           this.foto_persona = data
-
+          console.log(this.foto_persona)
+          this.disableCreateFOTO = true;
+          this.disableEditFOTO = false;
         },
         error: error => {
           console.log(error,'error al obtener en foto-persona')

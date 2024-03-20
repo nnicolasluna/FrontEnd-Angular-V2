@@ -22,22 +22,16 @@ export class PersonlistComponent {
   hidePageSize = false;
   showPageSizeOptions = true;
   showFirstLastButtons = true;
-
   length!:number;
   pageSize = 10;
   pageIndex = 0;
   pageIndex_datatable = 0;
- /*  pageNumber: string = '0'
-
-  pageSize!:number;
-  length = 50;
-  pageIndex!:number; */
   displayedColumns: string[] = ['nombres', 'primer_apellido', 'segundo_apellido', 'generos', 'estadosCiviles', 'estado', 'action']
   personas_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url_personas = 'administracion/personas/paginado'
   matDialogRef: any;
-/*   pageSizeOptions: number[] = []; */
+  pageSizeOptions: number[] = [5,10,20];
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<person>,
@@ -45,12 +39,12 @@ export class PersonlistComponent {
 
   pageEvent!: PageEvent;
 
-  handlePageEvent(e: PageEvent) {
+  handlePageEvent(e: any) {
     this.pageEvent = e;
     this.pageSize = e.pageSize;
     this.length = e.length;
     this.pageIndex = e.pageIndex;
-    
+    this.changePage(e.pageIndex);
   }
 
   ngOnInit(): void {
@@ -58,46 +52,23 @@ export class PersonlistComponent {
     this.personas_dataSource.paginator = this.paginatior;
   }
 
-  /* ngAfterViewInit() {
-
-  } */
+  ngAfterViewInit() {
+    this.getAll()
+  }
   actualizarDatosTabla(datos: any) {
     this.personas = datos;
     this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas);
-    /* this.personas_dataSource.paginator = this.paginatior; */
-    console.log(this.personas_dataSource)
+
+    console.log(this.personas)
   }
   getAll() {
-  /*   this.apiService.getAll(this.url_personas).subscribe(
-      {
-        next: data => {
-
-          this.personas = data;
-          console.log(this.personas)
-          this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas.content);
-          this.personas_dataSource.paginator = this.paginatior;
-        },
-        error: err => {
-          console.log(err)
-          this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
-          this.matDialogRef.afterClosed().subscribe(() => {
-          });
-        }
-      },
-
-    ); */
-  
-    this.apiService.getAllpageable(this.url_personas, '0').subscribe(
+    this.apiService.getAllpageable(this.url_personas, String(this.pageIndex),String(this.pageSize)).subscribe(
       {
         next: (data) => {
-          
           this.personas = data
-      /*     console.log(this.length) */
           this.pageSize=this.personas.size
           this.length=this.personas.totalElements
-          this.pageIndex=this.personas.number
           this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas.content);
-          /* this.personas_dataSource.paginator = this.paginatior; */
         },
         error: error=>{
           console.log(error)
@@ -157,5 +128,17 @@ export class PersonlistComponent {
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim().toLowerCase();
     this.personas_dataSource.filter = filterValue;
+  }
+  changePage(pageNumber: number) {
+
+    this.apiService.getAllpageable(this.url_personas, pageNumber.toString(), String(this.pageSize)).subscribe({
+      next: (data) => {
+        this.personas = data;
+        this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas.content);
+      },
+      error: error => {
+        console.log(error);
+      }
+    });
   }
 }

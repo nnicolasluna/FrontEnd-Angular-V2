@@ -2,17 +2,14 @@
     <div class="body__header">
         <h1 class="body__h1">Perfil Persona</h1>
         <div class="fotos">
-    <!--         <button routerLink="/home/administracion/foto-create/{{person_data?.uuid}}"
-                class="button-icon button-icon--agregar">Añadir Foto</button> -->
-                <mat-icon class=" button-icon  button-icon--agregar" matTooltip="Agregar Foto"
-                routerLink="/home/administracion/foto-create/{{person_data?.uuid}}">add</mat-icon>
-                <mat-icon class=" button-icon  button-icon--editar" matTooltip="Editar Foto"
-                routerLink="/home/administracion/foto-edit/{{foto_persona?.uuid}}">edit</mat-icon>
-           <!--  <button routerLink="/home/administracion/foto-edit/{{foto_persona?.uuid}}"
-                class="button-icon  button-icon--editar">Editar Foto</button> -->
-                <mat-icon class="button-icon  button-icon--desactivar" matTooltip="Desactivar Foto"
-                >unpublished</mat-icon>
-          
+
+            <mat-icon class=" button-icon  button-icon--agregar"  *ngIf="disableEditFOTO"  matTooltip="Agregar Foto"
+                routerLink="/home/administracion/foto-create/{{person_data?.uuid}}">photo_camera</mat-icon>
+            <mat-icon class=" button-icon  button-icon--editar" *ngIf="disableCreateFOTO" matTooltip="Editar Foto"
+                routerLink="/home/administracion/foto-edit/{{foto_persona?.uuid}}">monochrome_photos</mat-icon>
+            <mat-icon class="button-icon  button-icon--desactivar" *ngIf="disableCreateFOTO"
+                matTooltip="Desactivar Foto">no_photography</mat-icon>
+
         </div>
     </div>
 
@@ -67,7 +64,7 @@
                     <div class="card__footer">
                         <button routerLink="/home/administracion/personedit/{{person_data?.uuid}}"
                             class="button button--create">Editar Datos Personales</button>
-                      
+
                     </div>
                 </mat-tab>
                 <mat-tab label="Roles">
