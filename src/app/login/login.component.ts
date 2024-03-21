@@ -93,7 +93,7 @@ export class LoginComponent {
 
         },
         error: (error) => {
-          console.log(error)
+         /*  console.log(error) */
           this.matDialogRef = this.modalService.openDialog(AdvertenciaCredencialesComponent);
           this.matDialogRef.afterClosed().subscribe(() => {
           });
