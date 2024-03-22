@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { person } from '../person-model/person';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
+import { any } from 'cypress/types/bluebird';
 @Component({
   selector: 'app-personprofile',
   templateUrl: './personprofile.component.html',
@@ -18,9 +19,10 @@ export class PersonprofileComponent {
   person_data!: any;
   user_data!: any;
   dataSource_roles: any;
+  foto!: any
   dataSource_documentos: any;
   selectedIndex!: any
-  foto_persona!:any
+  foto_persona!: any
   disableCreateUser: boolean = false;
   disableEditUser: boolean = true;
   disableCreateFOTO: boolean = false;
@@ -50,20 +52,24 @@ export class PersonprofileComponent {
 
         },
         error: error => {
-          console.log(error,'error en personas')
+          console.log(error, 'error en personas')
         }
       }
     )
-    this.apiService.getOne(this.url_personas, this.uuid_persona +'/foto').subscribe(
+
+    this.apiService.getOne(this.url_personas, this.uuid_persona + '/foto').subscribe(
       {
         next: data => {
           this.foto_persona = data
-          console.log(this.foto_persona)
+          /* console.log(this.foto_persona.foto.foto) */
+          this.foto = 'data:image/jpeg;base64,' + this.foto_persona.foto.foto
+          /*    console.log(this.foto_persona.foto.foto)
+             console.log(this.foto_persona) */
           this.disableCreateFOTO = true;
           this.disableEditFOTO = false;
         },
         error: error => {
-          console.log(error,'error al obtener en foto-persona')
+          console.log(error, 'error al obtener en foto-persona')
         }
       }
     )
@@ -76,7 +82,7 @@ export class PersonprofileComponent {
         }
         ,
         error: error => {
-          console.log(error,'error en documentos de personas')
+          console.log(error, 'error en documentos de personas')
         }
       }
     )
@@ -90,10 +96,18 @@ export class PersonprofileComponent {
           this.dataSource_roles.paginator = this.paginatior;
         },
         error: error => {
-          console.log(error,'error en usuario de personas no se encontro')
+          console.log(error, 'error en usuario de personas no se encontro')
         }
       }
     )
+    /* this.apiService.getOne(this.url_personas,this.uuid_persona+'/foto').subscribe(
+      {
+        next: data=>{
+          console.log('data')
+          
+        }
+      }
+    ) */
   }
 
 }

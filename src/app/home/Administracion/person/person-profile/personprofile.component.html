@@ -16,7 +16,8 @@
     <div class="body__content">
         <div class="header">
             <div class="profile__icon">
-                <mat-icon class="icon">account_circle</mat-icon>
+                <mat-icon  *ngIf="disableEditFOTO"  class="icon">account_circle</mat-icon>
+                <img class="icon" *ngIf="disableCreateFOTO" [src]="foto">
             </div>
             <div class="profile_datospers">
                 <table class="profile__top">
