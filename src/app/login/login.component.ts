@@ -86,21 +86,23 @@ export class LoginComponent {
       this.trigger.next();
       this.formGroup.value.foto = this.preview;
 
-      this.loginService.login(this.formGroup.value as LoginRequest).subscribe({
-        next: (userData) => {
-          console.log(userData)
-          this.loginService.setDatos(userData)
-          this.router.navigate(['/home']);
-          this.formGroup.reset();
-        },
-        error: (error) => {
-          this.matDialogRef = this.modalService.openDialog(AdvertenciaDesactivadoComponent);
-          //AdvertenciaCredencialesComponent
-          this.matDialogRef.afterClosed().subscribe(() => {
-            window.location.reload();
-          });
+      this.loginService.login(this.formGroup.value as LoginRequest).subscribe(
+        {
+          next: (userData) => {
+            console.log(userData)
+            this.loginService.setDatos(userData)
+            this.router.navigate(['/home']);
+            this.formGroup.reset();
+          },
+          error: (error) => {
+            this.matDialogRef = this.modalService.openDialog(AdvertenciaDesactivadoComponent);
+            //AdvertenciaCredencialesComponent
+            this.matDialogRef.afterClosed().subscribe(() => {
+              window.location.reload();
+            });
+          }
         }
-      });
+      );
     }
     else {
       this.formGroup.markAllAsTouched();
