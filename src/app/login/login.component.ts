@@ -1,6 +1,6 @@
-import { Component, OnInit, VERSION } from '@angular/core';
-import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
-import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { WebcamImage } from 'ngx-webcam';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from './login-service/login.service';
 import { LoginRequest } from './login-model/loginRequest';
@@ -8,6 +8,7 @@ import { Subject, Observable } from 'rxjs';
 import * as bcrypt from 'bcryptjs';
 import { ModalService } from '../home/modal/service/modal.service';
 import { AdvertenciaCredencialesComponent } from '../home/modal/advertencia-credenciales/advertencia-credenciales.component';
+import { AdvertenciaDesactivadoComponent } from '../home/modal/advertencia-desactivado/advertencia-desactivado.component';
 
 
 @Component({
@@ -87,15 +88,16 @@ export class LoginComponent {
 
       this.loginService.login(this.formGroup.value as LoginRequest).subscribe({
         next: (userData) => {
+          console.log(userData)
           this.loginService.setDatos(userData)
           this.router.navigate(['/home']);
           this.formGroup.reset();
-
         },
         error: (error) => {
-         /*  console.log(error) */
-          this.matDialogRef = this.modalService.openDialog(AdvertenciaCredencialesComponent);
+          this.matDialogRef = this.modalService.openDialog(AdvertenciaDesactivadoComponent);
+          //AdvertenciaCredencialesComponent
           this.matDialogRef.afterClosed().subscribe(() => {
+            window.location.reload();
           });
         }
       });

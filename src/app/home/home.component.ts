@@ -1,7 +1,4 @@
 import { Component, HostListener } from '@angular/core';
-import { LoginService } from '../login/login-service/login.service';
-import { data } from 'cypress/types/jquery';
-
 import { Router } from '@angular/router';
 
 interface Seccion {
@@ -23,7 +20,6 @@ export class HomeComponent {
   userData: any;
   rolData: any
   constructor(
-    private loginService: LoginService,
     private router: Router,
   ) { }
   ngOnInit(): void {
@@ -108,4 +104,6 @@ export class HomeComponent {
     sessionStorage.removeItem('rol');
     this.router.navigateByUrl('/login');
   }
+
+
 }

@@ -10,8 +10,9 @@
 
                     <div class="input-group">
                         <label for="" class="input-group__formlabel">Nombre de Usuario:</label>
-                        <input type="text" formControlName="usuario" placeholder="Ejem. cmamani" class="input-group__imput"
-                        [ngClass]="{'invalid': usuarioControl.invalid && (usuarioControl.dirty || usuarioControl.touched), 'valid': usuarioControl.valid}">
+                        <input type="text" formControlName="usuario" placeholder="Ejem. cmamani"
+                            class="input-group__imput"
+                            [ngClass]="{'invalid': usuarioControl.invalid && (usuarioControl.dirty || usuarioControl.touched), 'valid': usuarioControl.valid}">
                         <div *ngIf="usuarioControl.invalid && (usuarioControl.dirty || usuarioControl.touched)"
                             class="text-danger">
                             <span *ngIf="usuarioControl.errors?.['required']">El usuario es Requerido</span>
@@ -56,11 +57,7 @@
 
 
 
-                    <div class="input-group">
 
-                        <label for="" class="input-group__formlabel">Foto:</label>
-                        <input class="input-group__imput_typeFile" type="file" (change)="onFileSelected($event)">
-                    </div>
 
                     <div class="input-group">
 
@@ -105,7 +102,8 @@
 
                 </mat-card-content>
 
-                <app-form-footer [regreso]='"/home/administracion/personlist"' (saveClicked)="create()"></app-form-footer>
+                <app-form-footer [regreso]='"/home/administracion/personlist"'
+                    (saveClicked)="create()"></app-form-footer>
             </mat-card>
         </form>
     </div>
