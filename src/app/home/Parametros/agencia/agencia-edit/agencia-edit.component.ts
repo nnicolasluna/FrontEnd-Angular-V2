@@ -112,13 +112,14 @@ export class AgenciaEditComponent {
     this.apiService.getOne(this.url_endpoint_agencias, this.uuid).subscribe(
       {
         next: data => {
+    /*       console.log(data) */
           this.datos_recuperados_agencia = data
         },
         error: err => {
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
           this.matDialogRef.afterClosed().subscribe(
           );
-          console.log('error al obtener datos de usuario')
+          console.log('error al obtener datos de usuario',err)
         }
       }
     );

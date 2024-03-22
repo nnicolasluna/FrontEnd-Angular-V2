@@ -21,11 +21,12 @@
                                 caracteres</span>
                         </div>
                     </div>
- 
+
 
                     <div class="input-group">
                         <label for="" class="input-group__formlabel">Abreviatura</label>
-                        <input formControlName="abreviatura" type="text" placeholder="Ejem. 6M" class="input-group__imput"
+                        <input formControlName="abreviatura" type="text" placeholder="Ejem. 6M"
+                            class="input-group__imput"
                             [ngClass]="{'invalid': abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched), 'valid': abreviaturaControl.valid}">
                         <div *ngIf="abreviaturaControl.invalid && (abreviaturaControl.dirty || abreviaturaControl.touched)"
                             class="text-danger">
@@ -68,7 +69,7 @@
                     </div>
                     <div class="input-group">
                         <label for="" class="input-group__formlabel">Paises:</label>
-                        <select formControlName="paises" class="input-group__imput"
+                        <select formControlName="paises" class="input-group__imput" (change)="onPaisChange($event)" 
                             [ngClass]="{'invalid': paisesControl.invalid && (paisesControl.dirty || paisesControl.touched), 'valid': paisesControl.valid}">
                             <option value="" disabled selected>Selecciona Pais</option>
                             <option *ngFor="let pais of registros_paises" [value]="pais.uuid">{{ pais.nombre }}

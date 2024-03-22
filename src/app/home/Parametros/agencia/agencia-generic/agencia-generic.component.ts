@@ -6,6 +6,23 @@ import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
 
+interface Ciudad {
+  uuid: string;
+  nombre: string;
+  abreviatura: string;
+  estado: boolean;
+  paises: any;
+}
+
+interface Pais {
+  uuid: string;
+  nombre: string;
+  nacionalidad: string;
+  bandera: string;
+  opera: boolean;
+  estado: boolean;
+  ciudades: Ciudad[] | null;
+}
 
 @Component({
   selector: 'app-agencia-generic',
@@ -24,6 +41,7 @@ export class AgenciaGenericComponent {
   private matDialogRef!: any;
   ciudad!: any
   paises!: any
+  private url_endpoint_paises = 'parametros/paises'
   ejecutarCreate() {
     if (this.ejecutar_metodoDesdePadre) {
       this.metodogenerico.setFormGroup(this.formGroup)
@@ -70,8 +88,7 @@ export class AgenciaGenericComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['datos_recuperados_agencia'] && changes['datos_recuperados_agencia'].currentValue) {
       this.formGroup.patchValue(this.datos_recuperados_agencia);
-      this.ciudad = this.formGroup.value.ciudades
-
+      console.log(this.datos_recuperados_agencia)
       this.getDatos('paises', this.formGroup.value.paises)
       this.getDatos('ciudades', this.formGroup.value.ciudades)
 
@@ -84,4 +101,31 @@ export class AgenciaGenericComponent {
       control.setValue(UUID);
     }
   }
+  getall() {
+    this.apiService.getAll(this.url_endpoint_paises + '/con-ciudades').subscribe(
+      {
+        next: data => {
+          this.registros_paises = data
+
+        }
+      }
+    )
+  }
+  paisSeleccionado: Pais | null = null;
+  ciudadesPorPais: Ciudad[] = [];
+
+    onPaisChange(event: Event) {
+      const selectElement = event.target as HTMLSelectElement;
+      const paisUuid = selectElement.value;
+      this.registros_ciudades = [];
+      const paisSeleccionado = this.registros_paises.find(pais => pais.uuid === paisUuid);
+      if (paisSeleccionado && paisSeleccionado.ciudades) {
+          this.registros_ciudades = paisSeleccionado.ciudades;
+      } else {
+          this.registros_ciudades = [];
+      }
+  }
+
+
+
 }

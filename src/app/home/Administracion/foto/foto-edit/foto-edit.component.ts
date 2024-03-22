@@ -12,12 +12,16 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class FotoEditComponent {
   url_endpoint_foto = 'administracion/fotos'
-  titulo_operacion = 'Registrar Foto'
+  titulo_operacion = 'Editar Foto'
   subtitulo_operacion = 'Datos de Foto'
-  link_boton_regresar = '/home/Administracion/personalist'
+  
   foto_base64String!: any
+  private url_personas = 'administracion/personas'
   private matDialogRef!: any;
+  persona_uuid = this.route.snapshot.paramMap.get('id');
+  link_boton_regresar = '/home/administracion/personprofile/'+this.persona_uuid
   formGroup = new FormGroup({
+    uuid: new FormControl(''),
     foto: new FormControl(''),
     descripcion: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
     personaUuid: new FormControl(''),
@@ -37,10 +41,10 @@ export class FotoEditComponent {
   ) { }
   editar() {
     if (this.formGroup.valid) {
-      this.formGroup.value.personaUuid = this.route.snapshot.paramMap.get('id');
+      this.formGroup.value.personaUuid = this.persona_uuid;
       this.formGroup.value.foto = this.foto_base64String;
       console.log(this.formGroup.value)
-      this.apiService.create(this.url_endpoint_foto, this.formGroup.value).subscribe({
+      this.apiService.update(this.url_endpoint_foto,this.persona_uuid!, this.formGroup.value).subscribe({
         next: () => {
 
           this.router.navigate(['/home/administracion/personprofile/', this.formGroup.value.personaUuid]);
@@ -65,5 +69,20 @@ export class FotoEditComponent {
 
     };
     reader.readAsDataURL(file);
+  }
+  getphoto() {
+    this.apiService.getOne(this.url_personas, this.persona_uuid!+'/foto').subscribe(
+      {
+        next: data => {
+          this.formGroup.patchValue(data.foto);
+        },
+        error(err) {
+          console.log(err)
+        },
+      }
+    )
+  }
+  ngOnInit() {
+    this.getphoto()
   }
 }

@@ -61,10 +61,7 @@ export class PersonprofileComponent {
       {
         next: data => {
           this.foto_persona = data
-          /* console.log(this.foto_persona.foto.foto) */
           this.foto = 'data:image/jpeg;base64,' + this.foto_persona.foto.foto
-          /*    console.log(this.foto_persona.foto.foto)
-             console.log(this.foto_persona) */
           this.disableCreateFOTO = true;
           this.disableEditFOTO = false;
         },
@@ -100,14 +97,5 @@ export class PersonprofileComponent {
         }
       }
     )
-    /* this.apiService.getOne(this.url_personas,this.uuid_persona+'/foto').subscribe(
-      {
-        next: data=>{
-          console.log('data')
-          
-        }
-      }
-    ) */
   }
-
 }

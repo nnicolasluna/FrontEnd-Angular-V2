@@ -6,10 +6,10 @@
             <mat-icon class=" button-icon  button-icon--agregar"  *ngIf="disableEditFOTO"  matTooltip="Agregar Foto"
                 routerLink="/home/administracion/foto-create/{{person_data?.uuid}}">photo_camera</mat-icon>
             <mat-icon class=" button-icon  button-icon--editar" *ngIf="disableCreateFOTO" matTooltip="Editar Foto"
-                routerLink="/home/administracion/foto-edit/{{foto_persona?.uuid}}">monochrome_photos</mat-icon>
+                routerLink="/home/administracion/foto-edit/{{person_data?.uuid}}">monochrome_photos</mat-icon>
             <mat-icon class="button-icon  button-icon--desactivar" *ngIf="disableCreateFOTO"
                 matTooltip="Desactivar Foto">no_photography</mat-icon>
-
+                
         </div>
     </div>
 

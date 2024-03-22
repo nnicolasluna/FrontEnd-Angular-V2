@@ -43,7 +43,7 @@ export class FotoCreateComponent {
       console.log(this.formGroup.value)
       this.apiService.create(this.url_endpoint_foto, this.formGroup.value).subscribe({
         next: () => {
-          /* this.router.navigateByUrl('/home/parametros/agencia-list'); */
+          
           this.router.navigate(['/home/administracion/personprofile/', this.formGroup.value.personaUuid]);
           this.formGroup.reset();
         },

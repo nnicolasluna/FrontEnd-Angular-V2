@@ -6,8 +6,23 @@ import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertenci
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
-import { error } from 'cypress/types/jquery';
+interface Ciudad {
+  uuid: string;
+  nombre: string;
+  abreviatura: string;
+  estado: boolean;
+  paises: any;
+}
 
+interface Pais {
+  uuid: string;
+  nombre: string;
+  nacionalidad: string;
+  bandera: string;
+  opera: boolean;
+  estado: boolean;
+  ciudades: Ciudad[] | null;
+}
 @Component({
   selector: 'app-agencia-create',
   templateUrl: './agencia-create.component.html',
@@ -19,6 +34,7 @@ export class AgenciaCreateComponent {
   private url_endpoint_paises = 'parametros/paises'
   registros_ciudades: any[] = [];
   registros_paises: any[] = [];
+  
   private matDialogRef!: any;
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -57,6 +73,7 @@ export class AgenciaCreateComponent {
   }
   create() {
     if (this.formGroup.valid) {
+      console.log(this.formGroup.value)
       this.apiService.create('parametros/agencias', this.formGroup.value as agencia).subscribe({
         next: () => {
           this.router.navigateByUrl('/home/parametros/agencia-list');
@@ -82,7 +99,7 @@ export class AgenciaCreateComponent {
       {
         next: data => {
 
-          this.registros_ciudades = data
+          /* this.registros_ciudades = data */
         },
         error: (error) => {
           console.log(error)
@@ -95,12 +112,19 @@ export class AgenciaCreateComponent {
       {
         next: data => {
 
-          this.registros_paises = data
+          /* this.registros_paises = data */
         },
         error: (error) => {
           console.log(error)
           this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent)
           this.matDialogRef.afterClosed().subscribe(() => { })
+        }
+      }
+    )
+    this.apiService.getAll(this.url_endpoint_paises + '/con-ciudades').subscribe(
+      {
+        next:data=>{
+          this.registros_paises=data
         }
       }
     )
