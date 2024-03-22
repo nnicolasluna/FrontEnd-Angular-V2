@@ -49,22 +49,17 @@ export class PersonlistComponent {
 
   ngOnInit(): void {
     this.getAll()
-    this.personas_dataSource.paginator = this.paginatior;
+    /* this.personas_dataSource.paginator = this.paginatior; */
   }
 
   ngAfterViewInit() {
     this.getAll()
   }
-  actualizarDatosTabla(datos: any) {
-    this.personas = datos;
-    this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas);
 
-    console.log(this.personas)
-  }
   getAll() {
     this.apiService.getAllpageable(this.url_personas, String(this.pageIndex),String(this.pageSize)).subscribe(
       {
-        next: (data) => {
+        next: (data) => {   
           this.personas = data
           this.pageSize=this.personas.size
           this.length=this.personas.totalElements
@@ -137,8 +132,16 @@ export class PersonlistComponent {
         this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas.content);
       },
       error: error => {
+        console.log('gaaa')
         console.log(error);
       }
     });
+  }
+  actualizarDatosTabla(datos: any) {
+    this.personas = datos;
+    this.personas_dataSource = new MatTableDataSource<any>(this.personas.content);
+    this.pageSize=this.personas.totalElements
+    this.length=this.personas.totalElements
+    console.log(this.personas)
   }
 }

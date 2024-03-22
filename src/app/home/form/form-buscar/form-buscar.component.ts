@@ -56,7 +56,7 @@ export class FormBuscarComponent {
       {
         next: (data) => {
           this.personas=data
-          console.log(this.personas)
+         /*  console.log(this.personas) */
           this.datosEncontrados.emit(this.personas);
         },
         error: (error) => {
