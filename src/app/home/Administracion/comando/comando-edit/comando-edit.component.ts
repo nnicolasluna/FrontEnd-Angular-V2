@@ -26,7 +26,7 @@ export class ComandoEditComponent {
     uuid: new FormControl(''),
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    link: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
+    link: new FormControl('', [Validators.required, Validators.maxLength(200), Validators.minLength(3)]),
     estado: new FormControl(),
     menus: this.menuFormGroup,
   });

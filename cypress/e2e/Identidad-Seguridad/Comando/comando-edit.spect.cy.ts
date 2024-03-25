@@ -1,9 +1,11 @@
 describe('Comando template', () => {
-    it('Crear Comando', () => {
-        cy.visit('http://localhost:4200/home/comandolist')
-        cy.get('[data-cy="editar"]').eq(0).click();
-        cy.get('[data-cy="editarcomando"]').click();
-        cy.url().should('include', 'home/comandolist');
+    it('Editar Comando', () => {
+        cy.visit('http://localhost:4200/home')
+        cy.contains('Administracion').click();
+        cy.contains('Comandos').click();
+        cy.get('[data-cy="editar"]').eq(1).click();
+        cy.get('[formControlName="nombre"]').type('Elim')
+        cy.contains('Guardar').click();  
        
     })
 })

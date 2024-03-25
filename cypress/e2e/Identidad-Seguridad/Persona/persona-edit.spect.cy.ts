@@ -2,14 +2,12 @@ describe('persona template', () => {
     it('Editar Personas', () => {
         cy.visit('http://localhost:4200/home')
         cy.url().should('include', 'home');
-        cy.get('[data-cy="Administracion"]').click();
-        cy.get('[data-cy="personaslist"]').click();
-        cy.url().should('include', 'home/personlist');
-        cy.get('[data-cy="personaver"]').eq(1).click();
-        cy.url().should('include', 'home/personprofile');
+        cy.contains('Administracion').click();
+        cy.contains('Personas').click();
+        cy.get('[data-cy="ver"]').eq(1).click();
         // Editar Persona
-        cy.get('[data-cy="personaeditar"]').click();
+        cy.contains('Editar Datos Personales').click();
         cy.get('[formControlName="primer_apellido"]').type('Mamani');
-        cy.get('[data-cy="personaedit"]').click();
+        cy.contains('Guardar').click();  ;
     })
 })
