@@ -17,7 +17,8 @@ export class LoginService {
   constructor(private http: HttpClient) { }
   token: string = ''
   login(credentials: LoginRequest): Observable<any> {
-    return this.http.post<any>(this.baseUrl + this.url, credentials).pipe(
+    return this.http.post<any>(this.baseUrl + this.url, credentials)
+/*     .pipe(
       tap(userData => {
         this.token = userData.token
         sessionStorage.setItem("token", userData.token);
@@ -31,7 +32,7 @@ export class LoginService {
         return throwError('Error al iniciar sesión. Por favor, intenta nuevamente.');
       })
 
-    );
+    ); */
   }
   isAuth() {
     return this.token.length > 0

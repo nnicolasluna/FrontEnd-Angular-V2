@@ -22,7 +22,7 @@ export class HomeComponent {
   constructor(
     private router: Router,
   ) { }
-  ngOnInit(): void {
+/*   ngOnInit(): void {
     const datosGuardadosString = sessionStorage.getItem("datos");
     const rol = sessionStorage.getItem("rol");
     if (datosGuardadosString !== null && rol !== null) {
@@ -32,7 +32,7 @@ export class HomeComponent {
     } else {
       console.log("No se encontraron datos en sessionStorage");
     }
-  }
+  } */
 
   secciones: Seccion[] = [
     {
@@ -101,7 +101,6 @@ export class HomeComponent {
   logout() {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('datos');
-    sessionStorage.removeItem('rol');
     this.router.navigateByUrl('/login');
   }
 

@@ -59,11 +59,11 @@ import { TokenInterceptorService } from './login/interceptor/token-interceptor.s
     MatMenuModule
   ],
   providers: [
-   /*  {
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true
-    } */
+    }
   ],
   bootstrap: [AppComponent]
 })

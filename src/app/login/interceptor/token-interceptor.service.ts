@@ -2,22 +2,26 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpErrorResponse
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { LoginService } from '../login-service/login.service';
+import { Observable, catchError, throwError } from 'rxjs';
+import { AdvertenciaGenericaComponent } from 'src/app/home/modal/advertencia-generica/advertencia-generica.component';
+import { ModalService } from 'src/app/home/modal/service/modal.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TokenInterceptorService implements HttpInterceptor {
 
-  constructor(private loginService: LoginService) { }
+export class TokenInterceptorService implements HttpInterceptor {
+  private matDialogRef!: any;
+
+  constructor(
+    private modalService: ModalService,
+  ) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token_sesion = sessionStorage.getItem("token");
-
-    const token: String = this.loginService.userToken;
     if (token_sesion) {
       request = request.clone(
         {
@@ -29,9 +33,24 @@ export class TokenInterceptorService implements HttpInterceptor {
         }
       );
     }
-    return next.handle(request);
-  }
+    return next.handle(request)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+/*           console.log(error.error.message) */
+          this.matDialogRef = this.modalService.GenericDialog(AdvertenciaGenericaComponent,{ data: {
+            titulo: error.error.message,
+          }})
+          this.matDialogRef.afterClosed().subscribe(() => { })
+      
 
+          return throwError(error);
+        })
+      );
+  }
 }
+
+
+
+
 
 

@@ -34,7 +34,6 @@ export class CuidadListComponent {
     this.apiService.getAll(this.url).subscribe(
       {
         next: data => {
-          console.log(data)
           this.datos = data;
           this.dataSource = new MatTableDataSource<cuidadDTO>(this.datos);
           this.dataSource.paginator = this.paginatior;

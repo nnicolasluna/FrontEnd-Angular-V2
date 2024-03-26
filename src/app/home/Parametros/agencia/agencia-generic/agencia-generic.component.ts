@@ -6,23 +6,7 @@ import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
 
-interface Ciudad {
-  uuid: string;
-  nombre: string;
-  abreviatura: string;
-  estado: boolean;
-  paises: any;
-}
 
-interface Pais {
-  uuid: string;
-  nombre: string;
-  nacionalidad: string;
-  bandera: string;
-  opera: boolean;
-  estado: boolean;
-  ciudades: Ciudad[] | null;
-}
 
 @Component({
   selector: 'app-agencia-generic',
@@ -111,8 +95,6 @@ export class AgenciaGenericComponent {
       }
     )
   }
-  paisSeleccionado: Pais | null = null;
-  ciudadesPorPais: Ciudad[] = [];
 
     onPaisChange(event: Event) {
       const selectElement = event.target as HTMLSelectElement;

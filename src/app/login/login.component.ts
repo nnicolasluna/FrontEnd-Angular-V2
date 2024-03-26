@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { WebcamImage } from 'ngx-webcam';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from './login-service/login.service';
 import { LoginRequest } from './login-model/loginRequest';
@@ -55,7 +55,6 @@ export class LoginComponent {
 
 
   constructor(
-    private formBuilder: FormBuilder,
     private router: Router,
     private loginService: LoginService,
     private modalService: ModalService,
@@ -88,19 +87,18 @@ export class LoginComponent {
 
       this.loginService.login(this.formGroup.value as LoginRequest).subscribe(
         {
-          next: (userData) => {
-            console.log(userData)
-            this.loginService.setDatos(userData)
+          next: (token) => {
+            sessionStorage.setItem("token", token.token);
             this.router.navigate(['/home']);
             this.formGroup.reset();
           },
-          error: (error) => {
-            this.matDialogRef = this.modalService.openDialog(AdvertenciaDesactivadoComponent);
-            //AdvertenciaCredencialesComponent
+   /*        error: (error) => {
+            this.matDialogRef = this.modalService.openDialog(AdvertenciaCredencialesComponent);
+            //  AdvertenciaDesactivadoComponent
             this.matDialogRef.afterClosed().subscribe(() => {
               window.location.reload();
             });
-          }
+          } */
         }
       );
     }

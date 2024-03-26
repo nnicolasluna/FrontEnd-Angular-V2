@@ -25,6 +25,7 @@ import { FotoCreateComponent } from './Administracion/foto/foto-create/foto-crea
 import { FotoGenericComponent } from './Administracion/foto/foto-generic/foto-generic.component';
 import { FotoEditComponent } from './Administracion/foto/foto-edit/foto-edit.component';
 import { AdvertenciaDesactivadoComponent } from './modal/advertencia-desactivado/advertencia-desactivado.component';
+import { AdvertenciaGenericaComponent } from './modal/advertencia-generica/advertencia-generica.component';
 
 
 
@@ -44,6 +45,7 @@ import { AdvertenciaDesactivadoComponent } from './modal/advertencia-desactivado
     FotoGenericComponent,
     FotoEditComponent,
     AdvertenciaDesactivadoComponent,
+    AdvertenciaGenericaComponent,
     
   ],
   imports: [
