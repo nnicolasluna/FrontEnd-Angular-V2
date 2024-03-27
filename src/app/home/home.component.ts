@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from './service/api-generico/api.service';
+import { error } from 'cypress/types/jquery';
 
 interface Seccion {
   nombre: string
@@ -18,32 +20,25 @@ export class HomeComponent {
   parm = false;
   sidebarVisible = true;
   userData: any;
-  rolData: any
+
   constructor(
     private router: Router,
+    private apiService: ApiService<any>
   ) { }
-/*   ngOnInit(): void {
-    const datosGuardadosString = sessionStorage.getItem("datos");
-    const rol = sessionStorage.getItem("rol");
-    if (datosGuardadosString !== null && rol !== null) {
-      this.userData = JSON.parse(datosGuardadosString);
-      this.rolData = JSON.parse(rol);
-
-    } else {
-      console.log("No se encontraron datos en sessionStorage");
-    }
-  } */
+  ngOnInit(): void {
+    this.call_data()
+  }
 
   secciones: Seccion[] = [
     {
       nombre: 'Administracion', icono: 'settings', marcado: false, botones: [
-        { name: 'Personas', icon: 'person', link: 'administracion/personlist' },
+        { name: 'Personas', icon: 'person', link: 'administracion/personas' },
         { name: 'Usuarios', icon: '3p', link: 'administracion/userlist' },
         { name: 'Roles', icon: 'group', link: 'administracion/rolelist' },
         { name: 'Menus', icon: 'menu', link: 'administracion/menulist' },
         { name: 'Comandos', icon: 'terminal', link: 'administracion/comandolist' },
         { name: 'Subsistema', icon: 'badge', link: 'administracion/subsistemalist' },
-        
+
       ]
     },
     {
@@ -98,9 +93,19 @@ export class HomeComponent {
   toggleMarcado(seccion: Seccion) {
     seccion.marcado = !seccion.marcado;
   }
+  call_data() {
+    this.apiService.auth_data("api/auth/user").subscribe(
+      {
+        next: data => {
+          this.userData=data
+          console.log(this.secciones)
+          console.log(this.userData.subsistemas)
+        }
+      }
+    )
+  }
   logout() {
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('datos');
     this.router.navigateByUrl('/login');
   }
 

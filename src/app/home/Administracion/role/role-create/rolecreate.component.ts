@@ -69,7 +69,7 @@ export class RolecreateComponent {
       this.apiService.create(this.url, this.formGroup.value as role).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/administracion/rolelist');
+            this.router.navigateByUrl('/home/administracion/roles');
             this.formGroup.reset();
 
           },

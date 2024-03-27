@@ -72,7 +72,7 @@ export class PersoncreateComponent {
       this.apiService.create(this.url_personas, this.persona_formGroup.value as person).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/administracion/personlist');
+            this.router.navigateByUrl('/home/administracion/personas');
             this.persona_formGroup.reset();
           },
           error: err => {

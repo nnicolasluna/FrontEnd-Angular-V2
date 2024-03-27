@@ -58,7 +58,7 @@ export class ComandoEditComponent {
       this.apiService.update(this.url_comandos, this.comando_uuid, this.comando_formGroup.value as comando).subscribe(
         {
           next: (userData: any) => {
-            this.router.navigateByUrl('/home/administracion/comandolist');
+            this.router.navigateByUrl('/home/administracion/comandos');
             this.comando_formGroup.reset();
           }, error: err => {
             this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);

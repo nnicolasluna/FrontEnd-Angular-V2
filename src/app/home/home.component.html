@@ -11,7 +11,7 @@
 
 
 
-        <div class="items">
+       <!--  <div class="items">
           <ng-container *ngFor="let seccion of secciones">
             <button (click)="toggleMarcado(seccion)" class="button_nav" [class.marcado]="seccion.marcado">
               <span><mat-icon>{{ seccion.icono}}</mat-icon></span>
@@ -25,8 +25,22 @@
               </button>
             </div>
           </ng-container>
+        </div> -->
+        <div class="items" *ngIf="userData?.subsistemas">
+          <ng-container *ngFor="let susbsistema of userData?.subsistemas">
+            <button (click)="toggleMarcado(susbsistema)" class="button_nav">
+              <span><mat-icon>{{ susbsistema.icono}}</mat-icon></span>
+              <span>{{ susbsistema.nombre}}</span>
+            </button>
+            <div *ngIf="susbsistema.marcado">
+              <button *ngFor="let button of susbsistema.menus" routerLink="{{ button.link }}"
+                class="button_nav button_nav--son">
+                <span><mat-icon>{{ button.icono }}</mat-icon></span>
+                <span>{{ button.nombre }}</span>
+              </button>
+            </div>
+          </ng-container>
         </div>
-
       </mat-drawer-content>
     </mat-drawer-container>
   </div>
@@ -41,8 +55,8 @@
           </div>
           <div class="left-toolbar">
             <div class="user">
-              <div class="name">
-          <!--       {{userData.nombres}} {{userData.primer_apellido}} {{userData.segundo_apellido}} -->
+              <div *ngIf="userData" class="name">
+                {{userData.personaDTO.nombres}} {{userData.personaDTO.primer_apellido}} {{userData.personaDTO.segundo_apellido}}
               </div>
            <!--    <div class="cargo">
                 <b>Cargo: </b> {{rolData}}

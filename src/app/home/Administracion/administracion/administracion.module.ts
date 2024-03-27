@@ -27,7 +27,7 @@ import { MenuEditComponent } from '../menu/menu-edit/menu-edit.component';
 import { MenulistComponent } from '../menu/menu-list/menulist.component';
 import { PersoncreateComponent } from '../person/person-create/personcreate.component';
 import { PersonEditComponent } from '../person/person-edit/person-edit.component';
-import { PersonlistComponent } from '../person/person-list/personlist.component';
+import { personasComponent } from '../person/person-list/personlist.component';
 import { PersonprofileComponent } from '../person/person-profile/personprofile.component';
 import { RolecreateComponent } from '../role/role-create/rolecreate.component';
 import { RoleEditComponent } from '../role/role-edit/role-edit.component';
@@ -54,7 +54,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     SubsistemaEditComponent,
     UserlistComponent,
     UsercreateComponent,
-    PersonlistComponent,
+    personasComponent,
     PersoncreateComponent,
     RolecreateComponent,
     RolelistComponent,

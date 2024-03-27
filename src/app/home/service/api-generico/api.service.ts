@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { Subject } from 'rxjs';
-import { tap } from 'cypress/types/lodash';
 @Injectable({
   providedIn: 'root'
 })
@@ -44,5 +43,8 @@ export class ApiService<T> {
 
   find_register(resourceUrl: string, page: string, size: string, data: T): Observable<T> {
     return this.http.post<T>(this.baseUrl + resourceUrl + '?page=' + page + '&size=' + size, data);
+  }
+  auth_data(resourceUrl: string): Observable<T[]> {
+    return this.http.get<T[]>(this.baseUrl + resourceUrl);
   }
 }

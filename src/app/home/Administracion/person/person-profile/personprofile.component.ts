@@ -19,7 +19,7 @@ export class PersonprofileComponent {
   person_data!: any;
   user_data!: any;
   dataSource_roles: any;
-  foto!: any
+  foto: string=''
   dataSource_documentos: any;
   selectedIndex!: any
   foto_persona!: any

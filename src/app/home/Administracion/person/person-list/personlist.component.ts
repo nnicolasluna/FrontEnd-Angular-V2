@@ -15,7 +15,7 @@ import { AdvertenciaDeshabilitarComponent } from 'src/app/home/modal/advertencia
   templateUrl: './personlist.component.html',
   styleUrls: ['./personlist.component.scss']
 })
-export class PersonlistComponent {
+export class personasComponent {
   link_adicionar = "'/home/administracion/personcreate'"
   link_editar = '/home/administracion/personprofile'
   personas: any;

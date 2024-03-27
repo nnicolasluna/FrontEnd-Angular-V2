@@ -40,7 +40,7 @@ export class SubsiscreateComponent {
       this.apiService.create(this.url_subsistemas, this.formGroup.value as subsistema).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/administracion/subsistemalist');
+            this.router.navigateByUrl('/home/administracion/subsistemas');
             this.formGroup.reset();
           
         },

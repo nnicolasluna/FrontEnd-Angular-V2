@@ -10,7 +10,7 @@ import { MenuEditComponent } from '../menu/menu-edit/menu-edit.component';
 import { MenulistComponent } from '../menu/menu-list/menulist.component';
 import { PersoncreateComponent } from '../person/person-create/personcreate.component';
 import { PersonEditComponent } from '../person/person-edit/person-edit.component';
-import { PersonlistComponent } from '../person/person-list/personlist.component';
+import { personasComponent } from '../person/person-list/personlist.component';
 import { PersonprofileComponent } from '../person/person-profile/personprofile.component';
 import { RolecreateComponent } from '../role/role-create/rolecreate.component';
 import { RoleEditComponent } from '../role/role-edit/role-edit.component';
@@ -29,30 +29,30 @@ import { FotoEditComponent } from '../foto/foto-edit/foto-edit.component';
 
 
 const routes: Routes = [
-  { path: 'userlist', component: UserlistComponent },
+  { path: 'usuarios', component: UserlistComponent },
   { path: 'usercreate/:id', component: UsercreateComponent },
   { path: 'usershow/:id', component: UsershowComponent },
   { path: 'useredit/:id', component: UserEditComponent },
 
-  { path: 'personlist', component: PersonlistComponent },
+  { path: 'personas', component: personasComponent },
   { path: 'personcreate', component: PersoncreateComponent },
   { path: 'personprofile/:id', component: PersonprofileComponent },
   { path: 'personedit/:id', component: PersonEditComponent },
 
-  { path: 'rolelist', component: RolelistComponent },
+  { path: 'roles', component: RolelistComponent },
   { path: 'rolecreate', component: RolecreateComponent },
   { path: 'roledit/:id', component: RoleEditComponent },
 
   { path: 'menucreate', component: MenucreateComponent },
-  { path: 'menulist', component: MenulistComponent },
+  { path: 'menus', component: MenulistComponent },
   { path: 'menuedit/:id', component: MenuEditComponent },
 
   { path: 'subsistemacreate', component: SubsiscreateComponent },
-  { path: 'subsistemalist', component: SubsislistComponent },
+  { path: 'subsistemas', component: SubsislistComponent },
   { path: 'subsistemaedit/:id', component: SubsistemaEditComponent },
 
   { path: 'comandocreate', component: ComandocreateComponent },
-  { path: 'comandolist', component: ComandolistComponent },
+  { path: 'comandos', component: ComandolistComponent },
   { path: 'comandoedit/:id', component: ComandoEditComponent },
 /* 
   { path: 'tipo-documento-create', component: TipoDocumentoCreateComponent },

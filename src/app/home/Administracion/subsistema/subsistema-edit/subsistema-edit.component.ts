@@ -52,7 +52,7 @@ export class SubsistemaEditComponent {
       this.apiService.update(this.url, this.uuid, this.formGroup.value as subsistema).subscribe(
         {
           next: (userData: any) => {
-            this.router.navigateByUrl('/home/administracion/subsistemalist');
+            this.router.navigateByUrl('/home/administracion/subsistemas');
             this.formGroup.reset();
           },
         }

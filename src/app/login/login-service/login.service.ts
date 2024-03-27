@@ -10,7 +10,7 @@ import { environment } from 'src/environment/environment';
 })
 export class LoginService {
   private baseUrl = environment.apiBaseUrl;
-  private url = 'api/auth';
+  private url = 'api/auth/login';
   currentUserData: BehaviorSubject<String> = new BehaviorSubject<String>("");
   currentUserLoginOn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private user: any;
@@ -18,21 +18,6 @@ export class LoginService {
   token: string = ''
   login(credentials: LoginRequest): Observable<any> {
     return this.http.post<any>(this.baseUrl + this.url, credentials)
-/*     .pipe(
-      tap(userData => {
-        this.token = userData.token
-        sessionStorage.setItem("token", userData.token);
-        const personaDTO = userData.personaDTO;
-        sessionStorage.setItem("datos", JSON.stringify(personaDTO));
-        this.currentUserData.next(userData.token);
-        this.currentUserLoginOn.next(true);
-      }),
-      catchError(error => {
-        console.error('Error en la solicitud de inicio de sesión:', error);
-        return throwError('Error al iniciar sesión. Por favor, intenta nuevamente.');
-      })
-
-    ); */
   }
   isAuth() {
     return this.token.length > 0

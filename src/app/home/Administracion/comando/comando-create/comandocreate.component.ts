@@ -51,7 +51,7 @@ export class ComandocreateComponent {
       this.apiService.create(this.url_comandos, this.comando_formGroup.value as comando).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/administracion/comandolist');
+            this.router.navigateByUrl('/home/administracion/comandos');
             this.comando_formGroup.reset();
           },
           error: err => {
