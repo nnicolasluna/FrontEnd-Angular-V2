@@ -1,0 +1,74 @@
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">Detalles del Empleado</h1>
+    </div>
+    <div class="body__content">
+        <mat-card class="card card--big">
+            <app-form-header [titulo]="'Datos del Empleado'"></app-form-header>
+            <mat-card-content *ngIf="empleado">
+                <div style="display: flex;">
+                    <div style="flex: 1; padding-right: 20px;">
+                        <div style="display: flex; flex-direction: column;">
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Nombres:</label>
+                                <div>{{ empleado.persona.nombres }}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Primer Apellido:</label>
+                                <div>{{ empleado.persona.primer_apellido }}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Segundo Apellido:</label>
+                                <div>{{ empleado.persona.segundo_apellido}}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Fecha de nacimiento:</label>
+                                <div>{{ empleado.persona.fecha_nacimiento }}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Genero:</label>
+                                <div>{{empleado.persona.generos.nombre}}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Estado Civil:</label>
+                                <div>{{ empleado.persona.estadosCiviles.nombre }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="display: flex; flex-direction: column;">
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Lugar de nacimiento:</label>
+                                <div>{{ empleado.persona.lugar_nacimiento }}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Dirección:</label>
+                                <div>{{empleado.direccion}}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Email:</label>
+                                <div>{{ empleado.email }}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Celular:</label>
+                                <div>{{ empleado.persona.celular }}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Ocupación:</label>
+                                <div>{{ empleado.persona.ocupaciones.nombre }}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Área:</label>
+                                <div>{{ empleado.areas.nombre }}</div>
+                            </div>
+                            <div style="display: flex; align-items: left; margin-bottom: 10px;">
+                                <label style="font-weight: bold; margin-right: 10px;">Cargo:</label>
+                                <div>{{ empleado.cargos.nombre }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,219 @@
+<div class="body">
+    <div class="body__header">
+        <h1 class="body__h1">Editar Empleado</h1>
+    </div>
+    <div class="body__content">
+        <mat-card class="card card--big">
+            <app-form-header [titulo]="'Datos de Empleado'" ></app-form-header>
+            <mat-card-content>
+                <form id="loginform" [formGroup]="empleado_formGroup">
+                    <div class="content-inputs-group">
+                        <div class="input-group ">
+                            <label for="" class="input-group__formlabel">Nombres:</label>
+                            <input formControlName="nombres" type="text" placeholder="Ejem. Juan Carlos"
+                            class="input-group__imput"
+                            [ngClass]="{'invalid': f['nombres'].invalid && (f['nombres'].dirty || f['nombres'].touched), 'valid': f['nombres'].valid}">
+                        <div *ngIf="f['nombres'].invalid && (f['nombres'].dirty || f['nombres'].touched)"
+                            class="text-danger">
+                            <span *ngIf="f['nombres'].errors?.['required']">El Nombre es Requerido</span>
+                            <span *ngIf="f['nombres'].errors?.['minlength']">El Nombre debe contener mas de 3
+                                caracteres</span>
+                            <span *ngIf="f['nombres'].errors?.['maxlength']">El Nombre no debe tener mas de 30
+                                caracteres</span>
+                        </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Primer Apellido:</label>
+                            <input formControlName="primer_apellido" type="text" placeholder="Ejem. Mamani"
+                                class="input-group__imput"
+                                [ngClass]="{'invalid': f['primer_apellido'].invalid && (f['primer_apellido'].dirty || f['primer_apellido'].touched), 'valid': f['primer_apellido'].valid}">
+                            <div *ngIf="f['primer_apellido'].invalid && (f['primer_apellido'].dirty || f['primer_apellido'].touched)"
+                                class="text-danger">
+                                <span *ngIf="f['primer_apellido'].errors?.['required']">El Apellido es Requerido</span>
+                                <span *ngIf="f['primer_apellido'].errors?.['minlength']">El Apellido debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="f['primer_apellido'].errors?.['maxlength']">El Apellido no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Segundo Apellido:</label>
+                            <input formControlName="segundo_apellido" type="text" placeholder="Ejem. Apaza"
+                                class="input-group__imput"
+                                [ngClass]="{'invalid': f['segundo_apellido'].valid && (f['segundo_apellido'].dirty || f['segundo_apellido'].touched), 'valid': f['segundo_apellido'].valid}">
+                            <div *ngIf="f['segundo_apellido'].invalid && (f['segundo_apellido'].dirty || f['segundo_apellido'].touched)"
+                                class="text-danger">
+                                <span *ngIf="f['segundo_apellido'].errors?.['required']">El Apellido es Requerido</span>
+                                <span *ngIf="f['segundo_apellido'].errors?.['minlength']">El Apellido debe contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="f['segundo_apellido'].errors?.['maxlength']">El Apellido no debe tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-inputs-group">
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Fecha de Nacimiento:</label>
+                            <input formControlName="fecha_nacimiento" type="date" placeholder="Ejem. 24/02/1996"
+                                class="input-group__imput"
+                                [ngClass]="{'invalid': f['fecha_nacimiento'].invalid && (f['fecha_nacimiento'].dirty || f['fecha_nacimiento'].touched), 'valid': f['fecha_nacimiento'].valid}">
+                            <div *ngIf="f['fecha_nacimiento'].invalid && (f['fecha_nacimiento'].dirty || f['fecha_nacimiento'].touched)"
+                                class="text-danger">
+                                <span *ngIf="f['fecha_nacimiento'].errors?.['required']">La Fecha de Nacimiento es
+                                    Requerido</span>
+                                <span *ngIf="f['fecha_nacimiento'].errors?.['minlength']">La Fecha de Nacimiento debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="f['fecha_nacimiento'].errors?.['maxlength']">La Fecha de Nacimiento no debe
+                                    tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Lugar de Nacimiento:</label>
+                            <input formControlName="lugar_nacimiento" type="text" placeholder="Ejem. La Paz"
+                                class="input-group__imput"
+                                [ngClass]="{'invalid': f['lugar_nacimiento'].invalid && (f['lugar_nacimiento'].dirty || f['lugar_nacimiento'].touched), 'valid': f['lugar_nacimiento'].valid}">
+                            <div *ngIf="f['lugar_nacimiento'].invalid && (f['lugar_nacimiento'].dirty || f['lugar_nacimiento'].touched)"
+                                class="text-danger">
+                                <span *ngIf="f['lugar_nacimiento'].errors?.['required']">El Lugar de Nacimiento es
+                                    Requerido</span>
+                                <span *ngIf="f['lugar_nacimiento'].errors?.['minlength']">El Lugar de Nacimiento debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="f['lugar_nacimiento'].errors?.['maxlength']">El Lugar de Nacimiento no debe
+                                    tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-inputs-group">
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Celular:</label>
+                            <input formControlName="celular" type="text" placeholder="Ejem. 73563787"
+                                class="input-group__imput"
+                                [ngClass]="{'invalid':  f['celular'].invalid && (f['celular'].dirty || f['celular'].touched), 'valid': f['celular'].valid}">
+                            <div *ngIf="f['celular'].invalid && (f['celular'].dirty || f['celular'].touched)"
+                                class="text-danger">
+                                <span *ngIf="f['celular'].errors?.['required']">El Celular es
+                                    Requerido</span>
+                                <span *ngIf="f['celular'].errors?.['minlength']">El Celular debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                <span *ngIf="f['celular'].errors?.['maxlength']">El Celular no debe
+                                    tener mas de
+                                    30
+                                    caracteres</span>
+                            </div>
+                        </div> 
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Email:</label>
+                            <input formControlName="email" type="text" placeholder="Ejem. email@gmail.com"
+                            class="input-group__imput"
+                            [ngClass]="{'invalid': f['email'].invalid && (f['email'].dirty || f['email'].touched), 'valid': f['email'].valid}">
+                        <div *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)"
+                            class="text-danger">
+                            <span *ngIf="f['email'].errors?.['required']">Email es
+                                Requerido</span>
+                            <span *ngIf="f['email'].errors?.['minlength']">Email debe
+                                contener mas de 3
+                                caracteres</span>
+                        </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Dirección:</label>
+                            <input formControlName="direccion" type="text" placeholder="Ejem. Entre Av. Rivero"
+                                class="input-group__imput"
+                                [ngClass]="{'invalid': f['direccion'].invalid && (f['direccion'].dirty || f['direccion'].touched), 'valid': f['direccion'].valid}">
+                            <div *ngIf="f['direccion'].invalid && (f['direccion'].dirty || f['direccion'].touched)"
+                                class="text-danger">
+                                <span *ngIf="f['direccion'].errors?.['required']">La direccción es
+                                    Requerido</span>
+                                <span *ngIf="f['direccion'].errors?.['minlength']">Dirección debe
+                                    contener mas de 3
+                                    caracteres</span>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-inputs-group">
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Genero:</label>
+                            <select formControlName="generos" class="input-group__imput"
+                                [ngClass]="{'invalid': f['generos'].invalid && (f['generos'].dirty || f['generos'].touched), 'valid': f['generos'].valid}">
+                                <option value="" disabled selected>Selecciona Genero</option>
+                                <option *ngFor="let dato of generos" [value]="dato.uuid">{{ dato.nombre }}</option>
+                            </select>
+                            <div *ngIf="f['generos'].invalid && (f['generos'].dirty || f['generos'].touched)"
+                                class="text-danger">
+                                <span *ngIf="f['generos'].errors?.['required']">El Genero es Requerido</span>
+                            </div>
+                        </div>  
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Estado Civil:</label>
+
+                            <select formControlName="estado_civil" class="input-group__imput"
+                                [ngClass]="{'invalid': f['estado_civil'].invalid && (f['estado_civil'].dirty || f['estado_civil'].touched), 'valid': f['estado_civil'].valid}">
+                                <option value="" disabled selected>Selecciona Estado Civil</option>
+                                <option aria-placeholder="Seleccione Estado Civil" *ngFor="let dato of estados"
+                                    [value]="dato.uuid">{{ dato.nombre }}
+                                </option>
+                            </select>
+                            <div *ngIf="f['estado_civil'].invalid && (f['estado_civil'].dirty || f['estado_civil'].touched)"
+                                class="text-danger">
+                                <span *ngIf="f['estado_civil'].errors?.['required']">El estado civil es Requerido</span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="" class="input-group__formlabel">Ocupacion:</label>
+                            <select formControlName="ocupacion" class="input-group__imput"
+                            [ngClass]="{'invalid': f['ocupacion'].invalid && ( f['ocupacion'].dirty ||  f['ocupacion'].touched), 'valid':  f['ocupacion'].valid}">
+                            <option value="" disabled selected>Selecciona Ocupacion</option>
+                            <option *ngFor="let dato of ocupaciones" [value]="dato.uuid">{{ dato.nombre }}
+                            </option>
+                        </select>
+                        <div *ngIf=" f['ocupacion'].invalid && ( f['ocupacion'].dirty ||  f['ocupacion'].touched)"
+                            class="text-danger">
+                            <span *ngIf=" f['ocupacion'].errors?.['required']">La ocupacion es
+                                Requerido</span>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="content-inputs-group">
+                        <div class="input-group">
+                        <label for="" class="input-group__formlabel">Área: </label>
+                        <select formControlName="area" class="input-group__imput"
+                            [ngClass]="{'invalid': f['area'].invalid && (f['area'].dirty || f['area'].touched), 'valid': f['area'].valid}">
+                            <option value="" disabled selected>Selecciona Área</option>
+                            <option aria-placeholder="Seleccione Área" *ngFor="let dato of area" [value]="dato.uuid">{{ dato.nombre }}
+                            </option>
+                        </select>
+                        <div *ngIf="f['area'].invalid && (f['area'].dirty || f['area'].touched)"
+                            class="text-danger">
+                            <span *ngIf="f['area'].errors?.['required']">Área es
+                                Requerido</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="" class="input-group__formlabel">Cargo:</label>
+                        <select formControlName="cargos" class="input-group__imput"
+                        [ngClass]="{'invalid': f['cargos'].invalid && (f['cargos'].dirty || f['cargos'].touched), 'valid': f['cargos'].valid}">
+                        <option value="" disabled selected>Selecciona Cargo</option>
+                        <option aria-placeholder="Seleccione Cargo" *ngFor="let dato of cargos" [value]="dato.uuid">{{ dato.nombre }}</option>
+                    </select>
+                    <div *ngIf="f['cargos'].invalid && (f['cargos'].dirty || f['cargos'].touched)" class="text-danger">
+                        <span *ngIf="f['cargos'].errors?.['required']">Cargo es Requerido</span>
+                    </div>
+                    </div>
+                    </div>
+                </form>
+            </mat-card-content>
+            <app-form-footer  [regreso]="'/home/rrhh/empleado-profile/'+empleadoId" (saveClicked)="update()"></app-form-footer>
+        </mat-card>
+
+    </div>
+</div>
