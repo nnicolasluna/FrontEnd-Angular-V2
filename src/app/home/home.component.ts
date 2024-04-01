@@ -98,8 +98,8 @@ export class HomeComponent {
       {
         next: data => {
           this.userData=data
-          console.log(this.secciones)
-          console.log(this.userData.subsistemas)
+/*           console.log(this.secciones)
+          console.log(this.userData.subsistemas) */
         }
       }
     )
@@ -109,5 +109,7 @@ export class HomeComponent {
     this.router.navigateByUrl('/login');
   }
 
-
+  capitalizeFirstLetter(word: string): string {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
 }

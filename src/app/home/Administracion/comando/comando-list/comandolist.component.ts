@@ -9,6 +9,7 @@ import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borra
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
+import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
 
 @Component({
   selector: 'app-comandolist',
@@ -17,18 +18,22 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class ComandolistComponent {
   registros_comandos: any;
+  link_editar = ''
+  link_crear = ''
   comandos_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url = 'administracion/comandos'
   matDialogRef: any;
-  pageSizeOptions = [10, 15]; 
+  pageSizeOptions = [10, 15];
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<comando>,
+    private service: MetodoGenericoService
   ) { }
 
   ngOnInit(): void {
     this.getAll()
+    this.permisos()
   }
 
   getAll() {
@@ -66,5 +71,21 @@ export class ComandolistComponent {
       }
     );
   }
-
+  permisos() {
+    this.service.getDataAndSearch('Administracion', 'comandos', 'comando-edit').subscribe(
+      {
+        next: edit => {
+          this.link_editar = '/home' + edit.link
+        }
+      }
+    )
+    this.service.getDataAndSearch('Administracion', 'comandos', 'comando-create').subscribe(
+      {
+        next: create => {
+          console.log(create)
+          this.link_crear = '/home' + create.link
+        }
+      }
+    )
+  }
 }

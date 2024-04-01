@@ -24,6 +24,7 @@ export class ComponenteListarComponent<T> {
   @Input() url_endpoint = '';
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   datos: any;
+  userData: any;
   private matDialogRef!: any;
 
   constructor(
@@ -96,5 +97,15 @@ export class ComponenteListarComponent<T> {
   }
   capitalizeFirstLetter(word: string): string {
     return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+  call_data() {
+    this.apiService.auth_data("api/auth/user").subscribe(
+      {
+        next: data => {
+          this.userData=data
+          console.log(this.userData.subsistemas)
+        }
+      }
+    )
   }
 }

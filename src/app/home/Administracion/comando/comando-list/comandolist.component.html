@@ -1,10 +1,12 @@
 <app-componente-listar 
     [titulo]="'Lista de Comandos'" 
     [displayedColumns]="['nombre', 'descripcion', 'link', 'menus','estado','action']"  
-    [link_adicionar]="'/home/administracion/comandocreate'"
-    [link_editar]="'/home/administracion/comandoedit'"
+    [link_adicionar]="link_crear"
+    [link_editar]="link_editar"
     [table_dataSource]="comandos_dataSource"
     [pageSizeOptions]="pageSizeOptions"
     [url_endpoint]="'administracion/comandos'"
     >
+
+    <!-- '/home/administracion/comandoedit' -->
 </app-componente-listar>

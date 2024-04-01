@@ -51,9 +51,9 @@ const routes: Routes = [
   { path: 'subsistemas', component: SubsislistComponent },
   { path: 'subsistemaedit/:id', component: SubsistemaEditComponent },
 
-  { path: 'comandocreate', component: ComandocreateComponent },
+  { path: 'comando-create', component: ComandocreateComponent },
   { path: 'comandos', component: ComandolistComponent },
-  { path: 'comandoedit/:id', component: ComandoEditComponent },
+  { path: 'comando-edit/:id', component: ComandoEditComponent },
 /* 
   { path: 'tipo-documento-create', component: TipoDocumentoCreateComponent },
   { path: 'tipo-documento-list', component: TipoDocumentoListComponent },
