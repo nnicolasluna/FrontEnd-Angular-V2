@@ -18,6 +18,7 @@ export class DocumentocreateComponent {
   private url_endpoint_tipoDocumentos = 'parametros/tipo_documentos'
   private url='/home/administracion/personprofile'
   uuid!: any;
+  boton_cancelar='/home/administracion/personprofile/'
   tipodocuments: any;
   datos: any[] = [];
  

@@ -31,8 +31,8 @@
                         <select formControlName="tipoDocumentos" class="input-group__imput"
                             [ngClass]="{'invalid': tipodoc.invalid && (tipodoc.dirty || tipodoc.touched), 'valid': tipodoc.valid}">
                             <option value="" disabled selected>Selecciona Tipo de Documento</option>
-                            <option aria-placeholder="Selecciones Tipo de Documento" *ngFor="let dato of registro_datos_tipoDocumento"
-                                [value]="dato.uuid">{{ dato.nombre }}
+                            <option aria-placeholder="Selecciones Tipo de Documento"
+                                *ngFor="let dato of registro_datos_tipoDocumento" [value]="dato.uuid">{{ dato.nombre }}
                             </option>
                         </select>
                         <div *ngIf="tipodoc.invalid && (tipodoc.dirty || tipodoc.touched)" class="text-danger">
@@ -53,8 +53,7 @@
                 </form>
             </mat-card-content>
 
-            <app-form-footer [regreso]="'/home/administracion/personprofile/'+uuid_persona"
-                (saveClicked)="create()"></app-form-footer>
+            <app-form-footer [regreso]="boton_cancelar + uuid_persona" (saveClicked)="create()"></app-form-footer>
         </mat-card>
 
     </div>

@@ -51,7 +51,7 @@ export class MenuEditComponent {
       this.apiService.update(this.url, this.uuid_menu, this.formGroup.value as menu,).subscribe(
         {
           next: () => {
-            this.router.navigateByUrl('/home/administracion/menulist');
+            this.router.navigateByUrl('/home/administracion/menus');
             this.formGroup.reset();
           }
         }

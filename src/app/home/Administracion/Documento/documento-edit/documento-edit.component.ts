@@ -15,7 +15,7 @@ export class DocumentoEditComponent {
   uuid_persona!: string
   private url_endpoint_documentos = 'administracion/documentos'
   private url_endpoitn_tipoDocumentos = 'parametros/tipo_documentos'
-
+  boton_cancelar='/home/administracion/personprofile/'
   registro_datos_tipoDocumento: any[] = [];
   documento_obtenido!: any;
 
