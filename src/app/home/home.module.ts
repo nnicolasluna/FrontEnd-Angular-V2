@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
-import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatPaginatorIntl, MatPaginatorModule } from "@angular/material/paginator";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,6 +26,8 @@ import { FotoGenericComponent } from './Administracion/foto/foto-generic/foto-ge
 import { FotoEditComponent } from './Administracion/foto/foto-edit/foto-edit.component';
 import { AdvertenciaDesactivadoComponent } from './modal/advertencia-desactivado/advertencia-desactivado.component';
 import { AdvertenciaGenericaComponent } from './modal/advertencia-generica/advertencia-generica.component';
+import { PaginadorComponent } from './componentes/paginador/paginador.component';
+import { MyCustomPaginatorIntlComponent } from './componentes/my-custom-paginator-intl/my-custom-paginator-intl.component';
 
 
 
@@ -46,6 +48,8 @@ import { AdvertenciaGenericaComponent } from './modal/advertencia-generica/adver
     FotoEditComponent,
     AdvertenciaDesactivadoComponent,
     AdvertenciaGenericaComponent,
+    PaginadorComponent,
+    MyCustomPaginatorIntlComponent,
     
   ],
   imports: [
@@ -65,7 +69,7 @@ import { AdvertenciaGenericaComponent } from './modal/advertencia-generica/adver
     MatInputModule,
     MatDialogModule,
     MatTooltipModule,
-
+    MatPaginatorModule 
   ]
   ,
   exports: [
@@ -73,7 +77,11 @@ import { AdvertenciaGenericaComponent } from './modal/advertencia-generica/adver
     FormFooterComponent,
     FormBuscarComponent,
     ComponenteListarComponent,
-
-  ]
+    PaginadorComponent,
+  ],
+  providers: [
+    // Proveer MyCustomPaginatorIntlComponent como una instancia de MatPaginatorIntl
+    { provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntlComponent }
+  ],
 })
 export class HomeModule { }

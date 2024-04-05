@@ -11,12 +11,14 @@
   <div class="body__content">
     <mat-card>
       <mat-card-content>
-        <mat-expansion-panel hideToggle class="buscar-avanzado">
+        <mat-expansion-panel class="buscar-avanzado" multi>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Filtro Avanzado..
             </mat-panel-title>
-            <mat-icon>search</mat-icon>
+            <mat-panel-description>
+              <mat-icon>search</mat-icon>
+            </mat-panel-description>
           </mat-expansion-panel-header>
           <app-form-buscar (datosEncontrados)="actualizarDatosTabla($event)"></app-form-buscar>
         </mat-expansion-panel>
@@ -57,11 +59,14 @@
       </mat-card-content>
       <mat-card-footer>
 
-        <mat-paginator #paginator class="demo-paginator" (page)="handlePageEvent($event)" [length]="length"
+         <mat-paginator (page)="handlePageEvent($event)" [length]="length"
           [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="hidePageSize"
           [pageIndex]="pageIndex" aria-label="Select page">
         </mat-paginator>
- <!--        Output event: {{(pageEvent | json) || 'No events dispatched yet'}} -->
+        
+      <!--   <app-paginador [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+          [hidePageSize]='hidePageSize' [pageIndex]="pageIndex" (event)="handlePageEvent($event)">
+        </app-paginador> -->
       </mat-card-footer>
     </mat-card>
 

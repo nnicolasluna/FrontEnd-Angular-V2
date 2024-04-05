@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { Subject } from 'rxjs';
 @Injectable({
@@ -14,7 +14,12 @@ export class ApiService<T> {
   constructor(private http: HttpClient) { }
 
   getAll(resourceUrl: string): Observable<T[]> {
-    return this.http.get<T[]>(this.baseUrl + resourceUrl);
+    return this.http.get<T[]>(this.baseUrl + resourceUrl).pipe(
+      catchError((error) => {
+        console.error(error);
+        return of([])
+      })
+    );;
   }
 
   getAllpageable(resourceUrl: string, page: string, size: string): Observable<T[]> {

@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { person, personDTO } from '../person-model/person';
@@ -13,7 +13,10 @@ import { AdvertenciaDeshabilitarComponent } from 'src/app/home/modal/advertencia
 @Component({
   selector: 'app-personlist',
   templateUrl: './personlist.component.html',
-  styleUrls: ['./personlist.component.scss']
+  styleUrls: ['./personlist.component.scss'],
+  providers:[
+    
+  ]
 })
 export class personasComponent {
   link_adicionar = "'/home/administracion/personcreate'"
@@ -27,7 +30,8 @@ export class personasComponent {
   pageIndex = 0;
   pageIndex_datatable = 0;
   displayedColumns: string[] = ['nombres', 'primer_apellido', 'segundo_apellido', 'generos', 'estadosCiviles', 'estado', 'action']
-  personas_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
+  /* personas_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); */
+  personas_dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url_personas = 'administracion/personas/paginado'
   matDialogRef: any;
@@ -35,7 +39,10 @@ export class personasComponent {
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<person>,
-  ) { }
+     private changeDetectorRef: ChangeDetectorRef
+  ) {
+    this.personas_dataSource = new MatTableDataSource<any>();
+  }
 
   pageEvent!: PageEvent;
 
@@ -45,14 +52,10 @@ export class personasComponent {
     this.length = e.length;
     this.pageIndex = e.pageIndex;
     this.changePage(e.pageIndex);
+    console.log(this.personas_dataSource)
   }
 
   ngOnInit(): void {
-    this.getAll()
-    /* this.personas_dataSource.paginator = this.paginatior; */
-  }
-
-  ngAfterViewInit() {
     this.getAll()
   }
 
@@ -63,7 +66,9 @@ export class personasComponent {
           this.personas = data
           this.pageSize=this.personas.size
           this.length=this.personas.totalElements
-          this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas.content);
+          /* this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas.content); */
+          this.personas_dataSource.data = this.personas.content; // Asigna los nuevos datos a dataSource.data
+          this.changeDetectorRef.detectChanges(); 
         },
         error: error=>{
           console.log(error)
