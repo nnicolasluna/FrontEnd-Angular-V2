@@ -58,8 +58,20 @@ export class HomeComponent {
         { name: 'Agencias', icon: 'apartment', link: 'parametros/agencia-list' },
         { name: 'Tipos Documentos', icon: 'badge', link: 'administracion/tipo-documento-list' },
       ]
+    },
+    {
+      nombre: 'Recursos Humanos', icono: 'supervisor_account', marcado: false, botones: [
+        { name: 'General', icon: 'space_dashboard', link: '' },
+        { name: 'Empleados', icon: 'person_apron', link: 'rrhh/empleado-list' },
+        { name: 'Contratos', icon: 'assignment_ind', link: '' },
+        { name: 'Asistencia', icon: 'how_to_reg', link: '' },
+        { name: 'Vacaciones', icon: 'event_available', link: '' },
+        { name: 'Planillas mensuales', icon: 'topic', link: '' },
+        { name: 'Memorandums', icon: 'article', link: '' },
+        { name: 'Certificados de trabajo', icon: 'description', link: '' },
+        { name: 'Gestión del organigrama', icon: 'schema', link: '' }
+      ]
     }
-
   ];
   toggleSidebar() {
     this.sidebarVisible = !this.sidebarVisible;
