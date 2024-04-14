@@ -27,7 +27,12 @@ export class ApiService<T> {
   }
 
   getOne(resourceUrl: string, id: string): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}${resourceUrl}/${id}`);
+    return this.http.get<T>(`${this.baseUrl}${resourceUrl}/${id}`).pipe(
+      catchError((error)=>{
+        console.log(error)
+        return of()
+      })
+    );
   }
 
   create(resourceUrl: string, data: T): Observable<T> {

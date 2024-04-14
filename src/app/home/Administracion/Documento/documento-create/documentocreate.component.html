@@ -6,6 +6,7 @@
         <mat-card class="card card--small">
             <app-form-header [titulo]="'Datos del Documento'"></app-form-header>
             <mat-card-content>
+                <div class="nota">NOTA.- Los campos con el recuadro de color naranja son obligatorios</div>
                 <form id="loginform" [formGroup]="formGroup">
 
 
@@ -13,7 +14,7 @@
                         <label for="" class="input-group__formlabel">Numero:</label>
                         <input formControlName="numero" type="text" placeholder="Ejem. 6830018"
                             class="input-group__imput"
-                            [ngClass]="{'invalid': numeroControl.invalid && (numeroControl.dirty || numeroControl.touched), 'valid': numeroControl.valid}">
+                            [ngClass]="{'invalid': numeroControl.invalid && (numeroControl.dirty || numeroControl.touched || numeroControl.defaultValue), 'obligatory':numeroControl.untouched && numeroControl.pristine, 'valid': numeroControl.valid}">
                         <div *ngIf="numeroControl.invalid && (numeroControl.dirty || numeroControl.touched)"
                             class="text-danger">
                             <span *ngIf="numeroControl.errors?.['required']">El Nombre es Requerido</span>
@@ -32,7 +33,7 @@
 
                         <label for="" class="input-group__formlabel">Tipo de Documento:</label>
                         <select formControlName="tipoDocumentos" class="input-group__imput"
-                            [ngClass]="{'invalid': tipodoc.invalid && (tipodoc.dirty || tipodoc.touched), 'valid': tipodoc.valid}">
+                            [ngClass]="{'invalid': tipodoc.invalid && (tipodoc.dirty || tipodoc.touched || tipodoc.defaultValue), 'obligatory':tipodoc.untouched && tipodoc.pristine, 'valid': tipodoc.valid}">
                             <option value="" disabled selected>Selecciona Tipo de Documento</option>
                             <option aria-placeholder="Selecciones Tipo de Documento" *ngFor="let dato of datos"
                                 [value]="dato.uuid">{{ dato.nombre }}

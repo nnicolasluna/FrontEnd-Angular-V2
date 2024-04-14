@@ -13,7 +13,8 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./user-edit.component.scss']
 })
 export class UserEditComponent {
-  private url = 'administracion/usuarios'
+  private url = 'administracion/usuarios/getOne'
+  private endpoint_guardar_usuario = 'administracion/usuarios/user-edit'
   private url1 = 'administracion/roles'
   fg!: FormGroup
   dataSourcePacks!: MatTableDataSource<any>;

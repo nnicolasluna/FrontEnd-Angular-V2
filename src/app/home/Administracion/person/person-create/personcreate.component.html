@@ -6,13 +6,14 @@
         <mat-card class="card card--big">
             <app-form-header [titulo]="'Datos de la Persona'"></app-form-header>
             <mat-card-content>
+                <div class="nota">NOTA.- Los campos con el recuadro de color naranja son obligatorios</div>
                 <form id="loginform" [formGroup]="persona_formGroup">
                     <div class="content-inputs-group">
                         <div class="input-group">
                             <label for="" class="input-group__formlabel">Nombres:</label>
                             <input formControlName="nombres" type="text" placeholder="Ejem. Juan Carlos"
                                 class="input-group__imput"
-                                [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                                [ngClass]="{'invalid': nombreControl.invalid &&(nombreControl.dirty|| nombreControl.touched || nombreControl.defaultValue), 'obligatory':nombreControl.untouched && nombreControl.pristine, 'valid': nombreControl.valid}">
                             <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                                 class="text-danger">
                                 <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
@@ -26,7 +27,7 @@
                             <label for="" class="input-group__formlabel">Apellido Paterno:</label>
                             <input formControlName="primer_apellido" type="text" placeholder="Ejem. Mamani"
                                 class="input-group__imput"
-                                [ngClass]="{'invalid': papellidoControl.invalid && (papellidoControl.dirty || papellidoControl.touched), 'valid': papellidoControl.valid}">
+                                [ngClass]="{'invalid': papellidoControl.invalid && (papellidoControl.dirty || papellidoControl.touched || papellidoControl.defaultValue),'obligatory':papellidoControl.untouched&&papellidoControl.pristine, 'valid': papellidoControl.valid}">
                             <div *ngIf="papellidoControl.invalid && (papellidoControl.dirty || papellidoControl.touched)"
                                 class="text-danger">
                                 <span *ngIf="papellidoControl.errors?.['required']">El Apellido es Requerido</span>
@@ -42,7 +43,7 @@
                             <label for="" class="input-group__formlabel">Apellido Materno:</label>
                             <input formControlName="segundo_apellido" type="text" placeholder="Ejem. Apaza"
                                 class="input-group__imput"
-                                [ngClass]="{'invalid': sapellidoControl.invalid && (sapellidoControl.dirty || sapellidoControl.touched), 'valid': sapellidoControl.valid}">
+                                [ngClass]="{'invalid': sapellidoControl.invalid && (sapellidoControl.dirty || sapellidoControl.touched|| sapellidoControl.defaultValue),'obligatory':sapellidoControl.untouched&&sapellidoControl.pristine, 'valid': sapellidoControl.valid}">
                             <div *ngIf="sapellidoControl.invalid && (sapellidoControl.dirty || sapellidoControl.touched)"
                                 class="text-danger">
                                 <span *ngIf="sapellidoControl.errors?.['required']">El Apellido es Requerido</span>
@@ -60,7 +61,7 @@
                             <label for="" class="input-group__formlabel">Estado Civil:</label>
 
                             <select formControlName="estadosCiviles" class="input-group__imput"
-                                [ngClass]="{'invalid': estadoControl.invalid && (estadoControl.dirty || estadoControl.touched), 'valid': estadoControl.valid}">
+                                [ngClass]="{'invalid': estadoControl.invalid && (estadoControl.dirty || estadoControl.touched|| estadoControl.defaultValue),'obligatory':estadoControl.untouched&&estadoControl.pristine, 'valid': estadoControl.valid}">
                                 <option value="" disabled selected>Selecciona Estado Civil</option>
                                 <option aria-placeholder="Seleccione Estado Civil" *ngFor="let dato of estado"
                                     [value]="dato.uuid">{{ dato.nombre }}
@@ -76,7 +77,7 @@
                             <label for="" class="input-group__formlabel">Fecha de Nacimiento:</label>
                             <input formControlName="fecha_nacimiento" type="date" placeholder="Ejem. 24/02/1996"
                                 class="input-group__imput"
-                                [ngClass]="{'invalid': fnacimientoControl.invalid && (fnacimientoControl.dirty || fnacimientoControl.touched), 'valid': fnacimientoControl.valid}">
+                                [ngClass]="{'invalid': fnacimientoControl.invalid && (fnacimientoControl.dirty || fnacimientoControl.touched|| fnacimientoControl.defaultValue), 'obligatory':fnacimientoControl.untouched&&fnacimientoControl.pristine,'valid': fnacimientoControl.valid}">
                             <div *ngIf="fnacimientoControl.invalid && (fnacimientoControl.dirty || fnacimientoControl.touched)"
                                 class="text-danger">
                                 <span *ngIf="fnacimientoControl.errors?.['required']">La Fecha de Nacimiento es
@@ -95,19 +96,8 @@
                             <label for="" class="input-group__formlabel">Lugar de Nacimiento:</label>
                             <input formControlName="lugar_nacimiento" type="text" placeholder="Ejem. La Paz"
                                 class="input-group__imput"
-                                [ngClass]="{'invalid': lnacimientoControl.invalid && (lnacimientoControl.dirty || lnacimientoControl.touched), 'valid': lnacimientoControl.valid}">
-                            <div *ngIf="lnacimientoControl.invalid && (lnacimientoControl.dirty || lnacimientoControl.touched)"
-                                class="text-danger">
-                                <span *ngIf="lnacimientoControl.errors?.['required']">El Lugar de Nacimiento es
-                                    Requerido</span>
-                                <span *ngIf="lnacimientoControl.errors?.['minlength']">El Lugar de Nacimiento debe
-                                    contener mas de 3
-                                    caracteres</span>
-                                <span *ngIf="lnacimientoControl.errors?.['maxlength']">El Lugar de Nacimiento no debe
-                                    tener mas de
-                                    30
-                                    caracteres</span>
-                            </div>
+                                >
+                            
                         </div>
 
                     </div>
@@ -115,7 +105,7 @@
                         <div class="input-group">
                             <label for="" class="input-group__formlabel">Genero:</label>
                             <select formControlName="generos" class="input-group__imput"
-                                [ngClass]="{'invalid': generoControl.invalid && (generoControl.dirty || generoControl.touched), 'valid': generoControl.valid}">
+                                [ngClass]="{'invalid': generoControl.invalid && (generoControl.dirty || generoControl.touched|| generoControl.defaultValue),'obligatory':generoControl.untouched&&generoControl.pristine, 'valid': generoControl.valid}">
                                 <option value="" disabled selected>Selecciona Genero</option>
                                 <option *ngFor="let dato of generos" [value]="dato.uuid">{{ dato.nombre }}
                                 </option>
@@ -129,7 +119,7 @@
                         <div class="input-group">
                             <label for="" class="input-group__formlabel">Ocupacion:</label>
                             <select formControlName="ocupaciones" class="input-group__imput"
-                                [ngClass]="{'invalid': ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched), 'valid': ocupacionControl.valid}">
+                                [ngClass]="{'invalid': ocupacionControl.invalid && (ocupacionControl.dirty || ocupacionControl.touched || ocupacionControl.defaultValue),'obligatory':ocupacionControl.untouched&&ocupacionControl.pristine,'valid': ocupacionControl.valid}">
                                 <option value="" disabled selected>Selecciona Ocupacion</option>
                                 <option *ngFor="let dato of ocupacion" [value]="dato.uuid">{{ dato.nombre }}
                                 </option>
@@ -145,19 +135,7 @@
                             <label for="" class="input-group__formlabel">Celular:</label>
                             <input formControlName="celular" type="text" placeholder="Ejem. 73563787"
                                 class="input-group__imput"
-                                [ngClass]="{'invalid': celularControl.invalid && (celularControl.dirty || celularControl.touched), 'valid': celularControl.valid}">
-                            <div *ngIf="celularControl.invalid && (celularControl.dirty || celularControl.touched)"
-                                class="text-danger">
-                                <span *ngIf="celularControl.errors?.['required']">El Celular es
-                                    Requerido</span>
-                                <span *ngIf="celularControl.errors?.['minlength']">El Celular debe
-                                    contener mas de 3
-                                    caracteres</span>
-                                <span *ngIf="celularControl.errors?.['maxlength']">El Celular no debe
-                                    tener mas de
-                                    30
-                                    caracteres</span>
-                            </div>
+                          >
                         </div>
                     </div>
                 </form>

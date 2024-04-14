@@ -5,6 +5,7 @@ import { person } from '../person-model/person';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-personcreate',
@@ -25,11 +26,11 @@ export class PersoncreateComponent {
     primer_apellido: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     segundo_apellido: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     fecha_nacimiento: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
-    lugar_nacimiento: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
+    lugar_nacimiento: new FormControl(''),
     generos: new FormControl('', [Validators.required]),
     ocupaciones: new FormControl('', [Validators.required]),
     estadosCiviles: new FormControl('', [Validators.required]),
-    celular: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(7)]),
+    celular: new FormControl(''),
     estado: new FormControl(true),
   });
 
@@ -65,9 +66,11 @@ export class PersoncreateComponent {
     private router: Router,
     private modalService: ModalService,
     private apiService: ApiService<person>,
+    private _snackBar: MatSnackBar
   ) { }
 
   create() {
+    
     if (this.persona_formGroup.valid) {
       this.apiService.create(this.url_personas, this.persona_formGroup.value as person).subscribe(
         {
@@ -80,6 +83,9 @@ export class PersoncreateComponent {
             this.matDialogRef = this.modalService.openDialog(AdvertenciaErrorConexionComponent);
             this.matDialogRef.afterClosed().subscribe(() => {
             });
+          },
+          complete: () => {
+            this._snackBar.open('Registro Guardado', 'Cerrar', {duration: 2000,horizontalPosition:'start',verticalPosition:'bottom'})
           }
         }
       );

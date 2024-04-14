@@ -41,6 +41,14 @@ import { UserlistComponent } from '../user/user-list/userlist.component';
 import { UsershowComponent } from '../user/user-show/usershow.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 
+import { MatTreeModule } from '@angular/material/tree';
+import { CdkTreeModule } from '@angular/cdk/tree';
+
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import {MatSortModule} from '@angular/material/sort';
+
 
 @NgModule({
   declarations: [
@@ -88,6 +96,11 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDialogModule,
     MatTooltipModule,
     MatExpansionModule,
+    MatTreeModule,
+    CdkTreeModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
+    MatSortModule
   ]
 })
 export class AdministracionModule { }

@@ -1,7 +1,9 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from './service/api-generico/api.service';
-import { error } from 'cypress/types/jquery';
+import { ModalService } from './modal/service/modal.service';
+import { WelcomeComponent } from './modal/welcome/welcome.component';
+
 
 interface Seccion {
   nombre: string
@@ -20,10 +22,11 @@ export class HomeComponent {
   parm = false;
   sidebarVisible = true;
   userData: any;
-
+  private matDialogRef!: any;
   constructor(
     private router: Router,
-    private apiService: ApiService<any>
+    private apiService: ApiService<any>,
+    private modalService: ModalService,
   ) { }
   ngOnInit(): void {
     this.call_data()
@@ -94,12 +97,17 @@ export class HomeComponent {
     seccion.marcado = !seccion.marcado;
   }
   call_data() {
+    
     this.apiService.auth_data("api/auth/user").subscribe(
       {
         next: data => {
           this.userData=data
-/*           console.log(this.secciones)
-          console.log(this.userData.subsistemas) */
+          console.log(data)
+          this.matDialogRef = this.modalService.GenericDialog(WelcomeComponent,{ data: {
+            titulo: 'Bienvenid@,'+' '+this.userData.personaDTO.nombres+' '+this.userData.personaDTO.primer_apellido+' '+this.userData.personaDTO.segundo_apellido,
+          }})
+          this.matDialogRef.afterClosed().subscribe(() => { })
+      
         }
       }
     )
@@ -112,4 +120,6 @@ export class HomeComponent {
   capitalizeFirstLetter(word: string): string {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
+
+
 }

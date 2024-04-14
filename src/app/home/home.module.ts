@@ -28,6 +28,7 @@ import { AdvertenciaDesactivadoComponent } from './modal/advertencia-desactivado
 import { AdvertenciaGenericaComponent } from './modal/advertencia-generica/advertencia-generica.component';
 import { PaginadorComponent } from './componentes/paginador/paginador.component';
 import { MyCustomPaginatorIntlComponent } from './componentes/my-custom-paginator-intl/my-custom-paginator-intl.component';
+import { WelcomeComponent } from './modal/welcome/welcome.component';
 
 
 
@@ -50,7 +51,9 @@ import { MyCustomPaginatorIntlComponent } from './componentes/my-custom-paginato
     AdvertenciaGenericaComponent,
     PaginadorComponent,
     MyCustomPaginatorIntlComponent,
-    
+    WelcomeComponent,
+
+
   ],
   imports: [
 
@@ -69,7 +72,7 @@ import { MyCustomPaginatorIntlComponent } from './componentes/my-custom-paginato
     MatInputModule,
     MatDialogModule,
     MatTooltipModule,
-    MatPaginatorModule 
+    MatPaginatorModule
   ]
   ,
   exports: [
@@ -80,7 +83,6 @@ import { MyCustomPaginatorIntlComponent } from './componentes/my-custom-paginato
     PaginadorComponent,
   ],
   providers: [
-    // Proveer MyCustomPaginatorIntlComponent como una instancia de MatPaginatorIntl
     { provide: MatPaginatorIntl, useClass: MyCustomPaginatorIntlComponent }
   ],
 })

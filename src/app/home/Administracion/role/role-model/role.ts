@@ -2,7 +2,7 @@ export interface role {
     nombre: string,
     descripcion: string,
     estado: boolean
-   
+
 }
 
 export interface roleDTO {
@@ -10,5 +10,36 @@ export interface roleDTO {
     nombre: string,
     descripcion: string,
     estado: boolean
-   
+
 }
+export interface Subsistema{
+    uuid: string;
+    nombre: string;
+    descripcion: string;
+    link: string;
+    estado: boolean;
+    menus: Menu[]
+}
+
+export interface Comando {
+    uuid: string;
+    nombre: string;
+    descripcion: string;
+    link: string;
+    estado: boolean;
+  }
+  
+  export interface Menu {
+    uuid: string;
+    nombre: string;
+    descripcion: string;
+    link: string;
+    estado: boolean;
+    comandos: Comando[];
+  }
+export interface TreeNode {
+    uuid: string;
+    nombre: string;
+    TreeNode?: TreeNode[];
+  }
+  

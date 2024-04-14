@@ -92,13 +92,14 @@ export class LoginComponent {
             this.router.navigate(['/home']);
             this.formGroup.reset();
           },
-   /*        error: (error) => {
-            this.matDialogRef = this.modalService.openDialog(AdvertenciaCredencialesComponent);
-            //  AdvertenciaDesactivadoComponent
-            this.matDialogRef.afterClosed().subscribe(() => {
-              window.location.reload();
-            });
-          } */
+          
+          /*        error: (error) => {
+                   this.matDialogRef = this.modalService.openDialog(AdvertenciaCredencialesComponent);
+                   //  AdvertenciaDesactivadoComponent
+                   this.matDialogRef.afterClosed().subscribe(() => {
+                     window.location.reload();
+                   });
+                 } */
         }
       );
     }

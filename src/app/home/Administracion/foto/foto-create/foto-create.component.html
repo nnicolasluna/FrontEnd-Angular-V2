@@ -14,7 +14,7 @@
             <mat-card class="card card--small">
                 <app-form-header [titulo]="subtitulo_operacion"></app-form-header>
                 <mat-card-content class="card__content">
-
+                    <div class="nota">NOTA.- Los campos con el recuadro de color naranja son obligatorios</div>
                     <div class="input-group">
                         <label for="" class="input-group__formlabel">Foto:</label>
                         <input class="input-group__imput_typeFile" type="file" (change)="onFileSelected($event)">
@@ -23,7 +23,7 @@
                         <label for="" class="input-group__formlabel">Descripción</label>
                         <input formControlName="descripcion" type="text"
                             placeholder="Ejem. Fotografia del Empleado Faustino Mamani" class="input-group__imput"
-                            [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
+                            [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched || descripcionControl.defaultValue), 'obligatory':descripcionControl.untouched && descripcionControl.pristine, 'valid': descripcionControl.valid}">
                         <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
                             class="text-danger">
                             <span *ngIf="descripcionControl.errors?.['required']">La Descripción es Requerida</span>

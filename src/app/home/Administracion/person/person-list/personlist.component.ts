@@ -3,20 +3,18 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { person, personDTO } from '../person-model/person';
 import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borrar/advertencia-borrar.component';
-import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { AdvertenciaDeshabilitarComponent } from 'src/app/home/modal/advertencia-deshabilitar/advertencia-deshabilitar.component';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import {LiveAnnouncer} from '@angular/cdk/a11y';
+import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 
 
 @Component({
   selector: 'app-personlist',
   templateUrl: './personlist.component.html',
   styleUrls: ['./personlist.component.scss'],
-  providers:[
-    
-  ]
 })
 export class personasComponent {
   link_adicionar = "'/home/administracion/personcreate'"
@@ -25,7 +23,7 @@ export class personasComponent {
   hidePageSize = false;
   showPageSizeOptions = true;
   showFirstLastButtons = true;
-  length!:number;
+  length!: number;
   pageSize = 10;
   pageIndex = 0;
   pageIndex_datatable = 0;
@@ -33,17 +31,36 @@ export class personasComponent {
   /* personas_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); */
   personas_dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
   private url_personas = 'administracion/personas/paginado'
+  private url_personas_borrar = 'administracion/personas'
   matDialogRef: any;
-  pageSizeOptions: number[] = [5,10,20];
+  pageSizeOptions: number[] = [5, 10, 20];
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<person>,
-     private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private _snackBar: MatSnackBar,
+    private _liveAnnouncer: LiveAnnouncer
   ) {
     this.personas_dataSource = new MatTableDataSource<any>();
   }
-
+  ngAfterViewInit() {
+    this.personas_dataSource.sort = this.sort;
+  }
+  /** Announce the change in sort state for assistive technology. */
+  announceSortChange(sortState: Sort) {
+    // This example uses English messages. If your application supports
+    // multiple language, you would internationalize these strings.
+    // Furthermore, you can customize the message to add additional
+    // details about the values being sorted.
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
+  }
   pageEvent!: PageEvent;
 
   handlePageEvent(e: any) {
@@ -59,35 +76,42 @@ export class personasComponent {
     this.getAll()
   }
 
+
   getAll() {
-    this.apiService.getAllpageable(this.url_personas, String(this.pageIndex),String(this.pageSize)).subscribe(
+    this.apiService.getAllpageable(this.url_personas, String(this.pageIndex), String(this.pageSize)).subscribe(
       {
-        next: (data) => {   
+        next: (data) => {
+          console.log(data)
           this.personas = data
-          this.pageSize=this.personas.size
-          this.length=this.personas.totalElements
+          this.pageSize = this.personas.size
+          this.length = this.personas.totalElements
           /* this.personas_dataSource = new MatTableDataSource<personDTO>(this.personas.content); */
-          this.personas_dataSource.data = this.personas.content; // Asigna los nuevos datos a dataSource.data
-          this.changeDetectorRef.detectChanges(); 
+          this.personas_dataSource.data = this.personas.content;
+          this.changeDetectorRef.detectChanges();
         },
-        error: error=>{
+        error: error => {
           console.log(error)
         }
       }
     )
   }
+ 
   delete(id: string) {
     this.matDialogRef = this.modalService.openDialog(AdvertenciaBorrarComponent);
     this.matDialogRef.afterClosed().subscribe(
       () => {
         if (this.matDialogRef.componentInstance.confirmado) {
-          this.apiService.delete(this.url_personas, id).subscribe(
+          this.apiService.delete(this.url_personas_borrar, id).subscribe(
             {
               next: () => {
                 this.getAll();
               },
               error: err => {
+                console.log(err)
                 console.log('No puede eliminarse este registro')
+              },
+              complete:()=>{
+                this._snackBar.open('Registro Borrado', 'Cerrar', {duration: 2000,horizontalPosition:'start',verticalPosition:'bottom'})
               }
             }
           );
@@ -145,8 +169,8 @@ export class personasComponent {
   actualizarDatosTabla(datos: any) {
     this.personas = datos;
     this.personas_dataSource = new MatTableDataSource<any>(this.personas.content);
-    this.pageSize=this.personas.totalElements
-    this.length=this.personas.totalElements
+    this.pageSize = this.personas.totalElements
+    this.length = this.personas.totalElements
     console.log(this.personas)
   }
 }

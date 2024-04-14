@@ -1,4 +1,10 @@
 .buscar-avanzado{
     background-color: rgb(216, 213, 213);
     margin-bottom: 10px;
+ 
 }
+
+.buscar-avanzado .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }

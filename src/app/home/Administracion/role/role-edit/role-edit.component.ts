@@ -1,11 +1,43 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { RoleService } from '../role-service/role.service';
 import { role } from '../role-model/role';
 import { MatTableDataSource } from '@angular/material/table'
-import { SubsistemaService } from '../../subsistema/subsistema-service/subsistema.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
+import {MatTreeNestedDataSource, MatTreeModule} from '@angular/material/tree';
+import {NestedTreeControl} from '@angular/cdk/tree';
+interface FoodNode {
+  name: string;
+  menus?: menus[];
+}
+interface menus {
+  name: string;
+  comandos?: comandos[];
+}
+interface comandos {
+  uuid?: string
+  name: string;
+}
+/* const TREE_DATA: FoodNode[] = [
+  {
+    name: 'Fruit',
+    children: [{name: 'Apple'}, {name: 'Banana'}, {name: 'Fruit loops'}],
+  },
+  {
+    name: 'Vegetables',
+    children: [
+      {
+        name: 'Green',
+        children: [{name: 'Broccoli'}, {name: 'Brussels sprouts'}],
+      },
+      {
+        name: 'Orange',
+        children: [{name: 'Pumpkins'}, {name: 'Carrots'}],
+      },
+    ],
+  },
+]; */
+
 
 @Component({
   selector: 'app-role-edit',
@@ -13,9 +45,11 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./role-edit.component.scss']
 })
 export class RoleEditComponent {
+  private endpoint_permisos = 'administracion/subsistemas/permisos'
   private url = 'administracion/roles'
   private url1 = 'administracion/subsistemas'
   fg!: FormGroup
+  permisos_data: any[] = []
   dataSourcePacks!: MatTableDataSource<any>;
   displayedColumns = ["rol", "eliminar"]
   uuid = new FormControl('')
@@ -46,19 +80,20 @@ export class RoleEditComponent {
   get nivelControl() {
     return this.formGroup.controls.nivel;
   }
-
+  treeControl = new NestedTreeControl<any>(node => node.menus);
+  dataSource = new MatTreeNestedDataSource<any>();
   constructor(
     private router: Router,
-    private roleservice: RoleService,
     private forBuilder: FormBuilder,
-    private subsistemaService: SubsistemaService,
     private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private apiService: ApiService<role>,
-  ) { }
-
-
+  ) {
+    /* this.dataSource.data = TREE_DATA; */
+  }
+  hasChild = (_: number, node: any) => !!node.menus && node.menus.length > 0;
   ngOnInit(): void {
+    this.getpermisos()
     this.getSubsistemas();
     this.fg = this.forBuilder.group({
       uuidrole: this.uuid,
@@ -140,5 +175,16 @@ export class RoleEditComponent {
         this.datos = data;
         this.formGroup.patchValue(data);
       }); */
+  }
+  getpermisos() {
+    this.apiService.getAll(this.endpoint_permisos).subscribe(
+      {
+        next: data => {
+          this.permisos_data = data
+          console.log(data)
+          this.dataSource.data = this.permisos_data;
+        }
+      }
+    )
   }
 }

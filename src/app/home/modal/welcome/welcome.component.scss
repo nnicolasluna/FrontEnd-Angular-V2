@@ -1,0 +1,30 @@
+.alert-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.alert-footer{
+    display: flex;
+    justify-content: center;
+}
+mat-icon{
+    display: flex;
+    align-items: center;
+    font-size: 100px;
+    height: 100px;
+    width: 100px;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(3px); }
+  }
+  
+  .shaking-icon {
+    animation: shake 0.5s   ;
+  }
+  

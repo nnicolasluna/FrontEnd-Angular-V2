@@ -14,7 +14,7 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./usercreate.component.scss']
 })
 export class UsercreateComponent {
-  private url = 'administracion/usuarios'
+  private url = 'administracion/usuarios/user-create'
   private url1 = 'administracion/roles'
   fg!: FormGroup
   dataSourcePacks!: MatTableDataSource<any>;

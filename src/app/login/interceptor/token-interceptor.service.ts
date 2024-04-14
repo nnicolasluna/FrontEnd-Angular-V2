@@ -9,6 +9,9 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AdvertenciaGenericaComponent } from 'src/app/home/modal/advertencia-generica/advertencia-generica.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
+import { JwtModule } from "@auth0/angular-jwt";
+import { jwtDecode } from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,9 +22,11 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   constructor(
     private modalService: ModalService,
+    
   ) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token_sesion = sessionStorage.getItem("token");
+    
     if (token_sesion) {
       request = request.clone(
         {
@@ -36,7 +41,6 @@ export class TokenInterceptorService implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         catchError((error: HttpErrorResponse) => {
-/*           console.log(error.error.message) */
           this.matDialogRef = this.modalService.GenericDialog(AdvertenciaGenericaComponent,{ data: {
             titulo: error.error.message,
           }})

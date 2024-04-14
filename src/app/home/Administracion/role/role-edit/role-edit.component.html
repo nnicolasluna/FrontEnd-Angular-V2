@@ -7,74 +7,124 @@
             <mat-card class="card card--small">
                 <app-form-header [titulo]="'Datos de Rol'"></app-form-header>
                 <mat-card-content class="card__content">
+                    <mat-tab-group>
+                        <mat-tab label="Datos">
 
-
-                    <div class="input-group">
-                        <label for="" class="input-group__formlabel">Nombre de Rol:</label>
-                        <input type="text" formControlName="nombre" placeholder="Ejem. Cajero" class="input-group__imput"
-                            [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
-                        <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
-                            class="text-danger">
-                            <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
-                            <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
-                                caracteres</span>
-                            <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de
-                                30
-                                caracteres</span>
-                        </div>
-                    </div>
-
-
-
-                    <div class="input-group">
-                        <label for="" class="input-group__formlabel">Descripcion:</label>
-                        <input type="text" formControlName="descripcion" class="input-group__imput"
-                            placeholder="Ejem. Este Rol es Asignado a Cajero" appNoLeadingTrailingWhitespace
-                            [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
-                        <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
-                            class="text-danger">
-                            <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerida</span>
-                            <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener mas
-                                de 3
-                                caracteres</span>
-                            <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener mas
-                                de
-                                100
-                                caracteres</span>
-                        </div>
-                    </div>
+                            <div class="input-group">
+                                <label for="" class="input-group__formlabel">Nombre de Rol:</label>
+                                <input type="text" formControlName="nombre" placeholder="Ejem. Cajero"
+                                    class="input-group__imput"
+                                    [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                                <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
+                                    class="text-danger">
+                                    <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
+                                    <span *ngIf="nombreControl.errors?.['minlength']">El Nombre debe contener mas de 3
+                                        caracteres</span>
+                                    <span *ngIf="nombreControl.errors?.['maxlength']">El Nombre no debe tener mas de
+                                        30
+                                        caracteres</span>
+                                </div>
+                            </div>
 
 
 
-                    <div class="input-group">
-                        <label for="" class="input-group__formlabel">Nivel:</label>
-                        <input type="text" formControlName="nivel" class="input-group__imput" placeholder="Ejem. nivel 1"
-                            appNoLeadingTrailingWhitespace
-                            [ngClass]="{'invalid': nivelControl.invalid && (nivelControl.dirty || nivelControl.touched), 'valid': nivelControl.valid}">
-                        <div *ngIf="nivelControl.invalid && (nivelControl.dirty || nivelControl.touched)"
-                            class="text-danger">
-                            <span *ngIf="nivelControl.errors?.['required']">La nivel es Requerida</span>
-                            <span *ngIf="nivelControl.errors?.['minlength']">La nivel debe contener mas
-                                de 3
-                                caracteres</span>
-                            <span *ngIf="nivelControl.errors?.['maxlength']">La nivel no debe tener mas
-                                de
-                                100
-                                caracteres</span>
-                        </div>
-                    </div>
+                            <div class="input-group">
+                                <label for="" class="input-group__formlabel">Descripcion:</label>
+                                <input type="text" formControlName="descripcion" class="input-group__imput"
+                                    placeholder="Ejem. Este Rol es Asignado a Cajero" appNoLeadingTrailingWhitespace
+                                    [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
+                                <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
+                                    class="text-danger">
+                                    <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es
+                                        Requerida</span>
+                                    <span *ngIf="descripcionControl.errors?.['minlength']">La Descripcion debe contener
+                                        mas
+                                        de 3
+                                        caracteres</span>
+                                    <span *ngIf="descripcionControl.errors?.['maxlength']">La Descripcion no debe tener
+                                        mas
+                                        de
+                                        100
+                                        caracteres</span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="input-group">
+                                <label for="" class="input-group__formlabel">Nivel:</label>
+                                <input type="text" formControlName="nivel" class="input-group__imput"
+                                    placeholder="Ejem. nivel 1" appNoLeadingTrailingWhitespace
+                                    [ngClass]="{'invalid': nivelControl.invalid && (nivelControl.dirty || nivelControl.touched), 'valid': nivelControl.valid}">
+                                <div *ngIf="nivelControl.invalid && (nivelControl.dirty || nivelControl.touched)"
+                                    class="text-danger">
+                                    <span *ngIf="nivelControl.errors?.['required']">La nivel es Requerida</span>
+                                    <span *ngIf="nivelControl.errors?.['minlength']">La nivel debe contener mas
+                                        de 3
+                                        caracteres</span>
+                                    <span *ngIf="nivelControl.errors?.['maxlength']">La nivel no debe tener mas
+                                        de
+                                        100
+                                        caracteres</span>
+                                </div>
+                            </div>
 
 
 
 
-                    <div class="input-group">
+                       <!--      <div class="input-group">
 
-                        <label for="" class="input-group__formlabel">SubSistemas:</label>
-                        <button class="button button--form" type="button" (click)="addLesson()"
-                            data-cy="Addsubsistema">Añadir SubSistemas</button>
-                    </div>
+                                <label for="" class="input-group__formlabel">SubSistemas:</label>
+                                <button class="button button--form" type="button" (click)="addLesson()"
+                                    data-cy="Addsubsistema">Añadir SubSistemas</button>
+                            </div> -->
+                        </mat-tab>
+                        <mat-tab label="Permisos">
 
-
+                            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                                <!-- This is the tree node template for each node -->
+                                <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+                                  <li class="mat-tree-node">
+                                    <!-- Use a button for toggle -->
+                                    <button mat-icon-button matTreeNodeToggle>
+                                      <mat-icon class="mat-icon-rtl-mirror">
+                                        {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                                      </mat-icon>
+                                    </button>
+                                    <!-- Display node name -->
+                                    {{ node.nombre }}
+                                  </li>
+                                  <ul [class.mat-tree-node]="node.menus" [class.mat-tree-node-no-padding]="!treeControl.isExpanded(node)">
+                                    <ng-container *ngFor="let menu of node.menus">
+                                      <mat-tree-node></mat-tree-node>
+                                    </ng-container>
+                                  </ul>
+                                </mat-tree-node>
+                              
+                                <!-- Recursively repeat for each nested node -->
+                                <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+                                  <li>
+                                    <div class="mat-tree-node">
+                                      <button mat-icon-button matTreeNodeToggle>
+                                        <mat-icon class="mat-icon-rtl-mirror">
+                                          {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+                                        </mat-icon>
+                                      </button>
+                                      {{ node.nombre }}
+                                    </div>
+                                    <ul [class.mat-tree-node]="node.menus" [class.mat-tree-node-no-padding]="!treeControl.isExpanded(node)">
+                                      <ng-container *ngFor="let menu of node.menus">
+                                        <mat-tree-node></mat-tree-node>
+                                      </ng-container>
+                                    </ul>
+                                  </li>
+                                </mat-nested-tree-node>
+                              </mat-tree>
+                                
+                              
+                        </mat-tab>
+                    </mat-tab-group>
+                    <!-- 
 
                     <form class="roles__formulario" [formGroup]="fg">
                         <div class="roles__table-container">
@@ -102,16 +152,16 @@
                                             </button>
                                         </td>
                                     </ng-container>
-                                    <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
+                                    
                                     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                                 </ng-container>
                             </table>
                         </div>
-                    </form>
+                    </form> -->
 
 
                 </mat-card-content>
-                
+
                 <app-form-footer [regreso]='"/home/administracion/roles"' (saveClicked)="create()"></app-form-footer>
             </mat-card>
         </form>

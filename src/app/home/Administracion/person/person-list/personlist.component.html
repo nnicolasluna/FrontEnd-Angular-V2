@@ -13,20 +13,18 @@
       <mat-card-content>
         <mat-expansion-panel class="buscar-avanzado" multi>
           <mat-expansion-panel-header>
-            <mat-panel-title>
-              Filtro Avanzado..
-            </mat-panel-title>
             <mat-panel-description>
+              Filtro Avanzado..
               <mat-icon>search</mat-icon>
             </mat-panel-description>
           </mat-expansion-panel-header>
           <app-form-buscar (datosEncontrados)="actualizarDatosTabla($event)"></app-form-buscar>
         </mat-expansion-panel>
-        <table mat-table [dataSource]="personas_dataSource" class="table">
+        <table mat-table [dataSource]="personas_dataSource" class="table" matSort (matSortChange)="announceSortChange($event)">
           <ng-container *ngFor="let column of displayedColumns">
             <ng-container *ngIf="column !== 'action'; else actionColumn">
-              <ng-container matColumnDef="{{ column }}">
-                <th mat-header-cell *matHeaderCellDef> {{ capitalizeFirstLetter(column) }} </th>
+              <ng-container matColumnDef="{{ column }}" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ capitalizeFirstLetter(column) }} </th>
                 <td mat-cell *matCellDef="let element">
                   <ng-container *ngIf="isObjectType(element[column]); else notAnObject">
                     {{ element[column].nombre }}

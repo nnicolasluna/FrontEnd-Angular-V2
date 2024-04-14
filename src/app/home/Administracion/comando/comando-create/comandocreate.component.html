@@ -6,11 +6,12 @@
         <mat-card class="card card--small">
             <app-form-header [titulo]="'Datos del Comando'"></app-form-header>
             <mat-card-content class="card__content">
+                <div class="nota">NOTA.- Los campos con el recuadro de color naranja son obligatorios</div>
                 <form id="loginform" [formGroup]="comando_formGroup">
                     <div class="input-group">
                         <label for="" class="input-group__formlabel">Nombre:</label>
                         <input formControlName="nombre" type="text" placeholder="Ejem. Personas" class="input-group__imput"
-                            [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched), 'valid': nombreControl.valid}">
+                            [ngClass]="{'invalid': nombreControl.invalid && (nombreControl.dirty || nombreControl.touched || nombreControl.defaultValue), 'obligatory':nombreControl.untouched && nombreControl.pristine,'valid': nombreControl.valid}">
                         <div *ngIf="nombreControl.invalid && (nombreControl.dirty || nombreControl.touched)"
                             class="text-danger">
                             <span *ngIf="nombreControl.errors?.['required']">El Nombre es Requerido</span>
@@ -25,7 +26,7 @@
                         <label for="" class="input-group__formlabel">Descripción:</label>
                         <input formControlName="descripcion" type="text" placeholder="Configuarion de Acceso menu"
                             class="input-group__imput"
-                            [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched), 'valid': descripcionControl.valid}">
+                            [ngClass]="{'invalid': descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched || descripcionControl.defaultValue), 'obligatory':descripcionControl.untouched && descripcionControl.pristine, 'valid': descripcionControl.valid}">
                         <div *ngIf="descripcionControl.invalid && (descripcionControl.dirty || descripcionControl.touched)"
                             class="text-danger">
                             <span *ngIf="descripcionControl.errors?.['required']">La Descripcion es Requerida</span>
@@ -42,7 +43,7 @@
                     <div class="input-group">
                         <label for="" class="input-group__formlabel">Link:</label>
                         <input formControlName="link" type="text" class="input-group__imput" placeholder="/home/parametricas"
-                            [ngClass]="{'invalid': linkControl.invalid && (linkControl.dirty || linkControl.touched), 'valid': linkControl.valid}">
+                            [ngClass]="{'invalid': linkControl.invalid && (linkControl.dirty || linkControl.touched || linkControl.defaultValue), 'obligatory':linkControl.untouched && linkControl.pristine, 'valid': linkControl.valid}">
                         <div *ngIf="linkControl.invalid && (linkControl.dirty || linkControl.touched)"
                             class="text-danger">
                             <span *ngIf="linkControl.errors?.['required']">El Link es Requerido</span>

@@ -51,6 +51,9 @@ export class FormBuscarComponent {
     this.get_ocupaciones()
   }
 
+  clean(){
+    this.buscar_formGroup.reset()
+  }
   find_advanced() {
     this.apiService_buscar.find_register(this.url_buscar_avanzado,String(this.pageIndex),String(this.pageSize), this.buscar_formGroup.value as buscar).subscribe(
       {

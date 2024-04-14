@@ -18,7 +18,8 @@ import { AdvertenciaDeshabilitarComponent } from 'src/app/home/modal/advertencia
 
 
 export class UserlistComponent {
-  private url = 'administracion/usuarios'
+  private url = 'administracion/usuarios/user-list'
+  private endpoint_deshabilitar='administracion/usuarios'
   roles: any;
   dataSource: any;
   constructor(
@@ -94,7 +95,7 @@ export class UserlistComponent {
     this.matDialogRef.afterClosed().subscribe(
       () => {
         if (this.matDialogRef.componentInstance.confirmado) {
-          this.apiService.disable(this.url + '/edit-estado', id).subscribe(
+          this.apiService.disable(this.endpoint_deshabilitar + '/edit-estado', id).subscribe(
             {
               next: () => {
                 window.location.reload();

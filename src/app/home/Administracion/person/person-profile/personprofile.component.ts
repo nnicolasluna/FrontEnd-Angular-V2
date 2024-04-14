@@ -19,7 +19,7 @@ export class PersonprofileComponent {
   person_data!: any;
   user_data!: any;
   dataSource_roles: any;
-  foto: string=''
+  foto: string = ''
   dataSource_documentos: any;
   selectedIndex!: any
   foto_persona!: any
@@ -52,7 +52,7 @@ export class PersonprofileComponent {
 
         },
         error: error => {
-          console.log(error, 'error en personas')
+          console.log(error, 'error en personas gaaaaaaaa')
         }
       }
     )
@@ -86,14 +86,23 @@ export class PersonprofileComponent {
     this.apiService.getOne(this.url_usuarios, 'persona/' + this.uuid_persona).subscribe(
       {
         next: data => {
-          this.user_data = data;
-          this.disableCreateUser = true;
-          this.disableEditUser = false;
-          this.dataSource_roles = new MatTableDataSource<any>(this.user_data.roles);
-          this.dataSource_roles.paginator = this.paginatior;
+          if (data) {
+            this.user_data = data;
+            this.disableCreateUser = true;
+            this.disableEditUser = false;
+            this.dataSource_roles = new MatTableDataSource<any>(this.user_data.roles);
+            this.dataSource_roles.paginator = this.paginatior;
+          } else{
+            console.log('usuario no registrado')
+          }
         },
         error: error => {
-          console.log(error, 'error en usuario de personas no se encontro')
+          if (error.status === 404) {
+            console.log('La persona no fue encontrada en el servidor.');
+            console.log('gaaaa')
+          } else {
+            console.log(error, 'error en usuario de personas no se encontró');
+          }
         }
       }
     )

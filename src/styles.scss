@@ -350,16 +350,28 @@ $neutral-color: rgb(243, 243, 243);
 
 }
 
+.nota {
+    padding-top: 7px;
+    color: #ff7f58;
+    font-size: 13px;
+}
 
 
 .invalid {
     border: 2px solid red;
-    border-radius: 5px 5px 5px 5px;
-
+    background-color: white;
+    color: black;
 }
+
 
 .valid {
     border: 2px solid yellowgreen;
     border-radius: 5px 5px 5px 5px;
+    background-color: white;
+    color: black;
+}
 
+.obligatory {
+    border: 1px solid #ff7f58;
+    background-color: #faeed8;
 }
