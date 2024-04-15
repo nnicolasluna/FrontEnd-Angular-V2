@@ -1,52 +1,12 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
-import { role } from '../role-model/role';
+import { role, roles } from '../role-model/role';
 import { MatTableDataSource } from '@angular/material/table'
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
 
-const TREE_DATA: any[] = [
-  {
-    nombre: 'Administracion',
-    children: [
-      {
-        nombre: 'Personas',
-        children: [
-          {
-            nombre: 'Crear',
-          },
-          {
-            nombre: 'Borrar',
-          },
-        ],
-      },
-      {
-        nombre: 'Comandos',
-        children: [
-          {
-            nombre: 'Crear',
-          },
-          {
-            nombre: 'Borrar',
-          },
-        ],
-      },
-      {
-        nombre: 'Subsistemas',
-        children: [
-          {
-            nombre: 'Crear',
-          },
-          {
-            nombre: 'Borrar',
-          },
-        ],
-      }],
-  },
-  
-];
 
 @Component({
   selector: 'app-rolecreate',
@@ -54,6 +14,7 @@ const TREE_DATA: any[] = [
   styleUrls: ['./rolecreate.component.scss']
 })
 export class RolecreateComponent {
+  comandosSeleccionados: string[] = [];
 
   private url = 'administracion/roles'
   private url1 = 'administracion/subsistemas'
@@ -61,21 +22,27 @@ export class RolecreateComponent {
   fg!: FormGroup
   dataSourcePacks!: MatTableDataSource<any>;
   displayedColumns = ["rol", "eliminar"]
-  uuid = new FormControl('')
-  personuuid!: any;
   roles: any[] = [];
-  /*   permisos_data: any[] = []
-    permisosFormGroup = new FormGroup({
-      uuid: this.forBuilder.array([''])
-    }); */
-  permisosFormGroup!: FormGroup;
+  permisosFormGroup = new FormGroup({
+    uuid: this.forBuilder.array([])
+  });
   permisos_data: any[] = [];
+  formGroup_roles!: FormGroup;
+  initFormGroup(): void {
+    this.formGroup_roles = this.forBuilder.group({
+      nombre: ['', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]],
+      descripcion: ['', [Validators.required, Validators.maxLength(100), Validators.minLength(3)]],
+      estado: [true],
+      nivel: [0, [Validators.required]],
+      comandos: this.forBuilder.array([])
+    });
+  }
   formGroup = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.minLength(3)]),
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
     estado: new FormControl(true),
-    nivel: new FormControl('', [Validators.required]),
-    subsistemas: this.permisosFormGroup,
+    nivel: new FormControl(0, [Validators.required]),
+    comandos: this.permisosFormGroup,
   });
 
   get nombreControl() {
@@ -94,12 +61,10 @@ export class RolecreateComponent {
   constructor(
     private router: Router,
     private forBuilder: FormBuilder,
-    private cd: ChangeDetectorRef,
     private apiService: ApiService<role>,
-    private formBuilder: FormBuilder
   ) { }
 
-  uuidFormArray = this.permisosFormGroup.get('uuid') as FormArray;
+  /* uuidFormArray = this.permisosFormGroup.get('uuid') as FormArray; */
   /* ngOnInit(): void {
     this.getpermisos()
     this.getSubsistemas();
@@ -110,8 +75,9 @@ export class RolecreateComponent {
 
   }; */
   ngOnInit() {
-    this.permisos_data=TREE_DATA
-    this.permisosFormGroup = this.formBuilder.group({});
+    this.getpermisos()
+    /*   this.permisos_data=TREE_DATA
+      this.permisosFormGroup = this.formBuilder.group({}); */
 
     // Iterar sobre permisos_data para construir el formulario
     /*   this.permisos_data.forEach(subsistema => {
@@ -129,36 +95,87 @@ export class RolecreateComponent {
       }); */
   }
 
-  getComandoControl(subsistemaId: string, menuId: string, comandoId: string): FormControl {
-    return this.permisosFormGroup.get(`${subsistemaId}.${menuId}.${comandoId}`) as FormControl;
-  }
+  /*   getComandoControl(subsistemaId: string, menuId: string, comandoId: string): FormControl {
+      return this.permisosFormGroup.get(`${subsistemaId}.${menuId}.${comandoId}`) as FormControl;
+    } */
 
-  submitForm() {
-    // Aquí puedes manejar la lógica para enviar los datos del formulario
-    console.log(this.permisosFormGroup.value);
-    // Por ejemplo, puedes hacer una solicitud HTTP para guardar los permisos
-  }
+
+
   create() {
-    const valores = this.uuidFormArray.value; // Obtener los valores del FormArray
+    console.log(this.formGroup.value)
+    /*    const permiso: Permiso = {
+         nombre: "nombre_permiso",
+         nivel: 200,
+         descripcion: "descripción_permiso",
+         comandos: this.comandosSeleccionados.map(uuid => ({ uuid }))
+       };
+    */
+    // Aquí puedes enviar 'permiso' al servidor o hacer lo que necesites con él
+    /* console.log(permiso); */
+    /*  console.log(this.permisosFormGroup.value.uuid) */
+    /*  const valores = this.uuidFormArray.value; */ // Obtener los valores del FormArray
 
-    console.log(valores)
-    console.log('UUIDs Seleccionados:', this.uuidsSeleccionados);
-    /*     if (this.formGroup.valid) {
-          this.formGroup.value.subsistemas = this.promos.value;
-          this.apiService.create(this.url, this.formGroup.value as role).subscribe(
-            {
-              next: () => {
-                this.router.navigateByUrl('/home/administracion/roles');
-                this.formGroup.reset();
-    
-              },
-            }
-          )
+    /*  console.log(valores)
+     console.log('UUIDs Seleccionados:', this.uuidsSeleccionados); */
+    /*     const comandogroup=this.permisosFormGroup.value.uuid */
+    if (this.formGroup.valid) {
+      /*    if(comandogroup){
+           this.formGroup.value.comandos = comandogroup.values
+         } */
+
+      console.log(this.permisosFormGroup.value.uuid)
+      this.formGroup.value.comandos = this.comando.value
+      this.apiService.create(this.url, this.formGroup.value as any).subscribe(
+        {
+
+          next: () => {
+
+            this.router.navigateByUrl('/home/administracion/roles');
+            this.formGroup.reset();
+
+          },
         }
-        else {
-          this.formGroup.markAllAsTouched();
-        } */
+      )
+    }
+    else {
+      this.formGroup.markAllAsTouched();
+    }
   }
+  /*   toggleComando(uuid: string, event: any) {
+      const isChecked = event.target.checked;
+  
+      if (isChecked) {
+        // Agregar el UUID a la lista de comandos seleccionados
+        this.comandosSeleccionados.push(uuid);
+      } else {
+        // Remover el UUID de la lista de comandos seleccionados
+        const index = this.comandosSeleccionados.indexOf(uuid);
+        if (index !== -1) {
+          this.comandosSeleccionados.splice(index, 1);
+        }
+      }
+    } */
+    fga!: FormGroup
+  get comando(){
+    return this.permisosFormGroup.controls['uuid'] as FormArray
+  }
+  toggleComando(uuid: string, event: any) {
+    const isChecked = event.target.checked;
+    const index = (this.permisosFormGroup.get('uuid') as FormArray).controls.findIndex(control => control.value.uuid === uuid)
+    if (isChecked && index === -1) {
+      // Agregar el UUID a la lista de comandos seleccionados
+      /* this.comandosSeleccionados.push(uuid); */
+      /* (this.permisosFormGroup.get('uuid') as FormArray).push(this.forBuilder.group({ uuid })) */
+      (this.permisosFormGroup.get('uuid') as FormArray).push(this.forBuilder.control({uuid}));
+    } else {
+      // Remover el UUID de la lista de comandos seleccionados
+
+      if (index !== -1) {
+        (this.permisosFormGroup.get('uuid') as FormArray).removeAt(index)
+      }
+    }
+  }
+
   getSubsistemas() {
     this.apiService.getAll(this.url1).subscribe(
       {
@@ -174,49 +191,13 @@ export class RolecreateComponent {
       {
         next: data => {
           this.permisos_data = data
-          console.log(data)
-          
+
         }
       }
     )
   }
-  get promos() {
-    return this.fg.controls["promos"] as FormArray;
-  };
-  addLesson(): void {
-    const lessonForm = this.forBuilder.group({
-      uuid: [''],
-    });
-    this.promos.push(lessonForm);
-    this.dataSourcePacks = new MatTableDataSource(this.promos.controls);
-    this.cd.detectChanges();
-  };
-  deleteLesson(lessonIndex: number): void {
 
-    this.promos.removeAt(lessonIndex);
-    this.dataSourcePacks = new MatTableDataSource(this.promos.controls);
 
-  };
-  uuidsSeleccionados: string[] = [];
-  toggleSeleccion(uuid: string, event: any) {
-    if (event.target) {
-      /* const uuidFormArray = this.permisosFormGroup.get('uuid') as FormArray; */
-
-      const isChecked = event.target.checked;
-      if (isChecked) {
-        // Añadir UUID al array si está marcado
-        this.uuidsSeleccionados.push(uuid);
-        /* uuidFormArray.push(this.formBuilder.group({ uuid: uuid })); */
-
-      } else {
-        // Quitar UUID del array si está desmarcado
-        const index = this.uuidsSeleccionados.indexOf(uuid);
-        if (index !== -1) {
-          this.uuidsSeleccionados.splice(index, 1);
-        }
-      }
-    }
-  }
 
 
 }

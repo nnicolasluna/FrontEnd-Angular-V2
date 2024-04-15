@@ -9,8 +9,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AdvertenciaGenericaComponent } from 'src/app/home/modal/advertencia-generica/advertencia-generica.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
-import { JwtModule } from "@auth0/angular-jwt";
-import { jwtDecode } from 'jwt-decode';
+
 
 
 @Injectable({

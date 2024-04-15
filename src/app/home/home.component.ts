@@ -101,6 +101,7 @@ export class HomeComponent {
     this.apiService.auth_data("api/auth/user").subscribe(
       {
         next: data => {
+          console.log(data)
           this.userData=data
           console.log(data)
           this.matDialogRef = this.modalService.GenericDialog(WelcomeComponent,{ data: {
