@@ -26,7 +26,7 @@
             </div>
           </ng-container>
         </div> -->
-        <div class="items" *ngIf="userData?.subsistemas">
+        <!--         <div class="items" *ngIf="userData?.subsistemas">
           <ng-container *ngFor="let susbsistema of userData?.subsistemas">
             <button (click)="toggleMarcado(susbsistema)" class="button_nav">
               <span><mat-icon>{{ susbsistema.icono}}</mat-icon></span>
@@ -37,6 +37,21 @@
                 class="button_nav button_nav--son">
                 <span><mat-icon>{{ button.icono }}</mat-icon></span>
                 <span>{{ capitalizeFirstLetter(button.nombre) }}</span>
+              </button>
+            </div>
+          </ng-container>
+        </div> -->
+        <div class="items" *ngIf="userData?.subsistemas">
+          <ng-container *ngFor="let susbsistema of userData?.subsistemas">
+            <button (click)="toggleMarcado(susbsistema)" class="button_nav">
+              <span><mat-icon>{{ susbsistema.icono}}</mat-icon></span>
+              <span>{{ capitalizeFirstLetter(susbsistema.nombre)}}</span>
+            </button>
+            <div *ngIf="susbsistema.marcado">
+              <button *ngFor="let menu of susbsistema.menus" routerLink="{{ menu.link }}"
+                class="button_nav button_nav--son">
+                <span><mat-icon>{{ menu.icono }}</mat-icon></span>
+                <span>{{ capitalizeFirstLetter(menu.nombre) }}</span>
               </button>
             </div>
           </ng-container>

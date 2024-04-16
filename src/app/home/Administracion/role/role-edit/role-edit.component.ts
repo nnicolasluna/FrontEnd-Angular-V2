@@ -6,10 +6,7 @@ import { MatTableDataSource } from '@angular/material/table'
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import {MatTreeNestedDataSource, MatTreeModule} from '@angular/material/tree';
 import {NestedTreeControl} from '@angular/cdk/tree';
-interface FoodNode {
-  name: string;
-  menus?: menus[];
-}
+
 interface menus {
   name: string;
   comandos?: comandos[];
@@ -18,26 +15,6 @@ interface comandos {
   uuid?: string
   name: string;
 }
-/* const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Fruit',
-    children: [{name: 'Apple'}, {name: 'Banana'}, {name: 'Fruit loops'}],
-  },
-  {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [{name: 'Broccoli'}, {name: 'Brussels sprouts'}],
-      },
-      {
-        name: 'Orange',
-        children: [{name: 'Pumpkins'}, {name: 'Carrots'}],
-      },
-    ],
-  },
-]; */
-
 
 @Component({
   selector: 'app-role-edit',
@@ -52,12 +29,12 @@ export class RoleEditComponent {
   permisos_data: any[] = []
   dataSourcePacks!: MatTableDataSource<any>;
   displayedColumns = ["rol", "eliminar"]
-  uuid = new FormControl('')
+
   personuuid!: any;
   roles: any[] = [];
 
-  subsistemasFormGroup = new FormGroup({
-    uuid: this.forBuilder.array([''])
+  permisosFormGroup = new FormGroup({
+    uuid: this.forBuilder.array([])
   });
   formGroup = new FormGroup({
     uuid: new FormControl(''),
@@ -65,7 +42,7 @@ export class RoleEditComponent {
     descripcion: new FormControl('', [Validators.required, Validators.maxLength(100), Validators.minLength(3)]),
     estado: new FormControl(),
     nivel: new FormControl('', [Validators.required]),
-    subsistemas: this.subsistemasFormGroup,
+    comandos: this.permisosFormGroup,
   });
 
   get nombreControl() {
@@ -88,41 +65,35 @@ export class RoleEditComponent {
     private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private apiService: ApiService<role>,
-  ) {
-    /* this.dataSource.data = TREE_DATA; */
-  }
+  ) {}
   hasChild = (_: number, node: any) => !!node.menus && node.menus.length > 0;
   ngOnInit(): void {
     this.getpermisos()
-    this.getSubsistemas();
-    this.fg = this.forBuilder.group({
-      uuidrole: this.uuid,
-      promos: this.forBuilder.array([])
-    });
-    this.getrol();
+    this.getrol()
+
   };
+  toggleMarcado(seccion: any) {
+    seccion.marcado = !seccion.marcado;
+  }
   create() {
     if (this.formGroup.valid) {
-      this.uuidx = this.route.snapshot.paramMap.get('id');
-      this.formGroup.value.uuid = this.uuidx;
-      this.formGroup.value.subsistemas = this.promos.value;
-      this.apiService.update(this.url, this.uuidx, this.formGroup.value as role).subscribe(
+      this.role_uuid = this.route.snapshot.paramMap.get('id');
+      this.formGroup.value.uuid = this.role_uuid;
+      this.formGroup.value.comandos = this.comando.value;
+      console.log(this.formGroup.value)
+      this.apiService.update(this.url, this.role_uuid, this.formGroup.value as role).subscribe(
         {
-          next: (userData: any) => {
+          next: () => {
             this.router.navigateByUrl('/home/administracion/roles');
             this.formGroup.reset();
+            
           },
+          complete:()=>{
+            window.location.reload(); 
+            this.router.navigateByUrl('/home/administracion/roles');
+          }
         }
       )
-      /* this.roleservice.update(this.uuidx,this.formGroup.value as role).subscribe({
-
-        next: (userData: any) => {
-         
-            this.router.navigateByUrl('/home/rolelist');
-            this.formGroup.reset();
-         
-        },
-      }); */
     }
     else {
       this.formGroup.markAllAsTouched();
@@ -136,11 +107,6 @@ export class RoleEditComponent {
         }
       }
     )
-    /*  this.subsistemaService.getSubsis().subscribe((data) => {
-       console.log(data);
-    
- 
-     }); */
   }
   get promos() {
     return this.fg.controls["promos"] as FormArray;
@@ -160,21 +126,35 @@ export class RoleEditComponent {
 
   };
   datos: any;
-  uuidx!: any;
+  role_uuid!: any;
+  comandosSeleccionados: { uuid: string }[] = [];
+  comandosRegistrados!: string[]
   getrol() {
-    this.uuidx = this.route.snapshot.paramMap.get('id');
-    this.apiService.getOne(this.url, this.uuidx).subscribe(
+    this.role_uuid = this.route.snapshot.paramMap.get('id');
+    this.apiService.getOne(this.url, this.role_uuid).subscribe(
       {
         next: data => {
           this.datos = data;
+
           this.formGroup.patchValue(data);
+          this.formGroup.value.comandos=this.datos.comandos
+          console.log(this.formGroup.value)
+
+          const comandosRegistrados: string[] = this.datos.comandos.map((cmd: any) => cmd.uuid);
+          const comandosArray = this.permisosFormGroup.get('uuid') as FormArray
+          comandosArray.clear(); // Limpiar los comandos seleccionados actuales
+  
+          comandosRegistrados.forEach((uuid: string) => {
+            comandosArray.push(this.forBuilder.group({ uuid }));
+          });
+  
+          this.comandosSeleccionados = this.datos.comandos.map((cmd: any) => ({ uuid: cmd.uuid }));
         }
       }
     )
-    /*   this.roleservice.getRol(this.uuidx).subscribe((data) => {
-        this.datos = data;
-        this.formGroup.patchValue(data);
-      }); */
+  }
+  isComandoSeleccionado(uuid: string): boolean {
+    return this.comandosSeleccionados.some(item => item.uuid === uuid);
   }
   getpermisos() {
     this.apiService.getAll(this.endpoint_permisos).subscribe(
@@ -186,5 +166,19 @@ export class RoleEditComponent {
         }
       }
     )
+  }
+  get comando() {
+    return this.permisosFormGroup.controls['uuid'] as FormArray
+  }
+  toggleComando(uuid: string, event: any) {
+    const isChecked = event.target.checked;
+    const index = (this.permisosFormGroup.get('uuid') as FormArray).controls.findIndex(control => control.value.uuid === uuid)
+    if (isChecked && index === -1) {
+      (this.permisosFormGroup.get('uuid') as FormArray).push(this.forBuilder.control({ uuid }));
+    } else {
+      if (index !== -1) {
+        (this.permisosFormGroup.get('uuid') as FormArray).removeAt(index)
+      }
+    }
   }
 }

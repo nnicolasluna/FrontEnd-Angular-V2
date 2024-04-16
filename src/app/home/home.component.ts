@@ -4,7 +4,6 @@ import { ApiService } from './service/api-generico/api.service';
 import { ModalService } from './modal/service/modal.service';
 import { WelcomeComponent } from './modal/welcome/welcome.component';
 
-
 interface Seccion {
   nombre: string
   marcado: boolean
@@ -30,6 +29,8 @@ export class HomeComponent {
   ) { }
   ngOnInit(): void {
     this.call_data()
+ 
+
   }
 
   secciones: Seccion[] = [
@@ -97,24 +98,46 @@ export class HomeComponent {
     seccion.marcado = !seccion.marcado;
   }
   call_data() {
-    
+
     this.apiService.auth_data("api/auth/user").subscribe(
       {
         next: data => {
-          console.log(data)
-          this.userData=data
-          console.log(data)
-          this.matDialogRef = this.modalService.GenericDialog(WelcomeComponent,{ data: {
-            titulo: 'Bienvenid@,'+' '+this.userData.personaDTO.nombres+' '+this.userData.personaDTO.primer_apellido+' '+this.userData.personaDTO.segundo_apellido,
-          }})
-          this.matDialogRef.afterClosed().subscribe(() => { })
-      
+          this.userData = data
+          this.openWelcomeDialog()
+ /*          this.matDialogRef = this.modalService.GenericDialog(WelcomeComponent, {
+            data: {
+              titulo: 'Bienvenid@,' + ' ' + this.userData.personaDTO.nombres + ' ' + this.userData.personaDTO.primer_apellido + ' ' + this.userData.personaDTO.segundo_apellido,
+            }
+          })
+          this.matDialogRef.afterClosed().subscribe(() => { }) */
+
+        },
+        error: error => {
+          console.log(error)
         }
       }
     )
   }
+  openWelcomeDialog() {
+    const isloged = sessionStorage.getItem('identify');
+    const welcome='welcome'
+    
+    if(!isloged){
+  /*     console.log('gg') */
+      console.log(isloged)
+      this.matDialogRef = this.modalService.GenericDialog(WelcomeComponent, {
+        data: {
+          titulo: 'Bienvenid@,' + ' ' + this.userData.personaDTO.nombres + ' ' + this.userData.personaDTO.primer_apellido + ' ' + this.userData.personaDTO.segundo_apellido,
+        }
+      })
+      this.matDialogRef.afterClosed().subscribe(() => { })
+      sessionStorage.setItem("identify", welcome);
+    }
+  
+  }
   logout() {
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('identify');
     this.router.navigateByUrl('/login');
   }
 

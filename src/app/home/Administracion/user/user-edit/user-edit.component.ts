@@ -65,7 +65,7 @@ export class UserEditComponent {
       this.formGroup.value.uuid = this.usueariouuid;
       this.formGroup.value.roles = this.promos.value;
       const id = this.formGroup.value.personaUuid;
-      this.apiService.update(this.url, this.usueariouuid, this.formGroup.value as user).subscribe(
+      this.apiService.update(this.endpoint_guardar_usuario, this.usueariouuid, this.formGroup.value as user).subscribe(
         {
           next: () => {
             const navigationExtras: NavigationExtras = {

@@ -4,7 +4,7 @@
     </div>
     <div class="body__content">
         <mat-card class="card card--small">
-            <app-form-header [titulo]="'Datos de Rol'"></app-form-header>
+            <app-form-header [titulo]="'Registro de Rol'"></app-form-header>
             <mat-card-content class="card__content">
                 <mat-tab-group>
                     <mat-tab label="Datos">
@@ -63,8 +63,9 @@
                             </div>
                         </form>
                     </mat-tab>
-                    <mat-tab label="Permisos">
-                        <!-- 
+                    <mat-tab label="Asignación de Permisos">
+                        <div class="AsignacionPermisos">
+                            <!-- 
                         <ul>
                             <li *ngFor="let subsistema of permisos_data">
                                 <h3>{{ subsistema.nombre }}</h3>
@@ -80,14 +81,18 @@
                                 </ul>
                             </li>
                         </ul> -->
-                  
+
                             <ul>
                                 <li *ngFor="let subsistema of permisos_data">
-                                    <h3>{{ subsistema.nombre }}</h3>
-                                    <ul>
+                                    <div class="itemCollapsed"><button><mat-icon
+                                                (click)="toggleMarcado(subsistema)">expand_more</mat-icon></button>{{
+                                        subsistema.nombre }}</div>
+                                    <ul *ngIf="subsistema.marcado">
                                         <li *ngFor="let menu of subsistema.menus">
-                                            {{ menu.nombre }}
-                                            <ul>
+                                            <div class="itemCollapsed"><button><mat-icon
+                                                        (click)="toggleMarcado(menu)">expand_more</mat-icon></button>{{
+                                                menu.nombre }}</div>
+                                            <ul *ngIf="menu.marcado">
                                                 <li *ngFor="let comando of menu.comandos">
                                                     <input type="checkbox"
                                                         (change)="toggleComando(comando.uuid, $event)">
@@ -98,9 +103,7 @@
                                     </ul>
                                 </li>
                             </ul>
-                    
-
-
+                        </div>
                     </mat-tab>
                 </mat-tab-group>
             </mat-card-content>

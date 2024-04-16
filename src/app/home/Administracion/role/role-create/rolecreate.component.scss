@@ -1,0 +1,29 @@
+ul {
+    list-style: none;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    all: unset;
+    /* Elimina todos los estilos predeterminados */
+    /* Aplica tus estilos personalizados aquí */
+    width: 25px;
+    height: 25px;
+    border: none;
+}
+
+button:hover {
+    border-radius: 10px;
+    background-color: rgb(231, 228, 228);
+}
+
+.itemCollapsed{
+    display: flex;
+    align-items: center;
+}
+.AsignacionPermisos{
+    display: flex;
+padding-left: 90px;
+}
