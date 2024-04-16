@@ -13,7 +13,7 @@ export class MyCustomPaginatorIntlComponent implements MatPaginatorIntl {
   firstPageLabel = `Primera pagina`;
   itemsPerPageLabel = `Registros por pagina:`;
   lastPageLabel = `Ultima pagina`;
-  nextPageLabel = 'Pagina siguientr';
+  nextPageLabel = 'Pagina siguiente';
   previousPageLabel = 'Pagina anterior';
 
   getRangeLabel(page: number, pageSize: number, length: number): string {
@@ -21,6 +21,6 @@ export class MyCustomPaginatorIntlComponent implements MatPaginatorIntl {
       return `Pagina 1 de 1`;
     }
     const amountPages = Math.ceil(length / pageSize);
-    return `Pagina ${page + 1} de ${amountPages}`;
+    return `Pagina ${page + 1} - ${amountPages} de ${length} Registros`;
   }
 }

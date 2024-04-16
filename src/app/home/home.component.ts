@@ -104,13 +104,6 @@ export class HomeComponent {
         next: data => {
           this.userData = data
           this.openWelcomeDialog()
- /*          this.matDialogRef = this.modalService.GenericDialog(WelcomeComponent, {
-            data: {
-              titulo: 'Bienvenid@,' + ' ' + this.userData.personaDTO.nombres + ' ' + this.userData.personaDTO.primer_apellido + ' ' + this.userData.personaDTO.segundo_apellido,
-            }
-          })
-          this.matDialogRef.afterClosed().subscribe(() => { }) */
-
         },
         error: error => {
           console.log(error)
@@ -123,7 +116,6 @@ export class HomeComponent {
     const welcome='welcome'
     
     if(!isloged){
-  /*     console.log('gg') */
       console.log(isloged)
       this.matDialogRef = this.modalService.GenericDialog(WelcomeComponent, {
         data: {

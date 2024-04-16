@@ -2,12 +2,11 @@
   <div class="body__header">
     <h1>Lista de Personas</h1>
     <button class="button-icon button-icon--agregar" matTooltip="Añadir nuevo elemento a la lista"
-      routerLink="/home/administracion/personcreate">
+      routerLink="{{link_crear}}" *ngIf="!(link_crear === '' || link_crear === null)">
       <mat-icon>add</mat-icon>
       Agregar
     </button>
   </div>
-
   <div class="body__content">
     <mat-card>
       <mat-card-content>
@@ -20,10 +19,11 @@
           </mat-expansion-panel-header>
           <app-form-buscar (datosEncontrados)="actualizarDatosTabla($event)"></app-form-buscar>
         </mat-expansion-panel>
-        <table mat-table [dataSource]="personas_dataSource" class="table" matSort (matSortChange)="announceSortChange($event)">
+        <table mat-table [dataSource]="personas_dataSource" class="table" matSort
+          (matSortChange)="announceSortChange($event)">
           <ng-container *ngFor="let column of displayedColumns">
             <ng-container *ngIf="column !== 'action'; else actionColumn">
-              <ng-container matColumnDef="{{ column }}" >
+              <ng-container matColumnDef="{{ column }}">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ capitalizeFirstLetter(column) }} </th>
                 <td mat-cell *matCellDef="let element">
                   <ng-container *ngIf="isObjectType(element[column]); else notAnObject">
@@ -42,7 +42,9 @@
               <td mat-cell *matCellDef="let element">
                 <div class="table__acciones__bar">
                   <mat-icon class=" button-icon  button-icon--editar" matTooltip="Ver" data-cy="ver"
-                    routerLink="{{link_editar}}/{{ element.uuid }}">visibility</mat-icon>
+                    routerLink="{{link_editar}}/{{ element.uuid }}"
+                    *ngIf="!(link_editar === '' || link_editar === null)"
+                    >visibility</mat-icon>
                   <mat-icon class="button-icon  button-icon--desactivar" matTooltip="Desactivar"
                     (click)="disable(element.uuid)">unpublished</mat-icon>
                   <mat-icon class="button-icon  button-icon--borrar" matTooltip="Borrar"
@@ -56,15 +58,10 @@
         </table>
       </mat-card-content>
       <mat-card-footer>
-
-         <mat-paginator (page)="handlePageEvent($event)" [length]="length"
-          [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" [hidePageSize]="hidePageSize"
-          [pageIndex]="pageIndex" aria-label="Select page">
+        <mat-paginator (page)="handlePageEvent($event)" [length]="length" [pageSize]="pageSize"
+          [pageSizeOptions]="pageSizeOptions" [hidePageSize]="hidePageSize" [pageIndex]="pageIndex"
+          aria-label="Select page">
         </mat-paginator>
-        
-      <!--   <app-paginador [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
-          [hidePageSize]='hidePageSize' [pageIndex]="pageIndex" (event)="handlePageEvent($event)">
-        </app-paginador> -->
       </mat-card-footer>
     </mat-card>
 

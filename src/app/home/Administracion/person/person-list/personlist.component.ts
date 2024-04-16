@@ -7,8 +7,8 @@ import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { AdvertenciaDeshabilitarComponent } from 'src/app/home/modal/advertencia-deshabilitar/advertencia-deshabilitar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 
 
 @Component({
@@ -19,6 +19,8 @@ import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 export class personasComponent {
   link_adicionar = "'/home/administracion/personcreate'"
   link_editar = '/home/administracion/personprofile'
+  link_crear = '/home/administracion/personcreate'
+  link_borrar = ''
   personas: any;
   hidePageSize = false;
   showPageSizeOptions = true;
@@ -28,7 +30,6 @@ export class personasComponent {
   pageIndex = 0;
   pageIndex_datatable = 0;
   displayedColumns: string[] = ['nombres', 'primer_apellido', 'segundo_apellido', 'generos', 'estadosCiviles', 'estado', 'action']
-  /* personas_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); */
   personas_dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -49,12 +50,7 @@ export class personasComponent {
   ngAfterViewInit() {
     this.personas_dataSource.sort = this.sort;
   }
-  /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {
@@ -95,7 +91,7 @@ export class personasComponent {
       }
     )
   }
- 
+
   delete(id: string) {
     this.matDialogRef = this.modalService.openDialog(AdvertenciaBorrarComponent);
     this.matDialogRef.afterClosed().subscribe(
@@ -110,8 +106,8 @@ export class personasComponent {
                 console.log(err)
                 console.log('No puede eliminarse este registro')
               },
-              complete:()=>{
-                this._snackBar.open('Registro Borrado', 'Cerrar', {duration: 2000,horizontalPosition:'start',verticalPosition:'bottom'})
+              complete: () => {
+                this._snackBar.open('Registro Borrado', 'Cerrar', { duration: 2000, horizontalPosition: 'start', verticalPosition: 'bottom' })
               }
             }
           );
