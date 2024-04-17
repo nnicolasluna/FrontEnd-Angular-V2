@@ -22,6 +22,9 @@ export class ComponenteListarComponent<T> {
   @Input() ColumnsNames: string[] = [];
   @Input() pageSizeOptions: number[] = [5, 7, 10];
   @Input() url_endpoint = '';
+  @Input() permisos_editar: string | null = null;
+  @Input() permisos_crear: string | null = null;
+  @Input() permisos_borrar: string | null = null;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   datos: any;
   userData: any;

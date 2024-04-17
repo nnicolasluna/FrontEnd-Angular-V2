@@ -49,7 +49,7 @@
             </button>
             <div *ngIf="susbsistema.marcado">
               <button *ngFor="let menu of susbsistema.menus" routerLink="{{ menu.link }}"
-                class="button_nav button_nav--son">
+                class="button_nav button_nav--son" (click)="guardar_menu(menu.uuid)">
                 <span><mat-icon>{{ menu.icono }}</mat-icon></span>
                 <span>{{ capitalizeFirstLetter(menu.nombre) }}</span>
               </button>

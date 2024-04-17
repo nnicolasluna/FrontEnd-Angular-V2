@@ -7,6 +7,7 @@ import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borrar/advertencia-borrar.component';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
+import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
 
 @Component({
   selector: 'app-menulist',
@@ -15,6 +16,9 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
 })
 export class MenulistComponent {
   registros_menus: any;
+  permisos_editar: string | null = null;
+  permisos_crear: string | null = null;
+  permisos_borrar: string | null = null;
   menus_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url_menus = 'administracion/menus'
@@ -23,10 +27,12 @@ export class MenulistComponent {
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<menu>,
+    private metodoGenerico: MetodoGenericoService
   ) { }
 
   ngOnInit(): void {
     this.getAll()
+    this.obtener_permisos()
   }
 
   getAll() {
@@ -64,5 +70,16 @@ export class MenulistComponent {
       }
     );
   }
-
+  obtener_permisos() {
+    this.metodoGenerico.comando_menus(this.apiService.get_permisos()).subscribe(
+      {
+        next: data=>{
+          this.permisos_editar=data.editar
+          this.permisos_crear=data.crear
+          this.permisos_borrar=data.borrar
+        }
+      }
+    )
+   
+  }
 }

@@ -54,10 +54,6 @@ const routes: Routes = [
   { path: 'comando-create', component: ComandocreateComponent },
   { path: 'comandos', component: ComandolistComponent },
   { path: 'comando-edit/:id', component: ComandoEditComponent },
-/* 
-  { path: 'tipo-documento-create', component: TipoDocumentoCreateComponent },
-  { path: 'tipo-documento-list', component: TipoDocumentoListComponent },
-  { path: 'tipo-documento-edit/:id', component: TipoDocumentoEditComponent }, */
 
   { path: 'documentocreate/:id', component: DocumentocreateComponent },
   { path: 'documentoedit/:id', component: DocumentoEditComponent },

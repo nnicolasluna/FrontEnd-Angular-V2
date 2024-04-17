@@ -8,6 +8,7 @@ import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borrar/advertencia-borrar.component';
+import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
 
 
 @Component({
@@ -16,6 +17,9 @@ import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borra
   styleUrls: ['./genero-list.component.scss']
 })
 export class GeneroListComponent {
+  permisos_editar: string | null = null;
+  permisos_crear: string | null = null;
+  permisos_borrar: string | null = null;
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
@@ -25,10 +29,12 @@ export class GeneroListComponent {
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<genero>,
+    private metodoGenerico: MetodoGenericoService
   ) { }
 
   ngOnInit(): void {
     this.getAll()
+    this.obtener_permisos()
   }
 
   getAll() {
@@ -66,5 +72,16 @@ export class GeneroListComponent {
       }
     );
   }
-
+  obtener_permisos() {
+    this.metodoGenerico.comando_menus(this.apiService.get_permisos()).subscribe(
+      {
+        next: data=>{
+          this.permisos_editar=data.editar
+          this.permisos_crear=data.crear
+          this.permisos_borrar=data.borrar
+        }
+      }
+    )
+   
+  }
 }

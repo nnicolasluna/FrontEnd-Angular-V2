@@ -29,7 +29,7 @@ export class HomeComponent {
   ) { }
   ngOnInit(): void {
     this.call_data()
- 
+
 
   }
 
@@ -113,9 +113,9 @@ export class HomeComponent {
   }
   openWelcomeDialog() {
     const isloged = sessionStorage.getItem('identify');
-    const welcome='welcome'
-    
-    if(!isloged){
+    const welcome = 'welcome'
+
+    if (!isloged) {
       console.log(isloged)
       this.matDialogRef = this.modalService.GenericDialog(WelcomeComponent, {
         data: {
@@ -125,7 +125,7 @@ export class HomeComponent {
       this.matDialogRef.afterClosed().subscribe(() => { })
       sessionStorage.setItem("identify", welcome);
     }
-  
+
   }
   logout() {
     sessionStorage.removeItem('token');
@@ -137,5 +137,7 @@ export class HomeComponent {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 
-
+  guardar_menu(uuid_menu:string) {
+    this.apiService.set_permisos(uuid_menu)
+  }
 }

@@ -1,5 +1,13 @@
-<app-componente-listar [titulo]="'Lista de Cortes'"
+<app-componente-listar 
+    [titulo]="'Lista de Cortes'"
     [displayedColumns]="['valor', 'orden', 'estado', 'monedas','tipoCortes','action']"
-    [link_adicionar]="'/home/parametros/corte-create'" [link_editar]="'/home/parametros/corte-edit'"
-    [table_dataSource]="dataSource" [pageSizeOptions]="pageSizeOptions" [url_endpoint]="'parametros/cortes'">
+    [link_adicionar]="'/home/parametros/corte-create'"
+    [link_editar]="'/home/parametros/corte-edit'"
+    [table_dataSource]="dataSource" 
+    [pageSizeOptions]="pageSizeOptions" 
+    [url_endpoint]="'parametros/cortes'"
+    [permisos_borrar]="permisos_borrar"
+    [permisos_editar]="permisos_editar"
+    [permisos_crear]="permisos_crear"
+    >
 </app-componente-listar>

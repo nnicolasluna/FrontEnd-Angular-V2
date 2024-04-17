@@ -6,6 +6,7 @@ import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borra
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
+import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
 
 @Component({
   selector: 'app-agencia-list',
@@ -13,6 +14,9 @@ import { ApiService } from 'src/app/home/service/api-generico/api.service';
   styleUrls: ['./agencia-list.component.scss']
 })
 export class AgenciaListComponent {
+  permisos_editar: string | null = null;
+  permisos_crear: string | null = null;
+  permisos_borrar: string | null = null;
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
@@ -22,12 +26,25 @@ export class AgenciaListComponent {
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<agencia>,
+    private metodoGenerico: MetodoGenericoService
   ) { }
 
   ngOnInit(): void {
     this.getAll()
+    this.obtener_permisos()
   }
-
+  obtener_permisos() {
+    this.metodoGenerico.comando_menus(this.apiService.get_permisos()).subscribe(
+      {
+        next: data=>{
+          this.permisos_editar=data.editar
+          this.permisos_crear=data.crear
+          this.permisos_borrar=data.borrar
+        }
+      }
+    )
+   
+  }
   getAll() {
     this.apiService.getAll(this.url).subscribe(
       {

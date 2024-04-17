@@ -28,12 +28,13 @@ export class ComandolistComponent {
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<comando>,
-    private service: MetodoGenericoService
+    private metodoGenerico: MetodoGenericoService
   ) { }
 
   ngOnInit(): void {
     this.getAll()
-    this.permisos()
+    this.obtener_permisos() 
+/*     this.permisos() */
   }
 
   getAll() {
@@ -71,7 +72,7 @@ export class ComandolistComponent {
       }
     );
   }
-  permisos() {
+/*   permisos() {
     this.service.getDataAndSearch('Administracion', 'comandos', 'comando-edit').subscribe(
       {
         next: edit => {
@@ -87,5 +88,20 @@ export class ComandolistComponent {
         }
       }
     )
+  } */
+  permisos_editar: string | null = null;
+  permisos_crear: string | null = null;
+  permisos_borrar: string | null = null;
+  obtener_permisos() {
+    this.metodoGenerico.comando_menus(this.apiService.get_permisos()).subscribe(
+      {
+        next: data=>{
+          this.permisos_editar=data.editar
+          this.permisos_crear=data.crear
+          this.permisos_borrar=data.borrar
+        }
+      }
+    )
+   
   }
 }

@@ -51,21 +51,8 @@ export class MetodoGenericoService {
     return this.formDataSubject.getValue().value; // Obtener los datos del formulario del BehaviorSubject
   }
   permisos: any;
-/*   getDataAndSearch(subsistemas:string, menus:string):any {
-    this.apiService.auth_data("api/auth/user").subscribe(
-      {
-        next: data => {
-          this.permisos=data
-          const subsistema =this.permisos.subsistemas.find((item:any)=> item.nombre===subsistemas)
-          const menu = subsistema.menus.find((item:any)=> item.nombre===menus)
 
-          return(menu)
-        }
-      }
-    )
-
-  } */
-  getDataAndSearch(subsistemas: string, menus: string, comandos:string): Observable<any> {
+  getDataAndSearch(subsistemas: string, menus: string, comandos: string): Observable<any> {
     return new Observable(observer => {
       this.apiService.auth_data("api/auth/user").subscribe({
         next: data => {
@@ -91,5 +78,78 @@ export class MetodoGenericoService {
       });
     });
   }
+
+
+  /* permisos_editar: string = ''
+  permisos_crear: string = ''
+  permisos_borrar: string = ''
+  comando_list!: any
+  comando_menus(menu_uui: string): Observable<{ editar: string , crear: string , borrar: string}>{
+    let editar: string='';
+    let crear: string='';
+    let borrar: string='';
+    this.apiService.getOne('api/auth/user/permisos', menu_uui).subscribe(
+      {
+        next: (data) => {
+          this.comando_list = data
+          this.comando_list.forEach((item: any) => {
+            switch (item.tipoOperacion) {
+              case 'C':
+                crear = item.linkMenu;
+                break;
+              case 'E':
+                editar = item.linkMenu;
+                break;
+              case 'B':
+                borrar = item.linkMenu;
+                break;
+              default:
+                break;
+            }
+          });
+        }
+      }
+    )
+    return { editar, crear, borrar };
+  }
+  get_permisos_crear() {
+    return this.permisos_crear
+  }
+  get_permisos_editar() {
+    return this.permisos_editar
+  }
+  get_permisos_borrar() {
+    return this.permisos_borrar
+  } */
+
+
+
+comando_menus(menu_uui: string): Observable<{ editar: string | null, crear: string | null, borrar: string | null }> {
+  return this.apiService.getOne('api/auth/user/permisos', menu_uui).pipe(
+    map((data: any) => {
+      let editar: string | null = null;
+      let crear: string | null = null;
+      let borrar: string | null = null;
+
+      data.forEach((item: any) => {
+        switch (item.tipoOperacion) {
+          case 'C':
+            crear = item.linkMenu;
+            break;
+          case 'E':
+            editar = item.linkMenu;
+            break;
+          case 'B':
+            borrar = item.linkMenu;
+            break;
+          default:
+            break;
+        }
+      });
+
+      return { editar, crear, borrar };
+    })
+  );
+}
 
 }

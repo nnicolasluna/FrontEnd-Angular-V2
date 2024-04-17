@@ -1,10 +1,16 @@
 <app-componente-listar 
-    [titulo]="'Lista de Roles'" 
-    [displayedColumns]="['nombre', 'nivel', 'descripcion','estado','action']"  
-    [link_adicionar]="'/home/administracion/rolecreate'"
-    [link_editar]="'/home/administracion/roledit'"
-    [table_dataSource]="roles_dataSource"
-    [pageSizeOptions]="pageSizeOptions"
-    [url_endpoint]="'administracion/roles'"
-    >
+    [titulo]="'Lista de Roles'"
+    [displayedColumns]="['nombre', 'nivel', 'descripcion','estado','action']"
+    [link_adicionar]="link_adicionar" 
+    [link_editar]="link_editar"
+    [table_dataSource]="roles_dataSource" 
+    [pageSizeOptions]="pageSizeOptions" 
+    [permisos_crear]="permisos_crear"
+    [permisos_editar]="permisos_editar"
+    [permisos_borrar]="permisos_borrar"
+    [url_endpoint]="'administracion/roles'">
 </app-componente-listar>
+<!-- 
+    /home/administracion/roledit'
+/home/administracion/roledit'
+-->

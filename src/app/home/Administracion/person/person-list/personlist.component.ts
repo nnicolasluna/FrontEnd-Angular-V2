@@ -9,6 +9,7 @@ import { AdvertenciaDeshabilitarComponent } from 'src/app/home/modal/advertencia
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,11 @@ export class personasComponent {
   link_adicionar = "'/home/administracion/personcreate'"
   link_editar = '/home/administracion/personprofile'
   link_crear = '/home/administracion/personcreate'
-  link_borrar = ''
+
+  permisos_editar = ''
+  permisos_crear = ''
+  permisos_borrar = ''
+  
   personas: any;
   hidePageSize = false;
   showPageSizeOptions = true;
@@ -43,7 +48,8 @@ export class personasComponent {
     private apiService: ApiService<person>,
     private changeDetectorRef: ChangeDetectorRef,
     private _snackBar: MatSnackBar,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private route: ActivatedRoute,
   ) {
     this.personas_dataSource = new MatTableDataSource<any>();
   }
@@ -70,6 +76,38 @@ export class personasComponent {
 
   ngOnInit(): void {
     this.getAll()
+    this.getOne()
+  }
+
+
+
+  menu_uuid!: any;
+  comando_list!: any
+  getOne() {
+    this.menu_uuid = this.apiService.get_permisos()
+    this.apiService.getOne('api/auth/user/permisos', this.menu_uuid).subscribe(
+      {
+        next: (data) => {
+          this.comando_list = data
+          this.comando_list.forEach((item: any) => {
+
+            switch (item.tipoOperacion) {
+              case 'C':
+                this.permisos_crear = item.linkMenu;
+                break;
+              case 'E':
+                this.permisos_editar = item.linkMenu;
+                break;
+              case 'B':
+                this.permisos_borrar = item.linkMenu;
+                break;
+              default:
+                break;
+            }
+          });
+        }
+      }
+    )
   }
 
 
@@ -77,7 +115,6 @@ export class personasComponent {
     this.apiService.getAllpageable(this.url_personas, String(this.pageIndex), String(this.pageSize)).subscribe(
       {
         next: (data) => {
-          console.log(data)
           this.personas = data
           this.pageSize = this.personas.size
           this.length = this.personas.totalElements

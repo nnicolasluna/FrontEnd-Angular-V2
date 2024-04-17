@@ -6,12 +6,16 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
 import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borrar/advertencia-borrar.component';
+import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
 @Component({
   selector: 'app-ocupacion-list',
   templateUrl: './ocupacion-list.component.html',
   styleUrls: ['./ocupacion-list.component.scss']
 })
 export class OcupacionListComponent {
+  permisos_editar: string | null = null;
+  permisos_crear: string | null = null;
+  permisos_borrar: string | null = null;
   datos: any;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
@@ -21,10 +25,12 @@ export class OcupacionListComponent {
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<ocupacion>,
+    private metodoGenerico: MetodoGenericoService
   ) { }
 
   ngOnInit(): void {
     this.getAll()
+    this.obtener_permisos()
   }
 
   getAll() {
@@ -62,5 +68,15 @@ export class OcupacionListComponent {
       }
     );
   }
-
+  obtener_permisos() {
+    this.metodoGenerico.comando_menus(this.apiService.get_permisos()).subscribe(
+      {
+        next: data=>{
+          this.permisos_editar=data.editar
+          this.permisos_crear=data.crear
+          this.permisos_borrar=data.borrar
+        }
+      }
+    )
+  }
 }

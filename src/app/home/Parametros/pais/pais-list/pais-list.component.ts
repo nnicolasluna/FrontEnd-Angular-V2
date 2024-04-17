@@ -8,6 +8,7 @@ import { ModalService } from 'src/app/home/modal/service/modal.service';
 import { ApiService } from 'src/app/home/service/api-generico/api.service';
 import { AdvertenciaBorrarComponent } from 'src/app/home/modal/advertencia-borrar/advertencia-borrar.component';
 import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertencia-error-conexion/advertencia-error-conexion.component';
+import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/metodo-generico.service';
 
 @Component({
   selector: 'app-pais-list',
@@ -15,6 +16,9 @@ import { AdvertenciaErrorConexionComponent } from 'src/app/home/modal/advertenci
   styleUrls: ['./pais-list.component.scss']
 })
 export class PaisListComponent {
+  permisos_editar: string | null = null;
+  permisos_crear: string | null = null;
+  permisos_borrar: string | null = null;
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   private matDialogRef!: any;
@@ -23,10 +27,12 @@ export class PaisListComponent {
   constructor(
     private modalService: ModalService,
     private apiService: ApiService<pais>,
+    private metodoGenerico: MetodoGenericoService
   ) { }
   ngOnInit():void {
     this.getAll();
     this.dataSource.paginator = this.paginatior;
+    this.obtener_permisos()
   }
   
   displayedColumns: string[] = ['nombre', 'bandera', 'estado', 'action'];
@@ -69,5 +75,15 @@ export class PaisListComponent {
       }
     );
   }
-
+  obtener_permisos() {
+    this.metodoGenerico.comando_menus(this.apiService.get_permisos()).subscribe(
+      {
+        next: data=>{
+          this.permisos_editar=data.editar
+          this.permisos_crear=data.crear
+          this.permisos_borrar=data.borrar
+        }
+      }
+    )
+  }
 }

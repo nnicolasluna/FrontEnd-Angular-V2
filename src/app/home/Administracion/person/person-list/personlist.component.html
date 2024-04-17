@@ -2,7 +2,7 @@
   <div class="body__header">
     <h1>Lista de Personas</h1>
     <button class="button-icon button-icon--agregar" matTooltip="Añadir nuevo elemento a la lista"
-      routerLink="{{link_crear}}" *ngIf="!(link_crear === '' || link_crear === null)">
+      routerLink="{{link_crear}}" *ngIf="!(permisos_crear === '' || permisos_crear === null)">
       <mat-icon>add</mat-icon>
       Agregar
     </button>
@@ -36,18 +36,19 @@
               </ng-container>
             </ng-container>
           </ng-container>
-          <ng-template #actionColumn>
+          <ng-template #actionColumn stickyEnd>
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef class="table__acciones"> Acciones </th>
               <td mat-cell *matCellDef="let element">
                 <div class="table__acciones__bar">
                   <mat-icon class=" button-icon  button-icon--editar" matTooltip="Ver" data-cy="ver"
                     routerLink="{{link_editar}}/{{ element.uuid }}"
-                    *ngIf="!(link_editar === '' || link_editar === null)"
+                    *ngIf="!(permisos_editar === '' || permisos_editar === null)"
                     >visibility</mat-icon>
                   <mat-icon class="button-icon  button-icon--desactivar" matTooltip="Desactivar"
                     (click)="disable(element.uuid)">unpublished</mat-icon>
                   <mat-icon class="button-icon  button-icon--borrar" matTooltip="Borrar"
+                  *ngIf="!(permisos_borrar === '' || permisos_borrar === null)"
                     (click)="delete(element.uuid)">delete</mat-icon>
                 </div>
               </td>

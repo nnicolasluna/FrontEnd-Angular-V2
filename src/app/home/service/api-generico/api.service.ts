@@ -28,7 +28,7 @@ export class ApiService<T> {
 
   getOne(resourceUrl: string, id: string): Observable<T> {
     return this.http.get<T>(`${this.baseUrl}${resourceUrl}/${id}`).pipe(
-      catchError((error)=>{
+      catchError((error) => {
         console.log(error)
         return of()
       })
@@ -38,7 +38,6 @@ export class ApiService<T> {
   create(resourceUrl: string, data: T): Observable<T> {
     return this.http.post<T>(this.baseUrl + resourceUrl, data);
   }
-
   update(resourceUrl: string, id: string, data: T): Observable<T> {
     return this.http.put<T>(`${this.baseUrl}${resourceUrl}/${id}`, data);
   }
@@ -56,5 +55,14 @@ export class ApiService<T> {
   }
   auth_data(resourceUrl: string): Observable<T[]> {
     return this.http.get<T[]>(this.baseUrl + resourceUrl);
+  }
+
+  set_permisos(data: any) {
+    localStorage.setItem('Menu-Indice', data);
+  }
+  storedData:any
+  get_permisos() {
+    this.storedData = localStorage.getItem('Menu-Indice');
+    return this.storedData;
   }
 }
