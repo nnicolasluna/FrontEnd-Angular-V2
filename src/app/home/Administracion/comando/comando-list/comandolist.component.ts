@@ -18,8 +18,8 @@ import { MetodoGenericoService } from 'src/app/home/service/metodo-generico/meto
 })
 export class ComandolistComponent {
   registros_comandos: any;
-  link_editar = ''
-  link_crear = ''
+  link_editar = '/home/administracion/comando-edit'
+  link_crear = '/home/administracion/comando-create'
   comandos_dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginatior !: MatPaginator;
   private url = 'administracion/comandos'
